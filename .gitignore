@@ -1,8 +1,12 @@
 /node_modules
 /public/hot
 /public/storage
+/public/admin
 /storage/*.key
 /vendor
+/resources/views/CoolAdmin-master
+/resources/views/design_admin
+/resources/views/CoolAdmin-master.zip
 /.idea
 /.vscode
 /.vagrant

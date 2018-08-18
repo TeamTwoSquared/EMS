@@ -14,3 +14,18 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/admin/login', function (){
+    return view ('admin.login');
+});
+
+Route::post('/admin/dologin', 'admin\AccountsController@authenticate');
+
+Route::get('/admin/dash', function (){
+    return view ('admin.index');
+
+});
+
+
+
+
