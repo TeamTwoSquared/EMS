@@ -1,6 +1,6 @@
 @php
 use App\Http\Controllers\admin\AccountsController;
-if((AccountsController::checklogged(1))){
+if((AccountsController::checkLogged(1))){
     header("Location: /admin/dash");
     die();
 }                           

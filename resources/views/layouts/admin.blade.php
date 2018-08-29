@@ -1,9 +1,10 @@
 @php
 use App\Http\Controllers\admin\AccountsController;
-if(!(AccountsController::checklogged(0))){
+if(!(AccountsController::checkLogged(0))){
 header("Location: /admin/login");
 die();
-}                           
+}
+$admin=AccountsController::getAdmin();                      
 @endphp
 <!DOCTYPE html> 
 <html lang="en"> 
@@ -48,7 +49,7 @@ die();
                     <div class="container-fluid"> 
                         <div class="header-mobile-inner"> 
                             <a class="logo" href="index.html"> 
-                                <img src="images/icon/logo.png" alt="CoolAdmin"/> 
+                                <img src="images/icon/logo.png" alt="EMSAdmin"/> 
                             </a>                             
                             <button class="hamburger hamburger--slider" type="button"> 
                                 <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> 
@@ -151,8 +152,8 @@ die();
             <!-- MENU SIDEBAR-->             
             <aside class="menu-sidebar d-none d-lg-block"> 
                 <div class="logo"> 
-                    <a href="#"> 
-                        <img src="images/icon/logo.png" alt="Cool Admin"/> 
+                    <a href="dash"> 
+                        <img src="images/icon/logo.png" alt="EMS Admin"/> 
                     </a>                     
                 </div>                 
                 <div class="menu-sidebar__content js-scrollbar1"> 
@@ -162,19 +163,19 @@ die();
                                 <a class="js-arrow" href="dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
                             </li>                             
                             <li> 
-                                <a href="events"><i class="fas fa-chart-bar"></i>Manage Events</a> 
+                                <a href="event"><i class="fas fa-chart-bar"></i>Manage Events</a> 
                             </li>                             
                             <li> 
                                 <a href="svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 
                             </li>                             
                             <li> 
-                                <a href="clients"> <i class="far fa-check-square"></i>Manage Clients</a> 
+                                <a href="client"> <i class="far fa-check-square"></i>Manage Clients</a> 
                             </li>                             
                             <li> 
-                                <a href="payments"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
+                                <a href="payment"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
                             </li>                             
                             <li> 
-                                <a href="ads"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
+                                <a href="ad"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
                             </li>                             
                             <li> 
                                 <a href="support"> <i class="fas fa-copy"></i>Support Requests</a> 
@@ -316,36 +317,33 @@ die();
                                     <div class="account-wrap"> 
                                         <div class="account-item clearfix js-item-menu"> 
                                             <div class="image"> 
-                                                <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                                <img src="/storage/images/profile/{{$admin->profilepic}}" alt="{{$admin->username}}"/> 
                                             </div>                                             
                                             <div class="content"> 
-                                                <a class="js-acc-btn" href="#">john doe</a> 
+                                                <a class="js-acc-btn" href="#">{{$admin->username}}</a> 
                                             </div>                                             
                                             <div class="account-dropdown js-dropdown"> 
                                                 <div class="info clearfix"> 
                                                     <div class="image"> 
                                                         <a href="#"> 
-                                                            <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                                            <img src="/storage/images/profile/{{$admin->profilepic}}" alt="{{$admin->username}}"/> 
                                                         </a>                                                         
                                                     </div>                                                     
                                                     <div class="content"> 
-                                                        <h5 class="name"> <a href="#">john doe</a> </h5> 
-                                                        <span class="email">johndoe@example.com</span> 
+                                                        <h5 class="name"> <a href="#">{{$admin->username}}</a> </h5> 
+                                                        <span class="email">{{$admin->email}}</span> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="account-dropdown__body"> 
                                                     <div class="account-dropdown__item"> 
-                                                        <a href="#"> <i class="zmdi zmdi-account"></i>Account</a> 
+                                                        <a href="profile"> <i class="zmdi zmdi-account"></i>Account</a> 
                                                     </div>                                                     
                                                     <div class="account-dropdown__item"> 
-                                                        <a href="#"> <i class="zmdi zmdi-settings"></i>Setting</a> 
-                                                    </div>                                                     
-                                                    <div class="account-dropdown__item"> 
-                                                        <a href="#"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
+                                                        <a href="settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="account-dropdown__footer"> 
-                                                    <a href="#"> <i class="zmdi zmdi-power"></i>Logout</a> 
+                                                    <a href="logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
                                                 </div>                                                 
                                             </div>                                             
                                         </div>                                         
