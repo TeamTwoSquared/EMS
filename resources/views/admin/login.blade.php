@@ -1,11 +1,11 @@
-@extends('layouts.login')
+@extends('layouts.admin_login')
 
 @section('content')
 <div class="login-wrap">
         <div class="login-content">
             <div class="login-logo">
                 <a href="#">
-                    <img src="images/icon/logo.png" alt="CoolAdmin">
+                    <img src="images/icon/logo.png" alt="EMSAdmin">
                 </a>
             </div>
             <div class="login-form">

@@ -51,7 +51,27 @@ Route::get('/admin/logout', function (){
 });
 
 //Routes for Service providers
+Route::get('/svp/login', function (){
+    return view ('svp.login');
+});
+Route::get('/svp/register', function (){
+    return view ('svp.register');
+});
 
+Route::post('/svp/doregister', 'svp\SVPsController@register');
+
+
+//Routes for Clients
+Route::get('/client/login', function (){
+    return view ('client.login');
+
+});
+Route::get('/client/register', function (){
+    return view ('client.register');
+
+});
+
+Route::post('/client/doregister', 'client\ClientsController@register');
 
 
 
