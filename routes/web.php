@@ -43,7 +43,7 @@ Route::get('/admin/settings', function (){
 
 Route::post('/admin/save_profile', 'admin\AccountsController@save_profile');
 Route::post('/admin/change_img', 'admin\AccountsController@change_img');
-
+ 
 Route::get('/admin/logout', function (){
     session()->flush();
     return redirect('/admin/login')->with('success','Logged out Succesfully');

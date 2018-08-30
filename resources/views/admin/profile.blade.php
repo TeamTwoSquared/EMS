@@ -43,7 +43,7 @@ $admin=AccountsController::getAdmin();
                 <form action="change_img" method="post" enctype="multipart/form-data">
                 {{ csrf_field() }}
                     <div class="form-actions form-group">
-                        <input type="file" id="profile_img" name="profile_img" class="form-control-file">
+                        <input type="file" id="profile_image" name="profile_image" class="form-control-file">
                     </div>
                     <div class="form-actions form-group">
                         <button type="submit" class="btn btn-success btn-sm">Upload Image</button>
