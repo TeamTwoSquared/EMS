@@ -22,9 +22,9 @@ Route::get('/admin/login', function (){
 
 });
 
-Route::post('/admin/dologin', 'admin\AccountsController@authenticate');
+Route::post('/admin/dologin', 'admin\AdminsController@authenticate');
 
-Route::get('/admin/dash', 'admin\AccountsController@index');
+Route::get('/admin/dash', 'admin\AdminsController@index');
 
 Route::get('/admin/event', function (){
     return view ('admin.event');
@@ -41,8 +41,8 @@ Route::get('/admin/settings', function (){
 
 });
 
-Route::post('/admin/save_profile', 'admin\AccountsController@save_profile');
-Route::post('/admin/change_img', 'admin\AccountsController@change_img');
+Route::post('/admin/save_profile', 'admin\AdminsController@save_profile');
+Route::post('/admin/change_img', 'admin\AdminsController@change_img');
  
 Route::get('/admin/logout', function (){
     session()->flush();

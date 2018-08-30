@@ -8,7 +8,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Admin;
 
-class AccountsController extends Controller
+class AdminsController extends Controller
 {
     public function index(){
         return view ('admin.index');

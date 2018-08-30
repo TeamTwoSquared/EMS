@@ -1,10 +1,10 @@
 @php
-use App\Http\Controllers\admin\AccountsController;
-if(!(AccountsController::checkLogged(0))){
+use App\Http\Controllers\admin\AdminsController;
+if(!(AdminsController::checkLogged(0))){
 header("Location: /admin/login");
 die();
 }
-$admin=AccountsController::getAdmin();                      
+$admin=AdminsController::getAdmin();                      
 @endphp
 <!DOCTYPE html> 
 <html lang="en"> 

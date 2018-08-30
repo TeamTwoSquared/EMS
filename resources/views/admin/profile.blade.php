@@ -1,8 +1,8 @@
 @extends('layouts.admin')
 @section('content')
 @php
-use App\Http\Controllers\admin\AccountsController;
-$admin=AccountsController::getAdmin();
+use App\Http\Controllers\admin\AdminsController;
+$admin=AdminsController::getAdmin();
 @endphp
 <div class="row" data-pg-collapsed>
     <div class="col-lg-9">
