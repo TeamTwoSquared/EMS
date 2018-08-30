@@ -1,2 +1,2 @@
 # EMS
-Setting admin
+1. Setting admin
