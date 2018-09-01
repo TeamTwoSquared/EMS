@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceProviderKeyword extends Model
+class SVPTel extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
     // Table Name
-    protected $table = 'service_provider_keywords';
+    protected $table = 'service_provider_tels';
    
     // Primary Key
-    public $primaryKey = ['service_provider_id','keyword'];
+    public $primaryKey = ['service_provider_id','tel'];
 }

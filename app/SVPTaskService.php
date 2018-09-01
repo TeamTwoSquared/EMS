@@ -4,7 +4,7 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ServiceProviderTaskService extends Model
+class SVPTaskService extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
