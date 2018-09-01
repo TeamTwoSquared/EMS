@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class TaskKeyword extends Model
+class ServiceProviderKeyword extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
     // Table Name
-    protected $table = 'task_keywords';
+    protected $table = 'service_provider_keywords';
    
     // Primary Key
-    public $primaryKey = ['task_id','keyword'];
+    public $primaryKey = ['service_provider_id','keyword'];
 }
