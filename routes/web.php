@@ -14,3 +14,9 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('registation',function(){
+    return view('serviceProvider.svp_registation_form');
+});
+
+Route::post('insertServiceProvider','svp\AccountsController@addServiceProvider');
