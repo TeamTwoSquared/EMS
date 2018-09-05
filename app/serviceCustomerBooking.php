@@ -4,9 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class serviceCustomerBooking extends Model
+class ServiceCustomerBooking extends Model
 {
-  public  $timestamps=false;
-  protected  $table='service_customer_bookings';
-  public  $primarykey=['service_id','customer_id','booking_id'];
+    public $timestamps = false;
+    public $incrementing = false;
+    // Table Name
+    protected $table = 'service_customer_bookings';
+   
+    // Primary Key
+    public $primaryKey = ['service_id','customer_id','booking_id'];
 }

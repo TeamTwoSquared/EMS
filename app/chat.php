@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class chat extends Model
+class Chat extends Model
 {
-  public  $timestamps=false;
-  protected  $table='chats';
-  public  $primarykey='chat_id';
+    public $timestamps = false;
+    // Table Name
+    protected $table = 'chats';
+   
+    // Primary Key
+    public $primaryKey = 'chat_id';
 }

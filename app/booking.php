@@ -4,9 +4,12 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class booking extends Model
+class Booking extends Model
 {
-   public $timestamps=false;
-   protected $table='bookings';
-   public $primarykey='booking_id';
+    public $timestamps = false;
+    // Table Name
+    protected $table = 'bookings';
+   
+    // Primary Key
+    public $primaryKey = 'booking_id';
 }
