@@ -12,4 +12,5 @@ class Booking extends Model
    
     // Primary Key
     public $primaryKey = 'booking_id';
+    //this
 }
