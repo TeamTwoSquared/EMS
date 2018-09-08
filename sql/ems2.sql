@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 01, 2018 at 06:19 AM
+-- Generation Time: Sep 08, 2018 at 09:02 AM
 -- Server version: 10.1.32-MariaDB
 -- PHP Version: 7.2.5
 
@@ -41,7 +41,7 @@ CREATE TABLE `admins` (
 --
 
 INSERT INTO `admins` (`admin_id`, `username`, `email`, `password`, `profilepic`) VALUES
-(1, 'EMSAdmin', 'admin@ems.dv', '43c7ccde32edd2953c918c3e0c60578b', 'sajun_1535614328.JPG'),
+(1, 'EMSAdmin', 'admin@ems.dv', '43c7ccde32edd2953c918c3e0c60578b', 'sajun_1536069464.JPG'),
 (2, 'EMSAdming', 'admin@ems.dv', '81dc9bdb52d04dc20036dbd8313ed055', 'noimage.jpg');
 
 -- --------------------------------------------------------
@@ -87,6 +87,43 @@ CREATE TABLE `bookings` (
   `status` int(2) NOT NULL DEFAULT '0',
   `service_provider_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catergories`
+--
+
+CREATE TABLE `catergories` (
+  `catergory_id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `numberOftemplates` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `catergories`
+--
+
+INSERT INTO `catergories` (`catergory_id`, `name`, `numberOftemplates`) VALUES
+(1, 'cat1', 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `catergory_templates`
+--
+
+CREATE TABLE `catergory_templates` (
+  `catergory_id` int(11) NOT NULL,
+  `template_id` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `catergory_templates`
+--
+
+INSERT INTO `catergory_templates` (`catergory_id`, `template_id`) VALUES
+(1, 1);
 
 -- --------------------------------------------------------
 
@@ -397,15 +434,18 @@ CREATE TABLE `service_providers` (
   `isdeleted` int(2) NOT NULL DEFAULT '0',
   `reg_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `last_login` datetime DEFAULT NULL,
-  `profilepic` varchar(255) NOT NULL DEFAULT 'noimage.jpg'
+  `profilepic` varchar(255) NOT NULL DEFAULT 'noimage.jpg',
+  `activation_link` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `service_providers`
 --
 
-INSERT INTO `service_providers` (`service_provider_id`, `name`, `username`, `password`, `email`, `address`, `level`, `isverified`, `isonline`, `isdeleted`, `reg_date`, `last_login`, `profilepic`) VALUES
-(1, 'svp1', 'svp1', '123456', 'svp1@gmail.com', NULL, 0, 0, 0, 0, '2018-08-31 07:32:08', '2018-08-31 13:02:08', 'noimage.jpg');
+INSERT INTO `service_providers` (`service_provider_id`, `name`, `username`, `password`, `email`, `address`, `level`, `isverified`, `isonline`, `isdeleted`, `reg_date`, `last_login`, `profilepic`, `activation_link`) VALUES
+(1, 'svp1', 'svp1', 'e10adc3949ba59abbe56e057f20f883e', 'svp1@gmail.com', NULL, 0, 0, 0, 0, '2018-08-31 07:32:08', '2018-08-31 13:02:08', 'noimage.jpg', 'bYpAHoy90udtIOYyAOIwRXyU87bk3i4GTd4VzPHG'),
+(2, 'svp2', 'svp2', 'e10adc3949ba59abbe56e057f20f883e', 'svp2@gmail.com', NULL, 0, 0, 0, 0, '2018-09-04 08:05:30', NULL, 'noimage.jpg', 'wJX3tuHlLEtO0iQAXlWKj7o14RjxiyyWP7sCELFZ'),
+(3, 'svp3', 'svp3', 'e10adc3949ba59abbe56e057f20f883e', 'svp3@gmail.com', NULL, 0, 1, 0, 0, '2018-09-04 08:07:07', NULL, 'noimage.jpg', 'DjETcI3ipJCNGkR4yttTq1SDK5X9QG10PXHA0Uot');
 
 -- --------------------------------------------------------
 
@@ -555,6 +595,13 @@ CREATE TABLE `templates` (
   `timeduration` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `templates`
+--
+
+INSERT INTO `templates` (`template_id`, `name`, `description`, `istemp`, `timeduration`) VALUES
+(1, 'temp1', 'my first template', 0, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -617,6 +664,19 @@ ALTER TABLE `ads_images`
 ALTER TABLE `bookings`
   ADD PRIMARY KEY (`booking_id`),
   ADD KEY `booking_ibfk_1` (`service_provider_id`);
+
+--
+-- Indexes for table `catergories`
+--
+ALTER TABLE `catergories`
+  ADD PRIMARY KEY (`catergory_id`);
+
+--
+-- Indexes for table `catergory_templates`
+--
+ALTER TABLE `catergory_templates`
+  ADD PRIMARY KEY (`template_id`,`catergory_id`),
+  ADD KEY `catergory_templates_ibfk_1` (`catergory_id`);
 
 --
 -- Indexes for table `chats`
@@ -908,6 +968,12 @@ ALTER TABLE `bookings`
   MODIFY `booking_id` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `catergories`
+--
+ALTER TABLE `catergories`
+  MODIFY `catergory_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `chats`
 --
 ALTER TABLE `chats`
@@ -953,7 +1019,7 @@ ALTER TABLE `services`
 -- AUTO_INCREMENT for table `service_providers`
 --
 ALTER TABLE `service_providers`
-  MODIFY `service_provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `service_provider_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `site_fees`
@@ -977,7 +1043,7 @@ ALTER TABLE `tasks`
 -- AUTO_INCREMENT for table `templates`
 --
 ALTER TABLE `templates`
-  MODIFY `template_id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `template_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -1000,6 +1066,13 @@ ALTER TABLE `ads_images`
 --
 ALTER TABLE `bookings`
   ADD CONSTRAINT `bookings_ibfk_1` FOREIGN KEY (`service_provider_id`) REFERENCES `service_providers` (`service_provider_id`) ON UPDATE CASCADE;
+
+--
+-- Constraints for table `catergory_templates`
+--
+ALTER TABLE `catergory_templates`
+  ADD CONSTRAINT `catergory_templates_ibfk_1` FOREIGN KEY (`catergory_id`) REFERENCES `catergories` (`catergory_id`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `catergory_templates_ibfk_2` FOREIGN KEY (`template_id`) REFERENCES `templates` (`template_id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `chattings`

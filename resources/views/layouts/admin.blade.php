@@ -162,8 +162,16 @@ $admin=AdminsController::getAdmin();
                             <li> 
                                 <a class="js-arrow" href="dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
                             </li>                             
-                            <li> 
-                                <a href="event"><i class="fas fa-chart-bar"></i>Manage Events</a> 
+                            <li class="has-sub"> 
+                                <a class="js-arrow" href="#"><i class="fas fa-chart-bar"></i>Manage Events</a> 
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="catergory">Catergories</a>
+                                    </li>
+                                    <li>
+                                        <a href="template">Templates</a>
+                                    </li>
+                                </ul>
                             </li>                             
                             <li> 
                                 <a href="svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 

@@ -23,8 +23,12 @@ Route::get('/admin/login', function (){
 });
 Route::post('/admin/dologin', 'admin\AdminsController@authenticate');
 Route::get('/admin/dash', 'admin\AdminsController@index');
-Route::get('/admin/event', function (){
-    return view ('admin.event');
+Route::get('/admin/template', function (){
+    return view ('admin.event.template');
+
+});
+Route::get('/admin/catergory', function (){
+    return view ('admin.event.catergory');
 
 });
 Route::get('/admin/profile', function (){

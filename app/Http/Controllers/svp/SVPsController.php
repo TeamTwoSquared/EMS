@@ -11,7 +11,6 @@ class SVPsController extends Controller
     public function index(){
         return view ('svp.index');
     }
-
     public function register(Request $request)
     {
         $svp=new SVP();
@@ -20,15 +19,10 @@ class SVPsController extends Controller
         $svp->password=md5($request->password);
         $svp->email=$request->email;
         $svp->save();
-
         SVPsController::sendActivationLink($svp->service_provider_id);
-
         //need to implement more verify email part
-
         return redirect('/svp/toverify')->with('success','Please verify you account before login');
-
     }
-
     public function authenticate(Request $request)
     {
         $this->validate($request, [
@@ -51,7 +45,6 @@ class SVPsController extends Controller
         {
             session()->put('svplogged','e86ba6a6ee56b15b9f5982982375b52f');
             session()->put('svp_id',$svp[0]->service_provider_id);
-
             if($svp[0]->isverified == 1) 
             {
             return redirect('/svp/dash')->with('success','Logged in Successfully');
@@ -64,7 +57,6 @@ class SVPsController extends Controller
         return redirect('/svp/login')->with('error','Invalid Password');
     
     }
-
     public static function checkLogged($islogin)//islogin means is the method is called from svp.login page
     {
         $mysession = session()->get('svplogged','null');
@@ -79,13 +71,11 @@ class SVPsController extends Controller
         }
         return true;
     }
-
     public static function getSVP()
     {
         $svp = SVP::where('service_provider_id', session()->get('svp_id'))->get();
         return $svp[0];
     }
-
     public static function sendActivationLink($svp_id)
     {
         $svp=SVP::find($svp_id);
