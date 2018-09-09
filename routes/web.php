@@ -11,7 +11,12 @@
 |
 */
 
-Route::get('/', function () {
+Route::get('/test', function () {
+    return view('test');
+});
+//Route::get('/test2', 'event\CatergoryTemplatesController@getCatergories');
+
+Route::get('/', function(){
     return view('welcome');
 });
 
@@ -23,10 +28,17 @@ Route::get('/admin/login', function (){
 });
 Route::post('/admin/dologin', 'admin\AdminsController@authenticate');
 Route::get('/admin/dash', 'admin\AdminsController@index');
-Route::get('/admin/template', function (){
-    return view ('admin.event.template');
 
-});
+Route::get('/admin/template', 'event\TemplatesController@admin_index');
+Route::get('/admin/template/add', 'event\TemplatesController@admin_create');
+Route::post('/admin/template/store', 'event\TemplatesController@admin_store');
+Route::get('/admin/task/add/{id}', 'event\TasksController@template_task');
+
+Route::get('/admin/task', 'event\TasksController@admin_index');
+Route::get('/admin/task/add', 'event\TasksController@admin_create');
+Route::post('/admin/task/store', 'event\TasksController@admin_store');
+
+
 Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');
 
