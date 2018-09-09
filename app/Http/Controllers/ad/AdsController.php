@@ -1,82 +1,67 @@
 <?php
-
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\ad;
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use App\Ad;
+use App\AdsImage;
 
 class AdsController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function index()
     {
-        //
+        return view('sideAdds\addsForm');
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
+
     public function create()
     {
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'title'=> 'required',
+            'body'=> 'required',
+            'service_provider_id'=>'required'
+        ]);
+
+
+        $ad=new Ad();
+        $ad->title=$request->title;
+        $ad->body=$request->text_body;
+        $ad->service_provider_id=$request->id;
+
+        $ad->save();
+
+        return redirect('/svp/sideAdds')->with('success','Submited Successfully !');
+
+        return redirect('/svp/sideAdds')->with('error','errors');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function show($id)
     {
-        //
+      //  $adInfo=Ad::where('ad_id',$id)->get();
+      //  return view('sideAdds/showSideAdds');
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function edit($id)
     {
-        //
+        
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function update(Request $request, $id)
     {
         //
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
+
     public function destroy($id)
     {
         //

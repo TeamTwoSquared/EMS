@@ -1,9 +1,9 @@
 @php
-//use App\Http\Controllers\admin\AdminsController;
-//if((AdminsController::checkLogged(1))){
-//    header("Location: /admin/dash");
-//    die();
-//}                           
+use App\Http\Controllers\svp\SVPsController;
+if((SVPsController::checkLogged(1))){
+    header("Location: /svp/dash");
+    die();
+}                           
 @endphp
 <!DOCTYPE html>
 <html lang="en">

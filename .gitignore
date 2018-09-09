@@ -4,8 +4,6 @@
 /storage/*.key
 /vendor
 /resources/views/CoolAdmin-master
-/resources/views/design_admin
-/resources/views/design_svp
 /resources/views/CoolAdmin-master.zip
 /.idea
 /.vscode
