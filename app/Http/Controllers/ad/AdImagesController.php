@@ -4,6 +4,7 @@ namespace App\Http\Controllers\ad;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\AdsImage;
 
 class AdImagesController extends Controller
 {
@@ -22,7 +23,10 @@ class AdImagesController extends Controller
 
     public function store(Request $request)
     {
-        //
+        $img=new AdsImage();
+        $img->imgurl=$request->adds;
+
+        $img->save();
     }
 
 

@@ -87,5 +87,7 @@ Route::post('/client/doregister', 'client\ClientsController@register');
 Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
 
-
-
+Route::get('/svp/sideAdds','ad\AdsController@index');
+Route::post('/svp/sideAdds/submit','ad\AdsController@store');
+//Route::post('/svp/sideAdds/submit','ad\AdImagesController@store');
+//Route::get('/svp/sideAdds/{{ad_id}','ad\AdsController@show');
