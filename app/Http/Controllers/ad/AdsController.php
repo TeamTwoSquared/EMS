@@ -14,12 +14,10 @@ class AdsController extends Controller
         return view('sideAdds\addsForm');
     }
 
-
     public function create()
     {
         //
     }
-
 
     public function store(Request $request)
     {
@@ -42,25 +40,21 @@ class AdsController extends Controller
         return redirect('/svp/sideAdds')->with('error','errors');
     }
 
-
     public function show($id)
     {
       //  $adInfo=Ad::where('ad_id',$id)->get();
       //  return view('sideAdds/showSideAdds');
     }
 
-
     public function edit($id)
     {
         
     }
 
-
     public function update(Request $request, $id)
     {
         //
     }
-
 
     public function destroy($id)
     {
