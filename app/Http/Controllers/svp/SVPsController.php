@@ -69,7 +69,11 @@ class SVPsController extends Controller
         {
             return false;
         }
-        return true;
+        $svp=SVPsController::getSVP();
+        if($svp->isverified==1){
+            return true;
+        }
+        return false;
     }
     public static function getSVP()
     {
