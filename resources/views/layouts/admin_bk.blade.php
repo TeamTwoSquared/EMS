@@ -20,26 +20,26 @@ $admin=AdminsController::getAdmin();
         <!-- Title Page-->         
         <title>{{ config('app.name', 'Laravel') }}</title>         
         <!-- Fontfaces CSS-->         
-        <link href="/admin/css/font-face.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
+        <link href="css/font-face.css" rel="stylesheet" media="all"> 
+        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
         <!-- Bootstrap core CSS -->         
-        <link href="/admin/bootstrap/css/bootstrap.css" rel="stylesheet"> 
+        <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
-        <link href="/admin/style.css" rel="stylesheet"> 
+        <link href="style.css" rel="stylesheet"> 
         <!-- Bootstrap CSS-->         
-        <link href="/admin/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
         <!-- Vendor CSS-->         
-        <link href="/admin/vendor/animsition/animsition.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/wow/animate.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/slick/slick.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/select2/select2.min.css" rel="stylesheet" media="all"> 
-        <link href="/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
+        <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/wow/animate.css" rel="stylesheet" media="all"> 
+        <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/slick/slick.css" rel="stylesheet" media="all"> 
+        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> 
+        <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
         <!-- Main CSS-->         
-        <link href="/admin/css/theme.css" rel="stylesheet" media="all"> 
+        <link href="css/theme.css" rel="stylesheet" media="all"> 
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper"> 
@@ -48,8 +48,8 @@ $admin=AdminsController::getAdmin();
                 <div class="header-mobile__bar"> 
                     <div class="container-fluid"> 
                         <div class="header-mobile-inner"> 
-                            <a class="logo" href="/admin/dash"> 
-                                <img src="/admin/images/icon/logo.png" alt="EMSAdmin"/> 
+                            <a class="logo" href="index.html"> 
+                                <img src="images/icon/logo.png" alt="EMSAdmin"/> 
                             </a>                             
                             <button class="hamburger hamburger--slider" type="button"> 
                                 <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> 
@@ -61,36 +61,36 @@ $admin=AdminsController::getAdmin();
                     <div class="container-fluid"> 
                         <ul class="navbar-mobile__list list-unstyled"> 
                                 <li> 
-                                    <a class="js-arrow" href="/admin/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
+                                    <a class="js-arrow" href="dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
                                 </li>
                             <li class="has-sub"> 
                                 <a class="js-arrow" href="#"><i class="fas fa-chart-bar"></i>Manage Events</a> 
                                 <ul class="navbar-mobile-sub__list list-unstyled js-sub-list"> 
                                     <li>
-                                        <a href="/admin/catergory">Catergories</a>
+                                        <a href="catergory">Catergories</a>
                                      </li>
                                     <li>
-                                        <a href="/admin/template">Templates</a>
+                                        <a href="template">Templates</a>
                                     </li>                                     
                                 </ul>                                 
                             </li> 
                             <li> 
-                                <a href="/admin/svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 
+                                <a href="svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/client"> <i class="far fa-check-square"></i>Manage Clients</a> 
+                                <a href="client"> <i class="far fa-check-square"></i>Manage Clients</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/payment"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
+                                <a href="payment"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/ad"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
+                                <a href="ad"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/support"> <i class="fas fa-copy"></i>Support Requests</a> 
+                                <a href="support"> <i class="fas fa-copy"></i>Support Requests</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/security"> <i class="fas fa-desktop"></i>Manage Security</a> 
+                                <a href="security"> <i class="fas fa-desktop"></i>Manage Security</a> 
                             </li>                                                       
                         </ul>                         
                     </div>                     
@@ -100,44 +100,44 @@ $admin=AdminsController::getAdmin();
             <!-- MENU SIDEBAR-->             
             <aside class="menu-sidebar d-none d-lg-block"> 
                 <div class="logo"> 
-                    <a href="/admin/dash"> 
-                        <img src="/admin/images/icon/logo.png" alt="EMS Admin"/> 
+                    <a href="dash"> 
+                        <img src="images/icon/logo.png" alt="EMS Admin"/> 
                     </a>                     
                 </div>                 
                 <div class="menu-sidebar__content js-scrollbar1"> 
                     <nav class="navbar-sidebar"> 
                         <ul class="list-unstyled navbar__list"> 
                             <li> 
-                                <a class="js-arrow" href="/admin/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
+                                <a class="js-arrow" href="dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
                             </li>                             
                             <li class="has-sub"> 
                                 <a class="js-arrow" href="#"><i class="fas fa-chart-bar"></i>Manage Events</a> 
                                 <ul class="list-unstyled navbar__sub-list js-sub-list">
                                     <li>
-                                        <a href="/admin/catergory">Catergories</a>
+                                        <a href="catergory">Catergories</a>
                                     </li>
                                     <li>
-                                        <a href="/admin/template">Templates</a>
+                                        <a href="template">Templates</a>
                                     </li>
                                 </ul>
                             </li>                             
                             <li> 
-                                <a href="/admin/svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 
+                                <a href="svp"> <i class="fas fa-table"></i>Manage Service Providers</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/client"> <i class="far fa-check-square"></i>Manage Clients</a> 
+                                <a href="client"> <i class="far fa-check-square"></i>Manage Clients</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/payment"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
+                                <a href="payment"> <i class="fas fa-calendar-alt"></i>Manage Payments</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/ad"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
+                                <a href="ad"> <i class="fas fa-map-marker-alt"></i>Manage Ads</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/support"> <i class="fas fa-copy"></i>Support Requests</a> 
+                                <a href="support"> <i class="fas fa-copy"></i>Support Requests</a> 
                             </li>                             
                             <li> 
-                                <a href="/admin/security"> <i class="fas fa-desktop"></i>Manage Security</a> 
+                                <a href="security"> <i class="fas fa-desktop"></i>Manage Security</a> 
                             </li>                             
                         </ul>                         
                     </nav>                     
@@ -168,7 +168,7 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="mess__item"> 
                                                     <div class="image img-cir img-40"> 
-                                                        <img src="/admin/images/icon/avatar-06.jpg" alt="Michelle Moreno"/> 
+                                                        <img src="images/icon/avatar-06.jpg" alt="Michelle Moreno"/> 
                                                     </div>                                                     
                                                     <div class="content"> 
                                                         <h6>Michelle Moreno</h6> 
@@ -178,7 +178,7 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="mess__item"> 
                                                     <div class="image img-cir img-40"> 
-                                                        <img src="/admin/images/icon/avatar-04.jpg" alt="Diane Myers"/> 
+                                                        <img src="images/icon/avatar-04.jpg" alt="Diane Myers"/> 
                                                     </div>                                                     
                                                     <div class="content"> 
                                                         <h6>Diane Myers</h6> 
@@ -200,7 +200,7 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="email__item"> 
                                                     <div class="image img-cir img-40"> 
-                                                        <img src="/admin/images/icon/avatar-06.jpg" alt="Cynthia Harvey"/> 
+                                                        <img src="images/icon/avatar-06.jpg" alt="Cynthia Harvey"/> 
                                                     </div>                                                     
                                                     <div class="content"> 
                                                         <p>Meeting about new dashboard...</p> 
@@ -209,7 +209,7 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="email__item"> 
                                                     <div class="image img-cir img-40"> 
-                                                        <img src="/admin/images/icon/avatar-05.jpg" alt="Cynthia Harvey"/> 
+                                                        <img src="images/icon/avatar-05.jpg" alt="Cynthia Harvey"/> 
                                                     </div>                                                     
                                                     <div class="content"> 
                                                         <p>Meeting about new dashboard...</p> 
@@ -218,7 +218,7 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="email__item"> 
                                                     <div class="image img-cir img-40"> 
-                                                        <img src="/admin/images/icon/avatar-04.jpg" alt="Cynthia Harvey"/> 
+                                                        <img src="images/icon/avatar-04.jpg" alt="Cynthia Harvey"/> 
                                                     </div>                                                     
                                                     <div class="content"> 
                                                         <p>Meeting about new dashboard...</p> 
@@ -292,14 +292,14 @@ $admin=AdminsController::getAdmin();
                                                 </div>                                                 
                                                 <div class="account-dropdown__body"> 
                                                     <div class="account-dropdown__item"> 
-                                                        <a href="/admin/profile"> <i class="zmdi zmdi-account"></i>Account</a> 
+                                                        <a href="profile"> <i class="zmdi zmdi-account"></i>Account</a> 
                                                     </div>                                                     
                                                     <div class="account-dropdown__item"> 
-                                                        <a href="/admin/settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
+                                                        <a href="settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
                                                     </div>                                                     
                                                 </div>                                                 
                                                 <div class="account-dropdown__footer"> 
-                                                    <a href="/admin/logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
+                                                    <a href="logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
                                                 </div>                                                 
                                             </div>                                             
                                         </div>                                         
@@ -324,27 +324,27 @@ $admin=AdminsController::getAdmin();
             </div>             
         </div>         
         <!-- Jquery JS-->         
-        <script src="/admin/vendor/jquery-3.2.1.min.js"></script>         
+        <script src="vendor/jquery-3.2.1.min.js"></script>         
         <!-- Bootstrap JS-->         
-        <script src="/admin/vendor/bootstrap-4.1/popper.min.js"></script>         
-        <script src="/admin/vendor/bootstrap-4.1/bootstrap.min.js"></script>         
+        <script src="vendor/bootstrap-4.1/popper.min.js"></script>         
+        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>         
         <!-- Vendor JS       -->         
-        <script src="/admin/vendor/slick/slick.min.js">
+        <script src="vendor/slick/slick.min.js">
     </script>         
-        <script src="/admin/vendor/wow/wow.min.js"></script>         
-        <script src="/admin/vendor/animsition/animsition.min.js"></script>         
-        <script src="/admin/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        <script src="vendor/wow/wow.min.js"></script>         
+        <script src="vendor/animsition/animsition.min.js"></script>         
+        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>         
-        <script src="/admin/vendor/counter-up/jquery.waypoints.min.js"></script>         
-        <script src="/admin/vendor/counter-up/jquery.counterup.min.js">
+        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>         
+        <script src="vendor/counter-up/jquery.counterup.min.js">
     </script>         
-        <script src="/admin/vendor/circle-progress/circle-progress.min.js"></script>         
-        <script src="/admin/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>         
-        <script src="/admin/vendor/chartjs/Chart.bundle.min.js"></script>         
-        <script src="/admin/vendor/select2/select2.min.js">
+        <script src="vendor/circle-progress/circle-progress.min.js"></script>         
+        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>         
+        <script src="vendor/chartjs/Chart.bundle.min.js"></script>         
+        <script src="vendor/select2/select2.min.js">
     </script>         
         <!-- Main JS-->         
-        <script src="/admin/js/main.js"></script>         
+        <script src="js/main.js"></script>         
     </body>     
 </html> 
 <!-- end document-->
