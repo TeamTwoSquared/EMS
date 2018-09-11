@@ -4,13 +4,14 @@ namespace App\Http\Controllers\review;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Reviewing;
 
 class ReviewingsController extends Controller
 {
 
     public function index()
     {
-        //
+        return view('svp.reviews');
     }
 
 

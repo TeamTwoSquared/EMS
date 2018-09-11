@@ -11,7 +11,7 @@ class AdsController extends Controller
 
     public function index()
     {
-        return view('sideAdds\addsForm');
+        return view('sideAdds\sideAds');
     }
 
     public function create()
