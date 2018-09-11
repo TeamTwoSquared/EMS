@@ -13,15 +13,32 @@ class SVPsController extends Controller
     }
     public function register(Request $request)
     {
-        $svp=new SVP();
-        $svp->name=$request->username;
-        $svp->username=$request->username;
-        $svp->password=md5($request->password);
-        $svp->email=$request->email;
-        $svp->save();
-        SVPsController::sendActivationLink($svp->service_provider_id);
-        //need to implement more verify email part
-        return redirect('/svp/toverify')->with('success','Please verify you account before login');
+        $this->validate($request, [
+            'username'=>'required',
+            'email'=> 'required',
+            'password'=> 'required'
+        ]);
+        
+        $_svp =SVP::where('email',$request->email)->get();
+    
+        if(($_svp->count())==0)
+        {
+            $svp=new SVP();
+            $svp->name=$request->username;
+            $svp->username=$request->username;
+            $svp->password=md5($request->password);
+            $svp->email=$request->email;
+            $svp->save();
+            SVPsController::sendActivationLink($svp->service_provider_id);
+            //need to implement more verify email part
+            return redirect('/svp/toverify')->with('success','Please verify you account before login');
+            
+        }
+        else{
+            return redirect('/svp/register')->with('error','Email address there exist !');
+        }
+
+        
     }
     public function authenticate(Request $request)
     {
