@@ -76,7 +76,7 @@ class CatergoriesController extends Controller
                 $image_resize->resize(265, 350);
                 $image_resize->save(public_path('storage/images/catergory/' .$fileNameToStore));
                 
-                //Adding URL to template_images table
+                //Adding URL to catergory_images table
                 $catergory_image = new CatergoryImage();
                 $catergory_image->catergory_id = $catergory->catergory_id;
                 $catergory_image->imgurl = $fileNameToStore;

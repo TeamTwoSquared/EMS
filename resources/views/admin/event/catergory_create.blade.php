@@ -27,7 +27,7 @@
                     <div class="row form-group"> 
                         <div class="col col-md-3">Cover Images&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>                         
                         <div class="col-12 col-md-9"> 
-                            <input type="file" id="catergory_images" name="catergory_images" multiple="" class="form-control-file"> 
+                            <input type="file" id="catergory_images" name="catergory_images[]" multiple="" class="form-control-file"> 
                         </div>                         
                     </div>                                 
                     <div class="card-footer"> 
