@@ -1,11 +1,15 @@
 @extends('layouts.admin')
 @section('content')
-
+@php
+use App\Catergory;
+use App\CatergoryImage;
+use App\Http\Controllers\event\CatergoriesController;
+@endphp
 <div class="row" data-pg-collapsed> 
     <div class="col-xl-9 col-lg-9"> 
         <div class="card">              
             <div class="card-header">
-                <strong>Add</strong> Category
+                <strong>Update</strong> Category
             </div>
             <div class="card-body card-block"> 
                 <form action="store" method="post" enctype="multipart/form-data" class="form-horizontal"> 
@@ -13,26 +17,26 @@
                     <div class="row form-group"> 
                         <div class="col col-md-3 col-xl-3"> 
                             <label for="text-input" class="form-control-label">Category Name</label>                             
-                        </div>                         
+                        </div>                                                 
                         <div class="col-12 col-md-9"> 
-                            <input type="text" id="name" name="name" placeholder="" class="form-control"> 
-                        </div>                         
+                            <input type="text" value={{$catergory->name}} class="field left" readonly>                             
+                        </div>                        
                     </div>                     
                     <div class="row form-group"> 
                         <div class="col col-md-3">Description</div>                         
                         <div class="col-12 col-md-9"> 
-                            <textarea name="description" id="description" rows="9" placeholder="Give a breif description of the Category..." class="form-control"></textarea>                             
+                            <textarea name="description" id="description" rows="9" placeholder={{$catergory->description}} class="form-control"></textarea>                             
                         </div>                         
                     </div>        
                     <div class="row form-group"> 
                         <div class="col col-md-3">Cover Images&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>                         
                         <div class="col-12 col-md-9"> 
-                            <input type="file" id="catergory_images" name="catergory_images[]" multiple class="form-control-file"> 
+                            <input type="file" id="catergory_images" name="catergory_images" multiple class="form-control-file"> 
                         </div>                         
                     </div>                                 
                     <div class="card-footer"> 
                         <button type="submit" class="btn btn-primary btn-sm"> 
-                            <i class="fa fa-dot-circle-o"></i> Submit
+                            <i class="fa fa-dot-circle-o"></i> Update
                         </button>                 
                         <button type="reset" class="btn btn-danger btn-sm"> 
                             <i class="fa fa-ban"></i> Reset

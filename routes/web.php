@@ -32,6 +32,7 @@ Route::get('/admin/dash', 'admin\AdminsController@index');
 Route::get('/admin/template', 'event\TemplatesController@admin_index');
 Route::get('/admin/template/add', 'event\TemplatesController@admin_create');
 Route::post('/admin/template/store', 'event\TemplatesController@admin_store');
+Route::get('/admin/template/edit/{id}', 'event\TemplatesController@admin_edit');
 Route::get('/admin/template/block/{id}','event\TemplatesController@block');
 Route::get('/admin/template/delete/{id}','event\TemplatesController@destroy');
 
@@ -45,6 +46,7 @@ Route::post('/admin/task/store', 'event\TasksController@admin_store');
 Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');
 Route::get('/admin/catergory/add', 'event\CatergoriesController@admin_create');
 Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store');
+Route::get('/admin/catergory/edit/{id}', 'event\CatergoriesController@admin_edit');
 Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy');
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');

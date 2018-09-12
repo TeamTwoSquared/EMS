@@ -86,7 +86,7 @@ class CatergoriesController extends Controller
         }
         //return to catergory
         return redirect('/admin/catergory');
-        
+
     }
 
 
@@ -96,9 +96,12 @@ class CatergoriesController extends Controller
     }
 
 
-    public function edit($id)
+    public function admin_edit($id)
     {
-        //
+        $catergory = (Catergory::where('catergory_id',$id)->get())[0];
+        $catergoryImage=(CatergoryImage::where('catergory_id',$id)->get())[0];
+        //return($catergory);
+        return view('admin.event.catergory_update')->with('catergory',$catergory,'catergoryImage',$catergoryImage);
     }
 
 

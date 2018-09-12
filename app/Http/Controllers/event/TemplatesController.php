@@ -112,7 +112,6 @@ class TemplatesController extends Controller
         }
         //On success go and add tasks
         return redirect('/admin/task/add/'.$template->template_id)->with('success','Please Add Task(s) For The Template');
-        
     }
     public function block($id)
     {
@@ -130,9 +129,9 @@ class TemplatesController extends Controller
     }
 
 
-    public function edit($id)
+    public function admin_edit($id)
     {
-        //
+        return view('admin.event.template_update');
     }
 
 
