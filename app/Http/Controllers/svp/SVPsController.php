@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\SVP;
 
+
 class SVPsController extends Controller
 {
     public function index(){
@@ -64,7 +65,15 @@ class SVPsController extends Controller
             session()->put('svp_id',$svp[0]->service_provider_id);
             if($svp[0]->isverified == 1) 
             {
-            return redirect('/svp/dash')->with('success','Logged in Successfully');
+
+                // this svp id is goes to AdsController\index method.
+
+                $logedSvp=SVP::where('email',$email)->get();
+                AdsController::index($logedSvp->service_provider_id);
+                
+                //get login successfully massege
+
+                return redirect('/svp/dash')->with('success','Logged in Successfully');
             }
             else
             {
