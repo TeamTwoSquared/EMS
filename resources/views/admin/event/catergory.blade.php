@@ -80,11 +80,6 @@ use App\Http\Controllers\event\CatergoriesController;
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
                                 </a>
-                                <a href="catergory/block/{{$catergory->catergory_id}}">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Lock">
-                                        <i class="fa fa-lock"></i>
-                                    </button>
-                                </a>
                                 <a href="catergory/delete/{{$catergory->catergory_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
