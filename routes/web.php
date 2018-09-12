@@ -60,6 +60,7 @@ Route::get('/admin/logout', function (){
 });
 
 //Routes for Service providers 
+
 Route::get('/svp/login', function (){
     return view ('svp.login');
 });
@@ -74,6 +75,23 @@ Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
 Route::get('mail/send', 'MailController@send');
 
+//Route::get('/svp/client','');
+Route::get('/svp/service','service\ServicesController@index');
+Route::get('/svp/booking','service\ServiceCustomerBookingsController@index');
+Route::get('/svp/review','review\ReviewingsController@index');
+Route::get('/svp/sideAdds','ad\AdsController@index');
+
+Route::get('/svp/help',function(){
+    return view('svp.help');
+});
+
+Route ::get('/svp/about', function(){
+    return view('svp.aboutMe');
+});
+
+
+
+
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');
@@ -87,7 +105,7 @@ Route::post('/client/doregister', 'client\ClientsController@register');
 Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
 
-Route::get('/svp/sideAdds','ad\AdsController@index');
+
 Route::post('/svp/sideAdds/submit','ad\AdsController@store');
 //Route::post('/svp/sideAdds/submit','ad\AdImagesController@store');
 //Route::get('/svp/sideAdds/{{ad_id}','ad\AdsController@show');
