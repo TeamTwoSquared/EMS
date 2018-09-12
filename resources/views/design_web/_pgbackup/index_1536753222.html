@@ -13,21 +13,22 @@
         <link href="carousel.css" rel="stylesheet"> 
     </head>     
     <body> 
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
-            <a class="navbar-brand" href="#">Carousel</a> 
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a href="#top"></a>
+            <a class="navbar-brand" href="/home">EMS</a> 
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> 
                 <span class="navbar-toggler-icon"></span> 
             </button>             
             <div class="collapse navbar-collapse" id="navbarCollapse"> 
                 <ul class="navbar-nav mr-auto"> 
                     <li class="nav-item active"> 
-                        <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a> 
+                        <a class="nav-link" href="/home">Home <span class="sr-only">(current)</span></a> 
                     </li>                     
                     <li class="nav-item"> 
-                        <a class="nav-link" href="#">About us</a> 
-                    </li>                     
+                        <a class="nav-link" href="/aboutus">About us</a> 
+                    </li>
                     <li class="nav-item"> 
-                        <a class="nav-link disabled" href="#">Contact us</a> 
+                        <a class="nav-link" href="/contactus">Contact us</a> 
                     </li>                     
                 </ul>                 
                 <form class="form-inline mt-2 mt-md-0"> 
@@ -85,17 +86,15 @@
             <div class="row"> 
                 <div class="col-lg-4 col-xl-6"> 
                     <img class="rounded-circle" src="http://pinegrow.com/placeholders/img1.jpg" alt="Generic placeholder image" width="140" height="140"> 
-                    <h2>Client</h2> 
-                    <p>Login</p> 
-                    <p></p> 
-                    <p>Login&nbsp; &nbsp;<a class="btn btn-secondary" href="#" role="button">»</a>Sign in&nbsp;<a class="btn btn-secondary" href="#" role="button">»</a></p> 
+                    <h2>Client</h2>
+                    <a class="btn btn-primary btn-lg btn-block" href="/client/login">Login</a>
+                    <a class="btn btn-secondary btn-lg btn-block" href="/client/register">Register</a> 
                 </div>                 
                 <div class="col-lg-4 col-xl-6"> 
                     <img class="rounded-circle" src="http://pinegrow.com/placeholders/img1.jpg" alt="Generic placeholder image" width="140" height="140"> 
-                    <h2>Service provider</h2> 
-                    <p>Login</p> 
-                    <p></p> 
-                    <p>Login&nbsp; &nbsp;<a class="btn btn-secondary" href="#" role="button">»</a>Sign in&nbsp;<a class="btn btn-secondary" href="#" role="button">»</a></p> 
+                    <h2>Service provider</h2>
+                    <a class="btn btn-primary btn-lg btn-block" href="/svp/login">Login</a>
+                    <a class="btn btn-secondary btn-lg btn-block" href="/svp/register">Register</a> 
                 </div>                 
                 <!-- /.col-lg-4 -->                 
                 <!-- /.col-lg-4 -->                 
@@ -107,7 +106,7 @@
             <div class="row featurette"> 
                 <div class="col-md-7"> 
                     <h2 class="featurette-heading">Vast range of pre-defined templates</h2> 
-                    <p class="lead">You can find number of pre defined templates are provided to ease your work.your own</p> 
+                    <p class="lead">You can find number of pre defined templates which are provided to ease your work.your own</p> 
                     <p class="lead">Also you can edit or create&nbsp;</p> 
                 </div>                 
                 <div class="col-md-5"> 
@@ -138,8 +137,8 @@
             <!-- /END THE FEATURETTES -->             
             <!-- FOOTER -->             
             <footer> 
-                <p class="float-right"><a href="#">Back to top</a></p> 
-                <p>© 2017 Company, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p> 
+                <p class="float-right"><a href="#top">Back to top</a></p> 
+                <p>Copyright © 2018 EMS. All rights reserved. · <a href="/privacy">Privacy</a> · <a href="/tos">Terms</a></p> 
             </footer>             
         </div>         
         <!-- /.container -->         
