@@ -117,7 +117,14 @@ class TemplatesController extends Controller
     {
         $template = Template::where('template_id',$id)->get();
         $template = $template[0];
-        $template->istemp=2;
+        if ($template->istemp!=2)
+        {
+            $template->istemp=2;
+        }
+        else
+        {
+            $template->istemp=1;
+        }
         $template->save();
         return redirect('/admin/template');
     }
@@ -143,10 +150,13 @@ class TemplatesController extends Controller
 
     public function destroy($id)
     {   
-        $tempImage=TemplateImage::where('template_id',$id)->get();
-        if(($tempImage->count())>0)
+        $tempImages=TemplateImage::where('template_id',$id)->get();
+        if(($tempImages->count())>0)
         {
-            Storage::delete('public/images/template/'.$tempImage[0]->imgurl);
+            foreach($tempImages as $tempImage)
+            {
+                Storage::delete('public/images/template/'.$tempImage->imgurl);
+            }
         }
         Template::where('template_id',$id)->delete();        
         return redirect('/admin/template');

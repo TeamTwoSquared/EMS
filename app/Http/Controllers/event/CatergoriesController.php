@@ -113,13 +113,17 @@ class CatergoriesController extends Controller
 
     public function destroy($id)
     {
-        $catergoryImage=CatergoryImage::where('catergory_id',$id)->get();
-        if(($catergoryImage->count())>0)
+        $catergoryImages=CatergoryImage::where('catergory_id',$id)->get();
+        if(($catergoryImages->count())>0)
         {
-            Storage::delete('public/images/catergory/'.$catergoryImage[0]->imgurl);
+            foreach($catergoryImages as $catergoryImage)
+            {
+                Storage::delete('public/images/catergory/'.$catergoryImage->imgurl);
+            }
         }
         Catergory::where('catergory_id',$id)->delete();        
         return redirect('/admin/catergory');
+
     }
 
     public static function getCatergories()
