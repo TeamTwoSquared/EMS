@@ -10,6 +10,7 @@ use App\Task;
 use App\TaskKeyword;
 use App\TemplateTask;
 
+
 class TasksController extends Controller
 {
 
@@ -39,6 +40,7 @@ class TasksController extends Controller
         //rediract to template_task add page with id
 
     }
+   
 
     public function show($id)
     {
