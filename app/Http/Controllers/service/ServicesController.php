@@ -4,13 +4,14 @@ namespace App\Http\Controllers\service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Service;
 
 class ServicesController extends Controller
 {
 
     public function index()
     {
-        //
+        return view('svp.service');
     }
 
 
