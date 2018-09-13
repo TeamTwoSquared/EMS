@@ -112,7 +112,21 @@ class TemplatesController extends Controller
         }
         //On success go and add tasks
         return redirect('/admin/task/add/'.$template->template_id)->with('success','Please Add Task(s) For The Template');
-        
+    }
+    public function block($id)
+    {
+        $template = Template::where('template_id',$id)->get();
+        $template = $template[0];
+        if ($template->istemp!=2)
+        {
+            $template->istemp=2;
+        }
+        else
+        {
+            $template->istemp=1;
+        }
+        $template->save();
+        return redirect('/admin/template');
     }
 
 
@@ -122,9 +136,9 @@ class TemplatesController extends Controller
     }
 
 
-    public function edit($id)
+    public function admin_edit($id)
     {
-        //
+        return view('admin.event.template_update');
     }
 
 
@@ -135,7 +149,17 @@ class TemplatesController extends Controller
 
 
     public function destroy($id)
-    {
+    {   
+        $tempImages=TemplateImage::where('template_id',$id)->get();
+        if(($tempImages->count())>0)
+        {
+            foreach($tempImages as $tempImage)
+            {
+                Storage::delete('public/images/template/'.$tempImage->imgurl);
+            }
+        }
+        Template::where('template_id',$id)->delete();        
+        return redirect('/admin/template');
         
     }
 
