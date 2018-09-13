@@ -4,6 +4,7 @@ namespace App\Http\Controllers\svp;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
 
 class SVPsController extends Controller
@@ -13,15 +14,46 @@ class SVPsController extends Controller
     }
     public function register(Request $request)
     {
-        $svp=new SVP();
-        $svp->name=$request->username;
-        $svp->username=$request->username;
-        $svp->password=md5($request->password);
-        $svp->email=$request->email;
-        $svp->save();
-        SVPsController::sendActivationLink($svp->service_provider_id);
-        //need to implement more verify email part
-        return redirect('/svp/toverify')->with('success','Please verify you account before login');
+        $this->validate($request, [
+            'username'=>'required',
+            'email'=> 'required',
+            'password'=> 'required'
+        ]);
+        
+        $_svp =SVP::where('email',$request->email)->get();
+        $_svpSameUser = SVP::where('username',$request->username)->get();
+    
+        if(($_svp->count())==0 && ($_svpSameUser->count()==0))
+        {
+            $svp=new SVP();
+            $svp->name=$request->username;
+            $svp->username=$request->username;
+            $svp->password=md5($request->password);
+            $svp->email=$request->email;
+            $svp->save();
+            SVPsController::sendActivationLink($svp->service_provider_id);
+            //need to implement more verify email part
+            return redirect('/svp/toverify');
+            
+        }
+        else
+        {
+            if(($_svp->count()>0) && ($_svpSameUser->count()>0))
+            {
+                return redirect('/svp/register')->with('error','Both Username & Email are Already Exist, Please Sign In !!');
+        
+            }
+            else if(($_svp->count()>0) && ($_svpSameUser->count()==0))
+            {
+                return redirect('/svp/register')->with('error','Your Email Address is Already Exist, Please Sign In !!');
+            }
+            else if (($_svp->count()==0) && ($_svpSameUser->count()>0))
+            {
+                return redirect('/svp/register')->with('error','Selected Username is Already Exist, Please Try Another !!');
+            }
+        }
+
+        
     }
     public function authenticate(Request $request)
     {
@@ -75,11 +107,59 @@ class SVPsController extends Controller
         }
         return false;
     }
+
     public static function getSVP()
     {
         $svp = SVP::where('service_provider_id', session()->get('svp_id'))->get();
         return $svp[0];
     }
+
+    public function change_img(Request $request)
+    {
+        //validation
+        $this->validate($request, 
+        [
+            'profile_image'=>'required|image|max:1999'
+        ]);
+
+         // Handle File Upload
+         if($request->hasFile('profile_image'))
+         {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('profile_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('profile_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload 
+            $image       = $request->file('profile_image');
+            //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
+            $image_resize = Image::make($image->getRealPath());              
+            $image_resize->resize(100, 100);
+            $image_resize->save(public_path('storage/images/profile/' .$fileNameToStore));
+       
+        }
+
+        //Adding new pic to DB
+        $svp = SVP::find(session()->get('svp_id'));
+        if($svp->profilepic=='noimage.jpg')
+        { 
+            $svp->profilepic=$fileNameToStore;
+            $svp->save();
+            return redirect('/svp/profile')->with('success','Profile Image Updated');
+        }
+        else
+        {
+            // Delete Image
+            Storage::delete('public/images/profile/'.$svp->profilepic);
+            $svp->profilepic=$fileNameToStore;
+            $svp->save();
+            return redirect('/svp/profile')->with('success','Profile Image Updated');
+        }
+    }
+
     public static function sendActivationLink($svp_id)
     {
         $svp=SVP::find($svp_id);
