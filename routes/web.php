@@ -100,6 +100,21 @@ Route ::get('/svp/about', function(){
 
 
 
+Route::get('/svp/profile', function (){
+    return view ('svp.profile');
+
+});
+Route::get('/svp/settings', function (){
+    return view ('admin.settings');
+
+});
+//Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
+Route::post('/svp/change_img', 'svp\SVPsController@change_img');
+Route::get('/svp/logout', function (){
+    session()->flush();
+    return redirect('/svp/login')->with('success','Logged out Succesfully');
+
+});
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');
