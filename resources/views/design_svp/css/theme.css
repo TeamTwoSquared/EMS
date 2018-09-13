@@ -4673,6 +4673,10 @@ section {
     color: #00ad5f;
 }
 
+.status--pending {
+    color: #e2692d;
+}
+
 .status--denied {
     color: #fa4251;
 }

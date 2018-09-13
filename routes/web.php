@@ -32,17 +32,25 @@ Route::get('/admin/dash', 'admin\AdminsController@index');
 Route::get('/admin/template', 'event\TemplatesController@admin_index');
 Route::get('/admin/template/add', 'event\TemplatesController@admin_create');
 Route::post('/admin/template/store', 'event\TemplatesController@admin_store');
-Route::get('/admin/task/add/{id}', 'event\TasksController@template_task');
+Route::get('/admin/template/edit/{id}', 'event\TemplatesController@admin_edit');
+Route::get('/admin/template/block/{id}','event\TemplatesController@block');
+Route::get('/admin/template/delete/{id}','event\TemplatesController@destroy');
 
+Route::get('/admin/task/add/{id}', 'event\TasksController@template_task');
 Route::get('/admin/task', 'event\TasksController@admin_index');
 Route::get('/admin/task/add', 'event\TasksController@admin_create');
 Route::post('/admin/task/store', 'event\TasksController@admin_store');
 
 
-Route::get('/admin/catergory', function (){
-    return view ('admin.event.catergory');
 
-});
+Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');
+Route::get('/admin/catergory/add', 'event\CatergoriesController@admin_create');
+Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store');
+Route::get('/admin/catergory/edit/{id}', 'event\CatergoriesController@admin_edit');
+Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy');
+/*Route::get('/admin/catergory', function (){
+    return view ('admin.event.catergory');
+});*/
 Route::get('/admin/profile', function (){
     return view ('admin.profile');
 
@@ -88,6 +96,21 @@ Route::get('/svp/help',function(){
 
 
 
+Route::get('/svp/profile', function (){
+    return view ('svp.profile');
+
+});
+Route::get('/svp/settings', function (){
+    return view ('admin.settings');
+
+});
+//Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
+Route::post('/svp/change_img', 'svp\SVPsController@change_img');
+Route::get('/svp/logout', function (){
+    session()->flush();
+    return redirect('/svp/login')->with('success','Logged out Succesfully');
+
+});
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');
