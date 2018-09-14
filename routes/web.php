@@ -15,11 +15,16 @@ Route::get('/test', function () {
     return view('test');
 });
 //Route::get('/test2', 'event\CatergoryTemplatesController@getCatergories');
-
 Route::get('/', function(){
-    return view('welcome');
+    return view('index');
+});
+Route::get('/aboutus', function(){
+    return view('aboutus');
 });
 
+Route::get('/contactus', function(){
+    return view('contactus');
+});
 //Routes of Admin
 
 Route::get('/admin/login', function (){
