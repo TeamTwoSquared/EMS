@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
 
+
 class SVPsController extends Controller
 {
     public function index(){
@@ -79,7 +80,7 @@ class SVPsController extends Controller
             session()->put('svp_id',$svp[0]->service_provider_id);
             if($svp[0]->isverified == 1) 
             {
-            return redirect('/svp/dash')->with('success','Logged in Successfully');
+                return redirect('/svp/dash')->with('success','Logged in Successfully');
             }
             else
             {

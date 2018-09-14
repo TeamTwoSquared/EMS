@@ -9,7 +9,7 @@
             </a>
         </div>
         <div class="login-form">
-            <form action="/svp/sideAdds/submit" method="post">
+            <form action="/svp/sideAdds/store" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
                     <label>Advertiesment Title </label>

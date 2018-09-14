@@ -93,10 +93,6 @@ Route::get('/svp/help',function(){
     return view('svp.help');
 });
 
-Route ::get('/svp/about', function(){
-    return view('svp.aboutMe');
-});
-
 
 
 
@@ -129,6 +125,13 @@ Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
 
 
-Route::post('/svp/sideAdds/submit','ad\AdsController@store');
-//Route::post('/svp/sideAdds/submit','ad\AdImagesController@store');
-//Route::get('/svp/sideAdds/{{ad_id}','ad\AdsController@show');
+// Routes for side Adds.
+
+Route::get('svp/sideAdds','ad\AdsController@index');
+Route::get('svp/sideAdds/create','ad\AdsController@create');
+Route::post('/svp/sideAdds/store','ad\AdsController@store');
+Route::post('/svp/sideAds/store','ad\AdImagesController@store');
+Route::get('/svp/sideAdds/show/{{ad_id}}','ad\AdsController@show');
+Route::get('/svp/sideAdds/edit/{{ad_id}}','ad\AdsController@edit');
+Route::match('/svp/sideAdds/update','ad\AdsController@update');
+Route::delete('/svp/sideAdds/delete','ad\AdsController@destroy');
