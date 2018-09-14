@@ -10,7 +10,7 @@ use App\AdsImage;
 class AdsController extends Controller
 {
 
-    public function index($id)
+    public function index($id)//No need to have id, we can get id from session
     {
         // get all the adds of particular svp when svp is login..
 

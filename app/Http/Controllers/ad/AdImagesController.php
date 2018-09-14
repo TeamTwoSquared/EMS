@@ -21,7 +21,7 @@ class AdImagesController extends Controller
     }
 
 
-    public function store(Request $request,$id)
+    public function store(Request $request,$id)//Ad this functionality diractly to AdsController:Store
     {
         // chack file is a image
 
