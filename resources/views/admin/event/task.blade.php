@@ -7,7 +7,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
 <div class="row" data-pg-collapsed>
     <div class="col-md-12">
         <!-- DATA TABLE -->
-        <h3 class="title-5 m-b-35">Manage Templates</h3>
+        <h3 class="title-5 m-b-35">Manage Tasks</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
                 <div class="rs-select2--light rs-select2--md">
@@ -31,14 +31,14 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                 </button>
             </div>
             <div class="table-data__tool-right">
-                <a href="template/add"> 
+                <a href="task/add"> 
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
-                        <i class="zmdi zmdi-plus"></i>add template&nbsp;
+                        <i class="zmdi zmdi-plus"></i>add task&nbsp;
                     </button>
                 </a>
-                <a href="template/delete">
+                <a href="task/delete">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small bg-danger">
-                        <i class="zmdi zmdi-minus"></i>remove template&nbsp;
+                        <i class="zmdi zmdi-minus"></i>remove task&nbsp;
                     </button>
                 </a>
             </div>
@@ -55,14 +55,15 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         </th>
                         <th>name</th>
                         <th>description</th>
-                        <th>status</th>
-                        <th>catergories</th>
+                        <th>istemp</th>
+                        <th>templates</th>
+                        <th>time duration</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Start TABLE ROW-->
-                    @foreach($templates as $template)
+                    @foreach($tasks as $task)
                     <tr class="tr-shadow">
                         <td>
                             <label class="au-checkbox">
@@ -70,9 +71,9 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                                 <span class="au-checkmark"></span>
                             </label>
                         </td>
-                        <td>{{$template->name}}</td>
-                        <td>{{$template->description}}</td>
-                        @if($template->istemp == 0)
+                        <td>{{$task->name}}</td>
+                        <td>{{$task->description}}</td>
+                        @if($task->istemp == 0)
                         <td><span class="status--process">active</span></td>
                         @elseif($template->istemp == 1)
                         <td><span class="status--pending">pending</span></td>
@@ -91,19 +92,20 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                             @endphp
 
                         </td>
+                        <td>{{$task->timeduration}}</td>
                         <td>
                             <div class="table-data-feature">
-                                <a href="template/edit/{{$template->template_id}}">
+                                <a href="template/edit/{{$task->task_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
                                 </a>
-                                <a href="template/block/{{$template->template_id}}">
+                                <a href="template/block/{{$task->task_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Lock">
                                         <i class="fa fa-lock"></i>
                                     </button>
                                 </a>
-                                <a href="template/delete/{{$template->template_id}}">
+                                <a href="template/delete/{{$task->task_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                     </button>

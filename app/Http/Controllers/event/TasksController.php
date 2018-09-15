@@ -19,6 +19,7 @@ class TasksController extends Controller
         //This returns all tasks from DB to Task Management of AdminDash
         $tasks = Task::all();
         return view('admin.event.task')->with('tasks',$tasks);
+        
     }
 
     public function admin_create()//Here 'id' is the template id to which tasks belongs

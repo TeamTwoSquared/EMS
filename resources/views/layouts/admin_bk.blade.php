@@ -71,7 +71,10 @@ $admin=AdminsController::getAdmin();
                                      </li>
                                     <li>
                                         <a href="template">Templates</a>
-                                    </li>                                     
+                                    </li>
+                                    <li>
+                                        <a href="task">Tasks</a>
+                                    </li>                                       
                                 </ul>                                 
                             </li> 
                             <li> 
@@ -118,6 +121,9 @@ $admin=AdminsController::getAdmin();
                                     </li>
                                     <li>
                                         <a href="template">Templates</a>
+                                    </li>
+                                    <li>
+                                        <a href="task">Tasks</a>
                                     </li>
                                 </ul>
                             </li>                             
@@ -316,7 +322,7 @@ $admin=AdminsController::getAdmin();
                         <div class="container-fluid"> 
                             @include('inc.messages')
                             @yield('content')
-</div>                         
+                        </div>                         
                     </div>                     
                 </div>                 
                 <!-- END MAIN CONTENT-->                 
