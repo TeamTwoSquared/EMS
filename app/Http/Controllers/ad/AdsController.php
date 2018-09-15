@@ -6,17 +6,24 @@ use App\Http\Controllers\Controller;
 use App\Ad;
 use App\AdsImage;
 
+
 class AdsController extends Controller
 {
 
-    public function index()
+    public function index($id)//No need to have id, we can get id from session
     {
-        return view('sideAdds\addsForm');
+        // get all the adds of particular svp when svp is login..
+
+        $addsInfo=Ad::where('service_provider_id',$id)->get();
+         
+        // to be display all the adds details on sideAds.
+
+        return view('sideAdds\sideAds')-with('addsInfo',$addsInfo);
     }
 
     public function create()
     {
-        //
+        return view('sideAdds\addsForm');
     }
 
     public function store(Request $request)
@@ -34,6 +41,7 @@ class AdsController extends Controller
         $ad->service_provider_id=$request->id;
 
         $ad->save();
+        AdImagesController::store($ad->ad_id);
 
         return redirect('/svp/sideAdds')->with('success','Submited Successfully !');
 
@@ -42,22 +50,28 @@ class AdsController extends Controller
 
     public function show($id)
     {
-      //  $adInfo=Ad::where('ad_id',$id)->get();
-      //  return view('sideAdds/showSideAdds');
+        return view('sideAdds/showSideAdds');
+        
     }
 
     public function edit($id)
     {
-        
+        $editAdds=Ad::where('ad_id',$id)->get();
+        return view('sideAdds/editSideAdds')->with('editAd',$editAdds);
     }
 
     public function update(Request $request, $id)
     {
-        //
+        
+        $updateAdds=Ad::where('ad_id',$id)->update($request->all());
+
+        return redirect('/svp/sideAds','Updated Successfully !');
+
+
     }
 
     public function destroy($id)
     {
-        //
+        $deleteAdds=Ad::where('ad_id',$id)->delete();
     }
 }

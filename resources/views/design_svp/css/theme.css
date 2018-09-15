@@ -41,13 +41,11 @@ Notes:	decreasing heading by 0.4em with every subsequent heading level
 /*-----------------------------------------------------*/
 /* ----- Normalize ----- */
 * {
+    margin: 0;
+    padding: 0;
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
     box-sizing: border-box;
-    float: none;
-    clear: both;
-    position: relative;
-    padding: 0;
 }
 
 ul {
@@ -4673,6 +4671,10 @@ section {
 
 .status--process {
     color: #00ad5f;
+}
+
+.status--pending {
+    color: #e2692d;
 }
 
 .status--denied {
