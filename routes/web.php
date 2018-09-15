@@ -140,3 +140,6 @@ Route::get('/svp/sideAdds/show/{{ad_id}}','ad\AdsController@show');
 Route::get('/svp/sideAdds/edit/{{ad_id}}','ad\AdsController@edit');
 Route::match('/svp/sideAdds/update','ad\AdsController@update');
 Route::delete('/svp/sideAdds/delete','ad\AdsController@destroy');
+
+//pansilu
+Route::get('/pansilu/{id}','chat\ChatsController@show');
