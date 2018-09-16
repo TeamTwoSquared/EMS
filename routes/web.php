@@ -86,7 +86,7 @@ Route::get('/svp/toverify', function (){
 Route::post('/svp/doregister', 'svp\SVPsController@register');
 Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
-Route::get('/mail/send_verify/{isSvp}/{reciever}', 'MailController@send'); 
+Route::get('mail/send', 'MailController@send');
 
 //Route::get('/svp/client','');
 Route::get('/svp/service','service\ServicesController@index');
@@ -98,9 +98,6 @@ Route::get('/svp/help',function(){
     return view('svp.help');
 });
 
-
-
-
 Route::get('/svp/profile', function (){
     return view ('svp.profile');
 
@@ -111,11 +108,8 @@ Route::get('/svp/settings', function (){
 });
 //Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
-Route::get('/svp/logout', function (){
-    session()->flush();
-    return redirect('/svp/login')->with('success','Logged out Succesfully');
+Route::get('/svp/logout','svp\SVPsController@isLogout');
 
-});
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');
