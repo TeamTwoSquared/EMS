@@ -4,9 +4,26 @@ namespace App\Http\Controllers\event;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Template;
+use App\TemplateTask;
 
 class TemplateTasksController extends Controller
 {
+    public static function getTemplates($task_id)
+    {
+        //Use to return a template name set when a task Id is provided
+        $template_tasks = TemplateTask::where('task_id',$task_id)->get();
+        $template_names = Array();
+        foreach($template_tasks as $template_task)
+        {
+            $template =  Template::where('template_id',$template_task->template_id)->get();
+            $template = $ $template[0];
+            $template_names = array_prepend($template_names,$template->name);
+        }
+        return $template_names;
+        
+
+    }
 
     public function index()
     {

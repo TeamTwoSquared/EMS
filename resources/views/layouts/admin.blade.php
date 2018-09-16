@@ -71,7 +71,10 @@ $admin=AdminsController::getAdmin();
                                      </li>
                                     <li>
                                         <a href="/admin/template">Templates</a>
-                                    </li>                                     
+                                    </li>
+                                    <li>
+                                        <a href="/admin/task">Tasks</a>
+                                    </li>                                      
                                 </ul>                                 
                             </li> 
                             <li> 
@@ -118,6 +121,9 @@ $admin=AdminsController::getAdmin();
                                     </li>
                                     <li>
                                         <a href="/admin/template">Templates</a>
+                                    </li>
+                                    <li>
+                                        <a href="/admin/task">Tasks</a>
                                     </li>
                                 </ul>
                             </li>                             

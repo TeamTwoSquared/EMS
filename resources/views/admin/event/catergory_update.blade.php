@@ -25,15 +25,9 @@ use App\Http\Controllers\event\CatergoriesController;
                     <div class="row form-group"> 
                         <div class="col col-md-3">Description</div>                         
                         <div class="col-12 col-md-9"> 
-                            <textarea name="description" id="description" rows="9" placeholder={{$catergory->description}} class="form-control"></textarea>                             
+                            <textarea name="description" id="description" rows="9" placeholder="{{$catergory->description}}" class="form-control"></textarea>                             
                         </div>                         
-                    </div>        
-                    <div class="row form-group"> 
-                        <div class="col col-md-3">Cover Images&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>                         
-                        <div class="col-12 col-md-9"> 
-                            <input type="file" id="catergory_images" name="catergory_images" multiple class="form-control-file"> 
-                        </div>                         
-                    </div>                                 
+                    </div>                                
                     <div class="card-footer"> 
                         <button type="submit" class="btn btn-primary btn-sm"> 
                             <i class="fa fa-dot-circle-o"></i> Update
