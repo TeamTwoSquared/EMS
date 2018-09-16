@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
-
+use App\Http\Controllers\MailController;
 
 class SVPsController extends Controller
 {
@@ -176,9 +176,12 @@ class SVPsController extends Controller
             $uniqueString =  unique_random('service_providers', 'activation_link', 40);
             $svp->activation_link=$uniqueString;
             $svp->save();
+            //Send Activation Link
+            $svp=SVP::find($svp_id);
+            MailController::send_verify(1,$svp);
         }
-        //Send Activation Link
-        return redirect('mail/send_verify/1/'.$svp);
+        
+        
         
     }
 }//end of class

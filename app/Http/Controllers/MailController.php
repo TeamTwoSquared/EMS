@@ -6,12 +6,13 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Mail\VerifyEmail;
 use Illuminate\Support\Facades\Mail;
-
+use SVP;
 class MailController extends Controller
 {
-    public function send_verify($isSVP,$reciever)
+    public static function send_verify()
     {
-        if ($isSVP == 1)
+        $reciever = SVP::find(7);
+        if (1)
         {
             $objVerify = new \stdClass();
             $objVerify->identity = 'SVPVerification';
