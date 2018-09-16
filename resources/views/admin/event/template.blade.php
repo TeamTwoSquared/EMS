@@ -103,11 +103,18 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                                         <i class="fa fa-lock"></i>
                                     </button>
                                 </a>
-                                <a href="template/delete/{{$template->template_id}}">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                
+                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
+                                        <script>
+                                            function deleteMe() {
+                                                    if (confirm("Are you sure you want to delete this template!")) {
+                                                        window.location.replace("template/delete/{{$template->template_id}}");
+                                                    } 
+                                                }
+                                        </script>
                                     </button>
-                                </a>
+                                
                             </div>
                         </td>
                     </tr>
