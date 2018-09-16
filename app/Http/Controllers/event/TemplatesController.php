@@ -19,6 +19,7 @@ class TemplatesController extends Controller
         //This returns all templates from DB to Template Management of AdminDash
         $templates = Template::all();
         return view('admin.event.template')->with('templates',$templates);
+        
     }
 
 
