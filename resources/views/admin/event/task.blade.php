@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 @section('content')
 @php
-use App\Http\Controllers\event\CatergoryTemplatesController;
+use App\Http\Controllers\event\TemplateTasksController;
 
 @endphp
 <div class="row" data-pg-collapsed>
@@ -75,7 +75,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         <td>{{$task->description}}</td>
                         @if($task->istemp == 0)
                         <td><span class="status--process">active</span></td>
-                        @elseif($template->istemp == 1)
+                        @elseif($task->istemp == 1)
                         <td><span class="status--pending">pending</span></td>
                         @else
                         <td><span class="status--denied">blocked</span></td>
@@ -83,10 +83,10 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
 
                         <td class="desc">
                             @php
-                            $catergory_names=CatergoryTemplatesController::getCatergories($template->template_id);
-                                foreach($catergory_names as $catergory_name)
+                            $template_names=TemplateTasksController::getTemplates($task->task_id);
+                                foreach($template_names as $template_name)
                                 {
-                                    echo $catergory_name;
+                                    echo $template_name;
                                     echo '  ';
                                 }
                             @endphp
