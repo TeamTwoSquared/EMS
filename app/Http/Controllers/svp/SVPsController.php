@@ -178,7 +178,25 @@ class SVPsController extends Controller
             $svp->save();
         }
         //Send Activation Link
-        return redirect('mail/send_verify/1/'.$svp);
         
     }
+
+    public function isOnline($id){
+        $svp=SVP::where('service_provider_id',$id)->get();
+        if($svp[0]->isonline == 1){
+            return "Active Now";
+        }
+        else{
+            return " Off line";
+        }
+    }
+
+    public function isLogout(){
+        $svp = SVP::find(session()->get('svp_id'));
+        $svp->isonline=0;
+        $svp->save();
+        session()->flush();
+        return redirect('/svp/login')->with('success','Logged out Succesfully');
+    }
+
 }//end of class
