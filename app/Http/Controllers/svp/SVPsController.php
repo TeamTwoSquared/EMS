@@ -178,6 +178,7 @@ class SVPsController extends Controller
             $svp->save();
         }
         //Send Activation Link
+        return redirect('mail/send_verify/1/'.$svp);
         
     }
 }//end of class

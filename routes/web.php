@@ -86,7 +86,7 @@ Route::get('/svp/toverify', function (){
 Route::post('/svp/doregister', 'svp\SVPsController@register');
 Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
-Route::get('mail/send', 'MailController@send');
+Route::get('/mail/send_verify/{isSvp}/{reciever}', 'MailController@send'); 
 
 //Route::get('/svp/client','');
 Route::get('/svp/service','service\ServicesController@index');
