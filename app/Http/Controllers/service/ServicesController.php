@@ -11,13 +11,13 @@ class ServicesController extends Controller
 
     public function index()
     {
-        return view('svp.service');
+        return view('service.index');
     }
 
 
     public function create()
     {
-        return view('svp.service');
+        return view('service.create');
     }
 
 
@@ -43,7 +43,7 @@ class ServicesController extends Controller
     public function edit($id)
     {
         $service = Service::find($id);
-        return view('service.edit')->with('service.$service');
+        return view('service.edit')->with('service'.$service);
 
     }
 

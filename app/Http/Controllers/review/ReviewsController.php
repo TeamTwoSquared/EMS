@@ -10,13 +10,13 @@ class ReviewsController extends Controller
 
     public function index()
     {
-        return view('svp.review');//to view
+        return view('review.index');//to view
     }
 
 
     public function create()
     {
-        return view('client.review');
+        return view('review.create');
     }
 
 
@@ -40,7 +40,7 @@ class ReviewsController extends Controller
     public function edit($id)
     {
         $review = Review::find($id);
-        return view('review.edit')->with('review.$review');
+        return view('review.edit')->with('review',$review);
     }
 
 
