@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function () {
-    return view('test');
+    return view('mail.verify');
 });
 Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
