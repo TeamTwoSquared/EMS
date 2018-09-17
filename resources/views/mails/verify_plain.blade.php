@@ -6,7 +6,7 @@ You're almost ready!
 
 First, please take a minute to verify your email by clicking the link below:
 
-here goes the activation link 
+Click Here
 
 If you have any questions, let our support know at contact@ems.dv.
 

@@ -33,7 +33,7 @@ class SVPsController extends Controller
             $svp->email=$request->email;
             $svp->save();
             SVPsController::sendActivationLink($svp->service_provider_id);
-            //need to implement more verify email part
+            session()->put('new_svp',$svp->service_provider_id);
             return redirect('/svp/toverify');
             
         }
@@ -179,9 +179,27 @@ class SVPsController extends Controller
             //Send Activation Link
             $svp=SVP::find($svp_id);
             MailController::send_verify(1,$svp);
+        }   
+    }
+
+    public function doVerify($id, $key)
+    {
+        $svp=SVP::find($id);
+        if($svp->isverified == 1) 
+        {
+           return redirect('/svp/login')->with('warning','Your Account is Already Activated, Please Login');
         }
-        
-        
-        
+
+        else if($svp->activation_link == $key)
+        {
+            $svp->isverified = 1;
+            $svp->save();
+            return redirect('/svp/login')->with('success','Your Account is Activated Sucessfully, Please Login');
+        }
+
+        else
+        {
+            return redirect('/svp/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
+        }
     }
 }//end of class
