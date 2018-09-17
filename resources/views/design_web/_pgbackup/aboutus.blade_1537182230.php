@@ -15,11 +15,7 @@
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
             <a href="#top"> 
-<<<<<<< HEAD
-                <a class="navbar-brand" href="/home">EMS</a> 
-=======
                 <a class="navbar-brand" href="/">EMS</a> 
->>>>>>> master
             </a>             
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation"> 
                 <span class="navbar-toggler-icon"></span> 
@@ -53,15 +49,9 @@
         <div class="container"> 
             <!-- Example row of columns -->             
             <div class="row"> 
-<<<<<<< HEAD
-                <div class="col-md-4">
-                    <h2>Search Options</h2> 
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermenfdgfgftum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p>
-=======
                 <div class="col-md-4"> 
                     <h2>Search Options</h2> 
                     <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> 
->>>>>>> master
                 </div>                 
                 <div class="col-md-4"> 
                     <h2>Pre-defined Templates</h2> 
