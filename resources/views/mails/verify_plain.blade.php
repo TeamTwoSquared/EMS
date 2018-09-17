@@ -1,15 +1,14 @@
-Hello {{ $verify->receiver }},
-This is a demo email for testing purposes! Also, it's the HTML version.
- 
-Demo object values:
- 
-Demo One: {{ $verify->verify_one }}
-Demo Two: {{ $verify->verify_two }}
- 
-Values passed by With method:
- 
-testVarOne: {{ $testVarOne }}
-testVarOne: {{ $testVarOne }}
- 
-Thank You,
-{{ $verify->sender }}
+Welcome to EMS,
+
+Thank you for registering with EMS!
+
+You're almost ready!
+
+First, please take a minute to verify your email by clicking the link below:
+
+here goes the activation link 
+
+If you have any questions, let our support know at contact@ems.dv.
+
+Sincerely,
+EMS Team.

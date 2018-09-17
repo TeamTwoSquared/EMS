@@ -98,9 +98,6 @@ Route::get('/svp/help',function(){
     return view('svp.help');
 });
 
-
-
-
 Route::get('/svp/profile', function (){
     return view ('svp.profile');
 
@@ -111,11 +108,8 @@ Route::get('/svp/settings', function (){
 });
 //Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
-Route::get('/svp/logout', function (){
-    session()->flush();
-    return redirect('/svp/login')->with('success','Logged out Succesfully');
+Route::get('/svp/logout','svp\SVPsController@isLogout');
 
-});
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');

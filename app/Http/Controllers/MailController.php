@@ -9,14 +9,22 @@ use Illuminate\Support\Facades\Mail;
 
 class MailController extends Controller
 {
-    public function send()
+    public function send_verify($isSVP,$reciever)
     {
-        $objVerify = new \stdClass();
-        $objVerify->verify_one = 'Demo One Value';
-        $objVerify->verify_two = 'Demo Two Value';
-        $objVerify->sender = 'SenderUserName';
-        $objVerify->receiver = 'ReceiverUserName';
- 
-        Mail::to("wemssandaruwan@gmail.com")->send(new VerifyEmail($objVerify));
+        if ($isSVP == 1)
+        {
+            $objVerify = new \stdClass();
+            $objVerify->identity = 'SVPVerification';
+            $objVerify->id = $reciever->service_provider_id;
+            $objVerify->verifyLink = $reciever->activation_link;
+            Mail::to($reciever->email)->send(new VerifyEmail($objVerify));
+        }
+        else
+        {
+            $objVerify = new \stdClass();
+            $objVerify->identity = 'CLVerification';
+            $objVerify->reciever = $reciever;
+            Mail::to($reciever->email)->send(new VerifyEmail($objVerify));
+        }
     }
 }

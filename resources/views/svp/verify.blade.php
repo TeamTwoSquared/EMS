@@ -8,14 +8,15 @@
     <br> 
     <br> 
     <br> 
-    <div> 
-        <div class="alert alert-success" role="alert"> 
-            <h4 class="alert-heading">Well done!</h4> 
-            <p>Please confirm your email address using the verification link sent to 
-you. In case it’s missing from your inbox, please check your spam folder</p> 
-            <hr> 
-        </div>         
-        <a class="btn btn-primary float-right text-uppercase text-monospace active btn-lg btn-block" href="verifyagain">Resend</a> 
-    </div>     
+    <div class="row">
+        <div class="alert alert-success col-md-12" role="alert" id="notes">
+          <h4>NOTES</h4>
+          <ul>
+            <li>Please confirm your email address using the verification link sent to 
+                you. In case it’s missing from your inbox, please check your spam folder.</li>
+            <li>If somehow, you did not recieve the verification email then <a href="#">resend the verification email</a></li>
+          </ul>
+        </div>
+      </div>     
 </div>
 @endsection

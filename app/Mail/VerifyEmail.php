@@ -37,15 +37,6 @@ class VerifyEmail extends Mailable
     {
         return $this->from('noreply@ems.com')
                     ->view('mails.verify')
-                    ->text('mails.verify_plain')
-                    ->with(
-                      [
-                            'testVarOne' => '1',
-                            'testVarTwo' => '2',
-                      ])
-                      ->attach(public_path('/images').'/verify.jpg', [
-                              'as' => 'verify.jpg',
-                              'mime' => 'image/jpeg',
-                      ]);
+                    ->text('mails.verify_plain');
     }
 }
