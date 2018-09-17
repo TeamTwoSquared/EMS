@@ -1417,7 +1417,7 @@ section {
 }
 
 .account-item > .content > a {
-    color: #333;
+    color: #ffffff;
     text-transform: capitalize;
     font-weight: 500;
 }
@@ -1432,7 +1432,7 @@ section {
 }
 
 .account-item > .content > a:hover {
-    color: #666;
+    color: #16f89b;
 }
 
 .account-dropdown {
@@ -1490,18 +1490,18 @@ section {
 }
 
 .account-dropdown .info .content .name a {
-    color: #333;
+    color: #ffffff;
     font-weight: 500;
     text-transform: capitalize;
 }
 
 .account-dropdown .info .content .name a:hover {
-    color: #666;
+    color: #16f89b;
 }
 
 .account-dropdown .info .content .email {
     font-size: 13px;
-    color: #999;
+    color: #ffffff;
     line-height: -webkit-calc(20/13);
     line-height: -moz-calc(20/13);
     line-height: calc(20/13);
@@ -1523,14 +1523,14 @@ section {
 
 .account-dropdown__item a {
     display: block;
-    color: #333;
+    color: #ffffff;
     padding: 15px 25px;
     font-size: 14px;
 }
 
 .account-dropdown__item a:hover {
-    background: #4272d7;
-    color: #fff;
+    background: #16ebf8;
+    color: #ffffff;
 }
 
 .account-dropdown__item a i {
@@ -1550,14 +1550,13 @@ section {
 
 .account-dropdown__footer a {
     display: block;
-    color: #333;
+    color: #ffffff;
     padding: 15px 25px;
     font-size: 14px;
 }
 
 .account-dropdown__footer a:hover {
-    background: #4272d7;
-    color: #fff;
+    background: #16ebf8;
 }
 
 .account-dropdown__footer a i {
@@ -1622,7 +1621,7 @@ section {
 
 .navbar-sidebar .navbar__list li a {
     display: block;
-    color: #555;
+    color: #ffffff;
     font-size: 16px;
     padding: 15px 0;
 }
@@ -1632,7 +1631,7 @@ section {
 }
 
 .navbar-sidebar .navbar__list li a:hover {
-    color: #4272d7;
+    color: #16f89b;
 }
 
 .navbar-sidebar .navbar__list li.active > a {
@@ -1738,7 +1737,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a {
-    color: #555;
+    color: #ffffff;
     display: block;
     padding: 10px 15px;
     padding-right: 25px;
@@ -1749,7 +1748,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a:hover {
-    color: #4272d7;
+    color: #d74242;
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a > i {
