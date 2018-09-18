@@ -73,6 +73,7 @@ $svp=SVPsController::getSVP();
                             </form>
                         </div>
                     </div>
+                    </div>
                 </div>
             </div>
             <div class="row" data-pg-collapsed>
