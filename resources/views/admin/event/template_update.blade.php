@@ -16,7 +16,7 @@ $i=1; //use to have checkbox number
                 <strong>Update</strong> Template
             </div>
             <div class="card-body card-block">
-                <form action="store" method="post" enctype="multipart/form-data" class="form-horizontal">
+                <form  onsubmit="return confirm('Do you really want to update the template {{$template->name}}')" action="update/{{$template->template_id}}"method="post" enctype="multipart/form-data" class="form-horizontal">
                     {{ csrf_field() }}
                     <div class="row form-group">
                         <div class="col col-md-3">
@@ -55,12 +55,6 @@ $i=1; //use to have checkbox number
                                     @endphp
                                 @endforeach
                             </div>
-                        </div>
-                    </div>
-                    <div class="row form-group">
-                        <div class="col col-md-3">Cover Images&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
-                        <div class="col-12 col-md-9">
-                            <input type="file" id="template_images" name="template_images[]" multiple class="form-control-file">
                         </div>
                     </div>
                     <div class="card-footer">
