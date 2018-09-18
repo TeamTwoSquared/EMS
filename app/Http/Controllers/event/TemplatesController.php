@@ -19,6 +19,7 @@ class TemplatesController extends Controller
         //This returns all templates from DB to Template Management of AdminDash
         $templates = Template::all();
         return view('admin.event.template')->with('templates',$templates);
+        
     }
 
 
@@ -138,7 +139,12 @@ class TemplatesController extends Controller
 
     public function admin_edit($id)
     {
-        return view('admin.event.template_update');
+        $template = (Template::where('template_id',$id)->get())[0];
+        $templateKeywords=TemplateKeyword::where('template_id',$id)->get();
+        $catergoryTemplates=CatergoryTemplate::where('template_id',$id)->get();
+        return view('admin.event.template_update')->with('template',$template)->with('templateKeywords',$templateKeywords)->with('catergoryTemplates',$catergoryTemplates);
+        //return view('test')->with('template',$template)->with('catergoryTemplate',$catergoryTemplate);
+        //return ($templateKeyword);
     }
 
 

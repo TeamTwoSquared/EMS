@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
 @php
+use App\Template;
+use App\TemplateImage;
+use App\TemplateKeyword;
+use App\CatergoryTemplate;
 use App\Http\Controllers\event\CatergoriesController;
 $catergories = CatergoriesController::getCatergories();
 $i=1; //use to have checkbox number
@@ -9,7 +13,7 @@ $i=1; //use to have checkbox number
     <div class="col-lg-6 col-xl-9">
         <div class="card">
             <div class="card-header">
-                <strong>Add</strong> Template
+                <strong>Update</strong> Template
             </div>
             <div class="card-body card-block">
                 <form action="store" method="post" enctype="multipart/form-data" class="form-horizontal">
@@ -19,19 +23,19 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Template Name</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="name" name="name" placeholder="" class="form-control">
+                            <input type="text" value={{$template->name}} class="form-control" >
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">Description</div>
                         <div class="col-12 col-md-9">
-                            <textarea name="description" id="description" rows="9" placeholder="Give a breif description of the template..." class="form-control"></textarea>
+                            <textarea name="description" id="description" rows="9"  class="form-control">{{$template->description}}</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
                         <div class="col col-md-3">Keywords</div>
                         <div class="col-12 col-md-9">
-                            <textarea name="keywords" id="keywords" rows="9" placeholder="Enter keywords each seperated by a space..." class="form-control"></textarea>
+                        <textarea name="keywords" id="keywords" rows="9" class="form-control">@foreach($templateKeywords as $templateKeyword){{$templateKeyword->keyword}}{{" "}}@endforeach</textarea>
                         </div>
                     </div>
                     <div class="row form-group">
@@ -43,7 +47,7 @@ $i=1; //use to have checkbox number
                                 @foreach($catergories as $catergory)
                                     <div class="checkbox">
                                     <label for="checkbox_{{$i}}" class="form-check-label">
-                                            <input type="checkbox" id="catergories" name="catergories[]" value="{{$catergory->catergory_id}}" class="form-check-input">{{$catergory->name}}
+                                            <input type="checkbox" id="catergories" name="catergories[]" value="{{$catergory->catergory_id}}" class="form-check-input" checked>{{$catergory->name}}
                                         </label>
                                     </div>
                                     @php

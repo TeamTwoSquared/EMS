@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
-
+use App\Http\Controllers\MailController;
 
 class SVPsController extends Controller
 {
@@ -33,7 +33,7 @@ class SVPsController extends Controller
             $svp->email=$request->email;
             $svp->save();
             SVPsController::sendActivationLink($svp->service_provider_id);
-            //need to implement more verify email part
+            session()->put('new_svp',$svp->service_provider_id);
             return redirect('/svp/toverify');
             
         }
@@ -176,8 +176,49 @@ class SVPsController extends Controller
             $uniqueString =  unique_random('service_providers', 'activation_link', 40);
             $svp->activation_link=$uniqueString;
             $svp->save();
-        }
-        //Send Activation Link
-        
+            //Send Activation Link
+            $svp=SVP::find($svp_id);
+            MailController::send_verify(1,$svp);
+        }   
     }
+
+    public function doVerify($id, $key)
+    {
+        $svp=SVP::find($id);
+        if($svp->isverified == 1) 
+        {
+           return redirect('/svp/login')->with('warning','Your Account is Already Activated, Please Login');
+        }
+
+        else if($svp->activation_link == $key)
+        {
+            $svp->isverified = 1;
+            $svp->save();
+            return redirect('/svp/login')->with('success','Your Account is Activated Sucessfully, Please Login');
+        }
+
+        else
+        {
+            return redirect('/svp/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
+        }
+    }
+
+    public function isOnline($id){
+        $svp=SVP::where('service_provider_id',$id)->get();
+        if($svp[0]->isonline == 1){
+            return "Active Now";
+        }
+        else{
+            return " Off line";
+        }
+    }
+
+    public function isLogout(){
+        $svp = SVP::find(session()->get('svp_id'));
+        $svp->isonline=0;
+        $svp->save();
+        session()->flush();
+        return redirect('/svp/login')->with('success','Logged out Succesfully');
+    }
+
 }//end of class

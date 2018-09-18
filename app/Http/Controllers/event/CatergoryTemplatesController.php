@@ -24,5 +24,10 @@ class CatergoryTemplatesController extends Controller
         
 
     }
+    public function destroy($id)
+    {   
+        // remove all catergoies belong to a template
+        return CatergoryTemplate::where('template_id',$id)->delete();
+    }
 
 }//end of class
