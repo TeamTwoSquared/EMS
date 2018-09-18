@@ -2,6 +2,10 @@
 @section('content')
 @php
 use App\Http\Controllers\svp\SVPsController;
+if(!(SVPsController::checkLogged(0))){
+header("Location: /svp/login");
+die();
+}
 $svp=SVPsController::getSVP();
 @endphp
 <section class="statistic" style="margin-top: 100px;"> 
