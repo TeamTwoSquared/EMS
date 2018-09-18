@@ -107,7 +107,7 @@ Route::get('/svp/settings', function (){
     return view ('admin.settings');
 
 });
-//Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
+Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
 Route::get('/svp/logout','svp\SVPsController@isLogout');
 

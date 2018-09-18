@@ -203,50 +203,45 @@ class SVPsController extends Controller
         }
     }
 
-    public function update(Request $req){
-
-        $this->validate($req, [
-            'username'=>'required',
-            'email'=> 'required',
-            //'password'=> 'required'
+    public function save_profile(Request $request){
+        $this->validate($request, [
+            'name'=>'required'
         ]);
 
-       $_svp = SVP::where('service_provider_id', session()->get('svp_id'))->get();
-       $svpPass=$_svp[0]->password;
-       $givenPass=md5($req->password);
-           
-       echo $svpPass .'<br>';
-       echo $givenPass;
-       $newPass=md5($req->newPass);
-       $comformPass=md5($req->comformPass);
-      
-       if($svpPass==$givenPass){
-           if($newPass==$comformPass){
+        $svp = SVP::where('service_provider_id', session()->get('svp_id'))->get();
+        //Changing Passwords
+        //if($request->oldpassword != null && $request->newpassword != null && $request->newpasswordagain != null)
+        //{
+            $oldpasswordDB=$svp[0]->password;
+            $oldpassword=md5($request->oldpassword);
+                
+            $newpassword=md5($request->newpassword);
+            $newpasswordagain=md5($request->newpasswordagain);
+        
+        
+        if($oldpasswordDB==$oldpassword)
+        {
+            if($newpassword==$newpasswordagain)
+            {
+                    $svp->password=$request->newpasswordagain;
+                    $svp->name = $request->name;
+                    $svp->address=$request->address;
+                    $svp->address2=$request->address2;
+                    $svp->city=$request->city;
+                    $svp->save();
 
-              // $id=section()->get('svp_id');
-
-               $svp_=SVP::find(section()->get('svp_id'));
-          
-               $svp_->service_provider_id=section()->get('svp_id');
-               $svp_->name=$req->name;
-               $svp_->username=$req->userName; 
-               $svp_->password=$req->comformPassword;
-               $svp_->email=$req->email;
-               $svp_->address=$req->address;
-               $svp_->address2=$req->address2;
-               $svp_->city=$req->city;
-               $svp_->state=$req->state;
-
-               $svp_->save();
-                return redirect('/svp/profile')->with('success','Successfully Updated !');
-           }
-           else{
-               return redirect('/svp/profile')->with('error',' comform password is incorrect !');
-           }    
-       }
-       else{
-            return redirect('/svp/profile')->with('error',' incorrect password !');
-       }
+                    return redirect('/svp/profile')->with('success','Profile Updated');
+            }
+            else
+            {
+                return redirect('/svp/profile')->with('error','Incorrect New Password Confirmation');
+            }    
+        }
+        else
+        {
+            return redirect('/svp/profile')->with('error','Incorrect Old Password');
+        }
+   //}
    }
 
     public function isOnline($id){
