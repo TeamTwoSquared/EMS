@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
         <meta name="description" content=""> 
         <meta name="author" content=""> 
-        <title>Jumbotron Template for Bootstrap</title>         
+        <title>EMS</title>     
         <!-- Bootstrap core CSS -->         
         <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
@@ -16,6 +16,7 @@
         <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />
     </head>     
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
