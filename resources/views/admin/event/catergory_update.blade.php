@@ -19,13 +19,13 @@ use App\Http\Controllers\event\CatergoriesController;
                             <label for="text-input" class="form-control-label">Category Name</label>                             
                         </div>                                                 
                         <div class="col-12 col-md-9"> 
-                            <input type="text" value={{$catergory->name}} class="field left" readonly>                             
+                            <input type="text" value={{$catergory->name}} class="form-control" >                             
                         </div>                        
                     </div>                     
                     <div class="row form-group"> 
                         <div class="col col-md-3">Description</div>                         
                         <div class="col-12 col-md-9"> 
-                            <textarea name="description" id="description" rows="9" placeholder="{{$catergory->description}}" class="form-control"></textarea>                             
+                            <textarea name="description" id="description" rows="9"  class="form-control">{{$catergory->description}}</textarea>                             
                         </div>                         
                     </div>                                
                     <div class="card-footer"> 

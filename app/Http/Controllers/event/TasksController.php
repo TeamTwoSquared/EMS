@@ -92,7 +92,8 @@ class TasksController extends Controller
 
     public function destroy($id)
     {
-        //
+        Task::where('task_id',$id)->delete();        
+        return redirect('/admin/task');
     }
     public static function getTemplates()
     {
