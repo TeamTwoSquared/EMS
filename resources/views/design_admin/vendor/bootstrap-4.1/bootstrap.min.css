@@ -6569,11 +6569,15 @@ button.bg-danger:hover {
 }
 
 .bg-light {
+<<<<<<< HEAD
     background-color: #f8f9fa !important;
 }
 
 .bg-lightcolornew {
     background-color: #b1d4f7 !important;
+=======
+    background-color: #f8f9fa!important;
+>>>>>>> EMS_Sajun
 }
 
 a.bg-light:focus,
@@ -6583,12 +6587,17 @@ button.bg-light:hover {
     background-color: #dae0e5!important;
 }
 
+<<<<<<< HEAD
 .buddhi {
     background-color: #0c256d !important;
 }
 
 .bg-dark {
     background-color: #343a40 !important;
+=======
+.bg-dark {
+    background-color: #343a40!important;
+>>>>>>> EMS_Sajun
 }
 
 a.bg-dark:focus,
@@ -6670,6 +6679,7 @@ button.bg-dark:hover {
     border-color: #dc3545!important;
 }
 
+<<<<<<< HEAD
 .border-new {
     border-color: #0c256d !important;
 }
@@ -6678,6 +6688,8 @@ button.bg-dark:hover {
     border-color: #0c256d !important;
 }
 
+=======
+>>>>>>> EMS_Sajun
 .border-light {
     border-color: #f8f9fa!important;
 }

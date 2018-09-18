@@ -12,9 +12,9 @@
 */
 
 Route::get('/test', function () {
-    return view('test');
+    return view('mail.verify');
 });
-//Route::get('/test2', 'event\CatergoryTemplatesController@getCatergories');
+Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');
 });
@@ -86,7 +86,8 @@ Route::get('/svp/toverify', function (){
 Route::post('/svp/doregister', 'svp\SVPsController@register');
 Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
-Route::get('mail/send', 'MailController@send');
+Route::get('/svpverification/{id}', 'svp\SVPsController@sendActivationLink');
+Route::get('/svpverification/{id}/{key}', 'svp\SVPsController@doVerify');
 
 //Route::get('/svp/client','');
 Route::get('/svp/service','service\ServicesController@index');
@@ -110,6 +111,7 @@ Route::get('/svp/settings', function (){
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
 Route::get('/svp/logout','svp\SVPsController@isLogout');
 
+
 //Routes for Clients
 Route::get('/client/login', function (){
     return view ('client.login');
@@ -122,7 +124,7 @@ Route::get('/client/register', function (){
 Route::post('/client/doregister', 'client\ClientsController@register');
 Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
-
+//Route::get('/clverification/{id}/{key}', '');
 
 // Routes for side Adds.
 
