@@ -91,7 +91,7 @@
             <!-- Three columns of text below the carousel -->             
             <div class="row"> 
                 <div class="col-lg-4 col-xl-6"> 
-                    <img class="rounded-circle" alt="Client Image" width="140" height="140" src="images/clientss.jpg"> 
+                    <img class="rounded-circle" alt="Client Image" width="140" height="140" src="images/Clientss.jpg"> 
                     <h2>Client</h2> 
                     <a class="btn btn-primary btn-lg btn-block" href="/client/login">Login</a> 
                     <a class="btn btn-secondary btn-lg btn-block" href="/client/register">Register</a> 
