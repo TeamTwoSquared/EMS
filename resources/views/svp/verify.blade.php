@@ -7,7 +7,7 @@ $svp = session()->get('svp_id','null');
 $new_svp = session()->get('new_svp','null');
 if ($svp)
 {
-  $mysvp_id = $svp
+  $mysvp_id = $svp;
 }
 else 
 {
