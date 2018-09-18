@@ -32,4 +32,7 @@ elseif ($new_svp!='null')
         </div>
       </div>     
 </div>
+@php
+session()->flush();   
+@endphp
 @endsection
