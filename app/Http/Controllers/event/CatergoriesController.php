@@ -8,6 +8,7 @@ use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 use App\Catergory;
 use App\CatergoryImage;
+use App\Http\Controllers\event\CatergoryImageController;
 
 class CatergoriesController extends Controller
 {
@@ -141,15 +142,7 @@ class CatergoriesController extends Controller
         if($request->hasFile('catergory_images'))
         {   
             //delete currently uploaded images
-            $catergoryImages=CatergoryImage::where('catergory_id',$id)->get();
-            if(($catergoryImages->count())>0)
-            {
-            foreach($catergoryImages as $catergoryImage)
-                {
-                    Storage::delete('public/images/catergory/'.$catergoryImage->imgurl);
-                }
-            }
-            //
+            CatergoryImageController::destroy($id);
             $images = $request->file('catergory_images');
             foreach($images as $image)
             {
@@ -169,10 +162,10 @@ class CatergoriesController extends Controller
                 $image_resize->save(public_path('storage/images/catergory/' .$fileNameToStore));
                 
                 //Adding URL to catergory_images table
-                $catergory_image = CatergoryImage::findOrFail($id);
+                $catergory_image =new CatergoryImage();
                 $catergory_image->catergory_id = $id;
                 $catergory_image->imgurl = $fileNameToStore;
-                $catergory_image->push();
+                $catergory_image->save();
                 
             }
         }

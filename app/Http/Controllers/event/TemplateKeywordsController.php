@@ -4,6 +4,7 @@ namespace App\Http\Controllers\event;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\TemplateKeyword;
 
 class TemplateKeywordsController extends Controller
 {
@@ -44,8 +45,9 @@ class TemplateKeywordsController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        //
+    public static function destroy($id)
+    {   
+        // remove all Keywords belong to a template
+        return TemplateKeyword::where('template_id',$id)->delete();
     }
 }

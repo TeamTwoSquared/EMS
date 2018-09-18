@@ -10,6 +10,9 @@ use App\Template;
 use App\TemplateKeyword;
 use App\TemplateImage;
 use App\CatergoryTemplate;
+use App\Http\Controllers\event\CatergoryTemplatesController;
+use App\Http\Controllers\event\TemplateImageController;
+use App\Http\Controllers\event\TemplateKeywordsController;
 
 class TemplatesController extends Controller
 {
@@ -72,7 +75,7 @@ class TemplatesController extends Controller
             $templateKeyword->keyword = $keyword;
             $templateKeyword->save();
         }
-
+        
         //Saving catergory_template data
         foreach($request->catergories as $catergory)
         {
@@ -177,12 +180,14 @@ class TemplatesController extends Controller
 
         //Storing an template in DB by admin
         $template = Template::findOrFail($id);
+        $template->template_id = $id;
         $template->name =  $request->name;
         $template->description =  $request->description;
         $template->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
 
+        TemplateKeywordsController::destroy($id);
         foreach($keywords as $keyword)
         {
             //Saving each keyword with template_id
@@ -191,7 +196,7 @@ class TemplatesController extends Controller
             $templateKeyword->keyword = $keyword;
             $templateKeyword->save();
         }
-
+        CatergoryTemplatesController::destroy($id);
         //Saving catergory_template data
         foreach($request->catergories as $catergory)
         {
@@ -203,7 +208,8 @@ class TemplatesController extends Controller
 
         //Saving images
         if($request->hasFile('template_images'))
-        {
+        {   
+            TemplateImage::destroy();
             $images = $request->file('template_images');
             foreach($images as $image)
             {

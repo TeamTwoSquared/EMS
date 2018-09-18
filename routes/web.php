@@ -46,7 +46,9 @@ Route::get('/admin/task/add/{id}', 'event\TasksController@template_task');
 Route::get('/admin/task', 'event\TasksController@admin_index');
 Route::get('/admin/task/add', 'event\TasksController@admin_create');
 Route::post('/admin/task/store', 'event\TasksController@admin_store');
+Route::get('/admin/task/edit/{id}', 'event\TasksController@admin_edit');
 Route::get('/admin/task/delete/{id}','event\TasksController@destroy');
+Route::post('/admin/task/edit/update/{id}','event\TasksController@admin_update');
 
 
 Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');

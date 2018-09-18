@@ -31,7 +31,7 @@ use App\Http\Controllers\event\CatergoriesController;
                         </div>                         
                     </div>                                
                     <div class="card-footer">
-                            <button  class="btn btn-primary btn-sm" data-toggle="tooltip" data-placement="top" title="Update">
+                            <button type="update" class="btn btn-primary btn-sm" >
                                     <i class="fa fa-dot-circle-o"></i>Update                                    
                             </button>               
                         <button type="reset" class="btn btn-danger btn-sm"> 

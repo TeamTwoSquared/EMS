@@ -10,6 +10,8 @@ use App\Task;
 use App\TaskKeyword;
 use App\TemplateTask;
 use App\Template;
+use App\Http\Controllers\event\TaskKeywordsController;
+
 
 
 
@@ -78,15 +80,45 @@ class TasksController extends Controller
     }
 
 
-    public function edit($id)
+    public function admin_edit($id)
     {
-        //
+        $task = (Task::where('task_id',$id)->get())[0];
+        $taskKeywords=taskKeyword::where('task_id',$id)->get();
+        return view('admin.event.task_update')->with('task',$task)->with('taskKeywords',$taskKeywords);
     }
 
 
-    public function update(Request $request, $id)
+    public function admin_update(Request $request, $id)
     {
-        //
+        // Validating submited details
+        $this->validate($request, [
+            'name'=> 'required',
+            'description'=> 'required',
+            'keywords'=> 'required',
+            'time_duration'=>'integer|nullable'
+        ]);
+
+
+        //Storing an template in DB by admin
+        $task = Task::findOrFail($id);
+        $task->task_id = $id;
+        $task->name =  $request->name;
+        $task->description =  $request->description;
+        $task->timeduration =  $request->timeduration;
+        $task->push();
+        //Getting keywords to an array
+        $keywords = explode(" ",$request->keywords);
+        TaskKeywordsController::destroy($id);
+        foreach($keywords as $keyword)
+        {
+            //Saving each keyword with template_id
+            $taskKeyword = new TaskKeyword();
+            $taskKeyword->task_id = $task->task_id;
+            $taskKeyword->keyword = $keyword;
+            $taskKeyword->save();
+        }
+        //On success go and add tasks
+        return redirect('/admin/task/');
     }
 
 

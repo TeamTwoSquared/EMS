@@ -24,7 +24,7 @@ class CatergoryTemplatesController extends Controller
         
 
     }
-    public function destroy($id)
+    public static function destroy($id)
     {   
         // remove all catergoies belong to a template
         return CatergoryTemplate::where('template_id',$id)->delete();

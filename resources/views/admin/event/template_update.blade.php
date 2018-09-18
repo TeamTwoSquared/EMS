@@ -23,7 +23,7 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Template Name</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" value={{$template->name}} class="form-control" >
+                            <input type="text" id="name" name="name" value={{$template->name}} class="form-control" >
                         </div>
                     </div>
                     <div class="row form-group">
@@ -58,7 +58,7 @@ $i=1; //use to have checkbox number
                         </div>
                     </div>
                     <div class="card-footer">
-                            <button type="update" class="btn btn-primary btn-sm">
+                            <button type="update"class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Update
                             </button>
                             <button type="reset" class="btn btn-danger btn-sm">
