@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
         <meta name="description" content=""> 
         <meta name="author" content=""> 
-        <title>EMS</title>         
+        <title>Carousel Template for Bootstrap</title>         
         <!-- Bootstrap core CSS -->         
         <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="/components/pg.blocks/css/blocks.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/plugins.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css"> 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
     </head>     
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
@@ -54,9 +54,9 @@
                     <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block text-left"> 
-                            <h1>A Single Platform to Meet Your Customers</h1> 
-                            <p>EMS is the best place to meet your customer and have a exponential growth of your sales.</p> 
-                            <p><a class="btn btn-lg btn-primary" href="/svp/register" role="button">Sign up today</a></p> 
+                            <h1>Example headline.</h1> 
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> 
                         </div>                         
                     </div>                     
                 </div>                 
@@ -64,9 +64,9 @@
                     <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block"> 
-                            <h1>Collaborative Event Oraganization</h1> 
-                            <p>Invite your friends, family members to join with you in event organizing.</p> 
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign Up Today</a></p> 
+                            <h1>Another example headline.</h1> 
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> 
                         </div>                         
                     </div>                     
                 </div>                 
@@ -74,8 +74,8 @@
                     <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block text-right"> 
-                            <h1>Wide Range of Event Templates</h1> 
-                            <p>There are wide range of event templates so that you can easily pick a template suitable to your task. Lets take a look at our template gallery.</p> 
+                            <h1>One more for good measure.</h1> 
+                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> 
                         </div>                         
                     </div>                     

@@ -11,9 +11,9 @@ die();
         <!-- Required meta tags-->         
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-        <meta name="description" content="au theme template"> 
-        <meta name="author" content="Hau Nguyen"> 
-        <meta name="keywords" content="au theme template"> 
+        <meta name="description" content="This is an Web Based Event Management System"> 
+        <meta name="author" content="TeamTwoSquared"> 
+        <meta name="keywords" content="ems event management template"> 
         <!-- CSRF Token -->         
         <meta name="csrf-token" content="{{ csrf_token() }}"> 
         <!-- Title Page-->         
@@ -39,6 +39,7 @@ die();
         <link href="/admin/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
         <!-- Main CSS-->         
         <link href="/admin/css/theme.css" rel="stylesheet" media="all"> 
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper"> 

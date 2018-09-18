@@ -203,6 +203,57 @@ class SVPsController extends Controller
         }
     }
 
+    public function save_profile(Request $request){
+        $svp = SVP::find(session()->get('svp_id'));
+        //Changing Passwords
+        //if($request->oldpassword != null && $request->newpassword != null && $request->newpasswordagain != null)
+        if($request->oldpassword && $request->newpassword && $request->newpasswordagain)
+        {
+            $oldpasswordDB=$svp->password;
+            $oldpassword=md5($request->oldpassword);
+            
+            $newpassword=md5($request->newpassword);
+            $newpasswordagain=md5($request->newpasswordagain);
+        
+            if($oldpasswordDB==$oldpassword)
+            {
+                if($newpassword==$newpasswordagain)
+                {
+                        $svp->password=md5($request->newpasswordagain);
+                        $svp->name = $request->name;
+                        $svp->address=$request->address;
+                        $svp->address2=$request->address2;
+                        $svp->city=$request->city;
+                        $svp->save();
+                        return redirect('/svp/profile')->with('success','Profile Updated');
+                }
+                else
+                {
+                    return redirect('/svp/profile')->with('error','Incorrect New Password Confirmation');
+                }    
+            }
+            else
+            {
+                return redirect('/svp/profile')->with('error','Incorrect Old Password');
+            }
+            
+        }
+        else if(!$request->oldpassword && !$request->newpassword && !$request->newpasswordagain)
+        {
+            $svp->name = $request->name;
+            $svp->address=$request->address;
+            $svp->address2=$request->address2;
+            $svp->city=$request->city;
+            $svp->save();
+            return redirect('/svp/profile')->with('success','Profile Updated');
+        }
+        else
+        {
+            return redirect('/svp/profile')->with('error','All 3 Fields, Old Password, New Password and Confirmation Password Are Needed');
+        }
+       
+   }
+
     public function isOnline($id){
         $svp=SVP::where('service_provider_id',$id)->get();
         if($svp[0]->isonline == 1){
