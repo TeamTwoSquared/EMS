@@ -10,6 +10,11 @@ use App\Template;
 use App\TemplateKeyword;
 use App\TemplateImage;
 use App\CatergoryTemplate;
+use App\Http\Controllers\event\CatergoryTemplatesController;
+use App\Http\Controllers\event\TemplateImageController;
+use App\Http\Controllers\event\TemplateKeywordsController;
+use App\Http\Controllers\event\CatergoriesController;
+//use App\Http\Controllers\event\CatergoryTemplatesController;
 
 class TemplatesController extends Controller
 {
@@ -72,7 +77,7 @@ class TemplatesController extends Controller
             $templateKeyword->keyword = $keyword;
             $templateKeyword->save();
         }
-
+        
         //Saving catergory_template data
         foreach($request->catergories as $catergory)
         {
@@ -112,7 +117,7 @@ class TemplatesController extends Controller
             }
         }
         //On success go and add tasks
-        return redirect('/admin/task/add/'.$template->template_id)->with('success','Please Add Task(s) For The Template');
+        return redirect('/admin/template/');
     }
     public function block($id)
     {
@@ -148,9 +153,93 @@ class TemplatesController extends Controller
     }
 
 
-    public function update(Request $request, $id)
+    public function admin_update(Request $request, $id)
     {
-        //
+        //Validating submited details
+        $this->validate($request, [
+            'name'=> 'required',
+            'description'=> 'required',
+            'keywords'=> 'required',
+            'catergories'=> 'required',
+            'template_images'=>'nullable|max:1999'
+        ]);
+
+        //Checking Whether files are images
+        if($request->hasFile('template_images'))
+        {
+            $allowedfileExtension=['jpg','png','jpeg','gif'];
+            $images = $request->file('template_images');
+            foreach($images as $image)
+            {
+                $extension = $image->getClientOriginalExtension();
+                $check=in_array($extension,$allowedfileExtension);
+                if(!$check)
+                {
+                    return redirect()->back()->with('error','Please Upload Image File(s)');
+                }
+            }
+        }
+
+        //Storing an template in DB by admin
+        $template = Template::findOrFail($id);
+        $template->template_id = $id;
+        $template->name =  $request->name;
+        $template->description =  $request->description;
+        $template->push();
+        //Getting keywords to an array
+        $keywords = explode(" ",$request->keywords);
+
+        TemplateKeywordsController::destroy($id);
+        foreach($keywords as $keyword)
+        {
+            //Saving each keyword with template_id
+            $templateKeyword = new TemplateKeyword();
+            $templateKeyword->template_id = $template->template_id;
+            $templateKeyword->keyword = $keyword;
+            $templateKeyword->save();
+        }
+        CatergoryTemplatesController::destroy($id);
+        //Saving catergory_template data
+        foreach($request->catergories as $catergory)
+        {
+            $catergoryTemplate = new CatergoryTemplate();
+            $catergoryTemplate->catergory_id = $catergory;
+            $catergoryTemplate->template_id = $template->template_id;
+            $catergoryTemplate->save();
+        }
+
+        //Saving images
+        if($request->hasFile('template_images'))
+        {   
+            TemplateImage::destroy();
+            $images = $request->file('template_images');
+            foreach($images as $image)
+            {
+                // Get filename with the extension
+                $filenameWithExt = $image->getClientOriginalName();
+                // Get just filename
+                $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                // Get just ext
+                $extension = $image->getClientOriginalExtension();
+                
+                // Filename to store
+                $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                // Upload 
+                $image_up = $image;
+                $image_resize = Image::make($image->getRealPath());              
+                $image_resize->resize(265, 350);
+                $image_resize->save(public_path('storage/images/template/' .$fileNameToStore));
+                
+                //Adding URL to template_images table
+                $template_image = new TemplateImage();
+                $template_image->template_id = $template->template_id;
+                $template_image->imgurl = $fileNameToStore;
+                $template_image->save();
+                
+            }
+        }
+        //On success go and add tasks
+        return redirect('/admin/template/');
     }
 
 
@@ -166,6 +255,19 @@ class TemplatesController extends Controller
         }
         Template::where('template_id',$id)->delete();        
         return redirect('/admin/template');
+        
+    }
+    public static function getTemplates()
+    {
+        //Use to return all templates as an Array
+        $templates = Template::all();
+        return $templates;
+    }
+    public static function test($id)
+    {
+        $template = (Template::where('template_id',$id)->get())[0];
+        $savedCatergories=CatergoryTemplatesController::getCatergoriesTemp($template->template_id);
+        $allCatergories = CatergoriesController::getCatergories();
         
     }
 

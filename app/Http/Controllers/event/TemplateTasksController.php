@@ -17,7 +17,7 @@ class TemplateTasksController extends Controller
         foreach($template_tasks as $template_task)
         {
             $template =  Template::where('template_id',$template_task->template_id)->get();
-            $template = $ $template[0];
+            $template =  $template[0];
             $template_names = array_prepend($template_names,$template->name);
         }
         return $template_names;
@@ -61,8 +61,21 @@ class TemplateTasksController extends Controller
     }
 
 
-    public function destroy($id)
+    public static function taskDestroy($id)
     {
-        //
+       // remove all templates belong to a task
+       return TemplateTask::where('task_id',$id)->delete();
+    }
+    public static function getTemplatesTask($task_id)
+    {
+        $template_tasks = TemplateTask::where('task_id',$task_id)->get();
+        $template_all = Array();
+        foreach($template_tasks as $template_task)
+        {
+            $template = Template::where('template_id',$template_task->template_id)->get();
+            $template = $template[0];
+            $template_all = array_prepend($template_all,$template);
+        }
+        return $template_all;
     }
 }

@@ -95,12 +95,12 @@ use App\Http\Controllers\event\TemplateTasksController;
                         <td>{{$task->timeduration}}</td>
                         <td>
                             <div class="table-data-feature">
-                                <a href="template/edit/{{$task->task_id}}">
+                                <a href="task/edit/{{$task->task_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
                                     </button>
                                 </a>
-                                <a href="template/block/{{$task->task_id}}">
+                                <a href="task/block/{{$task->task_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Lock">
                                         <i class="fa fa-lock"></i>
                                     </button>

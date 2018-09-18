@@ -10,8 +10,9 @@ use App\Task;
 use App\TaskKeyword;
 use App\TemplateTask;
 use App\Template;
-
-
+use App\Http\Controllers\event\TaskKeywordsController;
+use App\Http\Controllers\event\TemplateTasksController;
+use App\Http\Controllers\event\TemplatesController;
 
 class TasksController extends Controller
 {
@@ -38,7 +39,8 @@ class TasksController extends Controller
             'name'=> 'required',
             'description'=> 'required',
             'keywords'=> 'required',
-            'time_duration'=>'integer|nullable'
+            'time_duration'=>'integer',
+            'templates'=> 'required'
         ]);
 
 
@@ -46,7 +48,7 @@ class TasksController extends Controller
         $task = new Task();
         $task->name =  $request->name;
         $task->description =  $request->description;
-        $task->timeduration =  $request->timeduration;
+        $task->timeduration =  $request->time_duration;
         $task->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
@@ -58,6 +60,14 @@ class TasksController extends Controller
             $taskKeyword->task_id = $task->task_id;
             $taskKeyword->keyword = $keyword;
             $taskKeyword->save();
+        }
+        //Saving template_task data
+        foreach($request->templates as $template)
+        {
+            $templaeTask = new TemplateTask();
+            $templaeTask->template_id = $template;
+            $templaeTask->task_id = $task->task_id;
+            $templaeTask->save();
         }
         //On success go and add tasks
         return redirect('/admin/task/');
@@ -78,15 +88,54 @@ class TasksController extends Controller
     }
 
 
-    public function edit($id)
+    public function admin_edit($id)
     {
-        //
+        $task = (Task::where('task_id',$id)->get())[0];
+        $taskKeywords=taskKeyword::where('task_id',$id)->get();
+        return view('admin.event.task_update')->with('task',$task)->with('taskKeywords',$taskKeywords);
     }
 
 
-    public function update(Request $request, $id)
+    public function admin_update(Request $request, $id)
     {
-        //
+        // Validating submited details
+        $this->validate($request, [
+            'name'=> 'required',
+            'description'=> 'required',
+            'keywords'=> 'required',
+            'time_duration'=>'integer',
+            'templates'=> 'required'
+        ]);
+
+
+        //Storing an template in DB by admin
+        $task = Task::findOrFail($id);
+        $task->task_id = $id;
+        $task->name =  $request->name;
+        $task->description =  $request->description;
+        $task->timeduration =  $request->time_duration;
+        $task->push();
+        //Getting keywords to an array
+        $keywords = explode(" ",$request->keywords);
+        TaskKeywordsController::destroy($id);
+        foreach($keywords as $keyword)
+        {
+            //Saving each keyword with template_id
+            $taskKeyword = new TaskKeyword();
+            $taskKeyword->task_id = $task->task_id;
+            $taskKeyword->keyword = $keyword;
+            $taskKeyword->save();
+        }
+        TemplateTasksController::taskDestroy($id);
+        foreach($request->templates as $template)
+        {
+            $templaeTask = new TemplateTask();
+            $templaeTask->template_id = $template;
+            $templaeTask->task_id = $task->task_id;
+            $templaeTask->save();
+        }
+        //On success go and add tasks
+        return redirect('/admin/task/');
     }
 
 
@@ -100,5 +149,20 @@ class TasksController extends Controller
         //Use to return all templates as an Array
         $templates = Template::all();
         return $templates;
+    }
+    public function block($id)
+    {
+        $task = Task::where('task_id',$id)->get();
+        $task = $task[0];
+        if ($task->istemp!=2)
+        {
+            $task->istemp=2;
+        }
+        else
+        {
+            $task->task=1;
+        }
+        $task->save();
+        return redirect('/admin/task');
     }
 }
