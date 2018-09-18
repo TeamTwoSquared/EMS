@@ -36,7 +36,7 @@ class VerifyEmail extends Mailable
     public function build()
     {
         return $this->from('noreply@ems.com')
-                    ->view('mails.verify')
-                    ->text('mails.verify_plain');
+                    ->view('mail.verify')
+                    ->text('mail.verify_plain');
     }
 }
