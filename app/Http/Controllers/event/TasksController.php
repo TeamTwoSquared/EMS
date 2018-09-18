@@ -150,4 +150,19 @@ class TasksController extends Controller
         $templates = Template::all();
         return $templates;
     }
+    public function block($id)
+    {
+        $task = Task::where('task_id',$id)->get();
+        $task = $task[0];
+        if ($task->istemp!=2)
+        {
+            $task->istemp=2;
+        }
+        else
+        {
+            $task->task=1;
+        }
+        $task->save();
+        return redirect('/admin/task');
+    }
 }
