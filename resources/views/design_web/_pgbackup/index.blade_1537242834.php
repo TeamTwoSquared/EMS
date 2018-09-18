@@ -112,7 +112,7 @@
             <div class="row featurette"> 
                 <div class="col-md-7"> 
                     <h2 class="featurette-heading">Vast range of pre-defined templates</h2> 
-                    <p class="lead">Our system users can manage their event using our pre-defined templates in an easy and effiecient way. Even users without having any knowledge about event planing can also use our system to manage their events.</p> 
+                    <p class="lead">Our system users can manage their event using our pre-defined templates in an easy and effiecient way. Even users without having any knowledge about event planing can also use our system to manage their event.</p> 
                     <p class="lead">Also you can edit or create&nbsp;</p> 
                 </div>                 
                 <div class="col-md-5"> 
