@@ -136,7 +136,7 @@
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p> 
                 </div>                 
                 <div class="col-md-5"> 
-                    <img class="featurette-image img-fluid mx-auto" src="images/chattingpeople.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;" alt="Chatting people image"> 
+                    <img class="featurette-image img-fluid mx-auto" src="images/chatting people.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;" alt="Chatting people image"> 
                 </div>                 
             </div>             
             <hr class="featurette-divider"> 
