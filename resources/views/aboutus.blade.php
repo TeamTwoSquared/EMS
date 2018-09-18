@@ -8,9 +8,14 @@
         <meta name="author" content=""> 
         <title>Jumbotron Template for Bootstrap</title>         
         <!-- Bootstrap core CSS -->         
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> 
+        <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
-        <link href="jumbotron.css" rel="stylesheet"> 
+        <link href="/jumbotron.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="/components/pg.blocks/css/blocks.css">
+        <link rel="stylesheet" href="/components/pg.blocks/css/plugins.css">
+        <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700">
+        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
     </head>     
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
@@ -42,25 +47,26 @@
         <div class="jumbotron"> 
             <div class="container"> 
                 <h1 class="display-3">About Us!</h1> 
-                <p>EMS is a unique Event management system which provides.</p> 
+                <p class="text-muted text-left"><p><b>EMS is a web based platform, </b><b>which enables clients to find relevant service providers for all the tasks in an event </b><b>via easy </b><b>and user friendly </b><b>environment.</b></p></p> 
                 <p></p> 
             </div>             
         </div>         
         <div class="container"> 
             <!-- Example row of columns -->             
-            <div class="row"> 
+            <div class="row text-justify">
                 <div class="col-md-4"> 
                     <h2>Search Options</h2> 
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> 
+                    <p class="text-justify">Our system has provide clients task based searching option where you can find relevent service providers for relevent tasks</p> 
                 </div>                 
-                <div class="col-md-4"> 
+                <div class="col-md-4">
                     <h2>Pre-defined Templates</h2> 
-                    <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna mollis euismod. Donec sed odio dui. </p> 
+                    <p>Our system users can manage their event using our pre-defined template in an easy and effiecient way. Even users without having any knowledge about event planing can also use our system to manage their event.&nbsp;</p>
+                    <p></p>
                 </div>                 
                 <div class="col-md-4"> 
                     <h2>Chat Option</h2> 
-                    <p>Donec sed odio dui. Cras justo odio, dapibus ac facilisis in, egestas eget quam. Vestibulum id ligula porta felis euismod semper. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus.</p> 
-                </div>                 
+                    <p>As a unique feature our system has provide its users a chatting option where you can collaboratively mange the event along with the other event organizers and the service providers.</p> 
+                </div>
             </div>             
             <hr> 
             <footer> 
@@ -72,8 +78,11 @@
         <!-- Bootstrap core JavaScript
     ================================================== -->         
         <!-- Placed at the end of the document so the pages load faster -->         
-        <script src="assets/js/jquery.min.js"></script>         
-        <script src="assets/js/popper.js"></script>         
-        <script src="bootstrap/js/bootstrap.min.js"></script>         
+        <script src="/assets/js/jquery.min.js"></script>         
+        <script src="/assets/js/popper.js"></script>         
+        <script src="/bootstrap/js/bootstrap.min.js"></script>         
+        <script type="text/javascript" src="/components/pg.blocks/js/plugins.js"></script>
+        <script type="text/javascript" src="/components/pg.blocks/js/bskit-scripts.js"></script>
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
     </body>     
 </html>
