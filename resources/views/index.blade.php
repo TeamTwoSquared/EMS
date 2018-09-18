@@ -14,8 +14,8 @@
         <link rel="stylesheet" href="/components/pg.blocks/css/blocks.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/plugins.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css"> 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
     </head>     
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 

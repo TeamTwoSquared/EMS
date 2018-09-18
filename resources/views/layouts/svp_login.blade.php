@@ -11,9 +11,9 @@ if((SVPsController::checkLogged(1))){
         <!-- Required meta tags-->
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-        <meta name="description" content="au theme template">
-        <meta name="author" content="Hau Nguyen">
-        <meta name="keywords" content="au theme template">
+        <meta name="description" content="This is an Web Based Event Management System"> 
+        <meta name="author" content="TeamTwoSquared"> 
+        <meta name="keywords" content="ems event management template">
 
         <!-- CSRF Token -->
         <meta name="csrf-token" content="{{ csrf_token() }}">
