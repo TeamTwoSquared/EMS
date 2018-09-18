@@ -6,7 +6,9 @@ use App\TemplateImage;
 use App\TemplateKeyword;
 use App\CatergoryTemplate;
 use App\Http\Controllers\event\CatergoriesController;
-$catergories = CatergoriesController::getCatergories();
+use App\Http\Controllers\event\CatergoryTemplatesController;
+$savedCatergories=CatergoryTemplatesController::getCatergoriesTemp($template->template_id);
+$allCatergories = CatergoriesController::getCatergories();
 $i=1; //use to have checkbox number
 @endphp
 <div class="row" data-pg-collapsed>
@@ -44,16 +46,21 @@ $i=1; //use to have checkbox number
                         </div>
                         <div class="col col-md-9">
                             <div class="form-check">
-                                @foreach($catergories as $catergory)
+                                @foreach($allCatergories as $catergory)
                                     <div class="checkbox">
                                     <label for="checkbox_{{$i}}" class="form-check-label">
-                                            <input type="checkbox" id="catergories" name="catergories[]" value="{{$catergory->catergory_id}}" class="form-check-input" checked>{{$catergory->name}}
+                                            <input type="checkbox" id="{{$catergory->name}}" name="catergories[]" value="{{$catergory->catergory_id}}"  class="form-check-input" >{{$catergory->name}}
                                         </label>
                                     </div>
                                     @php
                                       $i++;  
                                     @endphp
                                 @endforeach
+                                @foreach($savedCatergories as $catergory)
+                                    <script>
+                                        document.getElementById("{{$catergory->name}}").checked = true;
+                                    </script>
+                                @endforeach                                
                             </div>
                         </div>
                     </div>

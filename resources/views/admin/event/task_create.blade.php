@@ -1,6 +1,10 @@
 @extends('layouts.admin')
 @section('content')
-
+@php
+use App\Http\Controllers\event\TemplatesController;
+$templates = TemplatesController::gettemplates();
+$i=1; //use to have checkbox number
+@endphp
 <div class="row" data-pg-collapsed>
     <div class="col-lg-6 col-xl-9">
         <div class="card">
@@ -36,6 +40,25 @@
                             <input type="text" id="time_duration" name="time_duration" placeholder="Enter approximate time duration(Optional)" class="form-control">
                         </div>
                     </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">
+                            <label class="form-control-label">Templates</label>
+                        </div>
+                            <div class="col col-md-9">
+                                <div class="form-check">
+                                    @foreach($templates as $template)
+                                        <div class="checkbox">
+                                        <label for="checkbox_{{$i}}" class="form-check-label">
+                                                <input type="checkbox" id="templates" name="templates[]" value="{{$template->template_id}}" class="form-check-input">{{$template->name}}
+                                            </label>
+                                        </div>
+                                        @php
+                                          $i++;  
+                                        @endphp
+                                    @endforeach
+                                </div>
+                            </div>
+                        </div>
                     <div class="card-footer">
                             <button type="submit" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Submit

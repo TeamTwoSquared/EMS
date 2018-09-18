@@ -1,6 +1,15 @@
 @extends('layouts.admin')
 @section('content')
-
+@php
+use App\Task;
+use App\TaskKeyword;
+use App\TemplateTask;
+use App\Http\Controllers\event\TemplatesController;
+use App\Http\Controllers\event\TemplateTasksController;
+$savedTemplates=TemplateTasksController::getTemplatesTask($task->task_id);
+$allTemplates = TemplatesController::getTemplates();
+$i=1; //use to have checkbox number
+@endphp
 <div class="row" data-pg-collapsed>
     <div class="col-lg-6 col-xl-9">
         <div class="card">
@@ -38,6 +47,25 @@
                             <input type="text" id="time_duration" name="time_duration" value={{$task->timeduration}} class="form-control">
                         </div>
                     </div>
+                    <div class="col col-md-9">
+                            <div class="form-check">
+                                @foreach($allTemplates as $template)
+                                    <div class="checkbox">
+                                    <label for="checkbox_{{$i}}" class="form-check-label">
+                                            <input type="checkbox" id="{{$template->name}}" name="templates[]" value="{{$template->template_id}}" class="form-check-input" >{{$template->name}}
+                                        </label>
+                                    </div>
+                                    @php
+                                      $i++;  
+                                    @endphp
+                                @endforeach
+                                @foreach($savedTemplates as $template)
+                                    <script>
+                                        document.getElementById("{{$template->name}}").checked = true;
+                                    </script>
+                                @endforeach
+                            </div>
+                        </div>
                     <div class="card-footer">
                             <button type="update" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Update

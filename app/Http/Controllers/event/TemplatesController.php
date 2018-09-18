@@ -13,6 +13,8 @@ use App\CatergoryTemplate;
 use App\Http\Controllers\event\CatergoryTemplatesController;
 use App\Http\Controllers\event\TemplateImageController;
 use App\Http\Controllers\event\TemplateKeywordsController;
+use App\Http\Controllers\event\CatergoriesController;
+//use App\Http\Controllers\event\CatergoryTemplatesController;
 
 class TemplatesController extends Controller
 {
@@ -115,7 +117,7 @@ class TemplatesController extends Controller
             }
         }
         //On success go and add tasks
-        return redirect('/admin/task/add/'.$template->template_id)->with('success','Please Add Task(s) For The Template');
+        return redirect('/admin/template/');
     }
     public function block($id)
     {
@@ -237,7 +239,7 @@ class TemplatesController extends Controller
             }
         }
         //On success go and add tasks
-        return redirect('/admin/task/add/'.$template->template_id)->with('success','Please Add Task(s) For The Template');
+        return redirect('/admin/template/');
     }
 
 
@@ -253,6 +255,19 @@ class TemplatesController extends Controller
         }
         Template::where('template_id',$id)->delete();        
         return redirect('/admin/template');
+        
+    }
+    public static function getTemplates()
+    {
+        //Use to return all templates as an Array
+        $templates = Template::all();
+        return $templates;
+    }
+    public static function test($id)
+    {
+        $template = (Template::where('template_id',$id)->get())[0];
+        $savedCatergories=CatergoryTemplatesController::getCatergoriesTemp($template->template_id);
+        $allCatergories = CatergoriesController::getCatergories();
         
     }
 

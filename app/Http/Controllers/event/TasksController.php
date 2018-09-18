@@ -11,9 +11,8 @@ use App\TaskKeyword;
 use App\TemplateTask;
 use App\Template;
 use App\Http\Controllers\event\TaskKeywordsController;
-
-
-
+use App\Http\Controllers\event\TemplateTasksController;
+use App\Http\Controllers\event\TemplatesController;
 
 class TasksController extends Controller
 {
@@ -40,7 +39,8 @@ class TasksController extends Controller
             'name'=> 'required',
             'description'=> 'required',
             'keywords'=> 'required',
-            'time_duration'=>'integer|nullable'
+            'time_duration'=>'integer',
+            'templates'=> 'required'
         ]);
 
 
@@ -48,7 +48,7 @@ class TasksController extends Controller
         $task = new Task();
         $task->name =  $request->name;
         $task->description =  $request->description;
-        $task->timeduration =  $request->timeduration;
+        $task->timeduration =  $request->time_duration;
         $task->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
@@ -60,6 +60,14 @@ class TasksController extends Controller
             $taskKeyword->task_id = $task->task_id;
             $taskKeyword->keyword = $keyword;
             $taskKeyword->save();
+        }
+        //Saving template_task data
+        foreach($request->templates as $template)
+        {
+            $templaeTask = new TemplateTask();
+            $templaeTask->template_id = $template;
+            $templaeTask->task_id = $task->task_id;
+            $templaeTask->save();
         }
         //On success go and add tasks
         return redirect('/admin/task/');
@@ -95,7 +103,8 @@ class TasksController extends Controller
             'name'=> 'required',
             'description'=> 'required',
             'keywords'=> 'required',
-            'time_duration'=>'integer|nullable'
+            'time_duration'=>'integer',
+            'templates'=> 'required'
         ]);
 
 
@@ -104,7 +113,7 @@ class TasksController extends Controller
         $task->task_id = $id;
         $task->name =  $request->name;
         $task->description =  $request->description;
-        $task->timeduration =  $request->timeduration;
+        $task->timeduration =  $request->time_duration;
         $task->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
@@ -116,6 +125,14 @@ class TasksController extends Controller
             $taskKeyword->task_id = $task->task_id;
             $taskKeyword->keyword = $keyword;
             $taskKeyword->save();
+        }
+        TemplateTasksController::taskDestroy($id);
+        foreach($request->templates as $template)
+        {
+            $templaeTask = new TemplateTask();
+            $templaeTask->template_id = $template;
+            $templaeTask->task_id = $task->task_id;
+            $templaeTask->save();
         }
         //On success go and add tasks
         return redirect('/admin/task/');
