@@ -5,11 +5,11 @@
 use App\SVP;
 $svp = session()->get('svp_id','null');
 $new_svp = session()->get('new_svp','null');
-if ($svp)
+if ($svp!='null')
 {
   $mysvp_id = $svp;
 }
-else 
+elseif ($new_svp!='null') 
 {
   $mysvp_id = $new_svp;
 }
