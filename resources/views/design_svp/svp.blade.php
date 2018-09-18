@@ -206,17 +206,16 @@ $svp=SVPsController::getSVP();
                     </div>             
                 </aside>         
                 <!-- END HEADER DESKTOP-->         
-                                    
-                                   
-                <!-- BREADCRUMB-->                 
-                <section class="statistic"> 
-                    <div class="container-fluid"> 
-                        <br>
-                        @include('inc.messages')
-                    </div>                    
-                </section>                 
-    <!-- END BREADCRUMB-->  
-                @yield('content')     
+                @include('inc.messages')
+                @yield('content')                 
+                <section> 
+                    <div class="section__content section__content--p30"> 
+                        <div class="container-fluid"> 
+                            <div class="row"> 
+        </div>                     
+                        </div>                 
+                    </div>             
+                </section>         
                 <section> 
                     <div class="container-fluid"> 
                         <div class="row"> 

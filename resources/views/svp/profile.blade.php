@@ -8,7 +8,7 @@ die();
 }
 $svp=SVPsController::getSVP();
 @endphp
-<section class="statistic" style="margin-top: 100px;"> 
+<section class="statistic"> 
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
             <div class="row" data-pg-collapsed> 
@@ -20,39 +20,39 @@ $svp=SVPsController::getSVP();
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress">Name</label>                         
-                                    <input type="text" class="form-control" id="name" name="name" placeholder=""/> 
+                                <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{$svp->name}}"> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Username</label>                         
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="" disabled/> 
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="" disabled value="{{$svp->username}}"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="" disabled/> 
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="" disabled value="{{$svp->email}}"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">Old Password</label>
-                                    <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Type your old password"/> 
+                                    <input type="password" class="form-control" id="oldpassword" name="oldpassword" placeholder="Type your old password"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">New Password</label>
-                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type your new password"/> 
+                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type your new password"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">Confirm New Password</label>
-                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type your new password again"/> 
+                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type your new password again"> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Address</label>                         
-                                    <input type="text" class="form-control" id="address" name="address" placeholder=""/> 
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="" value="{{$svp->address}}"> 
                                 </div>                     
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">Address 2</label>                         
-                                    <input type="text" class="form-control" id="address2" name="address2" placeholder=""/> 
+                                    <input type="text" class="form-control" id="address2" name="address2" placeholder="" value="{{$svp->address2}}"> 
                                 </div>
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">City</label>                         
-                                    <input type="text" class="form-control" id="city" name="city" placeholder=""/> 
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{$svp->city}}"> 
                                 </div>                     
                                 <button type="submit" class="btn btn-success btn-sm">Save Changes</button>                     
                             </form>                 
