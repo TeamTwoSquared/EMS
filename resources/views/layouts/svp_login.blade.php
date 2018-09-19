@@ -42,6 +42,7 @@ if((SVPsController::checkLogged(1))){
         <link href="/svp/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all">
         <!-- Main CSS-->
         <link href="/svp/css/theme.css" rel="stylesheet" media="all">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     </head>
     <body class="animsition">
             <div class="page-wrapper">

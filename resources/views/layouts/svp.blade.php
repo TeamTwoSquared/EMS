@@ -41,6 +41,7 @@ $svp=SVPsController::getSVP();
         <link href="/svp/vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all"> 
         <!-- Main CSS-->         
         <link href="/svp/css/theme.css" rel="stylesheet" media="all"> 
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper" data-pg-collapsed> 
