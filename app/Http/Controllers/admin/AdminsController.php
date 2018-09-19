@@ -113,13 +113,13 @@ class AdminsController extends Controller
         { 
             $admin->profilepic=$fileNameToStore;
             $admin->save();
-            return redirect('/admin/profile')->with('success','Profile Image Updated');
+            return redirect('/admin/profile')->with('success','Profile Image Updatedxxx');
         }
         else
         {
             // Delete Image
             Storage::delete('public/images/profile/'.$admin->profilepic);
-            $admin->profilepic=$fileNameToStore;
+            $admin->profilepic="testing.jpg";
             $admin->save();
             return redirect('/admin/profile')->with('success','Profile Image Updated');
         }
