@@ -82,10 +82,10 @@ class AdminsController extends Controller
     public function change_img(Request $request)
     {
         //validation
-        $this->validate($request, 
-        [
-            'profile_image'=>'required|image|max:1999'
-        ]);
+        //$this->validate($request, 
+        //[
+        //    'profile_image'=>'required|image|max:1999'
+        //]);
 
          // Handle File Upload
          if($request->hasFile('profile_image'))
