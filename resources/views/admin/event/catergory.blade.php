@@ -73,7 +73,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         </td>
                         <td>{{$catergory->name}}</td>
                         <td>{{$catergory->description}}</td>
-                        <td>@php CatergoryTemplatesController::getTemplateCount($catergory->catergory_id) @endphp</td> 
+                        <td>{{CatergoryTemplatesController::getTemplateCount($catergory->catergory_id)}}</td> 
                         <td>
                             <div class="table-data-feature">
                                 <a href="catergory/edit/{{$catergory->catergory_id}}">
