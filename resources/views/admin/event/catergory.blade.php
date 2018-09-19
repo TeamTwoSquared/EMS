@@ -3,6 +3,7 @@
 @php
 use App\Catergory;
 use App\Http\Controllers\event\CatergoriesController;
+use App\Http\Controllers\event\CatergoryTemplatesController;
 
 @endphp
 <div class="row" data-pg-collapsed>
@@ -72,7 +73,7 @@ use App\Http\Controllers\event\CatergoriesController;
                         </td>
                         <td>{{$catergory->name}}</td>
                         <td>{{$catergory->description}}</td>
-                        <td>{{$catergory->numberOftemplates}}</td>
+                        <td>@php CatergoryTemplatesController::getTemplateCount($catergory->catergory_id) @endphp</td> 
                         <td>
                             <div class="table-data-feature">
                                 <a href="catergory/edit/{{$catergory->catergory_id}}">

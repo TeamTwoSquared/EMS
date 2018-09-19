@@ -42,4 +42,11 @@ class CatergoryTemplatesController extends Controller
         return $catergory_all;
     }
 
+    public static function getTemplateCount($catergory_id)
+    {
+        $catergory_templates = CatergoryTemplate::where('catergory_id',$catergory_id)->get();
+        return count($catergory_templates);
+
+    }
+
 }//end of class
