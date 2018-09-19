@@ -160,7 +160,7 @@ class TasksController extends Controller
         }
         else
         {
-            $task->task=1;
+            $task->istemp=1;
         }
         $task->save();
         return redirect('/admin/task');
