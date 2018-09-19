@@ -44,7 +44,7 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Time Duration</label>
                         </div>
                         <div class="col-12 col-md-9">
-                            <input type="text" id="time_duration" name="time_duration" value={{$task->timeduration}} class="form-control">
+                            <input type="text" id="time_duration" name="time_duration" value="{{$task->timeduration}}" class="form-control">
                         </div>
                     </div>
                     <div class="row form-group">
