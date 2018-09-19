@@ -47,9 +47,10 @@ $i=1; //use to have checkbox number
                             <input type="text" id="time_duration" name="time_duration" value={{$task->timeduration}} class="form-control">
                         </div>
                     </div>
+                    <div class="row form-group">
                     <div class="col col-md-3">
                         <label for="text-input" class="form-control-label">Templates</label>
-                    
+                    </div>
                     <div class="col col-md-9">
                             <div class="form-check">
                                 @foreach($allTemplates as $template)
@@ -69,7 +70,7 @@ $i=1; //use to have checkbox number
                                 @endforeach
                             </div>
                         </div>
-                    </div>
+                    <div>
                     <div class="card-footer">
                             <button type="update" class="btn btn-primary btn-sm">
                                 <i class="fa fa-dot-circle-o"></i> Update
