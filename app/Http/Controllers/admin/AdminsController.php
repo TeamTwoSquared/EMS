@@ -100,10 +100,10 @@ class AdminsController extends Controller
             $fileNameToStore= $filename.'_'.time().'.'.$extension;
             // Upload 
             $image       = $request->file('profile_image');
-            $path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
-            //$image_resize = Image::make($image->getRealPath());              
-            //$image_resize->resize(100, 100);
-            //$image_resize->save(public_path('storage/images/profile/'."testing.jpg"));
+            //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
+            $image_resize = Image::make($image->getRealPath());              
+            $image_resize->resize(100, 100);
+            $image_resize->save(public_path('storage/images/profile/'."testing3.jpg"));
        
         }
 
@@ -119,7 +119,7 @@ class AdminsController extends Controller
         {
             // Delete Image
             Storage::delete('public/images/profile/'.$admin->profilepic);
-            $admin->profilepic="testing2.jpg";
+            $admin->profilepic="testing3.jpg";
             $admin->save();
             return redirect('/admin/profile')->with('success','Profile Image Updated');
         }
