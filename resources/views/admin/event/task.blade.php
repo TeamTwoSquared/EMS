@@ -55,7 +55,7 @@ use App\Http\Controllers\event\TemplateTasksController;
                         </th>
                         <th>name</th>
                         <th>description</th>
-                        <th>istemp</th>
+                        <th>status</th>
                         <th>templates</th>
                         <th>time duration</th>
                         <th></th>
