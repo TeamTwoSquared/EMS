@@ -21,7 +21,7 @@ use App\Http\Controllers\event\CatergoriesController;
                             <label for="text-input" class="form-control-label">Category Name</label>                             
                         </div>                                                 
                         <div class="col-12 col-md-9"> 
-                            <input type="text" id="name" name="name" value={{$catergory->name}} class="form-control" >                             
+                            <input type="text" id="name" name="name" value="{{$catergory->name}}" class="form-control" >                             
                         </div>                        
                     </div>                     
                     <div class="row form-group"> 
