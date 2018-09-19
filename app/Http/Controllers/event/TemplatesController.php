@@ -129,11 +129,11 @@ class TemplatesController extends Controller
         }
         else if ($template->istemp==0)
         {
-            $template->istemp=1;
+            $template->istemp=2;
         }
         else
         {
-            $template->istemp=2;
+            $template->istemp=0;
         }
         $template->save();
         return redirect('/admin/template');
