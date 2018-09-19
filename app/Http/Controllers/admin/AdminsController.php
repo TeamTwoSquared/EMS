@@ -82,10 +82,10 @@ class AdminsController extends Controller
     public function change_img(Request $request)
     {
         //validation
-        //$this->validate($request, 
-        //[
-        //    'profile_image'=>'required|image|max:1999'
-        //]);
+        $this->validate($request, 
+        [
+            'profile_image'=>'required|image|max:1999'
+        ]);
 
          // Handle File Upload
          if($request->hasFile('profile_image'))
@@ -103,7 +103,7 @@ class AdminsController extends Controller
             //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
             $image_resize = Image::make($image->getRealPath());              
             $image_resize->resize(100, 100);
-            $image_resize->save(public_path('storage/images/profile/'."testing3.jpg"));
+            $image_resize->save(public_path('storage/images/profile/'.$fileNameToStore));
        
         }
 
@@ -119,7 +119,7 @@ class AdminsController extends Controller
         {
             // Delete Image
             Storage::delete('public/images/profile/'.$admin->profilepic);
-            $admin->profilepic="testing3.jpg";
+            $admin->profilepic=$fileNameToStore;
             $admin->save();
             return redirect('/admin/profile')->with('success','Profile Image Updated');
         }
