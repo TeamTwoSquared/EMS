@@ -103,7 +103,7 @@ class AdminsController extends Controller
             //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
             $image_resize = Image::make($image->getRealPath());              
             $image_resize->resize(100, 100);
-            $image_resize->save(public_path('storage/images/profile/' .$fileNameToStore));
+            $image_resize->save(public_path('storage/images/profile/'."testing.jpg"));
        
         }
 
