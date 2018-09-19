@@ -119,7 +119,7 @@ class AdminsController extends Controller
         {
             // Delete Image
             Storage::delete('public/images/profile/'.$admin->profilepic);
-            $admin->profilepic="testing.jpg";
+            $admin->profilepic="testing2.jpg";
             $admin->save();
             return redirect('/admin/profile')->with('success','Profile Image Updated');
         }
