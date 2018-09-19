@@ -154,13 +154,17 @@ class TasksController extends Controller
     {
         $task = Task::where('task_id',$id)->get();
         $task = $task[0];
-        if ($task->istemp!=2)
+        if ($task->istemp==2)
         {
-            $task->istemp=2;
+            $task->istemp=0;
+        }
+        else if ($task->istemp==0)
+        {
+            $task->istemp=1;
         }
         else
         {
-            $task->istemp=1;
+            $task->istemp=2;
         }
         $task->save();
         return redirect('/admin/task');

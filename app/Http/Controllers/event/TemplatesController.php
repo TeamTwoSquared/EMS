@@ -123,13 +123,17 @@ class TemplatesController extends Controller
     {
         $template = Template::where('template_id',$id)->get();
         $template = $template[0];
-        if ($template->istemp!=2)
+        if ($template->istemp==2)
         {
-            $template->istemp=2;
+            $template->istemp=0;
+        }
+        else if ($template->istemp==0)
+        {
+            $template->istemp=1;
         }
         else
         {
-            $template->istemp=1;
+            $template->istemp=2;
         }
         $template->save();
         return redirect('/admin/template');
