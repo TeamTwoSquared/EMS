@@ -7,7 +7,7 @@ use App\Http\Controllers\event\CatergoriesController;
 
 @endphp
 <div class="row" data-pg-collapsed> 
-    <div class="col-xl-9 col-lg-9"> 
+    <div class="col-xl-9"> 
         <div class="card">              
             <div class="card-header">
                 <strong>Update</strong> Category

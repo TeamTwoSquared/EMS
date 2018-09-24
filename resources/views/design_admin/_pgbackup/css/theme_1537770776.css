@@ -75,7 +75,11 @@ button {
 
 img {
     max-width: 100%;
-    height: auto;
+    height: 60px;
+    bottom: 15px;
+    top: 15px;
+    right: 15px;
+    left: 15px;
 }
 
 p {
@@ -555,6 +559,10 @@ section {
     padding: 0 20px;
     line-height: 40px;
     font-size: 14px;
+    width: px;
+    min-width: -14px;
+    height: -3px;
+    min-height: -8px;
 }
 
 /*Page Loader*/
@@ -1748,7 +1756,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a:hover {
-    color: #16f89b;
+    color: #d74242;
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a > i {

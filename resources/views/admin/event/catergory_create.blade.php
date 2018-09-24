@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="row" data-pg-collapsed> 
-    <div class="col-xl-9 col-lg-9"> 
+    <div class="col-xl-9"> 
         <div class="card">              
             <div class="card-header">
                 <strong>Add</strong> Category

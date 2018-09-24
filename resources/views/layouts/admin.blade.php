@@ -323,7 +323,14 @@ $admin=AdminsController::getAdmin();
                         <div class="container-fluid"> 
                             @include('inc.messages')
                             @yield('content')
-    </div>                     
+    </div> 
+    <div class="row"> 
+        <div class="col-md-12"> 
+            <div class="copyright"> 
+                <p>Copyright © 2018 EMS. All rights reserved.</p>
+            </div>         
+        </div>     
+    </div>                    
                     </div>                 
                 </div>             
                 <!-- END MAIN CONTENT-->             

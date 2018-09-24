@@ -6,7 +6,7 @@ $catergories = CatergoriesController::getCatergories();
 $i=1; //use to have checkbox number
 @endphp
 <div class="row" data-pg-collapsed>
-    <div class="col-lg-6 col-xl-9">
+    <div class="col-xl-9">
         <div class="card">
             <div class="card-header">
                 <strong>Add</strong> Template
@@ -38,7 +38,7 @@ $i=1; //use to have checkbox number
                         <div class="col col-md-3">
                             <label class="form-control-label">Catergories</label>
                         </div>
-                        <div class="col col-md-9">
+                        <div class="col-12 col-md-9">
                             <div class="form-check">
                                 @foreach($catergories as $catergory)
                                     <div class="checkbox">
