@@ -41,7 +41,6 @@ $svp=SVPsController::getSVP();
         <link href="/svp/vendor/vector-map/jqvmap.min.css" rel="stylesheet" media="all"> 
         <!-- Main CSS-->         
         <link href="/svp/css/theme.css" rel="stylesheet" media="all"> 
-        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper" data-pg-collapsed> 
@@ -207,17 +206,16 @@ $svp=SVPsController::getSVP();
                     </div>             
                 </aside>         
                 <!-- END HEADER DESKTOP-->         
-                                    
-                                   
-                <!-- BREADCRUMB-->                 
-                <section class="statistic"> 
-                    <div class="container-fluid"> 
-                        <br>
-                        @include('inc.messages')
-                    </div>                    
-                </section>                 
-    <!-- END BREADCRUMB-->  
-                @yield('content')     
+                @include('inc.messages')
+                @yield('content')                 
+                <section> 
+                    <div class="section__content section__content--p30"> 
+                        <div class="container-fluid"> 
+                            <div class="row"> 
+        </div>                     
+                        </div>                 
+                    </div>             
+                </section>         
                 <section> 
                     <div class="container-fluid"> 
                         <div class="row"> 

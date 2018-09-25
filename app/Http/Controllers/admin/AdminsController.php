@@ -103,7 +103,7 @@ class AdminsController extends Controller
             //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
             $image_resize = Image::make($image->getRealPath());              
             $image_resize->resize(100, 100);
-            $image_resize->save(public_path('storage/images/profile/' .$fileNameToStore));
+            $image_resize->save(public_path('storage/images/profile/'.$fileNameToStore));
        
         }
 
@@ -113,7 +113,7 @@ class AdminsController extends Controller
         { 
             $admin->profilepic=$fileNameToStore;
             $admin->save();
-            return redirect('/admin/profile')->with('success','Profile Image Updated');
+            return redirect('/admin/profile')->with('success','Profile Image Updatedxxx');
         }
         else
         {

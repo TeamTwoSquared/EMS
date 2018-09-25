@@ -40,12 +40,16 @@ Route::post('/admin/template/store', 'event\TemplatesController@admin_store');
 Route::get('/admin/template/edit/{id}', 'event\TemplatesController@admin_edit');
 Route::get('/admin/template/block/{id}','event\TemplatesController@block');
 Route::get('/admin/template/delete/{id}','event\TemplatesController@destroy');
+Route::post('/admin/template/edit/update/{id}','event\TemplatesController@admin_update');
 
 Route::get('/admin/task/add/{id}', 'event\TasksController@template_task');
 Route::get('/admin/task', 'event\TasksController@admin_index');
 Route::get('/admin/task/add', 'event\TasksController@admin_create');
 Route::post('/admin/task/store', 'event\TasksController@admin_store');
+Route::get('/admin/task/edit/{id}', 'event\TasksController@admin_edit');
+Route::get('/admin/task/block/{id}','event\TasksController@block');
 Route::get('/admin/task/delete/{id}','event\TasksController@destroy');
+Route::post('/admin/task/edit/update/{id}','event\TasksController@admin_update');
 
 
 Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');
@@ -53,6 +57,8 @@ Route::get('/admin/catergory/add', 'event\CatergoriesController@admin_create');
 Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store');
 Route::get('/admin/catergory/edit/{id}', 'event\CatergoriesController@admin_edit');
 Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy');
+Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@admin_update');
+
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');
 });*/
@@ -107,7 +113,7 @@ Route::get('/svp/settings', function (){
     return view ('admin.settings');
 
 });
-//Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
+Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
 Route::get('/svp/logout','svp\SVPsController@isLogout');
 

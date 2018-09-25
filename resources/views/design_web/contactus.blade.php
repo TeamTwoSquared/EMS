@@ -10,12 +10,12 @@
         <!-- Bootstrap core CSS -->         
         <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
-        <link href="jumbotron.css" rel="stylesheet"> 
+        <link href="/jumbotron.css" rel="stylesheet"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/blocks.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/plugins.css"> 
         <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css"> 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
     </head>     
     <body> 
         <!-- Main jumbotron for a primary marketing message or call to action -->         
@@ -50,7 +50,11 @@
                 <div class="underlined-title"> 
                     <h1>Contact Us</h1> 
                     <hr> 
+<<<<<<< HEAD
                     <h2>Any problem? we are happy to help you</h2> 
+=======
+                    <h2>We are happy to answer any questions you have</h2> 
+>>>>>>> master
                 </div>                 
                 <p>We are ready to provide you with more information and answer any question you have.</p> 
                 <ul class="contact-info"> 

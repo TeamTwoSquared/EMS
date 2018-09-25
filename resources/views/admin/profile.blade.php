@@ -2,6 +2,10 @@
 @section('content')
 @php
 use App\Http\Controllers\admin\AdminsController;
+if(!(AdminsController::checkLogged(0))){
+header("Location: /admin/login");
+die();
+}
 $admin=AdminsController::getAdmin();
 @endphp
 <div class="row" data-pg-collapsed>
