@@ -39,7 +39,7 @@ class TasksController extends Controller
             'name'=> 'required',
             'description'=> 'required',
             'keywords'=> 'required',
-            'time_duration'=>'integer',
+            'time_duration'=>'integer|nullable',
             'templates'=> 'required'
         ]);
 
@@ -103,7 +103,7 @@ class TasksController extends Controller
             'name'=> 'required',
             'description'=> 'required',
             'keywords'=> 'required',
-            'time_duration'=>'integer',
+            'time_duration'=>'integer|nullable',
             'templates'=> 'required'
         ]);
 
