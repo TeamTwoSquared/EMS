@@ -6,11 +6,17 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
         <meta name="description" content=""> 
         <meta name="author" content=""> 
-        <title>Carousel Template for Bootstrap</title>         
+        <title>EMS</title>         
         <!-- Bootstrap core CSS -->         
-        <link href="bootstrap/css/bootstrap.css" rel="stylesheet"> 
+        <link href="/bootstrap/css/bootstrap.css" rel="stylesheet"> 
         <!-- Custom styles for this template -->         
-        <link href="carousel.css" rel="stylesheet"> 
+        <link href="/carousel.css" rel="stylesheet"> 
+        <link rel="stylesheet" href="/components/pg.blocks/css/blocks.css"> 
+        <link rel="stylesheet" href="/components/pg.blocks/css/plugins.css"> 
+        <link rel="stylesheet" href="/components/pg.blocks/css/style-library-1.css"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        <link rel="icon" href="/favicon.ico" type="image/x-icon" />  
     </head>     
     <body> 
         <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark"> 
@@ -49,9 +55,9 @@
                     <img class="first-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="First slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block text-left"> 
-                            <h1>Example headline.</h1> 
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign up today</a></p> 
+                            <h1>A Single Platform to Meet Your Customers</h1> 
+                            <p>EMS is the best place to meet your customer and have a exponential growth of your sales.</p> 
+                            <p><a class="btn btn-lg btn-primary" href="/svp/register" role="button">Sign up today</a></p> 
                         </div>                         
                     </div>                     
                 </div>                 
@@ -59,9 +65,9 @@
                     <img class="second-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Second slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block"> 
-                            <h1>Another example headline.</h1> 
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
-                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Learn more</a></p> 
+                            <h1>Collaborative Event Oraganization</h1> 
+                            <p>Invite your friends, family members to join with you in event organizing.</p> 
+                            <p><a class="btn btn-lg btn-primary" href="#" role="button">Sign Up Today</a></p> 
                         </div>                         
                     </div>                     
                 </div>                 
@@ -69,8 +75,8 @@
                     <img class="third-slide" src="data:image/gif;base64,R0lGODlhAQABAIAAAHd3dwAAACH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==" alt="Third slide"> 
                     <div class="container"> 
                         <div class="carousel-caption d-none d-md-block text-right"> 
-                            <h1>One more for good measure.</h1> 
-                            <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+                            <h1>Wide Range of Event Templates</h1> 
+                            <p>There are wide range of event templates so that you can easily pick a template suitable to your task. Lets take a look at our template gallery.</p> 
                             <p><a class="btn btn-lg btn-primary" href="#" role="button">Browse gallery</a></p> 
                         </div>                         
                     </div>                     
@@ -86,13 +92,13 @@
             <!-- Three columns of text below the carousel -->             
             <div class="row"> 
                 <div class="col-lg-4 col-xl-6"> 
-                    <img class="rounded-circle" src="http://pinegrow.com/placeholders/img1.jpg" alt="Generic placeholder image" width="140" height="140"> 
+                    <img class="rounded-circle" alt="Client Image" width="140" height="140" src="images/Clientss.jpg"> 
                     <h2>Client</h2> 
                     <a class="btn btn-primary btn-lg btn-block" href="/client/login">Login</a> 
                     <a class="btn btn-secondary btn-lg btn-block" href="/client/register">Register</a> 
                 </div>                 
                 <div class="col-lg-4 col-xl-6"> 
-                    <img class="rounded-circle" src="http://pinegrow.com/placeholders/img1.jpg" alt="Generic placeholder image" width="140" height="140"> 
+                    <img class="rounded-circle" alt="Service Provider image" width="140" height="140" src="images/service provider2.png"> 
                     <h2>Service provider</h2> 
                     <a class="btn btn-primary btn-lg btn-block" href="/svp/login">Login</a> 
                     <a class="btn btn-secondary btn-lg btn-block" href="/svp/register">Register</a> 
@@ -107,21 +113,21 @@
             <div class="row featurette"> 
                 <div class="col-md-7"> 
                     <h2 class="featurette-heading">Vast range of pre-defined templates</h2> 
-                    <p class="lead">You can find number of pre defined templates which are provided to ease your work.your own</p> 
+                    <p class="lead">Our system users can manage their event using our pre-defined templates in an easy and effiecient way. Even users without having any knowledge about event planing can also use our system to manage their events.</p> 
                     <p class="lead">Also you can edit or create&nbsp;</p> 
                 </div>                 
                 <div class="col-md-5"> 
-                    <img class="featurette-image img-fluid mx-auto" style="width: 500px; height: 500px;" src="http://pinegrow.com/placeholders/img4.jpg" data-holder-rendered="true"> 
+                    <img class="featurette-image img-fluid mx-auto" style="width: 500px; height: 500px;" src="images/party template.jpg" data-holder-rendered="true" alt="Event template image"> 
                 </div>                 
             </div>             
             <hr class="featurette-divider"> 
             <div class="row featurette"> 
                 <div class="col-md-7 order-md-2"> 
                     <h2 class="featurette-heading">Everything you need at your at your finger tips</h2> 
-                    <p class="lead">Donec ulla.</p> 
+                    <p class="lead">Our system has provide clients task based searching option where you can find relevent service providers for relevent tasks</p> 
                 </div>                 
                 <div class="col-md-5 order-md-1"> 
-                    <img class="featurette-image img-fluid mx-auto" src="http://pinegrow.com/placeholders/img5.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;"> 
+                    <img class="featurette-image img-fluid mx-auto" src="images/happy user.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;" alt="Searching option image"> 
                 </div>                 
             </div>             
             <hr class="featurette-divider"> 
@@ -131,7 +137,7 @@
                     <p class="lead">Donec ullamcorper nulla non metus auctor fringilla. Vestibulum id ligula porta felis euismod semper. Praesent commodo cursus magna, vel scelerisque nisl consectetur. Fusce dapibus, tellus ac cursus commodo.</p> 
                 </div>                 
                 <div class="col-md-5"> 
-                    <img class="featurette-image img-fluid mx-auto" src="http://pinegrow.com/placeholders/img6.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;"> 
+                    <img class="featurette-image img-fluid mx-auto" src="images/chattingpeople.jpg" data-holder-rendered="true" style="width: 500px; height: 500px;" alt="Chatting people image"> 
                 </div>                 
             </div>             
             <hr class="featurette-divider"> 
@@ -146,10 +152,13 @@
         <!-- Bootstrap core JavaScript
     ================================================== -->         
         <!-- Placed at the end of the document so the pages load faster -->         
-        <script src="assets/js/jquery.min.js"></script>         
-        <script src="assets/js/popper.js"></script>         
-        <script src="bootstrap/js/bootstrap.min.js"></script>         
+        <script src="/assets/js/jquery.min.js"></script>         
+        <script src="/assets/js/popper.js"></script>         
+        <script src="/bootstrap/js/bootstrap.min.js"></script>         
         <!-- Just to make our placeholder images work. Don't actually copy the next line! -->         
-        <script src="assets/js/holder.min.js"></script>         
+        <script src="/assets/js/holder.min.js"></script>         
+        <script type="text/javascript" src="/components/pg.blocks/js/plugins.js"></script>         
+        <script type="text/javascript" src="/components/pg.blocks/js/bskit-scripts.js"></script>         
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>         
     </body>     
 </html>

@@ -1,5 +1,5 @@
 <?php
-
+//Don't delete me
 namespace App\Mail;
 
 use Illuminate\Bus\Queueable;
@@ -36,16 +36,7 @@ class VerifyEmail extends Mailable
     public function build()
     {
         return $this->from('noreply@ems.com')
-                    ->view('mails.verify')
-                    ->text('mails.verify_plain')
-                    ->with(
-                      [
-                            'testVarOne' => '1',
-                            'testVarTwo' => '2',
-                      ])
-                      ->attach(public_path('/images').'/verify.jpg', [
-                              'as' => 'verify.jpg',
-                              'mime' => 'image/jpeg',
-                      ]);
+                    ->view('mail.verify')
+                    ->text('mail.verify_plain');
     }
 }

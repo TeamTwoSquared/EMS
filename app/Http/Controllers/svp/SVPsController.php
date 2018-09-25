@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
-
+use App\Http\Controllers\MailController;
 
 class SVPsController extends Controller
 {
@@ -33,7 +33,7 @@ class SVPsController extends Controller
             $svp->email=$request->email;
             $svp->save();
             SVPsController::sendActivationLink($svp->service_provider_id);
-            //need to implement more verify email part
+            session()->put('new_svp',$svp->service_provider_id);
             return redirect('/svp/toverify');
             
         }
@@ -176,9 +176,31 @@ class SVPsController extends Controller
             $uniqueString =  unique_random('service_providers', 'activation_link', 40);
             $svp->activation_link=$uniqueString;
             $svp->save();
+            //Send Activation Link
+            $svp=SVP::find($svp_id);
+            MailController::send_verify(1,$svp);
+        }   
+    }
+
+    public function doVerify($id, $key)
+    {
+        $svp=SVP::find($id);
+        if($svp->isverified == 1) 
+        {
+           return redirect('/svp/login')->with('warning','Your Account is Already Activated, Please Login');
         }
-        //Send Activation Link
-        
+
+        else if($svp->activation_link == $key)
+        {
+            $svp->isverified = 1;
+            $svp->save();
+            return redirect('/svp/login')->with('success','Your Account is Activated Sucessfully, Please Login');
+        }
+
+        else
+        {
+            return redirect('/svp/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
+        }
     }
 	
 	public function update(Request $req){
@@ -226,6 +248,57 @@ class SVPsController extends Controller
              return redirect('/svp/profile')->with('error',' incorrect password !');
         }
     }
+
+    public function save_profile(Request $request){
+        $svp = SVP::find(session()->get('svp_id'));
+        //Changing Passwords
+        //if($request->oldpassword != null && $request->newpassword != null && $request->newpasswordagain != null)
+        if($request->oldpassword && $request->newpassword && $request->newpasswordagain)
+        {
+            $oldpasswordDB=$svp->password;
+            $oldpassword=md5($request->oldpassword);
+            
+            $newpassword=md5($request->newpassword);
+            $newpasswordagain=md5($request->newpasswordagain);
+        
+            if($oldpasswordDB==$oldpassword)
+            {
+                if($newpassword==$newpasswordagain)
+                {
+                        $svp->password=md5($request->newpasswordagain);
+                        $svp->name = $request->name;
+                        $svp->address=$request->address;
+                        $svp->address2=$request->address2;
+                        $svp->city=$request->city;
+                        $svp->save();
+                        return redirect('/svp/profile')->with('success','Profile Updated');
+                }
+                else
+                {
+                    return redirect('/svp/profile')->with('error','Incorrect New Password Confirmation');
+                }    
+            }
+            else
+            {
+                return redirect('/svp/profile')->with('error','Incorrect Old Password');
+            }
+            
+        }
+        else if(!$request->oldpassword && !$request->newpassword && !$request->newpasswordagain)
+        {
+            $svp->name = $request->name;
+            $svp->address=$request->address;
+            $svp->address2=$request->address2;
+            $svp->city=$request->city;
+            $svp->save();
+            return redirect('/svp/profile')->with('success','Profile Updated');
+        }
+        else
+        {
+            return redirect('/svp/profile')->with('error','All 3 Fields, Old Password, New Password and Confirmation Password Are Needed');
+        }
+       
+   }
 
     public function isOnline($id){
         $svp=SVP::where('service_provider_id',$id)->get();
