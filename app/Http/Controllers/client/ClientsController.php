@@ -49,6 +49,54 @@ class ClientsController extends Controller
     {
         //
     }
+    public function change_img(Request $request)
+    {
+        //validation
+        $this->validate($request, 
+        [
+            'profile_image'=>'required|image|max:1999'
+        ]);
+
+         // Handle File Upload
+         if($request->hasFile('profile_image'))
+         {
+            // Get filename with the extension
+            $filenameWithExt = $request->file('profile_image')->getClientOriginalName();
+            // Get just filename
+            $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+            // Get just ext
+            $extension = $request->file('profile_image')->getClientOriginalExtension();
+            // Filename to store
+            $fileNameToStore= $filename.'_'.time().'.'.$extension;
+            // Upload 
+            $image       = $request->file('profile_image');
+            //$path = $request->file('profile_image')->storeAs('public/images/profile', $fileNameToStore);
+            $image_resize = Image::make($image->getRealPath());              
+            $image_resize->resize(100, 100);
+            $image_resize->save(public_path('storage/images/profile/' .$fileNameToStore));
+       
+        }
+
+        //Adding new pic to DB
+        $client = Client::find(session()->get('customer_id'));
+        if($client->profilepic=='noimage.jpg')
+        { 
+            $client->profilepic=$fileNameToStore;
+            $client->save();
+            return redirect('/client/profile')->with('success','Profile Image Updated');
+        }
+        else
+        {
+            // Delete Image
+            Storage::delete('public/images/profile/'.$client->profilepic);
+            $client->profilepic=$fileNameToStore;
+            $client->save();
+            return redirect('/client/profile')->with('success','Profile Image Updated');
+        }
+    }
+
+
+
     public function save_profile(Request $request){
         $client = Client::find(session()->get('customer_id'));
         //Changing Passwords

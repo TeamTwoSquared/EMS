@@ -144,6 +144,7 @@ Route::get('/client/settings', function (){
 
 });
 Route::post('/client/save_profile', 'client\ClientsController@save_profile');
+Route::post('/client/change_img', 'client\ClientsController@change_img');
 //Route::get('/clverification/{id}/{key}', '');
 
 // Routes for side Adds.
