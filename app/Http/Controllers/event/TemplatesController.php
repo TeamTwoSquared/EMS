@@ -73,7 +73,7 @@ class TemplatesController extends Controller
             //Saving each keyword with template_id
             $templateKeyword = new TemplateKeyword();
             $templateKeyword->template_id = $template->template_id;
-            $templateKeyword->keyword = $keyword;
+            $templateKeyword->keyword = strtolower($keyword);
             $templateKeyword->save();
         }
         
@@ -199,7 +199,7 @@ class TemplatesController extends Controller
             //Saving each keyword with template_id
             $templateKeyword = new TemplateKeyword();
             $templateKeyword->template_id = $template->template_id;
-            $templateKeyword->keyword = $keyword;
+            $templateKeyword->keyword = strtolower($keyword);
             $templateKeyword->save();
         }
         CatergoryTemplatesController::destroy($id);

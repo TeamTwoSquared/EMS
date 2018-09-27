@@ -36,7 +36,7 @@ $i=1; //use to have checkbox number
                     <div class="row form-group">
                         <div class="col col-md-3">Keywords</div>
                         <div class="col-12 col-md-9">
-                            <textarea name="keywords" id="keywords" rows="9"  class="form-control">@foreach($taskKeywords as $taskKeyword){{$taskKeyword->keyword}}{{" "}}@endforeach</textarea>
+                            <textarea style="text-transform:uppercase" name="keywords" id="keywords" rows="9"  class="form-control">@foreach($taskKeywords as $taskKeyword){{$taskKeyword->keyword}}{{" "}}@endforeach</textarea>
                         </div>
                     </div>
                     <div class="row form-group">

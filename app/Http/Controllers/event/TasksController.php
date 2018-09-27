@@ -58,7 +58,7 @@ class TasksController extends Controller
             //Saving each keyword with template_id
             $taskKeyword = new TaskKeyword();
             $taskKeyword->task_id = $task->task_id;
-            $taskKeyword->keyword = $keyword;
+            $taskKeyword->keyword = strtolower($keyword);
             $taskKeyword->save();
         }
         //Saving template_task data
@@ -123,7 +123,7 @@ class TasksController extends Controller
             //Saving each keyword with template_id
             $taskKeyword = new TaskKeyword();
             $taskKeyword->task_id = $task->task_id;
-            $taskKeyword->keyword = $keyword;
+            $taskKeyword->keyword = strtolower($keyword);
             $taskKeyword->save();
         }
         TemplateTasksController::taskDestroy($id);
