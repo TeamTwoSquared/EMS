@@ -14,6 +14,8 @@
         <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
         <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
         <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
+        <!-- Custom styles for this template -->         
+        <link href="style.css" rel="stylesheet">
         <!-- Bootstrap CSS-->         
         <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
         <!-- Vendor CSS-->         
@@ -30,28 +32,28 @@
     <body class="animsition"> 
         <div class="page-wrapper"> 
             <!-- HEADER DESKTOP-->             
-            <header class="header-desktop3 d-none d-lg-block"> 
+            <header class="header-desktop3 d-none d-lg-block bg-ems-admin"> 
                 <div class="section__content section__content--p35"> 
                     <div class="header3-wrap"> 
                         <div class="header__logo"> 
                             <a href="#"> 
-                                <img src="images/icon/logo-white.png" alt="CoolAdmin"/> 
+                                <img src="images/icon/logo-client.png" alt="CoolAdmin"/> 
                             </a>                             
                         </div>                         
                         <div class="header__navbar"> 
-                            <ul class="list-unstyled">                                  
-                                <li> 
-                                    <a href="/client/dash"> <i class="fas fa-tachometer-alt"></i> <span class="bot-line"></span>Dashboard</a> 
+                            <ul class="list-unstyled bg-ems-admin"> 
+                                <li class="has-sub"> 
+                                    <a href="/client/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard <span class="bot-line"></span> </a> 
                                 </li>                                 
                                 <li> 
-                                    <a href="/client/event"> <i class="fas fa-shopping-basket"></i> <span class="bot-line"></span>My Events</a> 
+                                    <a href="/client/myevents"> <i class="fas fa-shopping-basket"></i> <span class="bot-line"></span>My Events</a> 
+                                </li>                                 
+                                <li> 
+                                    <a href="/client/inbox"> <i class="fas fa fa-inbox"></i> <span class="bot-line"></span>Messages</a> 
                                 </li>
                                 <li> 
-                                    <a href="/client/inbox"> <i class="fas fa-shopping-basket"></i> <span class="bot-line"></span>Messeges</a> 
-                                </li>
-                                <li> 
-                                    <a href="/client/help"> <i class="fas fa-trophy"></i> <span class="bot-line"></span>Support Center</a> 
-                                </li>                                                                                                   
+                                    <a href="/client/help"> <i class="fas fa-life-ring fa"></i> <span class="bot-line"></span>Support Center</a> 
+                                </li>                                 
                             </ul>                             
                         </div>                         
                         <div class="header__tool"> 
@@ -94,7 +96,6 @@
                                 </div>                                 
                             </div>                             
                             <div class="header-button-item js-item-menu"> 
-                                <i class="zmdi zmdi-settings"></i> 
                                 <div class="setting-dropdown js-dropdown"> 
                                     <div class="account-dropdown__body"> 
                                         <div class="account-dropdown__item"> 
@@ -145,17 +146,17 @@
                                         </div>                                         
                                         <div class="account-dropdown__body"> 
                                             <div class="account-dropdown__item"> 
-                                                <a href="#"> <i class="zmdi zmdi-account"></i>Account</a> 
+                                                <a href="/client/profile"> <i class="zmdi zmdi-account"></i>Account</a> 
                                             </div>                                             
                                             <div class="account-dropdown__item"> 
-                                                <a href="#"> <i class="zmdi zmdi-settings"></i>Setting</a> 
+                                                <a href="/client/settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
                                             </div>                                             
                                             <div class="account-dropdown__item"> 
-                                                <a href="#"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
+                                                <a href="/client/payments"> <i class="zmdi zmdi-money-box"></i>Payments</a> 
                                             </div>                                             
                                         </div>                                         
                                         <div class="account-dropdown__footer"> 
-                                            <a href="#"> <i class="zmdi zmdi-power"></i>Logout</a> 
+                                            <a href="/client/logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
                                         </div>                                         
                                     </div>                                     
                                 </div>                                 

@@ -6,7 +6,7 @@ $catergories = CatergoriesController::getCatergories();
 $i=1; //use to have checkbox number
 @endphp
 <div class="row" data-pg-collapsed>
-    <div class="col-xl-9">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-header">
                 <strong>Add</strong> Template

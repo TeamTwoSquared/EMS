@@ -7,12 +7,15 @@ use App\TemplateKeyword;
 use App\CatergoryTemplate;
 use App\Http\Controllers\event\CatergoriesController;
 use App\Http\Controllers\event\CatergoryTemplatesController;
+use App\Http\Controllers\event\TemplateImagesController;
 $savedCatergories=CatergoryTemplatesController::getCatergoriesTemp($template->template_id);
 $allCatergories = CatergoriesController::getCatergories();
-$i=1; //use to have checkbox number
+$i=1;//use to have checkbox number
+$templateImages = TemplateImagesController::getImages($template->template_id);
+$j=1; //Use to have cover image number
 @endphp
 <div class="row" data-pg-collapsed>
-    <div class="col-xl-9">
+    <div class="col-xl-12">
         <div class="card">
             <div class="card-header">
                 <strong>Update</strong> Template
@@ -62,6 +65,49 @@ $i=1; //use to have checkbox number
                                     </script>
                                 @endforeach                                
                             </div>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3" data-pg-collapsed>
+                            <label class="form-control-label">Cover Images</label>
+                        </div>
+                        <div class="form-check" data-pg-collapsed>
+                            <section class="content-block gallery-2">
+                                <div class="container">
+                                    <div class="row">
+                                    @foreach($templateImages as $templateImage)
+                                        <div class="grid col-md-4 col-sm-6 col-xs-12" data-pg-collapsed>
+                                            <figure class="effect-lily">
+                                                <img src="/storage/images/template/{{$templateImage->imgurl}}" alt="Template Image.{{$j}}"/>
+                                                <figcaption>
+                                                    <h2><span>{{$j}}</span></h2>
+                                                    <!-- <p>Beautifully subtle animated hover effect for your gallery</p> -->
+                                                    <!-- <a href="#">View more</a> -->
+
+                                                </figcaption>                             
+                                            </figure>
+                                            
+                                            <div class="checkbox">
+                                                <label for="checkbox_{{$j}}" class="form-check-label">
+                                                    <input type="checkbox" id="{{$templateImage->imgurl}}" name="delete_images[]" value="{{$templateImage->imgurl}}"  class="form-check-input" >Delete Me
+                                                </label>
+                                            </div>
+                                        </div>
+                                    @php
+                                    $j++;  
+                                    @endphp
+                                    @endforeach
+                                    </div>
+                                    <!-- /.row -->
+                                </div>
+                                <!-- /.container -->
+                            </section>
+                        </div>
+                    </div>
+                    <div class="row form-group">
+                        <div class="col col-md-3">New Cover Images&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</div>
+                        <div class="col-12 col-md-9">
+                            <input type="file" id="template_new_images" name="template_new_images[]" multiple class="form-control-file">
                         </div>
                     </div>
                     <div class="card-footer">
