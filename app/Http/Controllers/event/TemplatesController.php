@@ -67,13 +67,15 @@ class TemplatesController extends Controller
         $template->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
 
         foreach($keywords as $keyword)
         {
             //Saving each keyword with template_id
             $templateKeyword = new TemplateKeyword();
             $templateKeyword->template_id = $template->template_id;
-            $templateKeyword->keyword = strtolower($keyword);
+            $templateKeyword->keyword = $keyword;
             $templateKeyword->save();
         }
         
@@ -192,14 +194,15 @@ class TemplatesController extends Controller
         $template->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
-
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
         TemplateKeywordsController::destroy($id);
         foreach($keywords as $keyword)
         {
             //Saving each keyword with template_id
             $templateKeyword = new TemplateKeyword();
             $templateKeyword->template_id = $template->template_id;
-            $templateKeyword->keyword = strtolower($keyword);
+            $templateKeyword->keyword = $keyword;
             $templateKeyword->save();
         }
         CatergoryTemplatesController::destroy($id);

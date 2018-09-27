@@ -52,13 +52,15 @@ class TasksController extends Controller
         $task->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
 
         foreach($keywords as $keyword)
         {
             //Saving each keyword with template_id
             $taskKeyword = new TaskKeyword();
             $taskKeyword->task_id = $task->task_id;
-            $taskKeyword->keyword = strtolower($keyword);
+            $taskKeyword->keyword = $keyword;
             $taskKeyword->save();
         }
         //Saving template_task data
@@ -117,13 +119,15 @@ class TasksController extends Controller
         $task->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
         TaskKeywordsController::destroy($id);
         foreach($keywords as $keyword)
         {
             //Saving each keyword with template_id
             $taskKeyword = new TaskKeyword();
             $taskKeyword->task_id = $task->task_id;
-            $taskKeyword->keyword = strtolower($keyword);
+            $taskKeyword->keyword = $keyword;
             $taskKeyword->save();
         }
         TemplateTasksController::taskDestroy($id);
