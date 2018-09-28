@@ -1738,7 +1738,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a {
-    color: #ffffff;
+    color: #555;
     display: block;
     padding: 10px 15px;
     padding-right: 25px;
@@ -1749,7 +1749,7 @@ section {
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a:hover {
-    color: #16f89b;
+    color: #4272d7;
 }
 
 .header-mobile .navbar-mobile .navbar-mobile__list li a > i {
