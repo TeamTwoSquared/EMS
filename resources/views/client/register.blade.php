@@ -1,8 +1,8 @@
-@extends('layouts.client_login')
+@extends('layouts.client_login'  )
 
 @section('content')
 <div class="login-wrap" data-pg-collapsed>
-    <div class="login-content">
+    <div class="login-content bg-ems-admin border-ems-admin">
         <div class="login-logo">
             <a href="#">
                 <img src="images/icon/client_logo.png" alt="EMS">
@@ -12,7 +12,7 @@
             <form action="doregister" method="post">
                 {{ csrf_field() }}
                 <div class="form-group">
-                    <label>Username</label>
+                    <label class="text-white font-weight-bold">Username</label>
                     <input class="au-input au-input--full" type="text" name="username" placeholder="Username">
                 </div>
                 <div class="form-group">
@@ -31,8 +31,8 @@
                 <button class="au-btn au-btn--block au-btn--green m-b-20" type="submit">register</button>
             </form>
             <div class="register-link">
-                <p>
-                                    Already have account? <a href="login">Sign In</a> </p>
+                <p  class="text-white">
+                                    Already have account? <a href="login" class="text-warning">Sign In</a> </p>
             </div>
         </div>
     </div>
