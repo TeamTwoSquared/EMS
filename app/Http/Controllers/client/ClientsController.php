@@ -4,7 +4,10 @@ namespace App\Http\Controllers\client;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 use App\Client;
+use App\Http\Controllers\MailController;
+
 
 class ClientsController extends Controller
 {
@@ -15,10 +18,51 @@ class ClientsController extends Controller
     }
 
 
-    public function create()
+    public function register(Request $register)
     {
-        //
+        $this->validate($request, [
+            'username'=>'required',
+            'email'=> 'required',
+            'password'=> 'required'
+        ]);
+        
+        $_client =Client::where('email',$request->email)->get();
+        $_clientSameUser = Client::where('username',$request->username)->get();
+    
+        if(($_client->count())==0 && ($_clientSameUser->count()==0))
+        {
+            $client=new Client();
+            $client->name=$request->username;
+            $client->username=$request->username;
+            $client->password=md5($request->password);
+            $client->email=$request->email;
+            $client->save();
+            ClientsController::sendActivationLink($client->customer_id);
+            session()->put('new_client',$client->customer_id);
+            return redirect('/client/toverify');
+            
+        }
+        else
+        {
+            if(($_client->count()>0) && ($_clientSameUser->count()>0))
+            {
+                return redirect('/client/register')->with('error','Both Username & Email are Already Exist, Please Sign In !!');
+        
+            }
+            else if(($_client->count()>0) && ($_clientSameUser->count()==0))
+            {
+                return redirect('/client/register')->with('error','Your Email Address is Already Exist, Please Sign In !!');
+            }
+            else if (($_client->count()==0) && ($_clientSameUser->count()>0))
+            {
+                return redirect('/client/register')->with('error','Selected Username is Already Exist, Please Try Another !!');
+            }
+        }
+
+        
     }
+        
+    
 
 
     public function store(Request $request)
