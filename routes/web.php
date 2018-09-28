@@ -134,10 +134,15 @@ Route::post('/client/dologin', 'client\ClientsController@authenticate');
 
 // Routes for client's catergory
 
+Route::get('/client/dash',function(){
+    return view('client.dash');
+});
 Route::get('/client/catergory','client\ClientEventsController@index');
 Route::get('/client/catergory/{$catergoryItems->name}/templates','client\ClientEventsController@show');
 Route::get('/client/catergory/newCatergory','client\ClientEventsControlelr@create');
 Route::post('/client/catergory/addNewCatergory','client\ClinetEventsControlelr@store');
+
+
 
 
 

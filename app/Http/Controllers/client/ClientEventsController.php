@@ -14,7 +14,9 @@ class ClientEventsController extends Controller
     public function index()
     {
        $catgry=DB::select('select*from catergories');
-       return view('client.catergory')->with('cat',$catgry);
+     //  return view('client.catergory')->with('cat',$catgry);
+        return view('client.index')->with('cat',$catgry);
+        //dd($catgry);
     }
 
 
