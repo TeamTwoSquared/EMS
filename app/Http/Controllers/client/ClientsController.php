@@ -61,16 +61,10 @@ class ClientsController extends Controller
 
         
     }
-        
-    
-
-
     public function store(Request $request)
     {
-        //
+       //
     }
-
-
     public function show($id)
     {
         //
@@ -137,6 +131,27 @@ class ClientsController extends Controller
             $client->save();
             return redirect('/client/profile')->with('success','Profile Image Updated');
         }
+    }
+
+    public static function sendActivationLink($client_id)
+    {
+        $client=Client::find($client_id);
+        //Check already verified
+        if($client->isverified==1)
+        {
+            return redirect('/client/login')->with('error','Your Account is Already Active');
+        }
+        
+        //Generate Activation Link and Add to DB
+        else
+        {
+            $uniqueString =  unique_random('clients', 'activation_link', 40);
+            $client->activation_link=$uniqueString;
+            $client->save();
+            //Send Activation Link
+            $client=Client::find($client_id);
+            MailController::send_verify(1,$client);
+        }   
     }
 
 
