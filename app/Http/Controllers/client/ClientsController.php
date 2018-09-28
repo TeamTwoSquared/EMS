@@ -61,9 +61,39 @@ class ClientsController extends Controller
 
         
     }
-    public function store(Request $request)
+    public function authenticate(Request $request)
     {
-       //
+        $this->validate($request, [
+            'email'=> 'required',
+            'password'=> 'required'
+        ]);
+        
+        
+        $email = $request->email;
+        $pass = $request->password;
+        $pass = md5($pass);
+        
+        $client = Client::where('email',$email)->get();
+    
+        if(($client->count())==0)
+        {
+            return redirect('/client/login')->with('error','Invalid Email Address');
+        }
+        else if(($client[0]->password)==$pass)
+        {
+            session()->put('clientlogged','e86ba6a6ee56b15b9f5982982375b52f');
+            session()->put('client_id',$client[0]->customer_id);
+            if($client[0]->isverified == 1) 
+            {
+                return redirect('/client/dash')->with('success','Logged in Successfully');
+            }
+            else
+            {
+                return redirect('/client/toverify')->with('error','Your Account is not verified');
+            }
+        }
+        return redirect('/client/login')->with('error','Invalid Password');
+    
     }
     public function show($id)
     {
