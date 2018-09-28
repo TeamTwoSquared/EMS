@@ -10,6 +10,7 @@ use App\Catergory;
 use App\CatergoryImage;
 use App\Http\Controllers\event\CatergoryImageController;
 
+
 class CatergoriesController extends Controller
 {
     public function admin_index()
@@ -74,7 +75,7 @@ class CatergoriesController extends Controller
                 // Upload 
                 $image_up = $image;
                 $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(265, 350);
+                $image_resize->resize(800, 600 );
                 $image_resize->save(public_path('storage/images/catergory/' .$fileNameToStore));
                 
                 //Adding URL to catergory_images table
@@ -112,14 +113,15 @@ class CatergoriesController extends Controller
         $this->validate($request, [
             'name'=> 'required',
             'description'=> 'required',
-            'catergory_images'=>'nullable|max:1999'
+            'delete_images' => 'nullable',
+            'catergory_new_images'=>'nullable|max:1999'
         ]);
 
         //Checking Whether files are images
-        if($request->hasFile('catergory_images'))
+        if($request->hasFile('catergory_new_images'))
         {
             $allowedfileExtension=['jpg','png','jpeg','gif'];
-            $images = $request->file('catergory_images');
+            $images = $request->file('catergory_new_images');
             foreach($images as $image)
             {
                 $extension = $image->getClientOriginalExtension();
@@ -138,12 +140,13 @@ class CatergoriesController extends Controller
         $catergory->description =  $request->description;
         $catergory->push();
 
+        //Deleting selected images to be deleted
+        CatergoryImageController::destroy($id, $request->delete_images);
         //Saving images
-        if($request->hasFile('catergory_images'))
+        if($request->hasFile('catergory_new_images'))
         {   
-            //delete currently uploaded images
-            CatergoryImageController::destroy($id);
-            $images = $request->file('catergory_images');
+            
+            $images = $request->file('catergory_new_images');
             foreach($images as $image)
             {
                 // Get filename with the extension
@@ -158,7 +161,7 @@ class CatergoriesController extends Controller
                 // Upload 
                 $image_up = $image;
                 $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(265, 350);
+                $image_resize->resize(800, 600);
                 $image_resize->save(public_path('storage/images/catergory/' .$fileNameToStore));
                 
                 //Adding URL to catergory_images table

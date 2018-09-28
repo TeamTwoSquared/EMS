@@ -158,7 +158,7 @@ class ClientsController extends Controller
         }
     }
 
-    public function isLogout(){
+    public function logout(){
         $client = Client::find(session()->get('customer_id'));
         $client->isonline=0;
         $client->save();

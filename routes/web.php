@@ -115,7 +115,7 @@ Route::get('/svp/settings', function (){
 });
 Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
-Route::get('/svp/logout','svp\SVPsController@isLogout');
+Route::get('/svp/logout','svp\SVPsController@logout');
 
 
 //Routes for Clients
