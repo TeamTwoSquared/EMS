@@ -52,6 +52,8 @@ class TasksController extends Controller
         $task->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
 
         foreach($keywords as $keyword)
         {
@@ -117,6 +119,8 @@ class TasksController extends Controller
         $task->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
         TaskKeywordsController::destroy($id);
         foreach($keywords as $keyword)
         {

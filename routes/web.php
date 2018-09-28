@@ -110,12 +110,12 @@ Route::get('/svp/profile', function (){
 
 });
 Route::get('/svp/settings', function (){
-    return view ('admin.settings');
+    return view ('svp.settings');
 
 });
 Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
-Route::get('/svp/logout','svp\SVPsController@isLogout');
+Route::get('/svp/logout','svp\SVPsController@logout');
 
 
 //Routes for Clients
@@ -130,6 +130,21 @@ Route::get('/client/register', function (){
 Route::post('/client/doregister', 'client\ClientsController@register');
 Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
+
+Route::get('/client/help',function(){
+    return view('client.help');
+});
+
+Route::get('/client/profile', function (){
+    return view ('client.profile');
+
+});
+Route::get('/client/settings', function (){
+    return view ('client.settings');
+
+});
+Route::post('/client/save_profile', 'client\ClientsController@save_profile');
+Route::post('/client/change_img', 'client\ClientsController@change_img');
 //Route::get('/clverification/{id}/{key}', '');
 
 // Routes for side Adds.

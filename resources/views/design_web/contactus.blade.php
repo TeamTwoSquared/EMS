@@ -50,7 +50,11 @@
                 <div class="underlined-title"> 
                     <h1>Contact Us</h1> 
                     <hr> 
+<<<<<<< HEAD
+                    <h2>Any problem? we are happy to help you</h2> 
+=======
                     <h2>We are happy to answer any questions you have</h2> 
+>>>>>>> master
                 </div>                 
                 <p>We are ready to provide you with more information and answer any question you have.</p> 
                 <ul class="contact-info"> 
