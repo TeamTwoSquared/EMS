@@ -1,36 +1,44 @@
+@php
+use App\Http\Controllers\client\ClientsController;
+if(!(ClientsController::checkLogged(0))){
+header("Location: /client/login");
+die();
+}
+$client=ClientsController::getClient();                      
+@endphp
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
         <!-- Required meta tags-->         
         <meta charset="UTF-8"> 
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-        <meta name="description" content="au theme template"> 
-        <meta name="author" content="Hau Nguyen"> 
-        <meta name="keywords" content="au theme template"> 
+        <meta name="description" content="This is an Web Based Event Management System"> 
+        <meta name="author" content="TeamTwoSquared"> 
+        <meta name="keywords" content="ems event management template"> 
         <!-- Title Page-->         
         <title>Dashboard 3</title>         
         <!-- Fontfaces CSS-->         
-        <link href="css/font-face.css" rel="stylesheet" media="all"> 
-        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/css/font-face.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
         <!-- Custom styles for this template -->         
-        <link href="style.css" rel="stylesheet">
+        <link href="/client/style.css" rel="stylesheet">
         <!-- Bootstrap CSS-->         
-        <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
         <!-- Vendor CSS-->         
-        <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/wow/animate.css" rel="stylesheet" media="all"> 
-        <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/slick/slick.css" rel="stylesheet" media="all"> 
-        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/animsition/animsition.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/wow/animate.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/slick/slick.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/select2/select2.min.css" rel="stylesheet" media="all"> 
+        <link href="/client/vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
         <!-- Main CSS-->         
-        <link href="css/theme.css" rel="stylesheet" media="all"> 
-        <link rel="stylesheet" href="components/pg.blocks/css/blocks.css">
-        <link rel="stylesheet" href="components/pg.blocks/css/plugins.css">
-        <link rel="stylesheet" href="components/pg.blocks/css/style-library-1.css">
+        <link href="/client/css/theme.css" rel="stylesheet" media="all"> 
+        <link rel="stylesheet" href="/client/components/pg.blocks/css/blocks.css">
+        <link rel="stylesheet" href="/client/components/pg.blocks/css/plugins.css">
+        <link rel="stylesheet" href="/client/components/pg.blocks/css/style-library-1.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
     </head>     
@@ -257,17 +265,8 @@
             <!-- END HEADER MOBILE -->             
             <!-- PAGE CONTENT-->             
             <div class="page-content--bgf7"> 
-                <!-- BREADCRUMB-->                 
-                <!-- END BREADCRUMB-->                 
-                <!-- WELCOME-->                 
-                <!-- END WELCOME-->                 
-                <!-- STATISTIC-->                 
-                <!-- END STATISTIC-->                 
-                <!-- STATISTIC CHART-->                 
-                <!-- END STATISTIC CHART-->                 
-                <!-- DATA TABLE-->                 
-                <!-- END DATA TABLE-->                 
-                <!-- COPYRIGHT-->                 
+                @include('inc.messages')
+                @yield('content')                
                 <section class="p-t-60 p-b-20"> 
                     <div class="container"> 
                         <div class="row"> 
@@ -283,29 +282,29 @@
             </div>             
         </div>         
         <!-- Jquery JS-->         
-        <script src="vendor/jquery-3.2.1.min.js"></script>         
+        <script src="/client/vendor/jquery-3.2.1.min.js"></script>         
         <!-- Bootstrap JS-->         
-        <script src="vendor/bootstrap-4.1/popper.min.js"></script>         
-        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>         
+        <script src="/client/vendor/bootstrap-4.1/popper.min.js"></script>         
+        <script src="/client/vendor/bootstrap-4.1/bootstrap.min.js"></script>         
         <!-- Vendor JS       -->         
-        <script src="vendor/slick/slick.min.js">
+        <script src="/client/vendor/slick/slick.min.js">
     </script>         
-        <script src="vendor/wow/wow.min.js"></script>         
-        <script src="vendor/animsition/animsition.min.js"></script>         
-        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
+        <script src="/client/vendor/wow/wow.min.js"></script>         
+        <script src="/client/vendor/animsition/animsition.min.js"></script>         
+        <script src="/client/vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
     </script>         
-        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>         
-        <script src="vendor/counter-up/jquery.counterup.min.js">
+        <script src="/client/vendor/counter-up/jquery.waypoints.min.js"></script>         
+        <script src="/client/vendor/counter-up/jquery.counterup.min.js">
     </script>         
-        <script src="vendor/circle-progress/circle-progress.min.js"></script>         
-        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>         
-        <script src="vendor/chartjs/Chart.bundle.min.js"></script>         
-        <script src="vendor/select2/select2.min.js">
+        <script src="/client/vendor/circle-progress/circle-progress.min.js"></script>         
+        <script src="/client/vendor/perfect-scrollbar/perfect-scrollbar.js"></script>         
+        <script src="/client/vendor/chartjs/Chart.bundle.min.js"></script>         
+        <script src="/client/vendor/select2/select2.min.js">
     </script>         
         <!-- Main JS-->         
-        <script src="js/main.js"></script>         
-        <script type="text/javascript" src="components/pg.blocks/js/plugins.js"></script>
-        <script type="text/javascript" src="components/pg.blocks/js/bskit-scripts.js"></script>
+        <script src="/client/js/main.js"></script>         
+        <script type="text/javascript" src="/client/components/pg.blocks/js/plugins.js"></script>
+        <script type="text/javascript" src="/client/components/pg.blocks/js/bskit-scripts.js"></script>
         <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
     </body>     
 </html> 

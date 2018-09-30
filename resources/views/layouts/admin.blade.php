@@ -328,7 +328,7 @@ $admin=AdminsController::getAdmin();
                         <div class="container-fluid"> 
                             @include('inc.messages')
                             @yield('content')
-</div>                         
+    </div>                         
                         <div class="row"> 
                             <div class="col-md-12"> 
                                 <div class="copyright"> 
