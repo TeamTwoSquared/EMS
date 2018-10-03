@@ -7,7 +7,7 @@ die();
 $client=ClientsController::getClient();                      
 @endphp
 <!DOCTYPE html> 
-<html lang="en"> 
+<html lang="en">
     <head> 
         <!-- Required meta tags-->         
         <meta charset="UTF-8"> 
@@ -16,7 +16,7 @@ $client=ClientsController::getClient();
         <meta name="author" content="TeamTwoSquared"> 
         <meta name="keywords" content="ems event management template"> 
         <!-- Title Page-->         
-        <title>Dashboard 3</title>         
+        <title>EMS</title>         
         <!-- Fontfaces CSS-->         
         <link href="/client/css/font-face.css" rel="stylesheet" media="all"> 
         <link href="/client/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 

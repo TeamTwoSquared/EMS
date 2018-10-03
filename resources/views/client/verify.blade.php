@@ -1,16 +1,16 @@
-@extends('layouts.svp_login')
+@extends('layouts.client_login')
 
 @section('content')
 @php
-use App\SVP;
-$svp = session()->get('svp_id','null');
-if ($svp!='null')
+use App\Client;
+$client = session()->get('customer_id','null');
+if ($client!='null')
 {
-  $mysvp_id = $svp;
+  $myclient_id = $client;
 }
 else 
 {
-  header("Location: /svp/login");
+  header("Location: /client/login");
   die();
 }
 @endphp
@@ -27,7 +27,7 @@ else
           <ul>
             <li>Please confirm your email address using the verification link sent to 
                 you. In case it’s missing from your inbox, please check your spam folder.</li>
-            <li>If somehow, you did not recieve the verification email then <a href="/svpverification/{{$mysvp_id}}">resend the verification email</a></li>
+            <li>If somehow, you did not recieve the verification email then <a href="/clverification/{{$myclient_id}}">resend the verification email</a></li>
           </ul>
         </div>
       </div>     

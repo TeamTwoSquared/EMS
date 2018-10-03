@@ -33,7 +33,7 @@ class SVPsController extends Controller
             $svp->email=$request->email;
             $svp->save();
             SVPsController::sendActivationLink($svp->service_provider_id);
-            session()->put('new_svp',$svp->service_provider_id);
+            //session()->put('new_svp',$svp->service_provider_id);
             return redirect('/svp/toverify');
             
         }
@@ -167,7 +167,7 @@ class SVPsController extends Controller
         //Check already verified
         if($svp->isverified==1)
         {
-            return redirect('/svp/login')->with('error','Your Account is Already Active');
+            return redirect('/svp/login')->with('warning','Your Account is Already Active');
         }
         
         //Generate Activation Link and Add to DB
@@ -177,8 +177,9 @@ class SVPsController extends Controller
             $svp->activation_link=$uniqueString;
             $svp->save();
             //Send Activation Link
-            $svp=SVP::find($svp_id);
             MailController::send_verify(1,$svp);
+            session()->put('svp_id',$svp->service_provider_id);
+            return redirect('/svp/toverify');
         }   
     }
 

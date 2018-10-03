@@ -18,7 +18,7 @@ class ClientsController extends Controller
     }
 
 
-    public function register(Request $register)
+    public function register(Request $request)
     {
         $this->validate($request, [
             'username'=>'required',
@@ -38,7 +38,7 @@ class ClientsController extends Controller
             $client->email=$request->email;
             $client->save();
             ClientsController::sendActivationLink($client->customer_id);
-            session()->put('new_client',$client->customer_id);
+            //session()->put('new_client',$client->customer_id);
             return redirect('/client/toverify');
             
         }
@@ -81,8 +81,8 @@ class ClientsController extends Controller
         }
         else if(($client[0]->password)==$pass)
         {
-            session()->put('clientlogged','e86ba6a6ee56b15b9f5982982375b52f');
-            session()->put('client_id',$client[0]->customer_id);
+            session()->put('clientlogged','d7c74c92ce048f6e1f33c7122ad64823');
+            session()->put('customer_id',$client[0]->customer_id);
             if($client[0]->isverified == 1) 
             {
                 return redirect('/client/dash')->with('success','Logged in Successfully');
@@ -95,6 +95,32 @@ class ClientsController extends Controller
         return redirect('/client/login')->with('error','Invalid Password');
     
     }
+
+    public static function checkLogged($islogin)//islogin means is the method is called from client.login page
+    {
+        $mysession = session()->get('clientlogged','null');
+        if($mysession != 'd7c74c92ce048f6e1f33c7122ad64823' && !$islogin)
+        {
+            session()->flash('error','Session Expired, Please Login');
+            return false;
+        }
+        else if($mysession != 'd7c74c92ce048f6e1f33c7122ad64823' && $islogin)
+        {
+            return false;
+        }
+        $client=ClientsController::getClient();
+        if($client->isverified==1){
+            return true;
+        }
+        return false;
+    }
+
+    public static function getClient()
+    {
+        $client = Client::where('customer_id', session()->get('customer_id'))->get();
+        return $client[0];
+    }
+
     public function show($id)
     {
         //
@@ -169,22 +195,42 @@ class ClientsController extends Controller
         //Check already verified
         if($client->isverified==1)
         {
-            return redirect('/client/login')->with('error','Your Account is Already Active');
+            return redirect('/client/login')->with('warning','Your Account is Already Active');
         }
         
         //Generate Activation Link and Add to DB
         else
         {
-            $uniqueString =  unique_random('clients', 'activation_link', 40);
+            $uniqueString =  unique_random('customers', 'activation_link', 40);
             $client->activation_link=$uniqueString;
             $client->save();
             //Send Activation Link
-            $client=Client::find($client_id);
-            MailController::send_verify(1,$client);
+            MailController::send_verify(0,$client);
+            session()->put('customer_id',$client->customer_id);
+            return redirect('/client/toverify');
         }   
     }
 
+    public function doVerify($id, $key)
+    {
+        $client=Client::find($id);
+        if($client->isverified == 1) 
+        {
+           return redirect('/client/login')->with('warning','Your Account is Already Activated, Please Login');
+        }
 
+        else if($client->activation_link == $key)
+        {
+            $client->isverified = 1;
+            $client->save();
+            return redirect('/client/login')->with('success','Your Account is Activated Sucessfully, Please Login');
+        }
+
+        else
+        {
+            return redirect('/client/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
+        }
+    }
 
     public function save_profile(Request $request){
         $client = Client::find(session()->get('customer_id'));
