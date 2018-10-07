@@ -51,7 +51,7 @@ $client=ClientsController::getClient();
                     <div class="header3-wrap"> 
                         <div class="header__logo"> 
                             <a href="/client/dash"> 
-                                <img src="images/icon/logo-client.png" alt="ClientDash"/> 
+                                <img src="/client/images/icon/logo-client.png" alt="ClientDash"/> 
                             </a>                             
                         </div>                         
                         <div class="header__navbar"> 
@@ -157,7 +157,7 @@ $client=ClientsController::getClient();
                     <div class="container-fluid"> 
                         <div class="header-mobile-inner"> 
                             <a class="logo" href="/client/dash"> 
-                                <img src="images/icon/logo-client.png" alt="ClientDash"/> 
+                                <img src="/client/images/icon/logo-client.png" alt="ClientDash"/> 
                             </a>                             
                             <button class="hamburger hamburger--slider" type="button"> 
                                 <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> 
