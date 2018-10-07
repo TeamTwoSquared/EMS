@@ -27,4 +27,15 @@ class TemplateImagesController extends Controller
         $templateImages=TemplateImage::where('template_id',$template_id)->get();
         return $templateImages;
     }
+
+    public static function getRandomImages($template_id)
+    {
+        $templateImages=TemplateImage::where('template_id',$template_id)->get();
+        $size = $templateImages->count();
+        if($size==0)
+        {
+            return $templateImages;
+        }
+        return $templateImages[rand(0,$size-1)];
+    }
 }

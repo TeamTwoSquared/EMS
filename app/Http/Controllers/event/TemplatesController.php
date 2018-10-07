@@ -278,5 +278,22 @@ class TemplatesController extends Controller
         
     }
 
+    public function client_index($catergory_id)
+    {
+        $template_ids = CatergoryTemplatesController::getTemplates($catergory_id);
+        $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
+        $default_template = Template::whereIn('template_id',$template_ids)->where('isdefault',1)->get();
+        session()->put('default_template', $default_template[0]);
+        session()->put('templates',$templates);
+        return view('client.manage');
+    }
+
+    public function client_changetemplate($catergory_id, $template_id)
+    {
+        $template = Template::where('template_id',$template_id)->get();
+        session()->put('default_template', $template[0]);
+        return view('client.manage');
+    }
+
 
 }//end of class
