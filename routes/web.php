@@ -150,7 +150,8 @@ Route::get('/client/settings', function (){
     return view ('client.settings');
 
 });
-Route::get('/client/catergory/{id}','event\TemplatesController@client_index');
+Route::get('/client/manage/{id}','event\TemplatesController@client_index');
+Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
 
 
 

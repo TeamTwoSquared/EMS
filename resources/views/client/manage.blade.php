@@ -3,8 +3,10 @@
 @php
  use App\Http\Controllers\event\TemplatesController;
  use App\Http\Controllers\event\TemplateTasksController;
-
- $default_tasks_names = TemplateTasksController::getTasks($default_template_id);
+ use App\Http\Controllers\event\TemplateImagesController;
+ $default_template = session()->get('default_template');
+ $templates = session()->get('templates');
+ $default_tasks = TemplateTasksController::getTasks($default_template->template_id);
 $i = 1; //to number rows
 @endphp
 <section class="au-breadcrumb2" data-pg-collapsed> 
@@ -44,12 +46,15 @@ $i = 1; //to number rows
         <div class="row">
             <div class="col-md-9">
                 <div class="row">
-                    <button type="button" class="btn btn-info">Invite</button>
-                </div>
-                <div class="row">
-                    <div class="btn-group" role="group" aria-label="Default button group">
-                        <button type="button" class="btn btn-secondary">Add New(+)</button>
+                    <div class="alert font-weight-bold" role="alert">
+                        Editing Template: {{$default_template->name}}
                     </div>
+                    </div>
+                <div class="row">
+                        <div class="btn-group" role="group" aria-label="Basic example">
+                            <button type="button" class="btn btn-secondary">Add New (+)</button>
+                            <button type="button" class="btn btn-secondary">Invite</button>
+                        </div>
                 </div>
                 <div class="row">
                     <div class="table-responsive">
@@ -63,10 +68,10 @@ $i = 1; //to number rows
                                 </tr>                                 
                             </thead>                             
                             <tbody> 
-                                @foreach($default_tasks_names as $default_tasks_name)
+                                @foreach($default_tasks as $default_task)
                                 <tr class="bg-concrete shadow"> 
                                     <th scope="row">{{$i++}}</th> 
-                                    <td>{{$default_tasks_name}}</td>
+                                    <td>{{$default_task->name}}</td>
                                     <td>Select</td> 
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
@@ -110,27 +115,30 @@ $i = 1; //to number rows
                         <table class="table"> 
                             <thead> 
 </thead>                             
-                            <tbody> 
-                                <tr> 
+                            <tbody>
+                                <tr data-pg-collapsed> 
                                     <td>
-                                        <img src="http://pinegrow.com/placeholders/img10.jpg"/>
-                                    </td>                                     
+                                        <div class="alert font-weight-bold alert-primary" role="alert">
+                                             Select your desired template :)
+                                        </div>
+                                    </td>     
                                 </tr>
+                                @foreach($templates as $template) 
+                                @php
+                                $randomImage=TemplateImagesController::getRandomImages($template->template_id)
+                                @endphp
                                 <tr> 
                                     <td>
-                                        <img src="http://pinegrow.com/placeholders/img10.jpg"/>
+                                        <a href="/client/manage/11/{{$template->template_id}}">
+                                        @if($randomImage->count()!=0)
+                                            <img src="/storage/images/template/{{$randomImage->imgurl}}" alt="{{$template->name}}"/>
+                                        @else
+                                            <img src="/storage/images/template/noimage.jpg" alt="{{$template->name}}"/>
+                                        @endif
+                                        </a>
                                     </td>                                     
-                                </tr>
-                                <tr> 
-                                    <td>
-                                        <img src="http://pinegrow.com/placeholders/img10.jpg"/>
-                                    </td>                                     
-                                </tr>
-                                <tr> 
-                                    <td>
-                                        <img src="http://pinegrow.com/placeholders/img10.jpg"/>
-                                    </td>                                     
-                                </tr>                                 
+                                </tr>  
+                                @endforeach                               
                             </tbody>                             
                         </table>
                     </div>

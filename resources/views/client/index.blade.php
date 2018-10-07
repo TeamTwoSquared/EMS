@@ -62,7 +62,7 @@
                             <figcaption>
                                 <h2><span>{{$catergory->name}}</span></h2>
                                 <p>{{$catergory->description}}</p>
-                            <a href="/client/catergory/{{$catergory->catergory_id}}"></a>
+                            <a href="/client/manage/{{$catergory->catergory_id}}"></a>
                             </figcaption>                             
                         </figure>
                     </div>

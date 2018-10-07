@@ -30,14 +30,14 @@ class TemplateTasksController extends Controller
     {
         //Use to return a tasks name set when a template Id is provided
         $template_tasks = TemplateTask::select('task_id')->where('template_id',$template_id)->get();
-        $task_names = Array();
+        $tasks = Array();
         foreach($template_tasks as $template_task)
         {
             $task =  Task::where('task_id',$template_task->task_id)->get();
             $task =  $task[0];
-            $task_names = array_prepend($task_names,$task->name);
+            $tasks = array_prepend($tasks,$task);
         }
-        return $task_names;
+        return $tasks;
         
 
     }
