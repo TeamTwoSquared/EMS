@@ -278,5 +278,13 @@ class TemplatesController extends Controller
         
     }
 
+    public function client_index($catergory_id)
+    {
+        $template_ids = CatergoryTemplatesController::getTemplates($catergory_id);
+        $templates = Template::whereIn('template_id',$template_ids)->get();
+        $default_template = Template::whereIn('template_id',$template_ids)->where('isdefault',1)->get();
+        return view('client.manage')->with('templates',$templates)->with('default_template_id',$default_template[0]->template_id);
+    }
+
 
 }//end of class

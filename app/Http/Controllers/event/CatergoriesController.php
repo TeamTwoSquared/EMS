@@ -19,6 +19,12 @@ class CatergoriesController extends Controller
         return view('admin.event.catergory')->with('catergories',$catergories);
     }
 
+    public static function client_index()
+    {
+        $catergories = Catergory::all();
+        return $catergories;
+    }
+
 
     public function admin_create()
     {

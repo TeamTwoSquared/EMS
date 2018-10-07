@@ -49,4 +49,11 @@ class CatergoryTemplatesController extends Controller
 
     }
 
+    public static function getTemplates($catergory_id)
+    {
+        $catergory_templates_ids = CatergoryTemplate::select('template_id')->where('catergory_id',$catergory_id)->get();
+        return $catergory_templates_ids;
+
+    }
+
 }//end of class

@@ -83,6 +83,12 @@ p {
 }
 
 .table-responsive {
+    height: 40em;
+    padding-right: 1px;
+}
+
+.table-responsive2 {
+    height: 40em;
     padding-right: 1px;
 }
 

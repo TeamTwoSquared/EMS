@@ -1,5 +1,10 @@
 @extends('layouts.client')
 @section('content')
+@php
+ use App\Http\Controllers\event\CatergoryImageController;
+ use App\Http\Controllers\event\CatergoriesController;
+ $catergories=CatergoriesController::client_index();
+@endphp
 <section class="au-breadcrumb2" data-pg-collapsed> 
     <div class="container"> 
         <div class="row"> 
@@ -43,66 +48,25 @@
         <div class="row">
             <div class="col-md-9">
                 <div class="row">
+                    @foreach($catergories as $catergory)
+                    @php
+                    $randomImage=CatergoryImageController::getRandomImages($catergory->catergory_id)
+                    @endphp
                     <div class="grid col-md-4 col-sm-6 col-xs-12">
                         <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
+                            @if($randomImage->count()!=0)
+                            <img src="/storage/images/catergory/{{$randomImage->imgurl}}" alt="{{$catergory->name}}"/>
+                            @else
+                            <img src="/storage/images/catergory/noimage.jpg" alt="{{$catergory->name}}"/>
+                            @endif
                             <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
+                                <h2><span>{{$catergory->name}}</span></h2>
+                                <p>{{$catergory->description}}</p>
+                            <a href="/client/catergory/{{$catergory->catergory_id}}"></a>
                             </figcaption>                             
                         </figure>
                     </div>
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
-                        <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
-                            <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
-                            </figcaption>                             
-                        </figure>
-                    </div>
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
-                        <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
-                            <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
-                            </figcaption>                             
-                        </figure>
-                    </div>
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
-                        <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
-                            <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
-                            </figcaption>                             
-                        </figure>
-                    </div>
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
-                        <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
-                            <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
-                            </figcaption>                             
-                        </figure>
-                    </div>
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
-                        <figure class="effect-lily">
-                            <img src="http://placehold.it/800x600" alt="img01"/>
-                            <figcaption>
-                                <h2>Item <span>4</span></h2>
-                                <p>Beautifully subtle animated hover effect for your gallery</p>
-                                <a href="#">View more</a>
-                            </figcaption>                             
-                        </figure>
-                    </div>
+                    @endforeach
                 </div>
             </div>
             <div class="col-md-3">

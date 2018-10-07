@@ -41,6 +41,7 @@ $client=ClientsController::getClient();
         <link rel="stylesheet" href="/client/components/pg.blocks/css/style-library-1.css">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+        <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper"> 
@@ -49,8 +50,8 @@ $client=ClientsController::getClient();
                 <div class="section__content section__content--p35"> 
                     <div class="header3-wrap"> 
                         <div class="header__logo"> 
-                            <a href="#"> 
-                                <img src="images/icon/logo-client.png" alt="CoolAdmin"/> 
+                            <a href="/client/dash"> 
+                                <img src="images/icon/logo-client.png" alt="ClientDash"/> 
                             </a>                             
                         </div>                         
                         <div class="header__navbar"> 
@@ -111,21 +112,21 @@ $client=ClientsController::getClient();
                             <div class="account-wrap"> 
                                 <div class="account-item account-item--style2 clearfix js-item-menu"> 
                                     <div class="image"> 
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                        <img src="/storage/images/profile/{{$client->profilepic}}" alt="{{$client->name}}"/> 
                                     </div>                                     
                                     <div class="content"> 
-                                        <a class="js-acc-btn" href="#">john doe</a> 
+                                        <a class="js-acc-btn" href="#">{{$client->name}}</a> 
                                     </div>                                     
                                     <div class="account-dropdown js-dropdown"> 
                                         <div class="info clearfix"> 
                                             <div class="image"> 
                                                 <a href="#"> 
-                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                                    <img src="/storage/images/profile/{{$client->profilepic}}" alt="{{$client->name}}"/> 
                                                 </a>                                                 
                                             </div>                                             
                                             <div class="content"> 
-                                                <h5 class="name"> <a href="#">john doe</a> </h5> 
-                                                <span class="email">johndoe@example.com</span> 
+                                                <h5 class="name"> <a href="#">{{$client->name}}</a> </h5> 
+                                                <span class="email">{{$client->email}}</span> 
                                             </div>                                             
                                         </div>                                         
                                         <div class="account-dropdown__body"> 
@@ -155,8 +156,8 @@ $client=ClientsController::getClient();
                 <div class="header-mobile__bar bg-ems-admin"> 
                     <div class="container-fluid"> 
                         <div class="header-mobile-inner"> 
-                            <a class="logo" href="index.html"> 
-                                <img src="images/icon/logo-client.png" alt="CoolAdmin"/> 
+                            <a class="logo" href="/client/dash"> 
+                                <img src="images/icon/logo-client.png" alt="ClientDash"/> 
                             </a>                             
                             <button class="hamburger hamburger--slider" type="button"> 
                                 <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> 
@@ -226,21 +227,21 @@ $client=ClientsController::getClient();
                     <div class="account-wrap"> 
                         <div class="account-item account-item--style2 clearfix js-item-menu"> 
                             <div class="image"> 
-                                <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                <img src="/storage/images/profile/{{$client->profilepic}}" alt="{{$client->name}}"/> 
                             </div>                             
                             <div class="content"> 
-                                <a class="js-acc-btn" href="#">john doe</a> 
+                                <a class="js-acc-btn" href="#">{{$client->name}}</a> 
                             </div>                             
                             <div class="account-dropdown js-dropdown"> 
                                 <div class="info clearfix"> 
                                     <div class="image"> 
                                         <a href="#"> 
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
+                                            <img src="/storage/images/profile/{{$client->profilepic}}" alt="{{$client->name}}"/> 
                                         </a>                                         
                                     </div>                                     
                                     <div class="content"> 
-                                        <h5 class="name"> <a href="#">john doe</a> </h5> 
-                                        <span class="email">johndoe@example.com</span> 
+                                        <h5 class="name"> <a href="#">{{$client->name}}</a> </h5> 
+                                        <span class="email">{{$client->email}}</span> 
                                     </div>                                     
                                 </div>                                 
                                 <div class="account-dropdown__body"> 

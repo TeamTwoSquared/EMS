@@ -150,10 +150,15 @@ Route::get('/client/settings', function (){
     return view ('client.settings');
 
 });
+Route::get('/client/catergory/{id}','event\TemplatesController@client_index');
+
+
+
+
 Route::post('/client/save_profile', 'client\ClientsController@save_profile');
 Route::post('/client/change_img', 'client\ClientsController@change_img');
 Route::get('/client/logout','client\ClientsController@logout');
-//Route::get('/clverification/{id}/{key}', '');
+
 
 // Routes for side Adds.
 
