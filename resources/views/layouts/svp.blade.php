@@ -48,7 +48,7 @@ $svp=SVPsController::getSVP();
             <!-- MENU SIDEBAR-->     
             <aside class="menu-sidebar2"> 
                 <div class="logo bg-ems-admin border-ems-admin"> 
-                    <a href="#"> 
+                    <a href="/svp/dash"> 
                         <img src="images/icon/logo.png" alt="SVPDash" class="ems-admin-logo"/> 
                     </a>             
                 </div>         
@@ -91,7 +91,7 @@ $svp=SVPsController::getSVP();
                         <div class="container-fluid"> 
                             <div class="header-wrap2"> 
                                 <div class="logo d-block d-lg-none"> 
-                                    <a href="#"> 
+                                    <a href="/svp/dash"> 
                                         <img src="images/icon/logo.png" alt="SVPDash"/> 
                                     </a>                             
                                 </div>                         
@@ -171,8 +171,8 @@ $svp=SVPsController::getSVP();
                     </div>             
                 </header>         
                 <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none"> 
-                    <div class="logo"> 
-                        <a href="#"> 
+                    <div class="logo bg-ems-admin"> 
+                        <a href="/svp/dash"> 
                             <img src="images/icon/logo.png" alt="SVPDash"/> 
                         </a>                 
                     </div>             
