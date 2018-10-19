@@ -209,6 +209,27 @@ class ClientsController extends Controller
         }   
     }
 
+    public function doVerify($id, $key)
+    {
+        $client=Client::find($id);
+        if($client->isverified == 1) 
+        {
+           return redirect('/client/login')->with('warning','Your Account is Already Activated, Please Login');
+        }
+
+        else if($client->activation_link == $key)
+        {
+            $client->isverified = 1;
+            $client->save();
+            return redirect('/client/login')->with('success','Your Account is Activated Sucessfully, Please Login');
+        }
+
+        else
+        {
+            return redirect('/client/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
+        }
+    }
+
 
 
     public function save_profile(Request $request){
