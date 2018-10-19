@@ -95,6 +95,24 @@ class ClientsController extends Controller
         return redirect('/client/login')->with('error','Invalid Password');
     
     }
+    public static function checkLogged($islogin)//islogin means is the method is called from client.login page
+    {
+        $mysession = session()->get('clientlogged','null');
+        if($mysession != 'e86ba6a6ee56b15b9f5982982375b52f' && !$islogin)
+        {
+            session()->flash('error','Session Expired, Please Login');
+            return false;
+        }
+        else if($mysession != 'e86ba6a6ee56b15b9f5982982375b52f' && $islogin)
+        {
+            return false;
+        }
+        $client=ClientsController::getClient();
+        if($client->isverified==1){
+            return true;
+        }
+        return false;
+    }
     public function show($id)
     {
         //
