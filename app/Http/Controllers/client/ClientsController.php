@@ -113,6 +113,13 @@ class ClientsController extends Controller
         }
         return false;
     }
+    
+    public static function getClient()
+    {
+        $client = Client::where('customer_id', session()->get('customer_id'))->get();
+        return $client[0];
+    }
+
     public function show($id)
     {
         //
