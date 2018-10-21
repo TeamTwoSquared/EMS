@@ -300,4 +300,12 @@ class ClientsController extends Controller
         session()->flush();
         return redirect('/client/login')->with('success','Logged out Succesfully');
     }
+
+    public static function loginUsingId($id)
+    {
+        session()->put('clientlogged','d7c74c92ce048f6e1f33c7122ad64823');
+        session()->put('customer_id',$id);
+        
+        return redirect('/client/dash')->with('success','Logged in Successfully');
+    }
 }

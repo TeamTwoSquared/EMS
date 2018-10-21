@@ -34,8 +34,11 @@ class TemplateTasksController extends Controller
         foreach($template_tasks as $template_task)
         {
             $task =  Task::where('task_id',$template_task->task_id)->get();
-            $task =  $task[0];
-            $tasks = array_prepend($tasks,$task);
+            if($task[0]->istemp==0)
+            {
+                $task =  $task[0];
+                $tasks = array_prepend($tasks,$task);
+            }
         }
         return $tasks;
         

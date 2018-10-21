@@ -14,7 +14,8 @@ $client=ClientsController::getClient();
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
         <meta name="description" content="This is an Web Based Event Management System"> 
         <meta name="author" content="TeamTwoSquared"> 
-        <meta name="keywords" content="ems event management template"> 
+        <meta name="keywords" content="ems event management template">
+        <meta name="csrf-token" content="{{ csrf_token() }}" /> 
         <!-- Title Page-->         
         <title>EMS</title>         
         <!-- Fontfaces CSS-->         
@@ -42,6 +43,7 @@ $client=ClientsController::getClient();
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700">
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper"> 

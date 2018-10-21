@@ -52,50 +52,44 @@ $i = 1; //to number rows
                     </div>
                 <div class="row">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-secondary">Add New (+)</button>
                             <button type="button" class="btn btn-secondary">Invite</button>
                         </div>
                 </div>
                 <div class="row">
-                    <div class="table-responsive">
-                        <table class="table">
+                    <div class="table-responsive" style="max-height:35em; overflow: auto;">
+                        <form name="edit_tasks" id="edit_tasks">
+                        <table class="table" id="dynamic_field">
                             <thead> 
                                 <tr> 
                                     <th>#</th> 
                                     <th>Task</th>
-                                    <th>Service Provider</th> 
+                                    <th>Service Providers</th> 
                                     <th></th> 
                                 </tr>                                 
                             </thead>                             
                             <tbody> 
                                 @foreach($default_tasks as $default_task)
-                                <tr class="bg-concrete shadow"> 
+                                <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
                                     <th scope="row">{{$i++}}</th> 
-                                    <td>{{$default_task->name}}</td>
+                                    <td><input type="text" name="task[]" id="task" value="{{$default_task->name}}" class="form-control name_list"/></td>
                                     <td>Select</td> 
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
-                                            <a href="template/edit/">
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Move Down">
+                                            
+                                                <button type="button" name="down" id="down" class="item down_button" data-toggle="tooltip" data-placement="top" title="Move Down">
                                                     <i class="fa-chevron-down fa"></i>
                                                 </button>
-                                            </a>
+                                           
                                             &nbsp;
-                                            <a href="template/block/">
-                                                <button class="item" data-toggle="tooltip" data-placement="top" title="Move Up">
+                                            
+                                                <button type="button"  name="up" id="up" class="item up_button" data-toggle="tooltip" data-placement="top" title="Move Up">
                                                     <i class="fa fa-chevron-up"></i>
                                                 </button>
-                                            </a>
+                                                
+                                            
                                             &nbsp;
-                                            <button onclick="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                            <button type="button" name="remove" id="{{$i}}" class="item btn_remove" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <i class="zmdi zmdi-delete"></i>
-                                                <script>
-                                            function deleteMe() {
-                                                    if (confirm("Are you sure you want to delete this template!")) {
-                                                        window.location.replace("template/delete/");
-                                                    } 
-                                                }
-                                        </script>
                                             </button>
                                         </div>
                                     </td>
@@ -103,15 +97,19 @@ $i = 1; //to number rows
                                 @endforeach                               
                             </tbody>
                         </table>
+                        </form>
                     </div>
                 </div>
+                <div class="row" data-pg-collapsed>
+                        <button type="button" name="add" id="add" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
+                </div>
                 <div class="row">
-                    <button type="button" class="btn btn-primary">Save Changes</button>
+                    <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                 </div>
             </div>
             <div class="col-md-3">
                 <div class="row pg-empty-placeholder">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="height:51em; overflow: auto;">
                         <table class="table"> 
                             <thead> 
 </thead>                             
@@ -174,4 +172,73 @@ $i = 1; //to number rows
         </div>         
     </div>     
 </section>
+<script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var i={{$i}};
+            i--;
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('<tr id="row'+i+'" class="table table-bordered bg-clouds shadow MoveableRow">'+
+                                    '<th scope="row">'+i+'</th>'+
+                                    '<td><input type="text" name="task[]" id="task" placeholder="Enter a Task" class="form-control name_list"/></td>'+
+                                    '<td>Select</td>'+
+                                    '<td>'+
+                                        '<div class="table-data-feature flex-row-reverse">'+
+                                                '<button type="button" name="down" id="down" class="item down_button" data-toggle="tooltip" data-placement="top" title="Move Down">'+
+                                                    '<i class="fa-chevron-down fa"></i>'+
+                                                '</button>'+
+                                            '&nbsp;'+
+                                                '<button type="button" name="up" id="up" class="item up_button" data-toggle="tooltip" data-placement="top" title="Move Up">'+
+                                                    '<i class="fa fa-chevron-up"></i>'+
+                                                '</button>'+
+                                            '&nbsp;'+
+                                            '<button type="button" name="remove" id="'+i+'" class="item btn_remove" data-toggle="tooltip" data-placement="top" title="Delete">'+
+                                                '<i class="zmdi zmdi-delete"></i>'+
+                                            '</button>'+
+                                        '</div>'+
+                                    '</td>'+
+                                '</tr>');
+            });
+
+            $(document).on('click','.down_button', function(){
+                var rowToMove = $(this).parents('tr.MoveableRow:first');
+                var next = rowToMove.next('tr.MoveableRow')
+                if (next.length == 1) { next.after(rowToMove); }
+
+            });
+
+            $(document).on('click','.up_button', function(){
+                var rowToMove = $(this).parents('tr.MoveableRow:first');
+                var prev = rowToMove.prev('tr.MoveableRow')
+                if (prev.length == 1) { prev.before(rowToMove); }
+
+            });
+
+
+
+            $(document).on('click','.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+
+            });
+            $('#save').click(function(){
+                $.ajax({
+                    type:'POST',
+                    url:'/tadd',
+                    data:$('#edit_tasks').serialize(),
+                    success:function(data)
+                    {
+                        alert(data);
+                        $('#edit_tasks')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 @endsection

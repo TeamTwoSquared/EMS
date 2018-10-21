@@ -12,8 +12,14 @@
 */
 
 Route::get('/test', function () {
-    return view('mail.verify');
+    return view('test2');
 });
+Route::post('/tadd', 'TestsController@ajaxRequestPost');
+
+Route::get('/client/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/client/callback', 'SocialAuthGoogleController@callback');
+
+
 Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');

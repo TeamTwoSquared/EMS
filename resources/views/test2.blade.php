@@ -14,9 +14,12 @@
                 <form name="add_name" id="add_name">
                         
                     <table class="table table-bordered" id="dynamic_field">
-                        <tr>
+                        <tr class="MoveableRow">
                             <td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list" /></td>
                             <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                            <td><button type="button" name="down" id="down" class="btn btn-info down_button">Down</button></td>
+                            <td><button type="button" name="up" id="up" class="btn btn-info up_button">Up</button></td>
+                            
                         </tr>
                         
                         <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit">
@@ -25,6 +28,7 @@
                 </form>
             </div>
         </div>
+        
         
         
 
@@ -68,8 +72,27 @@
             var i=1;
             $('#add').click(function(){
                 i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+                $('#dynamic_field').append('<tr class="MoveableRow" id="row'+i+'">'+
+                '               <td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list">'+
+                         '</td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td><td><button type="button" name="down" id="down" class="btn btn-info down_button">Down</button></td><td><button type="button" name="up" id="up" class="btn btn-info up_button">Up</button></td></tr>');
             });
+
+            $(document).on('click','.down_button', function(){
+                var rowToMove = $(this).parents('tr.MoveableRow:first');
+                var next = rowToMove.next('tr.MoveableRow')
+                if (next.length == 1) { next.after(rowToMove); }
+
+            });
+
+            $(document).on('click','.up_button', function(){
+                var rowToMove = $(this).parents('tr.MoveableRow:first');
+                var prev = rowToMove.prev('tr.MoveableRow')
+                if (prev.length == 1) { prev.before(rowToMove); }
+
+            });
+
+
+
             $(document).on('click','.btn_remove', function(){
                 var button_id = $(this).attr("id");
                 $('#row'+button_id+'').remove();
