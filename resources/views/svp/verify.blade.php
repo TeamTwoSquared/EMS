@@ -4,14 +4,14 @@
 @php
 use App\SVP;
 $svp = session()->get('svp_id','null');
-$new_svp = session()->get('new_svp','null');
 if ($svp!='null')
 {
   $mysvp_id = $svp;
 }
-elseif ($new_svp!='null') 
+else 
 {
-  $mysvp_id = $new_svp;
+  header("Location: /svp/login");
+  die();
 }
 @endphp
 <div class="login-wrap" data-pg-collapsed> 

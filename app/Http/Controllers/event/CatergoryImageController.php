@@ -27,4 +27,15 @@ class CatergoryImageController extends Controller
         $catergoryImages=CatergoryImage::where('catergory_id',$catergory_id)->get();
         return $catergoryImages;
     }
+
+    public static function getRandomImages($catergory_id)
+    {
+        $catergoryImages=CatergoryImage::where('catergory_id',$catergory_id)->get();
+        $size = $catergoryImages->count();
+        if($size==0)
+        {
+            return $catergoryImages;
+        }
+        return $catergoryImages[rand(0,$size-1)];
+    }
 }

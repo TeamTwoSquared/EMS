@@ -12,8 +12,14 @@
 */
 
 Route::get('/test', function () {
-    return view('mail.verify');
+    return view('test2');
 });
+Route::post('/tadd', 'TestsController@ajaxRequestPost');
+
+Route::get('/client/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/client/callback', 'SocialAuthGoogleController@callback');
+
+
 Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');
@@ -89,6 +95,7 @@ Route::get('/svp/register', function (){
 Route::get('/svp/toverify', function (){
     return view ('svp.verify');
 });
+
 Route::post('/svp/doregister', 'svp\SVPsController@register');
 Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
@@ -127,9 +134,15 @@ Route::get('/client/register', function (){
     return view ('client.register');
 
 });
+Route::get('/client/toverify', function (){
+    return view ('client.verify');
+});
+
+Route::get('/client/dash', 'client\ClientsController@index');
 Route::post('/client/doregister', 'client\ClientsController@register');
-Route::get('/cient/dash', 'client\ClientsController@index');
 Route::post('/client/dologin', 'client\ClientsController@authenticate');
+Route::get('/clverification/{id}', 'client\ClientsController@sendActivationLink');
+Route::get('/clverification/{id}/{key}', 'client\ClientsController@doVerify');
 
 Route::get('/client/help',function(){
     return view('client.help');
@@ -143,9 +156,16 @@ Route::get('/client/settings', function (){
     return view ('client.settings');
 
 });
+Route::get('/client/manage/{id}','event\TemplatesController@client_index');
+Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
+
+
+
+
 Route::post('/client/save_profile', 'client\ClientsController@save_profile');
 Route::post('/client/change_img', 'client\ClientsController@change_img');
-//Route::get('/clverification/{id}/{key}', '');
+Route::get('/client/logout','client\ClientsController@logout');
+
 
 // Routes for side Adds.
 
