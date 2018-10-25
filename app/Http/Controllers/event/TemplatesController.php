@@ -11,10 +11,9 @@ use App\TemplateKeyword;
 use App\TemplateImage;
 use App\CatergoryTemplate;
 use App\Http\Controllers\event\CatergoryTemplatesController;
-use App\Http\Controllers\event\TemplateImageController;
+use App\Http\Controllers\event\TemplateImagesController;
 use App\Http\Controllers\event\TemplateKeywordsController;
 use App\Http\Controllers\event\CatergoriesController;
-//use App\Http\Controllers\event\CatergoryTemplatesController;
 
 class TemplatesController extends Controller
 {
@@ -68,6 +67,8 @@ class TemplatesController extends Controller
         $template->save();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
 
         foreach($keywords as $keyword)
         {
@@ -105,7 +106,7 @@ class TemplatesController extends Controller
                 // Upload 
                 $image_up = $image;
                 $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(265, 350);
+                $image_resize->resize(800, 600);
                 $image_resize->save(public_path('storage/images/template/' .$fileNameToStore));
                 
                 //Adding URL to template_images table
@@ -165,14 +166,15 @@ class TemplatesController extends Controller
             'description'=> 'required',
             'keywords'=> 'required',
             'catergories'=> 'required',
-            'template_images'=>'nullable|max:1999'
+            'delete_images' => 'nullable',
+            'template_new_images'=>'nullable|max:1999'
         ]);
 
         //Checking Whether files are images
-        if($request->hasFile('template_images'))
+        if($request->hasFile('template_new_images'))
         {
             $allowedfileExtension=['jpg','png','jpeg','gif'];
-            $images = $request->file('template_images');
+            $images = $request->file('template_new_images');
             foreach($images as $image)
             {
                 $extension = $image->getClientOriginalExtension();
@@ -192,7 +194,8 @@ class TemplatesController extends Controller
         $template->push();
         //Getting keywords to an array
         $keywords = explode(" ",$request->keywords);
-
+        $keywords = array_map('strtolower',$keywords);
+        $keywords = array_unique($keywords);
         TemplateKeywordsController::destroy($id);
         foreach($keywords as $keyword)
         {
@@ -211,12 +214,12 @@ class TemplatesController extends Controller
             $catergoryTemplate->template_id = $template->template_id;
             $catergoryTemplate->save();
         }
-
+        //Deleting selected images to be deleted
+        TemplateImagesController::destroy($id, $request->delete_images);
         //Saving images
-        if($request->hasFile('template_images'))
+        if($request->hasFile('template_new_images'))
         {   
-            TemplateImage::destroy();
-            $images = $request->file('template_images');
+            $images = $request->file('template_new_images');
             foreach($images as $image)
             {
                 // Get filename with the extension
@@ -231,7 +234,7 @@ class TemplatesController extends Controller
                 // Upload 
                 $image_up = $image;
                 $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(265, 350);
+                $image_resize->resize(800, 600);
                 $image_resize->save(public_path('storage/images/template/' .$fileNameToStore));
                 
                 //Adding URL to template_images table
@@ -273,6 +276,23 @@ class TemplatesController extends Controller
         $savedCatergories=CatergoryTemplatesController::getCatergoriesTemp($template->template_id);
         $allCatergories = CatergoriesController::getCatergories();
         
+    }
+
+    public function client_index($catergory_id)
+    {
+        $template_ids = CatergoryTemplatesController::getTemplates($catergory_id);
+        $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
+        $default_template = Template::whereIn('template_id',$template_ids)->where('isdefault',1)->get();
+        session()->put('default_template', $default_template[0]);
+        session()->put('templates',$templates);
+        return view('client.manage');
+    }
+
+    public function client_changetemplate($catergory_id, $template_id)
+    {
+        $template = Template::where('template_id',$template_id)->get();
+        session()->put('default_template', $template[0]);
+        return view('client.manage');
     }
 
 

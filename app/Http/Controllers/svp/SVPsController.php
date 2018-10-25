@@ -33,7 +33,7 @@ class SVPsController extends Controller
             $svp->email=$request->email;
             $svp->save();
             SVPsController::sendActivationLink($svp->service_provider_id);
-            session()->put('new_svp',$svp->service_provider_id);
+            //session()->put('new_svp',$svp->service_provider_id);
             return redirect('/svp/toverify');
             
         }
@@ -167,7 +167,7 @@ class SVPsController extends Controller
         //Check already verified
         if($svp->isverified==1)
         {
-            return redirect('/svp/login')->with('error','Your Account is Already Active');
+            return redirect('/svp/login')->with('warning','Your Account is Already Active');
         }
         
         //Generate Activation Link and Add to DB
@@ -177,8 +177,9 @@ class SVPsController extends Controller
             $svp->activation_link=$uniqueString;
             $svp->save();
             //Send Activation Link
-            $svp=SVP::find($svp_id);
             MailController::send_verify(1,$svp);
+            session()->put('svp_id',$svp->service_provider_id);
+            return redirect('/svp/toverify');
         }   
     }
 
@@ -200,52 +201,6 @@ class SVPsController extends Controller
         else
         {
             return redirect('/svp/login')->with('error','Invalid Verification Link, Login to Generate a New Link');
-        }
-    }
-	
-	public function update(Request $req){
-
-         $this->validate($req, [
-             'username'=>'required',
-             'email'=> 'required',
-             //'password'=> 'required'
-         ]);
-
-        $_svp = SVP::where('service_provider_id', session()->get('svp_id'))->get();
-        $svpPass=$_svp[0]->password;
-        $givenPass=md5($req->password);
-            
-        echo $svpPass .'<br>';
-        echo $givenPass;
-        $newPass=md5($req->newPass);
-        $comformPass=md5($req->comformPass);
-       
-        if($svpPass==$givenPass){
-            if($newPass==$comformPass){
-
-               // $id=section()->get('svp_id');
-
-                $svp_=SVP::find(section()->get('svp_id'));
-           
-                $svp_->service_provider_id=section()->get('svp_id');
-                $svp_->name=$req->name;
-                $svp_->username=$req->userName; 
-                $svp_->password=$req->comformPassword;
-                $svp_->email=$req->email;
-                $svp_->address=$req->address;
-                $svp_->address2=$req->address2;
-                $svp_->city=$req->city;
-                $svp_->state=$req->state;
-
-                $svp_->save();
-                 return redirect('/svp/profile')->with('success','Successfully Updated !');
-            }
-            else{
-                return redirect('/svp/profile')->with('error',' comform password is incorrect !');
-            }    
-        }
-        else{
-             return redirect('/svp/profile')->with('error',' incorrect password !');
         }
     }
 
@@ -310,7 +265,7 @@ class SVPsController extends Controller
         }
     }
 
-    public function isLogout(){
+    public function logout(){
         $svp = SVP::find(session()->get('svp_id'));
         $svp->isonline=0;
         $svp->save();

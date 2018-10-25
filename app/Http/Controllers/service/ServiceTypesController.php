@@ -4,6 +4,7 @@ namespace App\Http\Controllers\service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\ServiceType;
 
 class ServiceTypesController extends Controller
 {
@@ -20,9 +21,18 @@ class ServiceTypesController extends Controller
     }
 
 
-    public function store(Request $request)
+    public static function store2($request,$id)
     {
-        //
+        if($request != null){
+            $serviceTypesArray=explode(',',$request);
+
+            foreach($serviceTypesArray as $serviceType) {
+                $service_type = new ServiceType();
+                $service_type->type = $serviceType;
+                $service_type->service_id = $id;
+                $service_type->save();
+            }
+        }
     }
 
 

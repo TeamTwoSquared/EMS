@@ -89,6 +89,7 @@ Route::get('/svp/register', function (){
 Route::get('/svp/toverify', function (){
     return view ('svp.verify');
 });
+
 Route::post('/svp/doregister', 'svp\SVPsController@register');
 Route::get('/svp/dash', 'svp\SVPsController@index');
 Route::post('/svp/dologin', 'svp\SVPsController@authenticate');
@@ -110,12 +111,12 @@ Route::get('/svp/profile', function (){
 
 });
 Route::get('/svp/settings', function (){
-    return view ('admin.settings');
+    return view ('svp.settings');
 
 });
 Route::post('/svp/save_profile', 'svp\SVPsController@save_profile');
 Route::post('/svp/change_img', 'svp\SVPsController@change_img');
-Route::get('/svp/logout','svp\SVPsController@isLogout');
+Route::get('/svp/logout','svp\SVPsController@logout');
 
 
 //Routes for Clients
@@ -127,36 +128,60 @@ Route::get('/client/register', function (){
     return view ('client.register');
 
 });
-Route::post('/client/doregister', 'client\ClientsController@register');
-Route::get('/cient/dash', 'client\ClientsController@index');
-Route::post('/client/dologin', 'client\ClientsController@authenticate');
-//Route::get('/clverification/{id}/{key}', '');
-
-// Routes for client's catergory
-
-Route::get('/client/dash',function(){
-    return view('client.dash');
+Route::get('/client/toverify', function (){
+    return view ('client.verify');
 });
-Route::get('/client/catergory','client\ClientEventsController@index');
-Route::get('/client/catergory/{$catergoryItems->name}/templates','client\ClientEventsController@show');
-Route::get('/client/catergory/newCatergory','client\ClientEventsControlelr@create');
-Route::post('/client/catergory/addNewCatergory','client\ClinetEventsControlelr@store');
+
+Route::get('/client/dash', 'client\ClientsController@index');
+Route::post('/client/doregister', 'client\ClientsController@register');
+Route::post('/client/dologin', 'client\ClientsController@authenticate');
+Route::get('/clverification/{id}', 'client\ClientsController@sendActivationLink');
+Route::get('/clverification/{id}/{key}', 'client\ClientsController@doVerify');
+
+Route::get('/client/help',function(){
+    return view('client.help');
+});
+
+Route::get('/client/profile', function (){
+    return view ('client.profile');
+
+});
+Route::get('/client/settings', function (){
+    return view ('client.settings');
+
+});
+Route::get('/client/manage/{id}','event\TemplatesController@client_index');
+Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
 
 
 
 
+Route::post('/client/save_profile', 'client\ClientsController@save_profile');
+Route::post('/client/change_img', 'client\ClientsController@change_img');
+Route::get('/client/logout','client\ClientsController@logout');
 
 
 // Routes for side Adds.
 
-Route::get('svp/sideAdds','ad\AdsController@index');
-Route::get('svp/sideAdds/create','ad\AdsController@create');
+Route::get('/svp/sideAdds','ad\AdsController@index');
+Route::get('/svp/sideAdds/create','ad\AdsController@create');
 Route::post('/svp/sideAdds/store','ad\AdsController@store');
 Route::post('/svp/sideAds/store','ad\AdImagesController@store');
 Route::get('/svp/sideAdds/show/{{ad_id}}','ad\AdsController@show');
 Route::get('/svp/sideAdds/edit/{{ad_id}}','ad\AdsController@edit');
 Route::match('/svp/sideAdds/update','ad\AdsController@update');
 Route::delete('/svp/sideAdds/delete','ad\AdsController@destroy');
+
+// Routes for services of svp
+
+Route::get('/svp/service','service\ServicesController@index');
+Route::get('/svp/addServices','service\ServicesController@create');
+Route::post('/svp/submitService','service\ServicesController@store');
+Route::get('/svp/ViewService/{service_id}','service\ServicesController@show');
+Route::get('/svp/DeleteService/{service_id}','service\ServicesController@destroy');
+Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
+//Route::post
+
 
 //pansilu
 Route::get('/pansilu/{id}','chat\ChatsController@show');

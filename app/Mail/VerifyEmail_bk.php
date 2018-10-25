@@ -1,5 +1,4 @@
 <?php
-/*
 //Don't delete me
 namespace App\Mail;
 
@@ -17,27 +16,27 @@ class VerifyEmail extends Mailable
      *
      * @var Verify
      */
-   // public $verify;
+    public $verify;
 
     /**
      * Create a new message instance.
      *
-     * return void
+     * @return void
      */
- //   public function __construct($verify)
-   // {
-  //      $this->verify = $verify;
-   // }
+    public function __construct($verify)
+    {
+        $this->verify = $verify;
+    }
 
     /**
      * Build the message.
      *
-     * return $this
+     * @return $this
      */
-  //  public function build()
-   // {
-      //  return $this->from('noreply@ems.com')
-                 //   ->view('mail.verify')
-                  //  ->text('mail.verify_plain');
-  //  }
-//}
+    public function build()
+    {
+        return $this->from('noreply@ems.com')
+                    ->view('mail.verify')
+                    ->text('mail.verify_plain');
+    }
+}

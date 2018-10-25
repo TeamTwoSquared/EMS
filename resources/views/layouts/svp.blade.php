@@ -48,8 +48,8 @@ $svp=SVPsController::getSVP();
             <!-- MENU SIDEBAR-->     
             <aside class="menu-sidebar2"> 
                 <div class="logo bg-ems-admin border-ems-admin"> 
-                    <a href="#"> 
-                        <img src="images/icon/logo.png" alt="SVPDash" class="ems-admin-logo"/> 
+                    <a href="/svp/dash"> 
+                        <img src="/svp/images/icon/logo.png" alt="SVPDash" class="ems-admin-logo"/> 
                     </a>             
                 </div>         
                 <div class="menu-sidebar2__content js-scrollbar1"> 
@@ -91,8 +91,8 @@ $svp=SVPsController::getSVP();
                         <div class="container-fluid"> 
                             <div class="header-wrap2"> 
                                 <div class="logo d-block d-lg-none"> 
-                                    <a href="#"> 
-                                        <img src="images/icon/logo.png" alt="SVPDash"/> 
+                                    <a href="/svp/dash"> 
+                                        <img src="/svp/images/icon/logo.png" alt="SVPDash"/> 
                                     </a>                             
                                 </div>                         
                                 <div class="header-button2"> 
@@ -171,9 +171,9 @@ $svp=SVPsController::getSVP();
                     </div>             
                 </header>         
                 <aside class="menu-sidebar2 js-right-sidebar d-block d-lg-none"> 
-                    <div class="logo"> 
-                        <a href="#"> 
-                            <img src="images/icon/logo.png" alt="SVPDash"/> 
+                    <div class="logo bg-ems-admin"> 
+                        <a href="/svp/dash"> 
+                            <img src="/svp/images/icon/logo.png" alt="SVPDash"/> 
                         </a>                 
                     </div>             
                     <div class="menu-sidebar2__content js-scrollbar2"> 
@@ -194,7 +194,7 @@ $svp=SVPsController::getSVP();
                                     <span class="inbox-num">3</span> 
                                 </li>                         
                                 <li> 
-                                    <a href="/svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
+                                    <a href="svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
                                 </li>                         
                                 <li> 
                                     <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients </a> 

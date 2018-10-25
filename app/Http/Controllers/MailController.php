@@ -23,7 +23,8 @@ class MailController extends Controller
         {
             $objVerify = new \stdClass();
             $objVerify->identity = 'clverification';
-            $objVerify->reciever = $reciever;
+            $objVerify->id = $reciever->customer_id;
+            $objVerify->verifyLink = $reciever->activation_link;
             Mail::to($reciever->email)->send(new VerifyEmail($objVerify));
         }
     }

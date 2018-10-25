@@ -5,6 +5,7 @@ namespace App\Http\Controllers\event;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Template;
+use App\Task;
 use App\TemplateTask;
 
 class TemplateTasksController extends Controller
@@ -21,6 +22,22 @@ class TemplateTasksController extends Controller
             $template_names = array_prepend($template_names,$template->name);
         }
         return $template_names;
+        
+
+    }
+
+    public static function getTasks($template_id)
+    {
+        //Use to return a tasks name set when a template Id is provided
+        $template_tasks = TemplateTask::select('task_id')->where('template_id',$template_id)->get();
+        $tasks = Array();
+        foreach($template_tasks as $template_task)
+        {
+            $task =  Task::where('task_id',$template_task->task_id)->get();
+            $task =  $task[0];
+            $tasks = array_prepend($tasks,$task);
+        }
+        return $tasks;
         
 
     }
