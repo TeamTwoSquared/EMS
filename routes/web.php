@@ -158,6 +158,9 @@ Route::get('/client/settings', function (){
 });
 Route::get('/client/manage/{id}','event\TemplatesController@client_index');
 Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
+Route::post('/client/create_event','event\EventsController@new_event');
+Route::post('/client/update_event','event\EventsController@update_event');
+Route::post('/client/savenewtemplate','event\EventsController@store');
 
 
 
