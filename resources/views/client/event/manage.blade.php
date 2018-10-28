@@ -46,10 +46,18 @@ $i = 1; //to number rows
         <div class="row">
             <div class="col-md-9">
                 <div class="row">
+                 <form name="event_name" id="event_name">
+                    <input type="text" name = "event_name" id="event_name" placeholder="Name to your event" class="form-control name_list"/>
+                    <button type="button" name="done" id="done" class="btn btn-success btn-sm">
+                        <i class="fa fa-magic"></i>&nbsp; Done
+                    </button>
+                </form>
+                </div>          
+                <div class="row">
                     <div class="alert font-weight-bold" role="alert">
                         Editing Template: {{$default_template->name}}
                     </div>
-                    </div>
+                </div>
                 <div class="row">
                         <div class="btn-group" role="group" aria-label="Basic example">
                             <button type="button" class="btn btn-secondary">Invite</button>
@@ -71,7 +79,7 @@ $i = 1; //to number rows
                                 @foreach($default_tasks as $default_task)
                                 <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
                                     <th scope="row">{{$i++}}</th> 
-                                    <td><input type="text" name="task[]" id="task" value="{{$default_task->name}}" class="form-control name_list"/></td>
+                                    <td><input type="text" value="{{$default_task->name}}" class="form-control name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
                                     <td>Select</td> 
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
@@ -179,14 +187,14 @@ $i = 1; //to number rows
                     'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                 }
             });
-
+            
             var i={{$i}};
             i--;
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="table table-bordered bg-clouds shadow MoveableRow">'+
                                     '<th scope="row">'+i+'</th>'+
-                                    '<td><input type="text" name="task[]" id="task" placeholder="Enter a Task" class="form-control name_list"/></td>'+
+                                    '<td><input type="text" name="new_task[]" id="new_task" placeholder="Enter a Task" class="form-control name_list"/></td>'+
                                     '<td>Select</td>'+
                                     '<td>'+
                                         '<div class="table-data-feature flex-row-reverse">'+
@@ -228,16 +236,48 @@ $i = 1; //to number rows
 
             });
             $('#save').click(function(){
-                $.ajax({
-                    type:'POST',
-                    url:'/tadd',
-                    data:$('#edit_tasks').serialize(),
-                    success:function(data)
-                    {
-                        alert(data);
-                        $('#edit_tasks')[0].reset();
-                    }
-                });
+                if({{session()->get('default_event','NULL')}}==NULL)
+                {
+                    $.ajax({
+                        type:'POST',
+                        url:'/client/savenewtemplate',
+                        data:$('#edit_tasks').serialize(),
+                        success:function(data)
+                        {
+                            alert(data);
+                            //$('#edit_tasks')[0].reset(); //redirect to myevent/eventid
+                        }
+                    });
+                }
+            });
+            $('#done').click(function(){
+                var event_session = $('#event_session').val();
+                //var event_session=("{{session()->get('default_event')}}");
+                if(event_session)
+                {
+                    $.ajax({
+                        type:'POST',
+                        url:'/client/update_event',
+                        data:$('#event_name').serialize(),
+                        success:function(data)
+                        {
+                        //alert("{{session()->get('default_event')}}");
+                        alert(event_session);
+                        }
+                    });
+                }
+                else
+                {
+                    $.ajax({
+                        type:'POST',
+                        url:'/client/create_event',
+                        data:$('#event_name').serialize(),
+                        success:function(data)
+                        {
+                        alert(event_session);
+                        }
+                    }); 
+                }
             });
         });
     </script>
