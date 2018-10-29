@@ -194,7 +194,7 @@ $svp=SVPsController::getSVP();
                                     <span class="inbox-num">3</span> 
                                 </li>                         
                                 <li> 
-                                    <a href="/svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
+                                    <a href="svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
                                 </li>                         
                                 <li> 
                                     <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients </a> 

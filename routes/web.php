@@ -169,14 +169,25 @@ Route::get('/client/logout','client\ClientsController@logout');
 
 // Routes for side Adds.
 
-Route::get('svp/sideAdds','ad\AdsController@index');
-Route::get('svp/sideAdds/create','ad\AdsController@create');
+Route::get('/svp/sideAdds','ad\AdsController@index');
+Route::get('/svp/sideAdds/create','ad\AdsController@create');
 Route::post('/svp/sideAdds/store','ad\AdsController@store');
 Route::post('/svp/sideAds/store','ad\AdImagesController@store');
 Route::get('/svp/sideAdds/show/{{ad_id}}','ad\AdsController@show');
 Route::get('/svp/sideAdds/edit/{{ad_id}}','ad\AdsController@edit');
 Route::match('/svp/sideAdds/update','ad\AdsController@update');
 Route::delete('/svp/sideAdds/delete','ad\AdsController@destroy');
+
+// Routes for services of svp
+
+Route::get('/svp/service','service\ServicesController@index');
+Route::get('/svp/addServices','service\ServicesController@create');
+Route::post('/svp/submitService','service\ServicesController@store');
+Route::get('/svp/ViewService/{service_id}','service\ServicesController@show');
+Route::get('/svp/DeleteService/{service_id}','service\ServicesController@destroy');
+Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
+//Route::post
+
 
 //pansilu
 Route::get('/pansilu/{id}','chat\ChatsController@show');
