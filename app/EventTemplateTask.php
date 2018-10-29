@@ -4,13 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class ClientEventTemplate extends Model
+class EventTemplateTask extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
     // Table Name
-    protected $table = 'customer_event_templates';
+    protected $table = 'event_template_tasks';
    
     // Primary Key
-    public $primaryKey = ['customer_id','event_id','template_id'];
+    public $primaryKey = ['event_id','template_id','task_id'];
 }

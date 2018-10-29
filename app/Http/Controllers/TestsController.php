@@ -19,6 +19,7 @@ class TestsController extends Controller
                     $test = new Test();
                     $test->name = $request->name[$i];
                     $test->save();
+                    
                 }
             }
             
