@@ -4,6 +4,8 @@
  use App\Http\Controllers\event\CatergoryImageController;
  use App\Http\Controllers\event\CatergoriesController;
  $catergories=CatergoriesController::client_index();
+ 
+ session()->forget('default_event');
 @endphp
 <section class="au-breadcrumb2" data-pg-collapsed> 
     <div class="container"> 

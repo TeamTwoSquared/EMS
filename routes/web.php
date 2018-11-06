@@ -14,7 +14,7 @@
 Route::get('/test', function () {
     return view('test2');
 });
-Route::post('/tadd', 'TestsController@ajaxRequestPost');
+Route::post('/orderdata', 'TestsController@orderdata');
 
 Route::get('/client/redirect', 'SocialAuthGoogleController@redirect');
 Route::get('/client/callback', 'SocialAuthGoogleController@callback');
@@ -158,10 +158,13 @@ Route::get('/client/settings', function (){
 });
 Route::get('/client/manage/{id}','event\TemplatesController@client_index');
 Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
-Route::post('/client/create_event','event\EventsController@new_event');
-Route::post('/client/update_event','event\EventsController@update_event');
-Route::post('/client/savenewtemplate','event\EventsController@store');
+Route::post('/client/savenewtemplate','event\EventsController@store_new');
+Route::post('/client/savetemplate1','event\EventsController@store1');
+Route::post('/client/savetemplate2','event\EventsController@store2');
 
+Route::get('/client/myevents','event\EventsController@client_index');
+Route::get('/client/myevents/delete/{id}','event\EventsController@destroy');
+Route::get('/client/myevents/{id}','event\TemplatesController@client_index2');
 
 
 
