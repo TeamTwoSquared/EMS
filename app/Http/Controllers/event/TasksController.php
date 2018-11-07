@@ -10,6 +10,8 @@ use App\Task;
 use App\TaskKeyword;
 use App\TemplateTask;
 use App\Template;
+use App\EventTemplateTask;
+
 use App\Http\Controllers\event\TaskKeywordsController;
 use App\Http\Controllers\event\TemplateTasksController;
 use App\Http\Controllers\event\TemplatesController;
@@ -172,5 +174,20 @@ class TasksController extends Controller
         }
         $task->save();
         return redirect('/admin/task');
+    }
+
+    public static function destroyTemps1($event) // Delete all associated temporary tasks
+    {
+        $allTasks = EventTemplateTask::select('task_id')->where('event_id',$event)->get();
+
+        return Task::whereIn('task_id',$allTasks)->where('istemp',1)->delete();
+    }
+
+    public static function destroyTemps2($event, $tasks)
+    {
+        $removedTasks = EventTemplateTask::select('task_id')->where('event_id',$event)->whereNotIn('task_id',$tasks)->get();
+        
+        Task::whereIn('task_id',$removedTasks)->where('istemp',1)->delete();
+        
     }
 }

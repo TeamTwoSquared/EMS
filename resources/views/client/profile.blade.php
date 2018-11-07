@@ -7,6 +7,8 @@ header("Location: /client/login");
 die();
 }
 $client=ClientsController::getClient();
+
+session()->forget('default_event');
 @endphp
 <section class="statistic"> 
     <div class="section__content section__content--p30"> 
