@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function () {
-    return view('test2');
+    return view('test');
 });
 Route::post('/orderdata', 'TestsController@orderdata');
 
