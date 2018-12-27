@@ -180,6 +180,7 @@ Route::post('/svp/submitService','service\ServicesController@store');
 Route::get('/svp/ViewService/{service_id}','service\ServicesController@show');
 Route::get('/svp/DeleteService/{service_id}','service\ServicesController@destroy');
 Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
+Route::post('/svp/updateService','service\ServicesController@update');
 //Route::post
 
 

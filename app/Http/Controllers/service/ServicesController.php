@@ -5,12 +5,14 @@ namespace App\Http\Controllers\service;
 use App\ServiceLocation;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\DB;
 use App\Service;
 use App\Http\Controllers\service\ServiceImagesController;
 use App\ServiceType;
 use App\ServiceKeyword;
 use App\ServiceImage;
 use App\ServiceVideo;
+
 
 
 class ServicesController extends Controller
@@ -69,20 +71,36 @@ class ServicesController extends Controller
         $serviceKeywords=ServiceKeyword::where('service_id',$service_id)->get();
         $serviceImages=ServiceImage::where('service_id',$service_id)->get();
         $serviceVideos=ServiceVideo::where('service_id',$service_id)->get();
-        return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos',$serviceVideos);
+        return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos',$serviceVideos)->with('serviceID',$service_id);
 
     }
 
 
-    public function update(Request $request, $service_id)
+    public function update(Request $request)
     {
-        $service = Service::find('$id');
-        $service->name = $request->name;
-        $service->price = $request->price;
-        $service->description = $request->description;
-        $service->isavailable = $request->isavailable;
-        $service->service_provider_id = $request->service_provider_id;
-        $service->save();
+        dd($request);
+
+
+          //  DB::table('services')->update(['service_id'=>($request->serviceID),'name'=>$request->sName , 'price'=>$request->price,'description'=>$request->description ]);
+
+
+            $serviceDelete = Service::find($request->serviceID);
+            if($serviceDelete != null) {
+               $serviceDelete->delete();
+            }
+
+
+
+            $updateService = new Service();
+            $updateService->service_id=$request->serviceID;
+            $updateService->name = $request->sName;
+            $updateService->price = $request->price;
+            $updateService->description = $request->description;
+            $updateService->service_provider_id=session()->get('svp_id');
+            $updateService->save();
+
+            return redirect('/svp/service')->with('success','Successfully Updated The Service !');
+
     }
 
 
