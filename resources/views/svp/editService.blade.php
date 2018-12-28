@@ -155,7 +155,7 @@
                         @endif
                     @else
                         @for($i=7;$i<13;$i++)
-                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="keyword {{$i-7}}">
+                            <input type="text" name="keyword{{$i}}" class="smallBox"  placeholder="keyword {{$i-7}}">
                         @endfor
                     @endif
 
@@ -167,17 +167,17 @@
                     @if(count($service_types)!=null)
                         <div style="display:none" > {{$serviceTypeId= 13}}</div>
                         @foreach($service_types as $service_type)
-                            <input type="text" name="{{$serviceTypeId }}" class="smallBox"  value="{{$service_type->type}}">
+                            <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  value="{{$service_type->type}}">
                             <div style="display:none" > {{$serviceTypeId += 1}}</div>    
                         @endforeach
                         @if($serviceTypeId != 18)
                             @for($serviceTypeId;$serviceTypeId<19;$serviceTypeId++)
-                                <input type="text" name="{{$serviceTypeId }}" class="smallBox"  placeholder="service type {{$serviceTypeId-12}}">
+                                <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  placeholder="service type {{$serviceTypeId-12}}">
                             @endfor
                         @endif
                     @else
                         @for($i=13;$i<19;$i++)
-                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="service type {{$i-12}}">
+                            <input type="text" name="type{{$i}}" class="smallBox"  placeholder="service type {{$i-12}}">
                         @endfor
                     @endif
                 </div>
