@@ -65,6 +65,15 @@ Route::get('/admin/catergory/edit/{id}', 'event\CatergoriesController@admin_edit
 Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy');
 Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@admin_update');
 
+Route::get('/admin/client', 'client\ClientsController@admin_index');
+Route::get('/admin/client/delete/{id}','client\Clientscontroller@destroy');
+Route::get('/admin/client/edit/{id}', 'client\ClientsController@admin_edit');
+
+
+
+Route::get('/admin/svp', 'svp\SVPsController@admin_index');
+Route::get('/admin/svp/delete/{id}','svp\SVPsController@destroy');
+
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');
 });*/
