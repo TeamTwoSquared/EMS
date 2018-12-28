@@ -93,6 +93,10 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         </td>
                         <td>
                             <div class="table-data-feature">
+                                @php
+                                $tid=$template->template_id  
+                                @endphp
+                    
                                 <a href="template/edit/{{$template->template_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
                                         <i class="zmdi zmdi-edit"></i>
@@ -104,12 +108,12 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                                     </button>
                                 </a>
                                 
-                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button onclick ="deleteMe({{$template->template_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                         <script>
-                                            function deleteMe() {
+                                            function deleteMe(id) {
                                                     if (confirm("Are you sure you want to delete this template!")) {
-                                                        window.location.replace("template/delete/{{$template->template_id}}");
+                                                        window.location.replace("template/delete/"+id);
                                                     } 
                                                 }
                                         </script>

@@ -82,12 +82,12 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                                     </button>
                                 </a>
                                 
-                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button onclick ="deleteMe({{$catergory->catergory_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                         <script>
-                                            function deleteMe() {
+                                            function deleteMe(id) {
                                                     if (confirm("Are you sure you want to delete this catergory!")) {
-                                                        window.location.replace("catergory/delete/{{$catergory->catergory_id}}");
+                                                        window.location.replace("catergory/delete/"+id);
                                                     } 
                                                 }
                                         </script>
