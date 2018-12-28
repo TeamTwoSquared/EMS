@@ -155,7 +155,7 @@
                         @endif
                     @else
                         @for($i=7;$i<13;$i++)
-                            <input type="text" name="keyword{{$i}}" class="smallBox"  placeholder="keyword {{$i-7}}">
+                            <input type="text" name="keyword{{$i}}" class="smallBox"  placeholder="keyword {{$i-6}}">
                         @endfor
                     @endif
 
@@ -182,9 +182,10 @@
                     @endif
                 </div>
 <!-- service url-->
+               
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service video URL</label>
-                <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder="Video URL" value="{{$service_videos}}"/>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder="Video URL" value="{{$service_info->description}}"/>
                 </div>
 
 <!-- service images -->
