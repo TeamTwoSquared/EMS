@@ -1,6 +1,99 @@
 @extends('layouts.svp')
 @section('content')
 
+<!DOCTYPE html>
+<div lang="en">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>Album example for Bootstrap</title>
+    <!-- Bootstrap core CSS -->
+    <link href="bootstrap/css/bootstrap.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    <link href="album.css" rel="stylesheet">
+
+    <style>
+        .contain {
+            display: block;
+            position: relative;
+            cursor: pointer;
+            font-size: 22px;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+        }
+
+        /* Hide the browser's default checkbox */
+        .contain input {
+            position: absolute;
+            opacity: 0;
+            cursor: pointer;
+            height: 0;
+            width: 0;
+        }
+
+        /* Create a custom checkbox */
+        .checkmark {
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 25px;
+            width: 25px;
+            background-color: #eee;
+        }
+
+        /* On mouse-over, add a grey background color */
+        .contain:hover input ~ .checkmark {
+            background-color: #ccc;
+        }
+
+        /* When the checkbox is checked, add a blue background */
+        .contain input:checked ~ .checkmark {
+            background-color: #2196F3;
+        }
+
+        /* Create the checkmark/indicator (hidden when not checked) */
+        .checkmark:after {
+            content: "";
+            position: absolute;
+            display: none;
+        }
+
+        /* Show the checkmark when checked */
+        .contain input:checked ~ .checkmark:after {
+            display: block;
+        }
+
+        /* Style the checkmark/indicator */
+        .contain .checkmark:after {
+            left: 9px;
+            top: 5px;
+            width: 5px;
+            height: 10px;
+            border: solid white;
+            border-width: 0 3px 3px 0;
+            -webkit-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .smallBox{
+            width: 25%;
+            padding: 10px 10px;
+            margin: 8px 0;
+            display: inline-block;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+    </style>
+</head>
+
+
 <section class="statistic"> 
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
@@ -23,18 +116,29 @@
                                     <label for="inputEmail4">Discription</label>
                                     <input type="text" class="form-control"  name="description" placeholder="Maximum 100 characters ">
                                 </div>
-                                <div class="form-group"> 
-                                    <label for="inputAddress">Keywords</label>                         
-                                    <input type="text" class="form-control"  name="keyword" placeholder="EX -: keyword 1, keyword 2, keyword 3" multiple>
-                                </div>                     
-                                <div class="form-group" data-pg-collapsed> 
-                                    <label for="inputAddress2">Location</label>                         
-                                    <input type="text" class="form-control"  name="location" placeholder="EX -: location 1, location 2, location 3" multiple>
+
+                                <div class="form-group">
+                                    <label class="col-form-label" for="formGroupExampleInput2">Service Keywords</label><br>
+                                        @for($i=1;$i<7;$i++)
+                                            <input type="text" name="keyword{{$i}}" class="smallBox"  placeholder="Keyword {{$i}}">
+                                        @endfor
                                 </div>
-                                <div class="form-group" data-pg-collapsed> 
-                                    <label for="inputAddress2">Service Type</label>                         
-                                    <input type="text" class="form-control" id="city" name="type" placeholder="EX -: Type 1, Type 2, Type 3" multiple>
-                                </div>                     
+                                
+                                <div class="form-group">
+                                    <label class="col-form-label" for="formGroupExampleInput2">Service Locations</label><br>
+                                        @for($i=7;$i<13;$i++)
+                                            <input type="text" name="location{{$i}}" class="smallBox"  placeholder="location {{$i-6}}">
+                                        @endfor
+                                </div>
+
+                                <div class="form-group">
+                                    <label class="col-form-label" for="formGroupExampleInput2">Service Types</label><br>
+                                        @for($i=13;$i<19;$i++)
+                                            <input type="text" name="type{{$i}}" class="smallBox"  placeholder="Service Type {{$i-12}}">
+                                        @endfor
+                                </div>
+                                
+                                                 
                         </div>             
                     </div>         
                 </div>     

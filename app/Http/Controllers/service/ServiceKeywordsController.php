@@ -32,16 +32,20 @@ class ServiceKeywordsController extends Controller
 
     public static function store2($request, $id){
 
-        if($request != null){
-            $keywordArray=explode(',',$request);
-
-            foreach($keywordArray as $sev_keyword) {
-                $Keywords = new ServiceKeyword();
-                $Keywords->service_id = $id;
-                $Keywords->keyword = $sev_keyword;
-                $Keywords->save();
+        for($i=1;$i<7;$i++) {
+            $a="keyword";
+            $a =$a.$i;
+        
+            if(($request->$a) != null){
+                        $key = new ServiceKeyword();
+                        $a="keyword";
+                        $a =$a.$i;
+                        $key->service_id = $id;
+                        $key->keyword = $request->$a;
+                        $key->save();
             }
         }
+
     }
 
 

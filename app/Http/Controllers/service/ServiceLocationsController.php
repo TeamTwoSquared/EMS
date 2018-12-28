@@ -24,13 +24,17 @@ class ServiceLocationsController extends Controller
 
     public static function store2($request,$id)
     {
-        if($request != null){
-            $locationArray=explode(',',$request);
-            foreach($locationArray as $service_locations) {
-                $locations = new ServiceLocation();
-                $locations->location = $service_locations;
-                $locations->service_id = $id;
-                $locations->save();
+        
+        for($i=7;$i<13;$i++) {
+            $a="location";
+            $a =$a.$i;
+            if(($request->$a) != null){   
+                $loc = new ServiceLocation();
+                $a="location";
+                $a =$a.$i;
+                $loc->service_id = $id;
+                $loc->location= $request->$a;
+                $loc->save();
             }
         }
     }
