@@ -105,12 +105,12 @@ use App\Http\Controllers\event\TemplateTasksController;
                                         <i class="fa fa-lock"></i>
                                     </button>
                                 </a>
-                                <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button onclick ="deleteMe({{$task->task_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                     <script>
-                                        function deleteMe() {
+                                        function deleteMe(id) {
                                                 if (confirm("Are you sure you want to delete this task!")) {
-                                                    window.location.replace("task/delete/{{$task->task_id}}");
+                                                    window.location.replace("task/delete/"+id);
                                                 } 
                                             }
                                     </script>
