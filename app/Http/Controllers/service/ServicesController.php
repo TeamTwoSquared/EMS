@@ -33,21 +33,30 @@ class ServicesController extends Controller
 
     public function store(Request $request)
     {
-        //dd($request->profile_image);
-        $service = new Service();
-        $service->name = $request->name;
-        $service->price = $request->price;
-        $service->description = $request->description;
-        $service->service_provider_id=session()->get('svp_id');
-        $service->save();
 
-        ServiceImagesController::store2($request->service_image,$service->service_id);
-        ServiceKeywordsController::store2($request->keyword,$service->service_id);
-        ServiceLocationsController::store2($request->location,$service->service_id);
-        ServiceTypesController::store2($request->type,$service->service_id);
-        ServiceVideosController::store2($request->service_video_url,$service->service_id);
+        $exsistingService = Service::where('name',$request->name)->get();
+        
+        if(count($exsistingService) != 0){
+          //  dd($exsistingService);
+            return redirect('/svp/service')->with('error','This service is alrady exist !');
+        }
 
-        return redirect('/svp/service')->with('success','Successfully registered new service !');
+        else{
+            $service = new Service();
+            $service->name = $request->name;
+            $service->price = $request->price;
+            $service->description = $request->description;
+            $service->service_provider_id=session()->get('svp_id');
+            $service->save();
+
+            ServiceImagesController::store2($request->service_image,$service->service_id);
+            ServiceKeywordsController::store2($request,$service->service_id);
+            ServiceLocationsController::store2($request,$service->service_id);
+            ServiceTypesController::store2($request,$service->service_id);
+            ServiceVideosController::store2($request->service_video_url,$service->service_id);
+
+            return redirect('/svp/service')->with('success','Successfully registered new service !');
+        }
     }
 
 

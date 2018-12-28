@@ -23,6 +23,7 @@ class ServiceTypesController extends Controller
 
     public static function store2($request,$id)
     {
+        /*
         if($request != null){
             $serviceTypesArray=explode(',',$request);
 
@@ -33,6 +34,22 @@ class ServiceTypesController extends Controller
                 $service_type->save();
             }
         }
+        */
+
+        for($i=13;$i<19;$i++) {
+            $a="type";
+            $a =$a.$i;
+            if(($request->$a) != null){
+                $types = new ServiceType();
+                $a="type";
+                $a =$a.$i;
+                $types->service_id = $id;
+                $types->type= $request->$a;
+                $types->save();
+            }
+        }
+
+        
     }
 
 

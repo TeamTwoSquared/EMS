@@ -114,72 +114,80 @@
                     <label class="col-form-label" for="formGroupExampleInput2">About The Service</label>
                     <input type="text" class="form-control" id="formGroupExampleInput2" name='description' placeholder="" value="{{$service_info->description}}"/>
                 </div>
+<!-- Locations   -->
+
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service Locations</label><br>
 
                     @if(count($service_locations)!=null)
-                        <div style="display:none" > {{$locationId= 0}}</div>
+                        <div style="display:none" > {{$locationId= 1}}</div>
                         @foreach($service_locations as $service_location)
-                            <input type="text" name="{{$locationId }}" class="smallBox"  value="{{$service_location->location}}">
+                            <input type="text" name="location{{$locationId }}" class="smallBox"  value="{{$service_location->location}}">
                             <div style="display:none" > {{$locationId += 1}}</div>
                         @endforeach
                         @if($locationId != 6)
-                            @for($locationId;$locationId<6;$locationId++)
-                                <input type="text" name="{{$locationId }}" class="smallBox"  placeholder="location {{$locationId+1}}">
+                            @for($locationId;$locationId<7;$locationId++)
+                                <input type="text" name="location{{$locationId }}" class="smallBox"  placeholder="location {{$locationId}}">
                             @endfor
                         @endif
                     @else
-                        @for($i=0;$i<6;$i++)
-                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="location {{$i+1}}">
+                        @for($i=1;$i<7;$i++)
+                            <input type="text" name="location{{$i}}" class="smallBox"  placeholder="location {{$i}}">
                         @endfor
                     @endif
                 </div>
+
+<!-- Keywords -->
 
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service Keywords</label><br>
 
                     @if(count($service_keywords)!=null)
-                        <div style="display:none" > {{$serviceKeywordId= 6}}</div>
+                        <div style="display:none" > {{$serviceKeywordId= 7}}</div>
                         @foreach($service_keywords as $service_keyword)
-                            <input type="text" name="{{$serviceKeywordId +=1 }}" class="smallBox"  value="{{$service_keyword->keyword}}">
-
+                            <input type="text" name="keyword{{$serviceKeywordId }}" class="smallBox"  value="{{$service_keyword->keyword}}">
+                            <div style="display:none" > {{$serviceKeywordId += 1}}</div>
                         @endforeach
                         @if($serviceKeywordId != 12)
-                            @for($serviceKeywordId;$serviceKeywordId<12;$serviceKeywordId++)
-                                <input type="text" name="{{$serviceKeywordId }}" class="smallBox"  placeholder="keyword {{$serviceKeywordId+1}}">
+                            @for($serviceKeywordId;$serviceKeywordId<13;$serviceKeywordId++)
+                                <input type="text" name="keyword{{$serviceKeywordId }}" class="smallBox"  placeholder="keyword {{($serviceKeywordId)-6}}">
                             @endfor
                         @endif
                     @else
-                        @for($i=6;$i<12;$i++)
-                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="keyword {{$i+1}}">
+                        @for($i=7;$i<13;$i++)
+                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="keyword {{$i-7}}">
                         @endfor
                     @endif
 
                 </div>
 
+<!-- types -->
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service Types</label><br>
                     @if(count($service_types)!=null)
-                        <div style="display:none" > {{$serviceTypeId= 12}}</div>
+                        <div style="display:none" > {{$serviceTypeId= 13}}</div>
                         @foreach($service_types as $service_type)
-                            <input type="text" name="{{$serviceTypeId += 1}}" class="smallBox"  name="types[]" value="{{$service_type->type}}">
+                            <input type="text" name="{{$serviceTypeId }}" class="smallBox"  value="{{$service_type->type}}">
+                            <div style="display:none" > {{$serviceTypeId += 1}}</div>    
                         @endforeach
                         @if($serviceTypeId != 18)
-                            @for($serviceTypeId;$serviceTypeId<18;$serviceTypeId++)
-                                <input type="text" name="{{$serviceTypeId }}" class="smallBox"  placeholder="service type {{$serviceTypeId+1}}">
+                            @for($serviceTypeId;$serviceTypeId<19;$serviceTypeId++)
+                                <input type="text" name="{{$serviceTypeId }}" class="smallBox"  placeholder="service type {{$serviceTypeId-12}}">
                             @endfor
                         @endif
                     @else
-                        @for($i=12;$i<18;$i++)
-                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="service type {{$i+1}}">
+                        @for($i=13;$i<19;$i++)
+                            <input type="text" name="{{$i}}" class="smallBox"  placeholder="service type {{$i-12}}">
                         @endfor
                     @endif
                 </div>
-
+<!-- service url-->
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service video URL</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder=""/>
+                <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder="Video URL" value="{{$service_videos}}"/>
                 </div>
+
+<!-- service images -->
 
                 <div class="row">
                     @if(count($service_images)!=null)
@@ -216,7 +224,7 @@
         </div>
     </form>
 </div>
-km
+
 </main>
 
 <!-- Bootstrap core JavaScript
