@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
+use App\TasksSvp;
 use App\Http\Controllers\MailController;
 
 class SVPsController extends Controller
@@ -13,6 +14,18 @@ class SVPsController extends Controller
     public function index(){
         return view ('svp.index');
     }
+
+    public function admin_index()
+    {
+        $svp = SVP::all();
+        return view('admin.svp.svp')->with('svp',$svp);
+    }
+    public function destroy($id)
+    {   
+        SVP::where('service_provider_id',$id)->delete();        
+        return redirect('/admin/svp');
+    }
+
     public function register(Request $request)
     {
         $this->validate($request, [
@@ -271,6 +284,10 @@ class SVPsController extends Controller
         $svp->save();
         session()->flush();
         return redirect('/svp/login')->with('success','Logged out Succesfully');
+    }
+    public function loadTaskSvp($taskId){
+        $tasksSvp = TasksSvp::where('task_id',$taskId)->get();
+        return $tasksSvp;
     }
 
 }//end of class

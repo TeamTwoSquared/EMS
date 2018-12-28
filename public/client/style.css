@@ -19,3 +19,7 @@
 .ems-admin-main-bg {
     background-color: #ffffff !important;
 }
+.table-responsive-manage {
+    height: 40em;
+    padding-right: 1px;
+}

@@ -12,8 +12,14 @@
 */
 
 Route::get('/test', function () {
-    return view('mail.verify');
+    return view('test2');
 });
+Route::post('/orderdata', 'TestsController@orderdata');
+
+Route::get('/client/redirect', 'SocialAuthGoogleController@redirect');
+Route::get('/client/callback', 'SocialAuthGoogleController@callback');
+
+
 Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');
@@ -58,6 +64,15 @@ Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store')
 Route::get('/admin/catergory/edit/{id}', 'event\CatergoriesController@admin_edit');
 Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy');
 Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@admin_update');
+
+Route::get('/admin/client', 'client\ClientsController@admin_index');
+Route::get('/admin/client/delete/{id}','client\Clientscontroller@destroy');
+Route::get('/admin/client/edit/{id}', 'client\ClientsController@admin_edit');
+
+
+
+Route::get('/admin/svp', 'svp\SVPsController@admin_index');
+Route::get('/admin/svp/delete/{id}','svp\SVPsController@destroy');
 
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');
@@ -152,7 +167,13 @@ Route::get('/client/settings', function (){
 });
 Route::get('/client/manage/{id}','event\TemplatesController@client_index');
 Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
+Route::post('/client/savenewtemplate','event\EventsController@store_new');
+Route::post('/client/savetemplate1','event\EventsController@store1');
+Route::post('/client/savetemplate2','event\EventsController@store2');
 
+Route::get('/client/myevents','event\EventsController@client_index');
+Route::get('/client/myevents/delete/{id}','event\EventsController@destroy');
+Route::get('/client/myevents/{id}','event\TemplatesController@client_index2');
 
 
 

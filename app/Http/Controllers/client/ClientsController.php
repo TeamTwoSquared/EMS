@@ -17,6 +17,20 @@ class ClientsController extends Controller
         return view ('client.index');
     }
 
+    public function admin_index()
+    {
+        $customers = Client::all();
+        return view('admin.client.client')->with('customers',$customers);
+    }
+
+    public function destroy($id)
+    {   
+        
+        Client::where('customer_id',$id)->delete();        
+        return redirect('/admin/client');
+        
+    }
+
 
     public function register(Request $request)
     {
@@ -139,10 +153,6 @@ class ClientsController extends Controller
     }
 
 
-    public function destroy($id)
-    {
-        //
-    }
     public function change_img(Request $request)
     {
         //validation
@@ -299,5 +309,13 @@ class ClientsController extends Controller
         $client->save();
         session()->flush();
         return redirect('/client/login')->with('success','Logged out Succesfully');
+    }
+
+    public static function loginUsingId($id)
+    {
+        session()->put('clientlogged','d7c74c92ce048f6e1f33c7122ad64823');
+        session()->put('customer_id',$id);
+        
+        return redirect('/client/dash')->with('success','Logged in Successfully');
     }
 }

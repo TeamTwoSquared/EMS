@@ -10,6 +10,7 @@ use App\Template;
 use App\TemplateKeyword;
 use App\TemplateImage;
 use App\CatergoryTemplate;
+use App\Event;
 use App\Http\Controllers\event\CatergoryTemplatesController;
 use App\Http\Controllers\event\TemplateImagesController;
 use App\Http\Controllers\event\TemplateKeywordsController;
@@ -278,21 +279,37 @@ class TemplatesController extends Controller
         
     }
 
-    public function client_index($catergory_id)
+    public function client_index($catergory_id)//Manage event of new one
     {
         $template_ids = CatergoryTemplatesController::getTemplates($catergory_id);
         $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
         $default_template = Template::whereIn('template_id',$template_ids)->where('isdefault',1)->get();
-        session()->put('default_template', $default_template[0]);
+        if(count($default_template)>0) session()->put('default_template', $default_template[0]);
         session()->put('templates',$templates);
-        return view('client.manage');
+        session()->put('default_catergory',$catergory_id);
+        return view('client.event.manage');
     }
 
     public function client_changetemplate($catergory_id, $template_id)
     {
         $template = Template::where('template_id',$template_id)->get();
         session()->put('default_template', $template[0]);
-        return view('client.manage');
+        session()->put('default_catergory',$catergory_id);
+        session()->forget('default_event');
+        return view('client.event.manage');
+    }
+
+    public function client_index2($event_id)//Manage event of already saved one
+    {
+        $event = Event::find($event_id);
+        $template_ids = CatergoryTemplatesController::getTemplates($event->catergory_id);
+        $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
+        $default_template = Template::where('template_id',$event->template_id)->get();
+        session()->put('default_template', $default_template[0]);
+        session()->put('templates',$templates);
+        session()->put('default_catergory',$event->catergory_id);
+        session()->put('default_event',$event_id);
+        return view('client.event.manage');
     }
 
 

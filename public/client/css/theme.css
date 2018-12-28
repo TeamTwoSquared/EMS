@@ -4865,7 +4865,7 @@ section {
 
 .au-breadcrumb2 {
     padding-top: 48px;
-    padding-bottom: 50px;
+    padding-bottom: 0px;
 }
 
 .au-breadcrumb2 .au-breadcrumb-span {

@@ -1,287 +1,35 @@
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
-        <!-- Required meta tags-->         
-        <meta charset="UTF-8"> 
-        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> 
-        <meta name="description" content="au theme template"> 
-        <meta name="author" content="Hau Nguyen"> 
-        <meta name="keywords" content="au theme template"> 
-        <!-- Title Page-->         
-        <title>Dashboard 3</title>         
-        <!-- Fontfaces CSS-->         
-        <link href="css/font-face.css" rel="stylesheet" media="all"> 
-        <link href="vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/mdi-font/css/material-design-iconic-font.min.css" rel="stylesheet" media="all"> 
-        <!-- Custom styles for this template -->         
-        <link href="style.css" rel="stylesheet">
-        <!-- Bootstrap CSS-->         
-        <link href="vendor/bootstrap-4.1/bootstrap.min.css" rel="stylesheet" media="all"> 
-        <!-- Vendor CSS-->         
-        <link href="vendor/animsition/animsition.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/bootstrap-progressbar/bootstrap-progressbar-3.3.4.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/wow/animate.css" rel="stylesheet" media="all"> 
-        <link href="vendor/css-hamburgers/hamburgers.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/slick/slick.css" rel="stylesheet" media="all"> 
-        <link href="vendor/select2/select2.min.css" rel="stylesheet" media="all"> 
-        <link href="vendor/perfect-scrollbar/perfect-scrollbar.css" rel="stylesheet" media="all"> 
-        <!-- Main CSS-->         
-        <link href="css/theme.css" rel="stylesheet" media="all"> 
-        <link rel="stylesheet" href="components/pg.blocks/css/blocks.css">
-        <link rel="stylesheet" href="components/pg.blocks/css/plugins.css">
-        <link rel="stylesheet" href="components/pg.blocks/css/style-library-1.css">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700">
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+        <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>     
     <body class="animsition"> 
-        <div class="page-wrapper"> 
-            <!-- HEADER DESKTOP-->             
-            <header class="header-desktop3 d-none d-lg-block bg-ems-admin"> 
-                <div class="section__content section__content--p35"> 
-                    <div class="header3-wrap"> 
-                        <div class="header__logo"> 
-                            <a href="#"> 
-                                <img src="images/icon/logo-client.png" alt="CoolAdmin"/> 
-                            </a>                             
-                        </div>                         
-                        <div class="header__navbar"> 
-                            <ul class="list-unstyled"> 
-                                <li> 
-                                    <a href="/client/dash"> <i class="fas fa-tachometer-alt"></i> <span class="bot-line"></span>Dashboard</a> 
-                                </li>                                 
-                                <li> 
-                                    <a href="/client/myevents"> <i class="fas fa-chart-bar"></i> <span class="bot-line"></span>My Events</a> 
-                                </li>
-                                <li> 
-                                    <a href="/client/inbox"> <i class="fas fa fa-inbox"></i> <span class="bot-line"></span>Messeges</a> 
-                                </li>
-                                <li> 
-                                    <a href="/client/help"> <i class="fas fa-life-ring fa"></i> <span class="bot-line"></span>Support Center</a> 
-                                </li>                                 
-                            </ul>                             
-                        </div>                         
-                        <div class="header__tool"> 
-                            <div class="header-button-item has-noti js-item-menu"> 
-                                <i class="zmdi zmdi-notifications"></i> 
-                                <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown"> 
-                                    <div class="notifi__title"> 
-                                        <p>You have 3 Notifications</p> 
-                                    </div>                                     
-                                    <div class="notifi__item"> 
-                                        <div class="bg-c1 img-cir img-40"> 
-                                            <i class="zmdi zmdi-email-open"></i> 
-                                        </div>                                         
-                                        <div class="content"> 
-                                            <p>You got a email notification</p> 
-                                            <span class="date">April 12, 2018 06:50</span> 
-                                        </div>                                         
-                                    </div>                                     
-                                    <div class="notifi__item"> 
-                                        <div class="bg-c2 img-cir img-40"> 
-                                            <i class="zmdi zmdi-account-box"></i> 
-                                        </div>                                         
-                                        <div class="content"> 
-                                            <p>Your account has been blocked</p> 
-                                            <span class="date">April 12, 2018 06:50</span> 
-                                        </div>                                         
-                                    </div>                                     
-                                    <div class="notifi__item"> 
-                                        <div class="bg-c3 img-cir img-40"> 
-                                            <i class="zmdi zmdi-file-text"></i> 
-                                        </div>                                         
-                                        <div class="content"> 
-                                            <p>You got a new file</p> 
-                                            <span class="date">April 12, 2018 06:50</span> 
-                                        </div>                                         
-                                    </div>                                     
-                                    <div class="notifi__footer"> 
-                                        <a href="#">All notifications</a> 
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                            <div class="account-wrap"> 
-                                <div class="account-item account-item--style2 clearfix js-item-menu"> 
-                                    <div class="image"> 
-                                        <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
-                                    </div>                                     
-                                    <div class="content"> 
-                                        <a class="js-acc-btn" href="#">john doe</a> 
-                                    </div>                                     
-                                    <div class="account-dropdown js-dropdown"> 
-                                        <div class="info clearfix"> 
-                                            <div class="image"> 
-                                                <a href="#"> 
-                                                    <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
-                                                </a>                                                 
-                                            </div>                                             
-                                            <div class="content"> 
-                                                <h5 class="name"> <a href="#">john doe</a> </h5> 
-                                                <span class="email">johndoe@example.com</span> 
-                                            </div>                                             
-                                        </div>                                         
-                                        <div class="account-dropdown__body"> 
-                                            <div class="account-dropdown__item"> 
-                                                <a href="/client/profile"> <i class="zmdi zmdi-account"></i>Account</a> 
-                                            </div>                                             
-                                            <div class="account-dropdown__item"> 
-                                                <a href="/client/settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
-                                            </div>                                             
-                                            <div class="account-dropdown__item"> 
-                                                <a href="/client/payments"> <i class="zmdi zmdi-money-box"></i>Payments</a> 
-                                            </div>                                             
-                                        </div>                                         
-                                        <div class="account-dropdown__footer"> 
-                                            <a href="/client/logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
-                                        </div>                                         
-                                    </div>                                     
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>                     
-                </div>                 
-            </header>             
-            <!-- END HEADER DESKTOP-->             
-            <!-- HEADER MOBILE-->             
-            <header class="header-mobile header-mobile-2 d-block d-lg-none"> 
-                <div class="header-mobile__bar bg-ems-admin"> 
-                    <div class="container-fluid"> 
-                        <div class="header-mobile-inner"> 
-                            <a class="logo" href="index.html"> 
-                                <img src="images/icon/logo-client.png" alt="CoolAdmin"/> 
-                            </a>                             
-                            <button class="hamburger hamburger--slider" type="button"> 
-                                <span class="hamburger-box"> <span class="hamburger-inner"></span> </span> 
-                            </button>                             
-                        </div>                         
-                    </div>                     
-                </div>                 
-                <nav class="navbar-mobile"> 
-                    <div class="container-fluid"> 
-                        <ul class="navbar-mobile__list list-unstyled bg-ems-admin"> 
-                            <li> 
-                                <a href="/client/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard</a> 
-                            </li>                             
-                            <li> 
-                                <a href="/client/myevents"> <i class="fas fa-chart-bar"></i>My Events</a> 
-                            </li>                             
-                            <li> 
-                                <a href="/client/inbox"> <i class="fas fa fa-inbox"></i>Messages</a> 
-                            </li>                             
-                            <li> 
-                                <a href="/client/help"> <i class="fas fa-life-ring fa"></i>Support Center</a> 
-                            </li>                             
-                        </ul>                         
-                    </div>                     
-                </nav>                 
-            </header>             
-            <div class="sub-header-mobile-2 d-block d-lg-none"> 
-                <div class="header__tool"> 
-                    <div class="header-button-item has-noti js-item-menu"> 
-                        <i class="zmdi zmdi-notifications"></i> 
-                        <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown"> 
-                            <div class="notifi__title"> 
-                                <p>You have 3 Notifications</p> 
-                            </div>                             
-                            <div class="notifi__item"> 
-                                <div class="bg-c1 img-cir img-40"> 
-                                    <i class="zmdi zmdi-email-open"></i> 
-                                </div>                                 
-                                <div class="content"> 
-                                    <p>You got a email notification</p> 
-                                    <span class="date">April 12, 2018 06:50</span> 
-                                </div>                                 
-                            </div>                             
-                            <div class="notifi__item"> 
-                                <div class="bg-c2 img-cir img-40"> 
-                                    <i class="zmdi zmdi-account-box"></i> 
-                                </div>                                 
-                                <div class="content"> 
-                                    <p>Your account has been blocked</p> 
-                                    <span class="date">April 12, 2018 06:50</span> 
-                                </div>                                 
-                            </div>                             
-                            <div class="notifi__item"> 
-                                <div class="bg-c3 img-cir img-40"> 
-                                    <i class="zmdi zmdi-file-text"></i> 
-                                </div>                                 
-                                <div class="content"> 
-                                    <p>You got a new file</p> 
-                                    <span class="date">April 12, 2018 06:50</span> 
-                                </div>                                 
-                            </div>                             
-                            <div class="notifi__footer"> 
-                                <a href="#">All notifications</a> 
-                            </div>                             
-                        </div>                         
-                    </div>                     
-                    <div class="account-wrap"> 
-                        <div class="account-item account-item--style2 clearfix js-item-menu"> 
-                            <div class="image"> 
-                                <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
-                            </div>                             
-                            <div class="content"> 
-                                <a class="js-acc-btn" href="#">john doe</a> 
-                            </div>                             
-                            <div class="account-dropdown js-dropdown"> 
-                                <div class="info clearfix"> 
-                                    <div class="image"> 
-                                        <a href="#"> 
-                                            <img src="images/icon/avatar-01.jpg" alt="John Doe"/> 
-                                        </a>                                         
-                                    </div>                                     
-                                    <div class="content"> 
-                                        <h5 class="name"> <a href="#">john doe</a> </h5> 
-                                        <span class="email">johndoe@example.com</span> 
-                                    </div>                                     
-                                </div>                                 
-                                <div class="account-dropdown__body"> 
-                                    <div class="account-dropdown__item"> 
-                                        <a href="/client/profile"> <i class="zmdi zmdi-account"></i>Account</a> 
-                                    </div>                                     
-                                    <div class="account-dropdown__item"> 
-                                        <a href="/client/settings"> <i class="zmdi zmdi-settings"></i>Setting</a> 
-                                    </div>                                     
-                                    <div class="account-dropdown__item"> 
-                                        <a href="/client/payments"> <i class="zmdi zmdi-money-box"></i>Payments</a> 
-                                    </div>                                     
-                                </div>                                 
-                                <div class="account-dropdown__footer"> 
-                                    <a href="/client/logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>                     
-                </div>                 
-            </div>             
-            <!-- END HEADER MOBILE -->             
-            <!-- PAGE CONTENT-->             
-            <div class="page-content--bgf7"> 
-                <!-- BREADCRUMB-->                 
-                <!-- END BREADCRUMB-->                 
-                <!-- WELCOME-->                 
-                <!-- END WELCOME-->                 
-                <!-- STATISTIC-->                 
-                <!-- END STATISTIC-->                 
-                <!-- STATISTIC CHART-->                 
-                <!-- END STATISTIC CHART-->                 
-                <!-- DATA TABLE-->                 
-                <!-- END DATA TABLE-->                 
-                <!-- COPYRIGHT-->                 
-                <section class="p-t-60 p-b-20"> 
-                    <div class="container"> 
-                        <div class="row"> 
-                            <div class="col-md-12"> 
-                                <div class="copyright"> 
-                                    <p>Copyright © 2018 EMS. All rights reserved.</p> 
-                                </div>                                 
-                            </div>                             
-                        </div>                         
-                    </div>                     
-                </section>                 
-                <!-- END COPYRIGHT-->                 
-            </div>             
-        </div>         
+        <div class="container">
+            <br><br>
+            <h2 align="center"> Test form </h2>
+            <div class="form-group">
+                <form name="add_name" id="add_name">
+                        
+                    <table class="table table-bordered" id="dynamic_field">
+                        <tr>
+                            <td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list" /></td>
+                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
+                        </tr>
+                        
+                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit">
+                        
+                    </table>
+                </form>
+            </div>
+        </div>
+        
+        
+
+
+
         <!-- Jquery JS-->         
         <script src="vendor/jquery-3.2.1.min.js"></script>         
         <!-- Bootstrap JS-->         
@@ -309,4 +57,36 @@
         <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
     </body>     
 </html> 
+<script>
+        $(document).ready(function(){
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+
+            var i=1;
+            $('#add').click(function(){
+                i++;
+                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
+            });
+            $(document).on('click','.btn_remove', function(){
+                var button_id = $(this).attr("id");
+                $('#row'+button_id+'').remove();
+
+            });
+            $('#submit').click(function(){
+                $.ajax({
+                    type:'POST',
+                    url:'/tadd',
+                    data:$('#add_name').serialize(),
+                    success:function(data)
+                    {
+                        alert(data);
+                        $('#add_name')[0].reset();
+                    }
+                });
+            });
+        });
+    </script>
 <!-- end document-->

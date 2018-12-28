@@ -30,7 +30,10 @@
             </form>             
             <div class="register-link"> 
                 <p class="text-white"> 
-                    Don't you have account? <a href="register" class="text-warning">Sign Up Here</a> </p> 
+                    Don't you have account? <a href="register" class="text-warning">Sign Up Here</a> </p>
+                <p class="text-white"> 
+                    <a href="/client/redirect" class="btn btn-primary">Login With Google</a> 
+                </p> 
             </div>             
         </div>         
     </div>     
