@@ -7,23 +7,11 @@ use App\Http\Controllers\Controller;
 use App\ServiceImage;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\DB;
 
 
 class ServiceImagesController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public static function store2($request,$id)
     {/*
         //dd($request->profile_image);
@@ -45,9 +33,7 @@ class ServiceImagesController extends Controller
         // save image files
 
          if($request != null)
-         {
-
-            // $images = $request;
+         {  
              for($i=0; $i<count($request);$i++)
              {
                  $image = $request[$i];
@@ -75,32 +61,57 @@ class ServiceImagesController extends Controller
          
                  $serviceImg->save();
             
-            }
+             }
         }
         
     }
 
-
-    public function show($id)
+    public static function edit($id)
     {
-        //
+        $serviceImg=ServiceImage::where('service_id',$id)->get();
+       
     }
 
-
-    public function edit($id)
+    public static function update(Request $request)
     {
-        //
-    }
 
+       $numOfImg=($request->picture);
+       if( $numOfImg != null){
+            for($i=0;$i<count($numOfImg);$i++){
+                DB::table('service_images')->where('service_id', $request->serviceID)->where('imgurl',$request->picture[$i])->delete();
+            }
+        }
 
-    public function update(Request $request, $id)
-    {
-        //
-    }
+       if($request->newImage != null)
+       {
 
-
-    public function destroy($id)
-    {
-        //
+           for($i=0; $i<count($request->newImage);$i++)
+           {
+               $image = $request->newImage[$i];
+               // Get filename with the extension
+               $filenameWithExt = $image->getClientOriginalName();
+               // Get just filename
+               $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+               // Get just ext
+               $extension = $image->getClientOriginalExtension();
+               
+               // Filename to store
+               $fileNameToStore = $filename.'_'.time().'.'.$extension;
+               // Upload 
+               $image_up = $image;
+               $image_resize = Image::make($image->getRealPath());              
+               $image_resize->resize(460, 310);
+               $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
+               
+               //Adding URL to template_images table
+               
+               $serviceImg=new ServiceImage();
+              // return "123";
+               $serviceImg->service_id=$request->serviceID;
+               $serviceImg->imgurl=$fileNameToStore;
+       
+               $serviceImg->save();
+            }
+        }
     }
 }
