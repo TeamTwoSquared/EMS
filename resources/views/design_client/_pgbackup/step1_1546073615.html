@@ -290,111 +290,114 @@
                         </div>                         
                     </div>                     
                 </section>
-                <section class="statistic statistic2 pad5"> 
+                <section class="statistic statistic2 pad5">
                     <div class="container"> 
                         <div class="row">
-                            <div class="col-md-9"> 
-                                @if($is_old==0)         
-                                <div class="row">
-                                    <div class="alert font-weight-bold" role="alert">
-                                        Editing Template: {{$default_template->name}}
-</div>
-                                </div>
-                                @endif
-                                <div class="row">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary">Invite</button>
+                            <div class="col-md-9">
+                                <form>
+                                    <div class="row">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationDefault01">Event Name</label>
+                                            <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" value="" required="">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="validationDefault02">Event Date and Time</label>
+                                            <input type="text" class="form-control" id="validationDefault02" placeholder="" value="" required="">
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <div class="table-responsive" style="max-height:35em; overflow: auto;">
-                                        <form name="edit_tasks" id="edit_tasks">
-                                            <div class="alert font-weight-bold" role="alert">
-                                                Event Name :
-                                                @if($is_old==0)
-                                                <input type="text" name="event_name" id="event_name" placeholder="Name your event" class="form-control name_list"/>
-                                                @else
-                                                <input type="text" name="event_name" id="event_name" value="{{$my_event->name}}" placeholder="Name your event" class="form-control name_list"/>
-                                                @endif
-                                            </div>
-                                            <table class="table" id="dynamic_field">
-                                                <thead> 
-                                                    <tr> 
-                                                        <th>Task</th>
-                                                        <th>Service Providers</th> 
-                                                        <th></th> 
-                                                    </tr>                                                     
-                                                </thead>                                                 
-                                                <tbody> 
-                                                    <input type="hidden" id="task_id" name="default_task_id[]" value="1"/>
-                                                    <input type="hidden" name="new_task[]" id="new_task" value="0"/>
-                                                    @foreach($default_tasks as $default_task)
-                                                    <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
-                                                        <td>
-                                                            <input type="text" value="{{$default_task->name}}" class="form-control name_list"/> 
-                                                            <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/>
-                                                        </td>
-                                                        <td>Select</td> 
-                                                        <td>
-                                                            <div class="table-data-feature flex-row-reverse">
-                                                                <button type="button" name="down" id="down" class="item down_button" title="Move Down">
-                                                                    <i class="fa-chevron-down fa"></i>
-                                                                </button>
-                                                                &nbsp;
-                                                                <button type="button" name="up" id="up" class="item up_button" title="Move Up">
-                                                                    <i class="fa fa-chevron-up"></i>
-                                                                </button>
-                                                                &nbsp;
-                                                                <button type="button" name="remove" id="{{$i++}}" class="item btn_remove" title="Delete">
-                                                                    <i class="zmdi zmdi-delete"></i>
-                                                                </button>
+                                    <p id="msgsuccess" style="display:none" class="text-success font-weight-bold mt-0 mb-0 ">Event Saved Successfully !</p>
+                                    <div class="row ">
+                                        <button type="submit" class="btn btn-secondary ml-3 " name="save">Save Event</button>
+                                    </div>
+                                    <hr/>
+                                    <div class="row">
+                                        <h4><b>Template Selection</b></h4>
+                                    </div>
+                                    <div class="row">
+                                        <div class="alert alert-success col-md-10"> 
+                                            <strong>Select most suitable template for your event!</strong> or you can select tasks from different templates and create your 
+                                            <strong>own template</strong>.  
+                                            <br>N.B. You can change / add new tasks in next step :)
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div id="panels1" role="tablist"> 
+                                                <div class="card"> 
+                                                    <div role="tab"> 
+                                                        <h5 class="mb-0 card-header"> <a data-toggle="collapse" href="#" aria-expanded="true" aria-controls="collapse1">                                    Sinhala Wedding                                </a> </h5> 
+                                                    </div>                                                     
+                                                    <div id="collapse1" class="collapse show" role="tabpanel" aria-labelledby="headingOne" data-parent="#panels1"> 
+                                                        <div class="card-body">
+                                                            Sinhala Wedding is ........
+                                                            <div id="panels2" role="tablist"> 
+                                                                <div class="card"> 
+                                                                    <div role="tab" class="card-header pl-4"> 
+                                                                        <input class="form-check-input" type="checkbox" value="option1">
+                                                                        <h5 class="mb-0"> <a data-toggle="collapse" href="#collapse2" aria-expanded="true" aria-controls="collapse2">                                    Collapsible Group Item #1                                </a> </h5> 
+                                                                    </div>                                                                     
+                                                                    <div id="collapse2" class="collapse" role="tabpanel" aria-labelledby="headingOne" data-parent="#panels2"> 
+                                                                        <div class="card-body">                                Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.                            </div>                                                                         
+                                                                    </div>                                                                     
+                                                                </div>                                                                 
                                                             </div>
-                                                        </td>
-                                                    </tr>                                                     
-                                                    @endforeach                               
-                                                </tbody>
-                                            </table>
-                                        </form>
+                                                            <button class="btn btn-primary ml-2" type="button">Choose this template</button>
+                                                        </div>                                                         
+                                                    </div>                                                     
+                                                </div>                                                 
+                                            </div>                                             
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <button type="button" name="add" id="add" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
-                                </div>
+                                    <button class="btn btn-primary" type="submit">create my own template</button>
+                                </form>
                             </div>
                             <div class="col-md-3">
-</div>
+                                <div class="row pg-empty-placeholder">
+                                    <div class="table-responsive" style="height:51em; overflow: auto;">
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <hr/>
+                        <hr>
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                         </div>                         
-                    </div>                     
+                    </div>
                 </section>                 
                 <!-- END STATISTIC-->                 
                 <!-- STATISTIC CHART-->                 
@@ -421,6 +424,8 @@
         <!-- Bootstrap JS-->         
         <script src="vendor/bootstrap-4.1/popper.min.js"></script>         
         <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>         
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         <!-- Vendor JS       -->         
         <script src="vendor/slick/slick.min.js">
     </script>         

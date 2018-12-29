@@ -11,11 +11,21 @@
 
  
 $i = 1; //to number rows
-$is_old = 2; //Specify whether event is old or not
-$my_event_id=$event_id; //Current event id is recieved
+$is_old = 0; //Specify whether event is old or not
+$my_event_id=session()->get('default_event','NULL'); //Current event id is recieved
 $my_event = EventsController::getEvent($my_event_id);
-$default_tasks = EventTemplateTasksController::getTasks($my_event_id);
 
+if ($my_event_id=='NULL')
+{
+    $is_old = 0; 
+    $default_tasks = TemplateTasksController::getTasks($default_template->template_id);
+}
+else
+{
+    $is_old=2;//A already saved event loading again from myEvent
+    $default_tasks = EventTemplateTasksController::getTasks($my_event_id, $default_template->template_id);
+
+}
 @endphp
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
     <div class="container"> 
@@ -52,11 +62,11 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row">
-            <div class="col-md-12"> 
+            <div class="col-md-9"> 
                 @if($is_old==0)         
                 <div class="row">
                     <div class="alert font-weight-bold" role="alert">
-                        Managing Event: {{$my_event->name}}
+                        Editing Template: {{$default_template->name}}
                     </div>
                 </div>
                 @endif
@@ -66,20 +76,16 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         </div>
                 </div>
                 <div class="row">
-                    <div class="table-responsive">
+                    <div class="table-responsive" style="max-height:35em; overflow: auto;">
                         <form name="edit_tasks" id="edit_tasks">
-                            
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationDefault01">Event Name</label>
-                                <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_name" id="event_name" value="{{$my_event->name}}" required>
-                                </div>
-                                <div class="col-md-4 mb-3">
-                                    <label for="validationDefault02">Event Date and Time</label>
-                                    <input type="text" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="{{$my_event->datetime}}" required>
-                                </div>
-                                <input type="hidden" name="event_id" id="event_id" value="{{$my_event->event_id}}">
-                            
-                            
+                            <div class="alert font-weight-bold" role="alert">
+                                Event Name :
+                                @if($is_old==0)
+                                <input type="text" name = "event_name" id="event_name" placeholder="Name your event" class="form-control name_list"/>
+                                @else
+                                <input type="text" name = "event_name" id="event_name" value="{{$my_event->name}}" placeholder="Name your event" class="form-control name_list"/>
+                                @endif
+                            </div>
                         <table class="table" id="dynamic_field">
                             <thead> 
                                 <tr> 
@@ -131,6 +137,9 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                 <div class="row">
                     <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                 </div>
+            </div>
+            <div class="col-md-3">
+                Hiii
             </div>
         </div>
         <hr/>
@@ -259,7 +268,7 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         data:$('#edit_tasks').serialize(),
                         success:function(data)
                         {
-                            if(data==2) alert("Please Name Your Event and Specify Event Date");
+                            if(data==2) alert("Please Name Your Event");
                             else if(data==1) 
                             {
                                 alert("Event Saved Successfully");

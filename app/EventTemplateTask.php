@@ -12,5 +12,5 @@ class EventTemplateTask extends Model
     protected $table = 'event_template_tasks';
    
     // Primary Key
-    public $primaryKey = ['event_id','template_id','task_id'];
+    public $primaryKey = ['event_id','task_id'];
 }

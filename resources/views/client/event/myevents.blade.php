@@ -7,7 +7,7 @@
 
  session()->forget('default_event');
 @endphp
-<section class="au-breadcrumb2" data-pg-collapsed> 
+<section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
     <div class="container"> 
         <div class="row"> 
             <div class="col-md-12"> 
@@ -35,7 +35,7 @@
         </div>         
     </div>     
 </section>
-<section class="statistic statistic2" data-pg-collapsed> 
+<section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row" data-pg-collapsed> 
             <div class="col-md-9">
@@ -77,15 +77,15 @@
             </div>             
             <div class="col-md-3 " data-pg-collapsed> 
                 <div class="row">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"/>
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
                     <hr/> 
                 </div>
                 <div class="row">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"/>
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
                     <hr/> 
                 </div>
                 <div class="row">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"/>
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
                     <hr/> 
                 </div>                 
             </div>             
@@ -93,27 +93,27 @@
         <hr/> 
         <div class="row" data-pg-collapsed> 
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
             <div class="col-md-4"> 
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png"> 
+                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
                 <hr/> 
             </div>             
         </div>         
