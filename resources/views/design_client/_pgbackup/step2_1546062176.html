@@ -290,111 +290,95 @@
                         </div>                         
                     </div>                     
                 </section>
-                <section class="statistic statistic2 pad5"> 
+                <section class="statistic statistic2 pad5">
                     <div class="container"> 
                         <div class="row">
-                            <div class="col-md-9"> 
-                                @if($is_old==0)         
+                            <div class="col-md-9 ">
                                 <div class="row">
-                                    <div class="alert font-weight-bold" role="alert">
-                                        Editing Template: {{$default_template->name}}
-</div>
-                                </div>
-                                @endif
-                                <div class="row">
-                                    <div class="btn-group" role="group" aria-label="Basic example">
-                                        <button type="button" class="btn btn-secondary">Invite</button>
+                                    <div class="alert alert-success" role="alert">
+                                        <strong>Your Event is created successfully</strong> with the selected template. Now its' time to find service providers for your Event.
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="table-responsive" style="max-height:35em; overflow: auto;">
-                                        <form name="edit_tasks" id="edit_tasks">
-                                            <div class="alert font-weight-bold" role="alert">
-                                                Event Name :
-                                                @if($is_old==0)
-                                                <input type="text" name="event_name" id="event_name" placeholder="Name your event" class="form-control name_list"/>
-                                                @else
-                                                <input type="text" name="event_name" id="event_name" value="{{$my_event->name}}" placeholder="Name your event" class="form-control name_list"/>
-                                                @endif
+                                    <div class="col-md-6">
+                                        <div class="card text-center">
+                                            <div class="card-header">Next Step&nbsp;
+                                                <i class="fa fa-hand-peace-o"></i>
                                             </div>
-                                            <table class="table" id="dynamic_field">
-                                                <thead> 
-                                                    <tr> 
-                                                        <th>Task</th>
-                                                        <th>Service Providers</th> 
-                                                        <th></th> 
-                                                    </tr>                                                     
-                                                </thead>                                                 
-                                                <tbody> 
-                                                    <input type="hidden" id="task_id" name="default_task_id[]" value="1"/>
-                                                    <input type="hidden" name="new_task[]" id="new_task" value="0"/>
-                                                    @foreach($default_tasks as $default_task)
-                                                    <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
-                                                        <td>
-                                                            <input type="text" value="{{$default_task->name}}" class="form-control name_list"/> 
-                                                            <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/>
-                                                        </td>
-                                                        <td>Select</td> 
-                                                        <td>
-                                                            <div class="table-data-feature flex-row-reverse">
-                                                                <button type="button" name="down" id="down" class="item down_button" title="Move Down">
-                                                                    <i class="fa-chevron-down fa"></i>
-                                                                </button>
-                                                                &nbsp;
-                                                                <button type="button" name="up" id="up" class="item up_button" title="Move Up">
-                                                                    <i class="fa fa-chevron-up"></i>
-                                                                </button>
-                                                                &nbsp;
-                                                                <button type="button" name="remove" id="{{$i++}}" class="item btn_remove" title="Delete">
-                                                                    <i class="zmdi zmdi-delete"></i>
-                                                                </button>
-                                                            </div>
-                                                        </td>
-                                                    </tr>                                                     
-                                                    @endforeach                               
-                                                </tbody>
-                                            </table>
-                                        </form>
+                                            <div class="card-body">
+                                                <h4 class="card-title">Visit My Events</h4>
+                                                <p class="card-text">See your newly created event in my event listing</p>
+                                                <a href="/client/myevents" class="btn btn-primary">Visit</a>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                <br>
+                                            </div>
+                                        </div>                                         
                                     </div>
-                                </div>
-                                <div class="row">
-                                    <button type="button" name="add" id="add" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
-                                </div>
-                                <div class="row">
-                                    <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
+                                    <div class="col-md-6">
+                                        <div class="card text-center">
+                                            <div class="card-header">Next Step&nbsp;
+                                                <i class="fa fa-hand-peace-o"></i>
+                                            </div>
+                                            <div class="card-body">
+                                                <h4 class="card-title">Find Service Providers</h4>
+                                                <p class="card-text">You can find service providers for the tasks in your event</p>
+                                                <a href="#" class="btn btn-primary">Find</a>
+                                            </div>
+                                            <div class="card-footer text-muted">
+                                                <br>
+                                            </div>
+                                        </div>                                         
+                                    </div>
                                 </div>
                             </div>
                             <div class="col-md-3">
-</div>
+                                <div class="row pg-empty-placeholder">
+                                    <div class="table-responsive" style="height:51em; overflow: auto;">
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                        <div class="row">
+                                            <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"/>
+                                            <hr/> 
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                        <hr/>
+                        <hr>
                         <div class="row">
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                             <div class="col-md-4">
                                 <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                                <hr/>
+                                <hr>
                             </div>
                         </div>                         
-                    </div>                     
+                    </div>
                 </section>                 
                 <!-- END STATISTIC-->                 
                 <!-- STATISTIC CHART-->                 
@@ -421,6 +405,8 @@
         <!-- Bootstrap JS-->         
         <script src="vendor/bootstrap-4.1/popper.min.js"></script>         
         <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>         
+        <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/js/bootstrap-datepicker.min.js"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.4.1/css/bootstrap-datepicker3.css"/>
         <!-- Vendor JS       -->         
         <script src="vendor/slick/slick.min.js">
     </script>         

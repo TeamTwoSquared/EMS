@@ -3,11 +3,13 @@
 @php
  use App\Http\Controllers\event\CatergoryImageController;
  use App\Http\Controllers\event\CatergoriesController;
+ use App\Http\Controllers\client\ClientsController;
+
  $catergories=CatergoriesController::client_index();
- 
+ $client = ClientsController::getClient(session()->get('customer_id'));
  session()->forget('default_event');
 @endphp
-<section class="au-breadcrumb2" data-pg-collapsed> 
+<section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
     <div class="container"> 
         <div class="row"> 
             <div class="col-md-12"> 
@@ -39,13 +41,13 @@
     <div class="container"> 
         <div class="row"> 
             <div class="col-md-12"> 
-                <h1 class="title-4">Welcome back <span>John!</span> </h1> 
+                <h1 class="title-4">Welcome back <span>{{$client->username}}!</span> </h1> 
                 <hr class="line-seprate"> 
             </div>             
         </div>         
     </div>     
 </section>
-<section class="statistic statistic2" data-pg-collapsed> 
+<section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row">
             <div class="col-md-9">
@@ -54,7 +56,7 @@
                     @php
                     $randomImage=CatergoryImageController::getRandomImages($catergory->catergory_id)
                     @endphp
-                    <div class="grid col-md-4 col-sm-6 col-xs-12">
+                    <div class="grid col-md-4">
                         <figure class="effect-lily">
                             @if($randomImage->count()!=0)
                             <img src="/storage/images/catergory/{{$randomImage->imgurl}}" alt="{{$catergory->name}}"/>
@@ -72,7 +74,18 @@
                 </div>
             </div>
             <div class="col-md-3">
-                <img src="http://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/radaruk-300x600.png">
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>
             </div>
         </div>
         <hr/>
