@@ -149,7 +149,7 @@
             <div class="row" data-pg-collapsed>
                 <div class="col-lg-9">
                     <div class="card">
-                        <div class="card-header">Images Of Your Service</div>
+                        <div class="card-header">Images Of Your Service - <small>(Maximmum 6 Images Are Allowed !)</small></div>
                         <div class="card-body card-block">
 
                                 <div class="form-actions form-group">
@@ -180,7 +180,7 @@
                 <div class="col-lg-9">
                     <center>
                         <div class="form-actions form-group">
-                        <button type="submit" class="btn btn-success btn-sm">Add Your New Service</button>
+                        <button type="submit" class="btn btn-success btn-sm" style="margin:auto;display:block">Add Your New Service</button>
                     </center>
                     </div>
                 </div>
