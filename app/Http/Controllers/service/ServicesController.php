@@ -80,19 +80,21 @@ class ServicesController extends Controller
         $serviceKeywords=ServiceKeyword::where('service_id',$service_id)->get();
         $serviceImages=ServiceImage::where('service_id',$service_id)->get();
         $serviceVideos=ServiceVideo::where('service_id',$service_id)->get();
-      //  dd($serviceVideos[0]->videourl);
+
+        $serviceImg=count(ServiceImage::where('service_id',$service_id)->get());
+        
         if(count($serviceVideos) != 0){
-            return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos',$serviceVideos[0]->videourl)->with('serviceID',$service_id);
+            return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos',$serviceVideos[0]->videourl)->with('serviceID',$service_id)->with('service_img',$serviceImg);
         }
         else{
-            return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos'," ")->with('serviceID',$service_id);
+            return view('svp.editService')->with('service_info',$service)->with('service_locations',$serviceLocations)->with('service_types',$serviceTypes)->with('service_keywords',$serviceKeywords)->with('service_images',$serviceImages)->with('service_videos'," ")->with('serviceID',$service_id)->with('service_img',$serviceImg);
         }
     }
 
 
     public function update(Request $request)
     {
-        dd($request);
+       // dd($request->picture[2]);
 
 
           //  DB::table('services')->update(['service_id'=>($request->serviceID),'name'=>$request->sName , 'price'=>$request->price,'description'=>$request->description ]);
@@ -109,6 +111,7 @@ class ServicesController extends Controller
             ServiceLocationsController::update($request);
             ServiceTypesController::update($request);
             ServiceVideosController::update($request);
+            ServiceImagesController::update($request);
 
             
 

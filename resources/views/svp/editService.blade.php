@@ -94,7 +94,7 @@
 </head>
 
 <div role="main">
-    <form class="album py-5 bg-light" method="POST" action="/svp/updateService">
+    <form class="album py-5 bg-light" method="POST" action="/svp/updateService" data-pg-collapsed enctype="multipart/form-data">
         <div class="container">
 
                 {{ csrf_field() }}
@@ -185,7 +185,7 @@
                
                 <div class="form-group">
                     <label class="col-form-label" for="formGroupExampleInput2">Service video URL</label>
-                    <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder="Video URL" value="{{$service_info->description}}"/>
+                    <input type="text" class="form-control" id="formGroupExampleInput2" name='url' placeholder="Video URL" value="{{$service_videos}}"/>
                 </div>
 
 <!-- service images -->
@@ -207,19 +207,35 @@
                     @endif
                 </div>
 
-                <div>
-                    @if(count($service_images)!=null)
-                        <button type="button" class="btn btn-success" name="delete_button" onclick="selectedImages()" >Delete</button>
-
-
-                    @else
-                        <div>
-                            <input type="file" id="files" name="newImages[]" multiple />
+                <div class="form-group">
+                    <div class="row" >
+                        <div class="col-lg-9">
+                            <div class="card">
+                            <div class="card-header">Choose Your New Images -<small><?php 
+                                                                                if($service_img==0){
+                                                                                    echo("(Maximumm 6 Photos Can Upload)");
+                                                                                } 
+                                                                                else if($service_img==6){
+                                                                                    echo("(Alrady Uploaded 6 Photos ! )");
+                                                                                }
+                                                                                else { 
+                                                                                    echo ("(Maximumm ".(6-$service_img)." Photos Can Update)");
+                                                                                } 
+                                                                            ?> </small> </div>
+                                <div class="card-body card-block">
+        
+                                        <div class="form-actions form-group">
+                                            <input type="file"  name="newImage[]" class="form-control-file" multiple>
+                                        </div>
+                
+                                </div>
+                            </div>
                         </div>
+                    </div>
+                </div>
 
-                    @endif
-                            <button type="submit" class="btn btn-success" >Update service</button>
-
+                <div>
+                    <button type="submit" class="btn btn-success" style="margin:auto;display:block">Update Your Service</button>
                 </div>
 
         </div>

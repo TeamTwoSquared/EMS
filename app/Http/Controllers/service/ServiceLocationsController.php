@@ -11,18 +11,6 @@ use Illuminate\Support\Facades\DB;
 class ServiceLocationsController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public static function store2($request,$id)
     {
         
@@ -38,13 +26,6 @@ class ServiceLocationsController extends Controller
                 $loc->save();
             }
         }
-    }
-
-
-
-    public function edit($id)
-    {
-        //
     }
 
 
@@ -69,13 +50,5 @@ class ServiceLocationsController extends Controller
                         $loc->save();
             }
         }
-
-
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }

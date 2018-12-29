@@ -10,33 +10,9 @@ use Illuminate\Support\Facades\DB;
 use App\Service;
 
 
-
-
-
 class ServiceKeywordsController extends Controller
 {
-    private static  $serviceId;
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-   /* public static function passServiceId($id){
-       self::$serviceId=$id;
-       dd($serviceId);
-    }
-
-    public static function getServiceId(){
-        dd(self::$serviceId);
-    }*/
-
+   
     public static function store2($request, $id){
 
         for($i=1;$i<7;$i++) {
@@ -54,19 +30,6 @@ class ServiceKeywordsController extends Controller
         }
 
     }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
 
     public static function update(Request $request)
     {
@@ -87,15 +50,6 @@ class ServiceKeywordsController extends Controller
                         $key->keyword = $request->$a;
                         $key->save();
             }
-        }
-
-
-         
-    }
-
-
-    public static function destroy1($request)
-    {
-       
+        }     
     }
 }

@@ -9,19 +9,6 @@ use Illuminate\Support\Facades\DB;
 
 class ServiceVideosController extends Controller
 {
-
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public static function store2($request,$id)
     {
         if($request != null) {
@@ -33,19 +20,6 @@ class ServiceVideosController extends Controller
         
         }
     }
-
-
-    public function show($id)
-    {
-        //
-    }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
 
     public static function update(Request $request)
     {
@@ -65,11 +39,5 @@ class ServiceVideosController extends Controller
             $service_video->save();
     
         }
-    }
-
-
-    public function destroy($id)
-    {
-        //
     }
 }
