@@ -30,6 +30,60 @@ class ClientsController extends Controller
         return redirect('/admin/client');
         
     }
+    public function block($id)
+    {
+        $customer = Client::where('customer_id',$id)->get();
+        $customer = $customer[0];
+        if ($customer->isverified==2)
+        {
+            $customer->isverified=1;
+        }
+        else if ($customer->isverified==0)
+        {
+            $customer->isverified=1;
+        }
+        else
+        {
+            $customer->isverified=2;
+        }
+        $customer->save();
+        return redirect('/admin/client');
+    }
+    public function admin_create()
+    {
+        return view('admin.client.client_create');
+    }
+    public function admin_edit($id)
+    {
+        $customer = (Client::where('customer_id',$id)->get())[0];
+        return view('admin.client.client_update')->with('customer',$customer);
+    }
+
+    public function admin_new_store(Request $request)
+    {
+            $client = new Client();
+            if($request->newpassword==$request->newpasswordagain)
+            {
+                $client->name = $request->name;
+                $client->email = $request->email;
+                $client->username = $request->username;
+                $client->password = $request->newpassword;
+                $client->address = $request->address;
+                $client->save();
+                return redirect('/admin/client')->with('success','Profile Updated');
+            }
+            else
+            {
+                return redirect('/admin/client')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
+            }
+    }
+
+    public function admin_edit_store()
+    {
+
+    }
+
+
 
 
     public function register(Request $request)
@@ -139,13 +193,6 @@ class ClientsController extends Controller
     {
         //
     }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
 
     public function update(Request $request, $id)
     {

@@ -66,8 +66,12 @@ Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy')
 Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@admin_update');
 
 Route::get('/admin/client', 'client\ClientsController@admin_index');
+Route::get('/admin/client/add', 'client\ClientsController@admin_create');
 Route::get('/admin/client/delete/{id}','client\Clientscontroller@destroy');
 Route::get('/admin/client/edit/{id}', 'client\ClientsController@admin_edit');
+Route::get('/admin/client/block/{id}','client\ClientsController@block');
+Route::post('/admin/client/save_profile','client\ClientsController@admin_new_store');
+
 
 
 

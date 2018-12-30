@@ -2,39 +2,43 @@
 @section('content')
 
 
+
+
+
+
 <section class="statistic"> 
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
             <div class="row" data-pg-collapsed> 
                 <div class="col-lg-9"> 
                     <div class="card"> 
-                        <div class="card-header">Add New Client Details</div>             
+                        <div class="card-header">Update Client Details</div>             
                         <div class="card-body card-block"> 
                             <form action="save_profile" method="post" data-pg-collapsed> 
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress">Name</label>                         
-                                <input type="text" class="form-control" id="name" name="name" placeholder="" value=""> 
+                                <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{$customer->name}}"> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Username</label>                         
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="" value=""> 
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="" value="{{$customer->username}}"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder="" value=""> 
+                                    <input type="email" class="form-control" id="email" name="email" placeholder=""  value="{{$customer->email}}"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">Password</label>
-                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type your new password"> 
+                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type new password"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">Confirm New Password</label>
-                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type your new password again"> 
+                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type new password again"> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Address</label>                         
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="" value=""> 
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="" value="{{$customer->address}}"> 
                                 </div>                     
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">Address 2</label>                         
