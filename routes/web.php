@@ -12,7 +12,7 @@
 */
 
 Route::get('/test', function () {
-    return view('test2');
+    return view('test');
 });
 Route::post('/orderdata', 'TestsController@orderdata');
 
@@ -119,7 +119,7 @@ Route::get('/svpverification/{id}/{key}', 'svp\SVPsController@doVerify');
 Route::get('/svp/service','service\ServicesController@index');
 Route::get('/svp/booking','service\ServiceCustomerBookingsController@index');
 Route::get('/svp/review','review\ReviewingsController@index');
-Route::get('/svp/sideAdds','ad\AdsController@index');
+
 
 Route::get('/svp/help',function(){
     return view('svp.help');
@@ -169,9 +169,12 @@ Route::get('/client/settings', function (){
     return view ('client.settings');
 
 });
-Route::get('/client/manage/{id}','event\TemplatesController@client_index');
-Route::get('/client/manage/{catergory_id}/{template_id}','event\TemplatesController@client_changetemplate');
-Route::post('/client/savenewtemplate','event\EventsController@store_new');
+Route::get('/client/manage/{id}','event\TemplatesController@step1_index');
+Route::post('/client/saveevent','event\EventsController@store_step1');
+Route::post('/client/saveeventagain','event\EventsController@store_step1_again');
+Route::get('/client/savenewtemplate/{event_id}/{template_id}','event\EventsController@store_template');
+Route::post('/client/saveown','event\EventsController@store_own');
+Route::get('/client/ownstep2/{event_id}','event\EventsController@clientOwn_step2');
 Route::post('/client/savetemplate1','event\EventsController@store1');
 Route::post('/client/savetemplate2','event\EventsController@store2');
 
@@ -188,14 +191,13 @@ Route::get('/client/logout','client\ClientsController@logout');
 
 // Routes for side Adds.
 
-Route::get('/svp/sideAdds','ad\AdsController@index');
-Route::get('/svp/sideAdds/create','ad\AdsController@create');
-Route::post('/svp/sideAdds/store','ad\AdsController@store');
-Route::post('/svp/sideAds/store','ad\AdImagesController@store');
-Route::get('/svp/sideAdds/show/{{ad_id}}','ad\AdsController@show');
-Route::get('/svp/sideAdds/edit/{{ad_id}}','ad\AdsController@edit');
-Route::match('/svp/sideAdds/update','ad\AdsController@update');
-Route::delete('/svp/sideAdds/delete','ad\AdsController@destroy');
+Route::get('/svp/ads','ad\AdsController@index');
+Route::get('/svp/ads/create','ad\AdsController@create');
+Route::post('/svp/ads/store','ad\AdsController@store');
+Route::get('/svp/ads/show/{{ad_id}}','ad\AdsController@show');
+Route::get('/svp/ads/edit/{{ad_id}}','ad\AdsController@edit');
+Route::match('/svp/ads/update','ad\AdsController@update');
+Route::delete('/svp/ads/delete','ad\AdsController@destroy');
 
 // Routes for services of svp
 
@@ -205,6 +207,7 @@ Route::post('/svp/submitService','service\ServicesController@store');
 Route::get('/svp/ViewService/{service_id}','service\ServicesController@show');
 Route::get('/svp/DeleteService/{service_id}','service\ServicesController@destroy');
 Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
+Route::post('/svp/updateService','service\ServicesController@update');
 //Route::post
 
 

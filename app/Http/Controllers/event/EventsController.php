@@ -10,6 +10,7 @@ use App\ClientEvent;
 use App\EventTemplateTask;
 
 use App\Http\Controllers\event\TasksController;
+use App\Http\Controllers\event\TemplateTasksController;
 
 
 class EventsController extends Controller
@@ -35,7 +36,73 @@ class EventsController extends Controller
         //
     }
 
-    public function store_new(Request $request)
+    public function store_step1(Request $request)
+    {
+        if(!(isset($request->event_name) && isset($request->event_date))) {return 0;}
+            $event = new Event();
+            $event->name = $request->event_name;
+            $event->datetime = $request->event_date;
+            $event->template_id = 1;
+            $event->save();
+
+            //Relate customer and event
+            $client_event = new ClientEvent();
+            $client_event->customer_id = session()->get('customer_id');
+            $client_event->event_id = $event->event_id;
+            $client_event->save();
+            return $event->event_id;
+    }
+
+    public function store_step1_again(Request $request)
+    {
+        if(!(isset($request->event_name) && isset($request->event_date))) {return 2;}
+
+            $event = Event::find($request->event_id);
+            $event->name = $request->event_name;
+            $event->datetime = $request->event_date;
+            $event->save();
+    }
+
+    public function store_template($event_id, $template_id)
+    {
+        $tasks = TemplateTasksController::getTasks($template_id);
+        $event = Event::find($event_id);
+            foreach($tasks as $task)
+            {
+             $event_template_task = new EventTemplateTask();
+             $event_template_task->event_id = $event_id;
+             $event_template_task->task_id = $task->task_id;
+             $event_template_task->save();
+            }  
+            $event->template_id = $template_id;
+            $event->save();
+            return view('client.event.step2')->with('event_id',$event_id);
+
+    }
+
+    public function store_own(Request $request)
+    {
+        if($request->task_ids==NULL) {return 0;}
+        $event = Event::find($request->event_id);
+        foreach($request->task_ids as $task_id)
+        {
+            $event_template_task = new EventTemplateTask();
+            $event_template_task->event_id = $request->event_id;
+            $event_template_task->task_id = $task_id;
+            $event_template_task->save();
+        }
+        $event->template_id = 2;
+        $event->save();
+        return 3;//Return 3 on success
+
+    }
+
+    public function clientOwn_step2($event_id)
+    {
+        return view('client.event.step2')->with('event_id',$event_id);
+    }
+
+    public function store_new($id)
     {
         if(!isset($request->event_name)) {return 2;}//Please enter and event_name
         $default_task_ids = $request->default_task_id;
@@ -111,7 +178,7 @@ class EventsController extends Controller
 
     public function store1(Request $request)
     {
-        if(!isset($request->event_name)) {return "Please Name Your Event";}
+        if(!(isset($request->event_name) && isset($request->event_date))) {return "Please Name Your Event and Specify Event Date";}
         $default_task_ids = $request->default_task_id;
         $new_tasks = $request->new_task;
 
@@ -125,8 +192,9 @@ class EventsController extends Controller
         if ($default_number + $new_number  > 0 )
         {
             
-            $event = Event::find(session()->get('default_event'));
+            $event = Event::find($request->event_id);
             $event->name = $request->event_name;
+            $event->datetime = $request->event_date;
             $event->save();
 
             TasksController::destroyTemps1($event->event_id); // Delete all associated previous temporary tasks
@@ -137,7 +205,6 @@ class EventsController extends Controller
             {
              $event_template_task = new EventTemplateTask();
              $event_template_task->event_id = $event->event_id;
-             $event_template_task->template_id = session()->get('default_template')->template_id;
              $event_template_task->task_id = $task_id;
              $event_template_task->save();
             }
@@ -155,7 +222,6 @@ class EventsController extends Controller
                     //Update EventTemplateTask
                     $event_template_task = new EventTemplateTask();
                     $event_template_task->event_id = $event->event_id;
-                    $event_template_task->template_id = session()->get('default_template')->template_id;
                     $event_template_task->task_id = $task->task_id;
                     $event_template_task->save();
                     
@@ -172,7 +238,7 @@ class EventsController extends Controller
 
     public function store2(Request $request)
     {
-        if(!isset($request->event_name)) {return 2;}
+        if(!(isset($request->event_name) && isset($request->event_date))) {return 2;}
         $default_task_ids = $request->default_task_id;
         $new_tasks = $request->new_task;
 
@@ -186,8 +252,9 @@ class EventsController extends Controller
         if ($default_number + $new_number  > 0 )
         {
             
-            $event = Event::find(session()->get('default_event'));
+            $event = Event::find($request->event_id);
             $event->name = $request->event_name;
+            $event->datetime = $request->event_date;
             $event->save();
             
             TasksController::destroyTemps2($event->event_id,$default_task_ids);
@@ -201,7 +268,6 @@ class EventsController extends Controller
             {
              $event_template_task = new EventTemplateTask();
              $event_template_task->event_id = $event->event_id;
-             $event_template_task->template_id = session()->get('default_template')->template_id;
              $event_template_task->task_id = $task_id;
              $event_template_task->save();
             }
@@ -219,7 +285,6 @@ class EventsController extends Controller
                     //Update EventTemplateTask
                     $event_template_task = new EventTemplateTask();
                     $event_template_task->event_id = $event->event_id;
-                    $event_template_task->template_id = session()->get('default_template')->template_id;
                     $event_template_task->task_id = $task->task_id;
                     $event_template_task->save();
                     
@@ -255,6 +320,7 @@ class EventsController extends Controller
 
     public function destroy($id)
     {
+        TasksController::destroyTemps1($id);
         $event = Event::find($id);
         $event->delete();
     }

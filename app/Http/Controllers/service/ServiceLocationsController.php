@@ -6,51 +6,49 @@ use App\Service;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\ServiceLocation;
+use Illuminate\Support\Facades\DB;
 
 class ServiceLocationsController extends Controller
 {
 
-    public function index()
-    {
-        //
-    }
-
-
-    public function create()
-    {
-        //
-    }
-
-
     public static function store2($request,$id)
     {
-        if($request != null){
-            $locationArray=explode(',',$request);
-            foreach($locationArray as $service_locations) {
-                $locations = new ServiceLocation();
-                $locations->location = $service_locations;
-                $locations->service_id = $id;
-                $locations->save();
+        
+        for($i=7;$i<13;$i++) {
+            $a="location";
+            $a =$a.$i;
+            if(($request->$a) != null){   
+                $loc = new ServiceLocation();
+                $a="location";
+                $a =$a.$i;
+                $loc->service_id = $id;
+                $loc->location= $request->$a;
+                $loc->save();
             }
         }
     }
 
 
-
-    public function edit($id)
+    public static function update(Request $request)
     {
-        //
-    }
+        $findlocations=ServiceLocation::where('service_id',$request->serviceID)->get();
+        //dd($findlocations);
+         foreach($findlocations as $location){
+             DB::table('service_locations')->where('service_id', $request->serviceID)->where('location',$location->location)->delete();
+        }
 
-
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-
-    public function destroy($id)
-    {
-        //
+        for($i=1;$i<7;$i++) {
+            $a="location";
+            $a =$a.$i;
+        
+            if(($request->$a) != null){
+                        $loc = new ServiceLocation();
+                        $a="location";
+                        $a =$a.$i;
+                        $loc->service_id = $request->serviceID;
+                        $loc->location = $request->$a;
+                        $loc->save();
+            }
+        }
     }
 }

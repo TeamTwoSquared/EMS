@@ -37,11 +37,7 @@ $i=1; //use to have checkbox number
                     <div class="row form-group">
                         <div class="col col-md-3">Time Duration</div>
                         <div class="col-12 col-md-9">
-<<<<<<< HEAD
-                            <input type="text" id="time_duration" name="time_duration" placeholder="Enter approximate time duration  in days(Optional)" class="form-control">
-=======
                             <input type="text" id="time_duration" name="time_duration" placeholder="Enter approximate time duration in days(Optional)" class="form-control">
->>>>>>> master
                         </div>
                     </div>
                     <div class="row form-group">

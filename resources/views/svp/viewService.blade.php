@@ -58,7 +58,7 @@
                  </div>
                 @endforeach
             </div>
-            <a href="/svp/service">
+            <a href="/svp/service" >
                 <button type="button" class="btn btn-success" >OK</button>
             </a>
         </div>

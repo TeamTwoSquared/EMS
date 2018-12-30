@@ -279,37 +279,23 @@ class TemplatesController extends Controller
         
     }
 
-    public function client_index($catergory_id)//Manage event of new one
+    public function step1_index($catergory_id)//Manage event of new one
     {
         $template_ids = CatergoryTemplatesController::getTemplates($catergory_id);
         $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
-        $default_template = Template::whereIn('template_id',$template_ids)->where('isdefault',1)->get();
-        if(count($default_template)>0) session()->put('default_template', $default_template[0]);
-        session()->put('templates',$templates);
-        session()->put('default_catergory',$catergory_id);
-        return view('client.event.manage');
+        return view('client.event.step1')->with('templates',$templates);
     }
 
-    public function client_changetemplate($catergory_id, $template_id)
+    public function client_index($template_id)//Manage event of new one
     {
-        $template = Template::where('template_id',$template_id)->get();
-        session()->put('default_template', $template[0]);
-        session()->put('default_catergory',$catergory_id);
-        session()->forget('default_event');
-        return view('client.event.manage');
-    }
-
-    public function client_index2($event_id)//Manage event of already saved one
-    {
-        $event = Event::find($event_id);
-        $template_ids = CatergoryTemplatesController::getTemplates($event->catergory_id);
-        $templates = Template::whereIn('template_id',$template_ids)->where('istemp',0)->get();
-        $default_template = Template::where('template_id',$event->template_id)->get();
+        $default_template = Template::where('template_id',$template_id)->get();
         session()->put('default_template', $default_template[0]);
-        session()->put('templates',$templates);
-        session()->put('default_catergory',$event->catergory_id);
-        session()->put('default_event',$event_id);
         return view('client.event.manage');
+    }
+
+    public function client_index2($event_id)
+    {
+        return view('client.event.manage')->with('event_id',$event_id);
     }
 
 
