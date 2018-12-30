@@ -204,6 +204,14 @@ Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
 Route::post('/svp/updateService','service\ServicesController@update');
 //Route::post
 
+// routes for package services
+
+Route::get('/svp/packageService','service\packageService\packageServiceController@index');
+Route::get('/svp/addpackageService','service\packageService\packageServiceController@create');
+Route::post('/svp/submitServicePackage','service\packageService\PackageServiceController@store');
+Route::get('/svp/ViewPackage/{$package_id}','service\packageService\PackageServiceController@show');
+
+
 
 //pansilu
 Route::get('/pansilu/{id}','chat\ChatsController@show');

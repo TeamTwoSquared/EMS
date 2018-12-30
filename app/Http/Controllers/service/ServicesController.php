@@ -33,11 +33,10 @@ class ServicesController extends Controller
 
     public function store(Request $request)
     {
-
+        
         $exsistingService = Service::where('name',$request->name)->get();
         
         if(count($exsistingService) != 0){
-          //  dd($exsistingService);
             return redirect('/svp/service')->with('error','This service is alrady exist !');
         }
 
@@ -94,11 +93,6 @@ class ServicesController extends Controller
 
     public function update(Request $request)
     {
-       // dd($request->picture[2]);
-
-
-          //  DB::table('services')->update(['service_id'=>($request->serviceID),'name'=>$request->sName , 'price'=>$request->price,'description'=>$request->description ]);
-
             $updateService=Service::find($request->serviceID);
             $updateService->service_id=$request->serviceID;
             $updateService->name = $request->sName;
@@ -107,13 +101,13 @@ class ServicesController extends Controller
             $updateService->service_provider_id=session()->get('svp_id');
             $updateService->save();
 
+            // calling functions
+
             ServiceKeywordsController::update($request);
             ServiceLocationsController::update($request);
             ServiceTypesController::update($request);
             ServiceVideosController::update($request);
             ServiceImagesController::update($request);
-
-            
 
             return redirect('/svp/service')->with('success','Successfully Updated The Service !');
 

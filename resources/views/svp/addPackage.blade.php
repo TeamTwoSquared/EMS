@@ -100,39 +100,39 @@
             <div class="row" data-pg-collapsed> 
                 <div class="col-lg-9"> 
                     <div class="card"> 
-                        <div class="card-header">Add Your New Service</div>             
+                        <div class="card-header">Add New Service Package</div>             
                         <div class="card-body card-block"> 
-                            <form action="/svp/submitService" method="post" data-pg-collapsed enctype="multipart/form-data"> 
+                            <form action="/svp/submitServicePackage" method="post" data-pg-collapsed enctype="multipart/form-data"> 
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
-                                    <label for="inputAddress">Service Name</label>                         
+                                    <label for="inputAddress">Package Name</label>                         
                                 <input type="text" class="form-control" name="name" placeholder="Name"> 
                                 </div>
                                 <div class="form-group"> 
-                                    <label for="inputAddress">Prices(Rs.)</label>                         
+                                    <label for="inputAddress">Package Prices (Rs.)</label>                         
                                     <input type="number" class="form-control"  name="price" placeholder="Price Your Service ">
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputEmail4">Discription</label>
+                                    <label for="inputEmail4">Package Discription</label>
                                     <input type="text" class="form-control"  name="description" placeholder="Maximum 100 characters ">
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput2">Service Keywords</label><br>
+                                    <label class="col-form-label" for="formGroupExampleInput2">Package Keywords</label><br>
                                         @for($i=1;$i<7;$i++)
                                             <input type="text" name="keyword{{$i}}" class="smallBox"  placeholder="Keyword {{$i}}">
                                         @endfor
                                 </div>
                                 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput2">Service Locations</label><br>
+                                    <label class="col-form-label" for="formGroupExampleInput2">Package Locations</label><br>
                                         @for($i=7;$i<13;$i++)
                                             <input type="text" name="location{{$i}}" class="smallBox"  placeholder="location {{$i-6}}">
                                         @endfor
                                 </div>
 
                                 <div class="form-group">
-                                    <label class="col-form-label" for="formGroupExampleInput2">Service Types</label><br>
+                                    <label class="col-form-label" for="formGroupExampleInput2">Package Types</label><br>
                                         @for($i=13;$i<19;$i++)
                                             <input type="text" name="type{{$i}}" class="smallBox"  placeholder="Service Type {{$i-12}}">
                                         @endfor
@@ -149,11 +149,11 @@
             <div class="row" data-pg-collapsed>
                 <div class="col-lg-9">
                     <div class="card">
-                        <div class="card-header">Images Of Your Service - <small>(Maximmum 6 Images Are Allowed !)</small></div>
+                        <div class="card-header">Image Of Your Service Package <small>( Only One Image is Allowed !)</small></div>
                         <div class="card-body card-block">
 
                                 <div class="form-actions form-group">
-                                    <input type="file"  name="service_image[]" class="form-control-file" multiple>
+                                    <input type="file"  name="Package_image" class="form-control-file" >
                                 </div>
         
                         </div>
@@ -164,11 +164,11 @@
             <div class="row" data-pg-collapsed>
                     <div class="col-lg-9">
                         <div class="card">
-                            <div class="card-header">Video Clip Of Your Service</div>
+                            <div class="card-header">Video Clip Of Your Service Package</div>
                             <div class="card-body card-block">
                                 
                                     <div class="form-actions form-group">
-                                        <input type="text" class="form-control"  name="service_video_url" placeholder=" URL of your video clip " >
+                                        <input type="text" class="form-control"  name="package_video_url" placeholder=" URL of your video clip " >
                                     </div>
                                
                             </div>
@@ -180,7 +180,7 @@
                 <div class="col-lg-9">
                     <center>
                         <div class="form-actions form-group">
-                        <button type="submit" class="btn btn-success btn-sm" style="margin:auto;display:block">Add Your New Service</button>
+                        <button type="submit" class="btn btn-success btn-sm" style="margin:auto;display:block">Submit New Service Package</button>
                     </center>
                     </div>
                 </div>

@@ -69,9 +69,25 @@ $svp=SVPsController::getSVP();
                                 <a href="svp/inbox"> <i class="fas fa-chart-bar"></i>Inbox</a> 
                                 <span class="inbox-num">3</span> 
                             </li>                     
-                            <li> 
-                                <a href="/svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
-                            </li>                     
+                            
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-shopping-basket"></i>Service
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="/svp/service">
+                                            <i class="far fa-check-square"></i>Single Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="/svp/packageService">
+                                            <i class="far fa-check-square"></i>Service Packages</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li> 
                                 <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients</a> 
                             </li>                     
@@ -192,10 +208,13 @@ $svp=SVPsController::getSVP();
                                 <li> 
                                     <a href="svp/inbox"> <i class="fas fa-chart-bar"></i>Inbox</a> 
                                     <span class="inbox-num">3</span> 
-                                </li>                         
+                                </li> 
+                                
                                 <li> 
-                                    <a href="svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
-                                </li>                         
+                                    <a href="/svp/service">Service</a> 
+                                </li>
+                                
+                    
                                 <li> 
                                     <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients </a> 
                                 </li>                         
