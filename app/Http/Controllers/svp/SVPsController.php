@@ -14,6 +14,18 @@ class SVPsController extends Controller
     public function index(){
         return view ('svp.index');
     }
+
+    public function admin_index()
+    {
+        $svp = SVP::all();
+        return view('admin.svp.svp')->with('svp',$svp);
+    }
+    public function destroy($id)
+    {   
+        SVP::where('service_provider_id',$id)->delete();        
+        return redirect('/admin/svp');
+    }
+
     public function register(Request $request)
     {
         $this->validate($request, [
