@@ -6,25 +6,29 @@
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
         <meta name="csrf-token" content="{{ csrf_token() }}" />
     </head>     
-    <body class="animsition"> 
-        <div class="container">
-            <br><br>
-            <h2 align="center"> Test form </h2>
-            <div class="form-group">
-                <form name="add_name" id="add_name">
-                        
-                    <table class="table table-bordered" id="dynamic_field">
-                        <tr>
-                            <td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list" /></td>
-                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                        </tr>
-                        
-                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit">
-                        
-                    </table>
-                </form>
-            </div>
+    <!-- Button trigger modal -->
+<button type="button" class="btn btn-primary btn-lg" data-toggle="modal" data-target="#myModal">
+    Launch demo modal
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="myModalLabel">Modal title</h4>
         </div>
+        <div class="modal-body">
+          ...
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+  </div>
         
         
 
@@ -57,36 +61,4 @@
         <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
     </body>     
 </html> 
-<script>
-        $(document).ready(function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            var i=1;
-            $('#add').click(function(){
-                i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            });
-            $(document).on('click','.btn_remove', function(){
-                var button_id = $(this).attr("id");
-                $('#row'+button_id+'').remove();
-
-            });
-            $('#submit').click(function(){
-                $.ajax({
-                    type:'POST',
-                    url:'/tadd',
-                    data:$('#add_name').serialize(),
-                    success:function(data)
-                    {
-                        alert(data);
-                        $('#add_name')[0].reset();
-                    }
-                });
-            });
-        });
-    </script>
 <!-- end document-->
