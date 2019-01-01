@@ -14,7 +14,7 @@
                     <div class="card"> 
                         <div class="card-header">Update Client Details</div>             
                         <div class="card-body card-block"> 
-                            <form action="save_profile" method="post" data-pg-collapsed> 
+                        <form action="update/{{$customer->customer_id}}" method="post" data-pg-collapsed> 
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress">Name</label>                         
@@ -28,8 +28,9 @@
                                     <label for="inputEmail4">Email</label>
                                     <input type="email" class="form-control" id="email" name="email" placeholder=""  value="{{$customer->email}}"> 
                                 </div>
+
                                 <div class="form-group">
-                                    <label for="inputPassword4">Password</label>
+                                    <label for="inputPassword4">New Password</label>
                                     <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type new password"> 
                                 </div>
                                 <div class="form-group">

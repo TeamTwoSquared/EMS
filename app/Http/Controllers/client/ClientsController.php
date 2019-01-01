@@ -30,6 +30,7 @@ class ClientsController extends Controller
         return redirect('/admin/client');
         
     }
+    //blocks clients
     public function block($id)
     {
         $customer = Client::where('customer_id',$id)->get();
@@ -49,16 +50,13 @@ class ClientsController extends Controller
         $customer->save();
         return redirect('/admin/client');
     }
+    //create client by admin
     public function admin_create()
     {
         return view('admin.client.client_create');
     }
-    public function admin_edit($id)
-    {
-        $customer = (Client::where('customer_id',$id)->get())[0];
-        return view('admin.client.client_update')->with('customer',$customer);
-    }
-
+    
+    //storing created client by admin
     public function admin_new_store(Request $request)
     {
             $client = new Client();
@@ -69,20 +67,58 @@ class ClientsController extends Controller
                 $client->username = $request->username;
                 $client->password = $request->newpassword;
                 $client->address = $request->address;
+                $client->isverified =1;
                 $client->save();
-                return redirect('/admin/client')->with('success','Profile Updated');
+                return redirect('/admin/client')->with('success','New client added');
             }
             else
             {
                 return redirect('/admin/client')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
             }
     }
-
-    public function admin_edit_store()
+    public function admin_edit($id)
     {
-
+        $customer = (Client::where('customer_id',$id)->get())[0];
+        return view('admin.client.client_update')->with('customer',$customer);
     }
 
+    public function admin_edit_store(Request $request,$id)
+    {
+        
+        $this->validate($request, [
+            'name'=>'required',
+        ]);
+        $client=Client::find($id);
+
+        if($request->newpassword==null && $request->newpasswordagain==null)
+        {
+            $client->name = $request->name;
+            $client->email = $request->email;
+            $client->username = $request->username;
+            $client->address = $request->address;
+            $client->save();
+            return redirect('/admin/client')->with('success','client updated');
+        }
+        else
+        {
+            if($request->newpassword==$request->newpasswordagain)
+        {
+            $client->name = $request->name;
+            $client->email = $request->email;
+            $client->username = $request->username;
+            $client->password = md5($request->newpassword);
+            $client->address = $request->address;
+            $client->save();
+            return redirect('/admin/client')->with('success','client updated');
+        }
+            elseif($request->newpassword!=$request->newpasswordagain)
+        {
+            return redirect('/admin/client')->with('error','New Password and Confirmation Password Are Not Matching');
+        }
+        
+        }
+        
+    }
 
 
 

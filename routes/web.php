@@ -57,7 +57,6 @@ Route::get('/admin/task/block/{id}','event\TasksController@block');
 Route::get('/admin/task/delete/{id}','event\TasksController@destroy');
 Route::post('/admin/task/edit/update/{id}','event\TasksController@admin_update');
 
-
 Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');
 Route::get('/admin/catergory/add', 'event\CatergoriesController@admin_create');
 Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store');
@@ -67,16 +66,19 @@ Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@adm
 
 Route::get('/admin/client', 'client\ClientsController@admin_index');
 Route::get('/admin/client/add', 'client\ClientsController@admin_create');
+Route::post('/admin/client/save_profile','client\ClientsController@admin_new_store');
 Route::get('/admin/client/delete/{id}','client\Clientscontroller@destroy');
 Route::get('/admin/client/edit/{id}', 'client\ClientsController@admin_edit');
+Route::post('/admin/client/edit/update/{id}','client\ClientsController@admin_edit_store');
 Route::get('/admin/client/block/{id}','client\ClientsController@block');
-Route::post('/admin/client/save_profile','client\ClientsController@admin_new_store');
-
-
-
 
 Route::get('/admin/svp', 'svp\SVPsController@admin_index');
 Route::get('/admin/svp/delete/{id}','svp\SVPsController@destroy');
+Route::get('/admin/svp/block/{id}','svp\SVPsController@block');
+Route::get('/admin/svp/add', 'svp\SVPsController@admin_create');
+Route::post('/admin/svp/save_profile','svp\SVPsController@admin_new_store');
+Route::get('/admin/svp/edit/{id}', 'svp\SVPsController@admin_edit');
+Route::post('/admin/svp/edit/update/{id}','svp\SVPsController@admin_edit_store');
 
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');

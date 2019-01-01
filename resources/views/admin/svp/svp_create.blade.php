@@ -1,39 +1,40 @@
 @extends('layouts.admin')
 @section('content')
 
+
 <section class="statistic"> 
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
             <div class="row" data-pg-collapsed> 
                 <div class="col-lg-9"> 
                     <div class="card"> 
-                        <div class="card-header">Update Service Provider Details</div>             
+                        <div class="card-header">Add New Service Provider Details</div>             
                         <div class="card-body card-block"> 
-                            <form action="update/{{$svp->service_provider_id}}" method="post" data-pg-collapsed> 
+                            <form action="save_profile" method="post" data-pg-collapsed> 
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress">Name</label>                         
-                                <input type="text" class="form-control" id="name" name="name" placeholder="" value="{{$svp->name}}"> 
+                                <input type="text" class="form-control" id="name" name="name" placeholder="" value=""> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Username</label>                         
-                                    <input type="text" class="form-control" id="username" name="username" placeholder="" value="{{$svp->username}}"> 
+                                    <input type="text" class="form-control" id="username" name="username" placeholder="" value=""> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputEmail4">Email</label>
-                                    <input type="email" class="form-control" id="email" name="email" placeholder=""  value="{{$svp->email}}"> 
+                                    <input type="email" class="form-control" id="email" name="email" placeholder="" value=""> 
                                 </div>
                                 <div class="form-group">
-                                    <label for="inputPassword4">New Password</label>
-                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type new password"> 
+                                    <label for="inputPassword4">Password</label>
+                                    <input type="password" class="form-control" id="newpassword" name="newpassword" placeholder="Type your new password"> 
                                 </div>
                                 <div class="form-group">
                                     <label for="inputPassword4">Confirm New Password</label>
-                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type new password again"> 
+                                    <input type="password" class="form-control" id="newpasswordagain" name="newpasswordagain" placeholder="Type your new password again"> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Address</label>                         
-                                    <input type="text" class="form-control" id="address" name="address" placeholder="" value="{{$svp->address}}"> 
+                                    <input type="text" class="form-control" id="address" name="address" placeholder="" value=""> 
                                 </div>                     
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">Address 2</label>                         
