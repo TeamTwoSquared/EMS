@@ -43,11 +43,11 @@
                                 </div>                     
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">Address 2</label>                         
-                                    <input type="text" class="form-control" id="address2" name="address2" placeholder="" value=""> 
+                                    <input type="text" class="form-control" id="address2" name="address2" placeholder="" value="{{$customer->address2}}"> 
                                 </div>
                                 <div class="form-group" data-pg-collapsed> 
                                     <label for="inputAddress2">City</label>                         
-                                    <input type="text" class="form-control" id="city" name="city" placeholder="" value=""> 
+                                    <input type="text" class="form-control" id="city" name="city" placeholder="" value="{{$customer->city}}"> 
                                 </div>                     
                                 <button type="submit" class="btn btn-success btn-sm">Save Changes</button>                     
                             </form>                 

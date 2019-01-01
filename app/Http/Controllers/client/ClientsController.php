@@ -67,6 +67,8 @@ class ClientsController extends Controller
                 $client->username = $request->username;
                 $client->password = $request->newpassword;
                 $client->address = $request->address;
+                $client->address2 = $request->address2;
+                $client->city = $request->city;
                 $client->isverified =1;
                 $client->save();
                 return redirect('/admin/client')->with('success','New client added');
@@ -96,6 +98,8 @@ class ClientsController extends Controller
             $client->email = $request->email;
             $client->username = $request->username;
             $client->address = $request->address;
+            $client->address2 = $request->address2;
+            $client->city = $request->city;
             $client->save();
             return redirect('/admin/client')->with('success','client updated');
         }
@@ -108,6 +112,8 @@ class ClientsController extends Controller
             $client->username = $request->username;
             $client->password = md5($request->newpassword);
             $client->address = $request->address;
+            $client->address2 = $request->address2;
+            $client->city = $request->city;
             $client->save();
             return redirect('/admin/client')->with('success','client updated');
         }

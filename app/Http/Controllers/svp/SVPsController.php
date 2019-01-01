@@ -44,10 +44,12 @@ class SVPsController extends Controller
         $svp->save();
         return redirect('/admin/svp');
     }
+    //creating new svp by the admin
     public function admin_create()
     {
         return view('admin.svp.svp_create');
     }
+    //store the added svp details by admin
     public function admin_new_store(Request $request)
     {
             $svp = new SVP();
@@ -58,6 +60,8 @@ class SVPsController extends Controller
                 $svp->username = $request->username;
                 $svp->password = $request->newpassword;
                 $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
                 $svp->isverified =1;
                 $svp->save();
                 return redirect('/admin/svp')->with('success','New service provider added');
@@ -72,6 +76,7 @@ class SVPsController extends Controller
         $svp = (SVP::where('service_provider_id',$id)->get())[0];
         return view('admin.svp.svp_update')->with('svp',$svp);
     }
+    //store the updated svp details by admin
     public function admin_edit_store(Request $request,$id)
     {
         $this->validate($request, [
@@ -86,6 +91,8 @@ class SVPsController extends Controller
                 $svp->email = $request->email;
                 $svp->username = $request->username;
                 $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
                 $svp->isverified =1;
                 $svp->save();
                 return redirect('/admin/svp')->with('success','Service provider details updated');
@@ -99,6 +106,8 @@ class SVPsController extends Controller
                 $svp->username = $request->username;
                 $svp->password = md5($request->newpassword);
                 $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
                 $svp->isverified =1;
                 $svp->save();
                 return redirect('/admin/svp')->with('success','Service provider details updated');
