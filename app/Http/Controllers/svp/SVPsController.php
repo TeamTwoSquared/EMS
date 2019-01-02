@@ -66,9 +66,13 @@ class SVPsController extends Controller
                 $svp->save();
                 return redirect('/admin/svp')->with('success','New service provider added');
             }
+            elseif($request->password!=$request->newpassword)
+            {
+                return redirect('/admin/svp/add')->with('error','Passwords Are Not Matching');
+            }
             else
             {
-                return redirect('/admin/svp')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
+                return redirect('/admin/svp/add')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
             }
     }
     public function admin_edit($id)

@@ -73,6 +73,10 @@ class ClientsController extends Controller
                 $client->save();
                 return redirect('/admin/client')->with('success','New client added');
             }
+            elseif($request->password!=$request->newpassword)
+            {
+                return redirect('/admin/client/add')->with('error','Passwords Are Not Matching');
+            }
             else
             {
                 return redirect('/admin/client')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
