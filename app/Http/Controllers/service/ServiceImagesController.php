@@ -114,4 +114,21 @@ class ServiceImagesController extends Controller
             }
         }
     }
+
+    public static function getRandomImages($service_id)
+    {
+        $serviceImages=ServiceImage::where('service_id',$service_id)->get();
+        $size = $serviceImages->count();
+        if($size==0)
+        {
+            return $serviceImages;
+        }
+        return $serviceImages[rand(0,$size-1)];
+    }
+
+    public static function getAllImages($service_id)
+    {
+        $serviceImages=ServiceImage::where('service_id',$service_id)->get();
+        return $serviceImages;
+    }
 }

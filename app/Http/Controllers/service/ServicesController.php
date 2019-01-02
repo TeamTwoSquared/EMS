@@ -1,6 +1,8 @@
 <?php
 
 namespace App\Http\Controllers\service;
+use App\Http\Controllers\event\TasksController;
+use App\Http\Controllers\event\TaskKeywordsController;
 
 use App\ServiceLocation;
 use Illuminate\Http\Request;
@@ -12,6 +14,8 @@ use App\ServiceType;
 use App\ServiceKeyword;
 use App\ServiceImage;
 use App\ServiceVideo;
+use App\Task;
+use App\TaskKeyword;
 
 
 
@@ -127,4 +131,139 @@ class ServicesController extends Controller
 
         return redirect('/svp/service')->with('success','Successfully Deleted Service !');
     }
+
+    public function client_normal_search(Request $request)//A string is recieved from $request->data
+    {
+        $keywords = explode(" ",$request->data);
+        if($keywords[0]==NULL)
+        {
+            return redirect()->back()->with('error','Your Search Cannot be Empty');
+        }
+
+        $service_list = Array();
+        foreach($keywords as $keyword)
+        {
+            $services = ServiceKeyword::select('service_id')->where('keyword',$keyword)->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+
+            $services = Service::select('service_id')->where('description','LIKE', '%'.$keyword.'%')->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+        }
+
+        
+        $service_list = array_collapse($service_list);
+        
+        $service_id_list = Array();
+        foreach($service_list as $element)
+        {
+            $service_id_list = array_prepend($service_id_list,$element->service_id);
+        }
+       
+        $new_array=array_count_values($service_id_list);
+        arsort($new_array);
+        
+        [$keys, $values] = array_divide($new_array);
+        
+        return view('client.search')->with('service_ids',$keys);
+
+    }
+
+    public function client_search_text($text)//Search services for a given text
+    {
+        $keywords = explode(" ",$text);
+        if($keywords[0]==NULL)
+        {
+            return redirect()->back()->with('error','Your Task Name Cannot be Empty');
+        }
+
+        $service_list = Array();
+        foreach($keywords as $keyword)
+        {
+            $services = ServiceKeyword::select('service_id')->where('keyword',$keyword)->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+
+            $services = Service::select('service_id')->where('description','LIKE', '%'.$keyword.'%')->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+        }
+
+        
+        $service_list = array_collapse($service_list);
+        
+        $service_id_list = Array();
+        foreach($service_list as $element)
+        {
+            $service_id_list = array_prepend($service_id_list,$element->service_id);
+        }
+       
+        $new_array=array_count_values($service_id_list);
+        arsort($new_array);
+        
+        [$keys, $values] = array_divide($new_array);
+        
+        return view('client.search')->with('service_ids',$keys);
+
+    }
+
+    public function client_search_id($id)//Search services for a given id
+    {
+        $task = Task::find($id);
+        if($task->istemp == 1)
+        {
+            $keywords = explode(" ",$task->name);
+        }
+        else
+        {
+            $keywords = explode(" ",$task->name);
+            $task_keywords = TaskKeyword::select('keyword')->where('task_id',$id)->get();
+            foreach($task_keywords as $task_keyword)
+            {
+                $keywords =  array_prepend($keywords,$task_keyword->keyword);
+            }
+        }
+
+        $service_list = Array();
+        foreach($keywords as $keyword)
+        {
+            $services = ServiceKeyword::select('service_id')->where('keyword',$keyword)->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+
+            $services = Service::select('service_id')->where('description','LIKE', '%'.$keyword.'%')->get();
+            if(count($services)!=0) $service_list = array_prepend($service_list,$services);
+        }
+
+        
+        $service_list = array_collapse($service_list);
+        
+        $service_id_list = Array();
+        foreach($service_list as $element)
+        {
+            $service_id_list = array_prepend($service_id_list,$element->service_id);
+        }
+       
+        $new_array=array_count_values($service_id_list);
+        arsort($new_array);
+        
+        [$keys, $values] = array_divide($new_array);
+        
+        return view('client.search')->with('service_ids',$keys);
+
+    }
+
+    public function client_view($id)
+    {
+        return view('client.showService')->with('service_id',$id);
+    }
+
+    public static function getService($id)
+    {
+        return Service::find($id);
+    }
+
+    public static function getServicesExceptOne($svp_id,$service_id)
+    {
+        $services = Service::where('service_provider_id',$svp_id)->whereNotIn('service_id',Array($service_id))->get();
+        return $services;
+    }
+
+
 }

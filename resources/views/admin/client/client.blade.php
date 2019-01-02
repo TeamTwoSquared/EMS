@@ -71,7 +71,7 @@
                         <td>{{$customer->email}}</td>
 
                         @if($customer->isverified == 1)
-                        <td><span class="status--process">verify</span></td>
+                        <td><span class="status--process">verified</span></td>
                         @elseif($customer->isverified == 0)
                         <td><span class="status--pending">pending</span></td>
                         @else
@@ -92,12 +92,12 @@
                                     </button>
                                 </a>
                                 
-                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button onclick ="deleteMe({{$customer->customer_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                         <script>
-                                            function deleteMe() {
+                                            function deleteMe(id) {
                                                     if (confirm("Are you sure you want to delete this customer!")) {
-                                                        window.location.replace("client/delete/{{$customer->customer_id}}");
+                                                        window.location.replace("client/delete/"+id);
                                                     } 
                                                 }
                                         </script>

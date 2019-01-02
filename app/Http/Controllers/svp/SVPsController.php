@@ -285,9 +285,10 @@ class SVPsController extends Controller
         session()->flush();
         return redirect('/svp/login')->with('success','Logged out Succesfully');
     }
-    public function loadTaskSvp($taskId){
-        $tasksSvp = TasksSvp::where('task_id',$taskId)->get();
-        return $tasksSvp;
+    
+    public static function getSVP2($id)
+    {
+        return SVP::find($id);
     }
 
 }//end of class

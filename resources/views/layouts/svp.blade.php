@@ -158,7 +158,7 @@ $svp=SVPsController::getSVP();
                                                 <a href="/svp/billing"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
                                             </div>
                                             <div class="account-dropdown__item"> 
-                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Place Ads</a> 
+                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Advertisements</a> 
                                             </div>                                     
                                             <div class="account-dropdown__item"> 
                                                 <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 

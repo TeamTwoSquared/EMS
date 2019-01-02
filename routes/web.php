@@ -177,8 +177,13 @@ Route::post('/client/savetemplate2','event\EventsController@store2');
 Route::get('/client/myevents','event\EventsController@client_index');
 Route::get('/client/myevents/delete/{id}','event\EventsController@destroy');
 Route::get('/client/myevents/{id}','event\TemplatesController@client_index2');
+Route::get('/client/search1/{text}','service\ServicesController@client_search_text');
+Route::get('/client/search2/{id}','service\ServicesController@client_search_id');
 
 
+Route::post('/client/search','service\ServicesController@client_normal_search');
+Route::get('/client/view/service/{id}','service\ServicesController@client_view');
+Route::get('/client/view/svp/{id}','svp\SVPsController@client_view');
 
 Route::post('/client/save_profile', 'client\ClientsController@save_profile');
 Route::post('/client/change_img', 'client\ClientsController@change_img');
@@ -187,13 +192,12 @@ Route::get('/client/logout','client\ClientsController@logout');
 
 // Routes for side Adds.
 
-Route::get('/svp/ads','ad\AdsController@index');
+Route::get('/svp/ads','ad\AdsController@svp_index');
 Route::get('/svp/ads/create','ad\AdsController@create');
 Route::post('/svp/ads/store','ad\AdsController@store');
-Route::get('/svp/ads/show/{{ad_id}}','ad\AdsController@show');
-Route::get('/svp/ads/edit/{{ad_id}}','ad\AdsController@edit');
-Route::match('/svp/ads/update','ad\AdsController@update');
-Route::delete('/svp/ads/delete','ad\AdsController@destroy');
+Route::get('/svp/ads/edit/{id}','ad\AdsController@edit');
+Route::post('/svp/ads/update/{id}','ad\AdsController@update');
+Route::get('/svp/ads/delete/{id}','ad\AdsController@destroy');
 
 // Routes for services of svp
 
