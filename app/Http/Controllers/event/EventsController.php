@@ -197,9 +197,8 @@ class EventsController extends Controller
             $event->datetime = $request->event_date;
             $event->save();
 
-            TasksController::destroyTemps1($event->event_id); // Delete all associated previous temporary tasks
+            TasksController::destroyTemps2($event->event_id,$default_task_ids); // Delete all associated previous UNNECCESSARY temporary tasks
             EventTemplateTask::where('event_id',$event->event_id)->delete();//Delete all records from EventTempateTask before adding
-            
 
             foreach($default_task_ids as $task_id)
             {

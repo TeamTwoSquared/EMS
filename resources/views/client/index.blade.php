@@ -4,10 +4,13 @@
  use App\Http\Controllers\event\CatergoryImageController;
  use App\Http\Controllers\event\CatergoriesController;
  use App\Http\Controllers\client\ClientsController;
-
- $catergories=CatergoriesController::client_index();
- $client = ClientsController::getClient(session()->get('customer_id'));
- session()->forget('default_event');
+    if(!(ClientsController::checkLogged(0))){
+    header("Location: /client/login");
+    die();
+    }
+$client=ClientsController::getClient(); 
+$catergories=CatergoriesController::client_index();
+session()->forget('default_event');
 @endphp
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
     <div class="container"> 
@@ -26,8 +29,9 @@
                             <li class="list-inline-item">Dashboard</li>                             
                         </ul>                         
                     </div>                     
-                    <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports..."> 
+                    <form class="au-form-icon--sm" action="/client/search" method="post">
+                        {{ csrf_field() }} 
+                        <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
                         <button class="au-btn--submit2" type="submit"> 
                             <i class="zmdi zmdi-search"></i> 
                         </button>                         
@@ -117,4 +121,5 @@
         </div>         
     </div>     
 </section>
+<hr/>
 @endsection

@@ -25,7 +25,7 @@
                         </ul>                         
                     </div>                     
                     <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports..."> 
+                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Find Services...."> 
                         <button class="au-btn--submit2" type="submit"> 
                             <i class="zmdi zmdi-search"></i> 
                         </button>                         
@@ -35,6 +35,7 @@
         </div>         
     </div>     
 </section>
+<hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row" data-pg-collapsed> 
@@ -119,5 +120,5 @@
         </div>         
     </div>     
 </section>
-
+<hr/>
 @endsection

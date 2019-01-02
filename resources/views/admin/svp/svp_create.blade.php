@@ -13,8 +13,12 @@
                             <form action="save_profile" method="post" data-pg-collapsed> 
                             {{ csrf_field() }}
                                 <div class="form-group" data-pg-collapsed> 
-                                    <label for="inputAddress">Name</label>                         
-                                <input type="text" class="form-control" id="name" name="name" placeholder="" value=""> 
+                                    <label for="inputAddress">First Name</label>                         
+                                <input type="text" class="form-control" id="fname" name="fname" placeholder="" value=""> 
+                                </div>
+                                <div class="form-group" data-pg-collapsed> 
+                                        <label for="inputAddress">Last Name</label>                         
+                                    <input type="text" class="form-control" id="lname" name="lname" placeholder="" value=""> 
                                 </div>
                                 <div class="form-group"> 
                                     <label for="inputAddress">Username</label>                         

@@ -42,8 +42,12 @@ $svp=SVPsController::getSVP();
         <!-- Main CSS-->         
         <link href="/svp/css/theme.css" rel="stylesheet" media="all"> 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     </head>     
-    <body class="animsition"> 
+    <body class="animsition">
+        <!-- MODALS -->
+            @include('inc.modals')
+        <!-- END MODALS -->
         <div class="page-wrapper" data-pg-collapsed> 
             <!-- MENU SIDEBAR-->     
             <aside class="menu-sidebar2"> 
@@ -158,7 +162,7 @@ $svp=SVPsController::getSVP();
                                                 <a href="/svp/billing"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
                                             </div>
                                             <div class="account-dropdown__item"> 
-                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Place Ads</a> 
+                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Advertisements</a> 
                                             </div>                                     
                                             <div class="account-dropdown__item"> 
                                                 <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 
