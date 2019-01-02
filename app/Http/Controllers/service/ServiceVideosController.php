@@ -40,4 +40,10 @@ class ServiceVideosController extends Controller
     
         }
     }
+
+    public static function getVideos($service_id)
+    {
+        $serviceVideos=ServiceVideo::where('service_id',$service_id)->get();
+        return $serviceVideos;
+    }
 }

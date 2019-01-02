@@ -35,6 +35,7 @@
         </div>         
     </div>     
 </section>
+<hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed>
     <div class="container"> 
         <div class="row">
@@ -245,4 +246,5 @@
 
     });
 </script>
+<hr/>
 @endsection

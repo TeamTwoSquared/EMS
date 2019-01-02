@@ -1,5 +1,11 @@
 @extends('layouts.client')
 @section('content')
+<style type="text/css">
+    a.disableLink {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
 @php
  use App\Http\Controllers\event\TemplatesController;
  use App\Http\Controllers\event\TemplateTasksController;
@@ -39,7 +45,7 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         </ul>                         
                     </div>                     
                     <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports..."> 
+                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Find Services...."> 
                         <button class="au-btn--submit2" type="submit"> 
                             <i class="zmdi zmdi-search"></i> 
                         </button>                         
@@ -49,10 +55,11 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
         </div>         
     </div>     
 </section>
+<hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row">
-            <div class="col-md-12"> 
+            <div class="col-md-9"> 
                 @if($is_old==0)         
                 <div class="row">
                     <div class="alert font-weight-bold" role="alert">
@@ -91,13 +98,13 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                             </thead>                             
                             <tbody> 
                                 <input type="hidden" id="task_id" name="default_task_id[]" value="1"/>
-                                <input type="hidden" name="new_task[]" id="new_task" value="0"/>
+                                <input type="hidden" name="new_task[]" value="0"/>
                                 
                                 @foreach($default_tasks as $default_task)
                                 <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
                                      
                                     <td><input type="text" value="{{$default_task->name}}" class="form-control name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
-                                    <td>Select</td> 
+                                    <td class="align-middle" data-pg-collapsed><a href="/client/search2/{{$default_task->task_id}}" target="_blank"><strong>Search for Service Providers</strong>&nbsp;<i class="fa fa-search"></i></a></td>
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
                                             
@@ -125,12 +132,27 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         </form>
                     </div>
                 </div>
+                <p id="msginfo" style="display:none" class="text-primary font-weight-bold mt-0 mb-0 ">Please Save Your Newly Added Task, Before Searching for Service Providers!</p>
                 <div class="row" data-pg-collapsed>
-                        <button type="button" name="add" id="add" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
+                        <button type="button" name="add" id="add" onclick="showMsg()" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
                 </div>
                 <div class="row">
                     <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                 </div>
+            </div>
+            <div class="col-md-3">
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>
+                <div class="row">
+                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
+                    <hr/> 
+                </div>    
             </div>
         </div>
         <hr/>
@@ -176,8 +198,8 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="table table-bordered bg-clouds shadow MoveableRow">'+
-                                    '<td><input type="text" name="new_task[]" id="new_task" placeholder="Enter a Task" class="form-control name_list"/></td>'+
-                                    '<td>Select</td>'+
+                                    '<td><input type="text" name="new_task[]" id="new_task'+i+'"placeholder="Enter a Task" class="form-control name_list"/></td>'+
+                                    '<td class="align-middle" data-pg-collapsed><a class = "disableLink" id="'+i+'" onClick="a(this);" style="cursor: pointer; cursor: hand;"><strong>Search for Service Providers</strong>&nbsp;<i class="fa fa-search"></a></i></td>'+
                                     '<td>'+
                                         '<div class="table-data-feature flex-row-reverse">'+
                                                 '<button type="button" name="down" id="down" class="item down_button" title="Move Down">'+
@@ -272,8 +294,23 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         }
                     }); 
                 }
+                $('.disableLink').removeClass("disableLink");              
             });
             
         });
+        function a(obj){
+            var text = document.getElementById("new_task"+obj.id);
+            if(text.value=="") alert("abc");
+            else window.open("/client/search1/"+text.value,'_blank');
+            window.location.replace("/client/myevents/"+{{$my_event_id}});
+        }
+        
+        function showMsg(){
+            $('#msginfo').show(500); 
+            setTimeout(function() { 
+                $('#msginfo').fadeOut(500); 
+            }, 3500);
+        }
 </script>
+<hr/>
 @endsection

@@ -289,15 +289,21 @@
                             </div>                             
                         </div>                         
                     </div>                     
-                </section>
+                </section>                 
+                <!-- END STATISTIC-->                 
+                <!-- STATISTIC CHART-->                 
+                <!-- END STATISTIC CHART-->                 
+                <!-- DATA TABLE-->                 
+                <!-- END DATA TABLE-->                 
+                <!-- COPYRIGHT-->                 
                 <section class="statistic statistic2 pad5"> 
                     <div class="container"> 
                         <div class="row">
-                            <div class="col-md-9"> 
+                            <div class="col-md-12"> 
                                 @if($is_old==0)         
                                 <div class="row">
                                     <div class="alert font-weight-bold" role="alert">
-                                        Editing Template: {{$default_template->name}}
+                                        Managing Event: {{$my_event->name}}
 </div>
                                 </div>
                                 @endif
@@ -307,16 +313,17 @@
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="table-responsive" style="max-height:35em; overflow: auto;">
+                                    <div class="table-responsive">
                                         <form name="edit_tasks" id="edit_tasks">
-                                            <div class="alert font-weight-bold" role="alert">
-                                                Event Name :
-                                                @if($is_old==0)
-                                                <input type="text" name="event_name" id="event_name" placeholder="Name your event" class="form-control name_list"/>
-                                                @else
-                                                <input type="text" name="event_name" id="event_name" value="{{$my_event->name}}" placeholder="Name your event" class="form-control name_list"/>
-                                                @endif
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationDefault01">Event Name</label>
+                                                <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name="event_name" id="event_name" value="{{$my_event->name}}" required>
                                             </div>
+                                            <div class="col-md-4 mb-3">
+                                                <label for="validationDefault02">Event Date and Time</label>
+                                                <input type="text" class="form-control" id="validationDefault02" placeholder="" name="event_date" id="event_date" value="{{$my_event->datetime}}" required>
+                                            </div>
+                                            <input type="hidden" name="event_id" id="event_id" value="{{$my_event->event_id}}">
                                             <table class="table" id="dynamic_field">
                                                 <thead> 
                                                     <tr> 
@@ -334,7 +341,7 @@
                                                             <input type="text" value="{{$default_task->name}}" class="form-control name_list"/> 
                                                             <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/>
                                                         </td>
-                                                        <td>Select</td> 
+                                                        <td class="align-middle"><i class="fa fa-search"></i></td> 
                                                         <td>
                                                             <div class="table-data-feature flex-row-reverse">
                                                                 <button type="button" name="down" id="down" class="item down_button" title="Move Down">
@@ -364,8 +371,6 @@
                                     <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                                 </div>
                             </div>
-                            <div class="col-md-3">
-</div>
                         </div>
                         <hr/>
                         <div class="row">
@@ -395,13 +400,7 @@
                             </div>
                         </div>                         
                     </div>                     
-                </section>                 
-                <!-- END STATISTIC-->                 
-                <!-- STATISTIC CHART-->                 
-                <!-- END STATISTIC CHART-->                 
-                <!-- DATA TABLE-->                 
-                <!-- END DATA TABLE-->                 
-                <!-- COPYRIGHT-->                 
+                </section>
                 <section class="p-t-60 p-b-20"> 
                     <div class="container"> 
                         <div class="row"> 
