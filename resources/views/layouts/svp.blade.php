@@ -42,6 +42,9 @@ $svp=SVPsController::getSVP();
         <!-- Main CSS-->         
         <link href="/svp/css/theme.css" rel="stylesheet" media="all"> 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+
+        <!-- flora editer -->
+        @stack('styles')
     </head>     
     <body class="animsition"> 
         <div class="page-wrapper" data-pg-collapsed> 
@@ -276,7 +279,9 @@ $svp=SVPsController::getSVP();
         <script src="/svp/vendor/vector-map/jquery.vmap.sampledata.js"></script>         
         <script src="/svp/vendor/vector-map/jquery.vmap.world.js"></script>         
         <!-- Main JS-->         
-        <script src="/svp/js/main.js"></script>         
+        <script src="/svp/js/main.js"></script> 
+        
+        @stack('scripts')
     </body>     
 </html> 
 <!-- end document-->

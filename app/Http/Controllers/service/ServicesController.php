@@ -121,4 +121,8 @@ class ServicesController extends Controller
 
         return redirect('/svp/service')->with('success','Successfully Deleted Service !');
     }
+
+    public function test(){
+        return view('svp.help');
+    }
 }

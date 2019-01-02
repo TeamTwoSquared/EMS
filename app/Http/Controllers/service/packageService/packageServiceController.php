@@ -130,6 +130,142 @@ class packageServiceController extends Controller
 
 
     public function show($package_id){
-        return view('svp.viewPackage');
+        $packageInfo=ServicePackage::where('package_id',$package_id)->get();
+        $packageLocations=PackageLocation::where('package_id',$package_id)->get();
+        $packageTypes=PackageType::where('package_id',$package_id)->get();
+        $packageKeywords=PackageKeyword::where('package_id',$package_id)->get();
+       // $serviceImages=ServiceImage::where('package_id',$package_id)->get();
+       // $serviceVideos=ServiceVideo::where('package_id',$package_id)->get();
+        return view('svp.viewPackage')->with('package_info',$packageInfo)->with('package_locations',$packageLocations)->with('package_types',$packageTypes)->with('package_keywords',$packageKeywords);
+    }
+
+    public function edit($package_id){
+        $packageInfo=ServicePackage::where('package_id',$package_id)->get();
+        $packageLocations=PackageLocation::where('package_id',$package_id)->get();
+        $packageTypes=PackageType::where('package_id',$package_id)->get();
+        $packageKeywords=PackageKeyword::where('package_id',$package_id)->get();
+       // $serviceImages=ServiceImage::where('package_id',$package_id)->get();
+       // $serviceVideos=ServiceVideo::where('package_id',$package_id)->get();
+        return view('svp.editPackage')->with('package_info',$packageInfo)->with('package_locations',$packageLocations)->with('package_types',$packageTypes)->with('package_keywords',$packageKeywords);
+        
+    }
+
+    public function update(Request $request,$package_id){
+            //dd($request->videorul);
+            $updatePackage=ServicePackage::find($package_id);
+            $updatePackage->package_id=$package_id;
+            $updatePackage->name = $request->name;
+            $updatePackage->price = $request->price;
+            $updatePackage->description = $request->description;
+            $updatePackage->videourl = $request->videorul;
+            $updatePackage->service_provider_id=session()->get('svp_id');
+
+            $numOfImg=($request->picture);
+            if($numOfImg != null){
+                 DB::table('package_service')->where('package_id', $package_id)->where('imgurl',$request->picture)->delete();    
+            }
+
+            if($request->Package_image != null)
+            {  
+           
+                 $image = $request->Package_image;
+                 // Get filename with the extension
+                 $filenameWithExt = $image->getClientOriginalName();
+                 // Get just filename
+                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
+                 // Get just ext
+                 $extension = $image->getClientOriginalExtension();
+                 
+                 // Filename to store
+                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
+                 // Upload 
+                 $image_up = $image;
+                 $image_resize = Image::make($image->getRealPath());              
+                 $image_resize->resize(460, 310);
+                 $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
+                 
+                 //Adding URL to template_images table
+                 
+                 $updatePackage->imgurl=$fileNameToStore;   
+             }
+
+            $updatePackage->save();
+                    
+            $this->updateKeywords($request,$package_id);
+            $this->updateLocations($request,$package_id);
+            $this->updateTypes($request,$package_id);
+
+            return redirect('/svp/packageService')->with('success','Successfully Updated The Package !');
+    }
+
+    public function updateKeywords(Request $request,$id){
+        
+        $findKeywords=PackageKeyword::where('package_id',$id)->get();
+         foreach($findKeywords as $keyword){
+             DB::table('package_keywords')->where('package_id', $id)->where('keyword',$keyword->keyword)->delete();
+        }
+
+        for($i=7;$i<13;$i++) {
+            $a="keyword";
+            $a =$a.$i;
+        
+            if(($request->$a) != null){
+                        $key = new PackageKeyword();
+                        $a="keyword";
+                        $a =$a.$i;
+                        $key->package_id = $id;
+                        $key->keyword = $request->$a;
+                        $key->save();
+            }
+        }     
+    }
+
+    public function updateLocations(Request $request,$id){
+        $findlocations=PackageLocation::where('package_id',$id)->get();
+        //dd($findlocations);
+         foreach($findlocations as $location){
+             DB::table('package_location')->where('package_id', $id)->where('location',$location->location)->delete();
+        }
+
+        for($i=1;$i<7;$i++) {
+            $a="location";
+            $a =$a.$i;
+        
+            if(($request->$a) != null){
+                        $loc = new PackageLocation();
+                        $a="location";
+                        $a =$a.$i;
+                        $loc->package_id = $id;
+                        $loc->location = $request->$a;
+                        $loc->save();
+            }
+        }
+    }
+
+    public function updateTypes(Request $request,$id){
+        $findType=PackageType::where('package_id',$id)->get();
+        //dd($findlocations);
+         foreach($findType as $type){
+             DB::table('package_type')->where('package_id', $id)->where('type',$type->type)->delete();
+        }
+
+        for($i=13;$i<19;$i++) {
+            $a="type";
+            $a =$a.$i;
+        
+            if(($request->$a) != null){
+                        $typ = new PackageType();
+                        $a="type";
+                        $a =$a.$i;
+                        $typ->package_id = $id;
+                        $typ->type = $request->$a;
+                        $typ->save();
+            }
+        }
+    }
+
+
+    public function destroy($package_id){
+        
     }
 }

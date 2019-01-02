@@ -11,8 +11,8 @@
 |
 */
 
-Route::get('/test', function () {
-    return view('test2');
+Route::get('/client/test', function () {
+    return view('test');
 });
 Route::post('/orderdata', 'TestsController@orderdata');
 
@@ -209,9 +209,30 @@ Route::post('/svp/updateService','service\ServicesController@update');
 Route::get('/svp/packageService','service\packageService\packageServiceController@index');
 Route::get('/svp/addpackageService','service\packageService\packageServiceController@create');
 Route::post('/svp/submitServicePackage','service\packageService\PackageServiceController@store');
-Route::get('/svp/ViewPackage/{$package_id}','service\packageService\PackageServiceController@show');
+Route::get('/svp/ViewPackage/{package_id}','service\packageService\PackageServiceController@show');
+Route::get('/svp/EditPackage/{package_id}','service\packageService\packageServiceController@edit');
+Route::post('/svp/updatePackage/{package_id}','service\packageService\packageServiceController@update');
+Route::get('/svp/DeletePackage/{package_id}','service\packageService\packageServiceController@destroy');
 
 
 
 //pansilu
 Route::get('/pansilu/{id}','chat\ChatsController@show');
+
+//routes for help center to client..
+
+Route::get('/admin/support','support\helpByAdmin@index');
+Route::get('/client/help','support\helpForClient@index');
+Route::get('/client/getSupport','support\helpForClient@create');
+Route::post('/client/submitHelpRequest','support\helpForClient@store');
+
+// routes for help center to admin..
+
+Route::get('/admin/support','support\helpByAdmin@index');
+Route::get('/admin/notification/{notification_id}','support\helpByAdmin@show');
+
+
+Route::post('/svp/test','support\supportByAdmin@index');
+
+
+Route::get('/admin/note','NotificationsController@index');

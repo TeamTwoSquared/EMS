@@ -21,7 +21,7 @@ class SiteFeesController extends Controller
     
     public function store(Request $request)
     {
-        //
+        
     }
 
     

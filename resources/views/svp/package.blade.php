@@ -54,7 +54,6 @@ use Illuminate\Support\Facades\DB;
 
                                         @php
                                          //   $packageImg=servicePackage::where('package_id',$package_info->package_id)->get();
-
                                             $packageImg= DB::table('package_service')->where('package_id',$package_info->package_id)->value("imgurl");
                                         
                                         @endphp
@@ -70,17 +69,18 @@ use Illuminate\Support\Facades\DB;
                                                     <div class="d-flex justify-content-between align-items-center">
 
                                                          <div class="btn-group">
-                                                             <a href="/svp/ViewService/{{$package_info->package_id}}">
+                                                             <a href="/svp/ViewPackage/{{$package_info->package_id}}">
                                                                  <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                                                              </a>
-                                                             <a href="/svp/EditService/{{$package_info->package_id}}">
+                                                             <a href="/svp/EditPackage/{{$package_info->package_id}}">
                                                                  <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
                                                              </a>
-                                                             <a href="/svp/DeleteService/{{$package_info->package_id}}">
+                                                             <a href="/svp/DeletePackage/{{$package_info->package_id}}">
                                                                  <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
                                                              </a>
                                                         </div>
                                                     </div>
+                                                </center>
                                             </div>
                                     </div>
                                 </div>

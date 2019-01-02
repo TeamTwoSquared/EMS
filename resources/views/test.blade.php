@@ -1,92 +1,65 @@
-<!DOCTYPE html> 
-<html lang="en"> 
-    <head> 
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" />
-		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
-        <meta name="csrf-token" content="{{ csrf_token() }}" />
-    </head>     
-    <body class="animsition"> 
-        <div class="container">
-            <br><br>
-            <h2 align="center"> Test form </h2>
-            <div class="form-group">
-                <form name="add_name" id="add_name">
-                        
-                    <table class="table table-bordered" id="dynamic_field">
-                        <tr>
-                            <td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list" /></td>
-                            <td><button type="button" name="add" id="add" class="btn btn-success">Add More</button></td>
-                        </tr>
-                        
-                        <input type="button" name="submit" id="submit" class="btn btn-info" value="Submit">
-                        
-                    </table>
-                </form>
+@extends('layouts.client')
+@section('content')
+
+<div class="container" data-pg-collapsed>
+
+        <div class="row" data-pg-collapsed>
+            <div class="col-md-1" data-pg-collapsed>
+                <img alt="A generic square placeholder image where only the portion within the circle circumscribed about said square is visible" 140x140 class="img-circle img-responsive" src="http://pinegrow.com/placeholders/img20_thumb.jpg">
+            </div>
+            <div class="col-md-11" data-pg-collapsed>
+                <h3>Column title</h3>              
             </div>
         </div>
-        
-        
 
+        <div class="row" data-pg-collapsed>
+            <div class="col-md-1">
+            </div>
+            <div class="col-md-10" data-pg-collapsed> 
+                <p>Cras justo odio, dapibus ac facilisis in, egestas eget quam. Donec id elit non mi porta gravida at eget metus. Nullam id dolor id nibh ultricies vehicula ut id elit.</p> 
+            </div>
+        </div>
 
-
-        <!-- Jquery JS-->         
-        <script src="vendor/jquery-3.2.1.min.js"></script>         
-        <!-- Bootstrap JS-->         
-        <script src="vendor/bootstrap-4.1/popper.min.js"></script>         
-        <script src="vendor/bootstrap-4.1/bootstrap.min.js"></script>         
-        <!-- Vendor JS       -->         
-        <script src="vendor/slick/slick.min.js">
-    </script>         
-        <script src="vendor/wow/wow.min.js"></script>         
-        <script src="vendor/animsition/animsition.min.js"></script>         
-        <script src="vendor/bootstrap-progressbar/bootstrap-progressbar.min.js">
-    </script>         
-        <script src="vendor/counter-up/jquery.waypoints.min.js"></script>         
-        <script src="vendor/counter-up/jquery.counterup.min.js">
-    </script>         
-        <script src="vendor/circle-progress/circle-progress.min.js"></script>         
-        <script src="vendor/perfect-scrollbar/perfect-scrollbar.js"></script>         
-        <script src="vendor/chartjs/Chart.bundle.min.js"></script>         
-        <script src="vendor/select2/select2.min.js">
-    </script>         
-        <!-- Main JS-->         
-        <script src="js/main.js"></script>         
-        <script type="text/javascript" src="components/pg.blocks/js/plugins.js"></script>
-        <script type="text/javascript" src="components/pg.blocks/js/bskit-scripts.js"></script>
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-    </body>     
-</html> 
-<script>
-        $(document).ready(function(){
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-
-            var i=1;
-            $('#add').click(function(){
-                i++;
-                $('#dynamic_field').append('<tr id="row'+i+'"><td><input type="text" name="name[]" id="name" placeholder="Enter name" class="form-control name_list"></td><td><button name="remove" id="'+i+'" class="btn btn-danger btn_remove">X</button></td></tr>');
-            });
-            $(document).on('click','.btn_remove', function(){
-                var button_id = $(this).attr("id");
-                $('#row'+button_id+'').remove();
-
-            });
-            $('#submit').click(function(){
-                $.ajax({
-                    type:'POST',
-                    url:'/tadd',
-                    data:$('#add_name').serialize(),
-                    success:function(data)
-                    {
-                        alert(data);
-                        $('#add_name')[0].reset();
-                    }
-                });
-            });
-        });
-    </script>
-<!-- end document-->
+        <div class="row" data-pg-collapsed>
+            <div class="col-md-3"> 
+        </div>
+            
+            
+        <div class="row">
+                <div class="col-md-3"> 
+                </div>
+                <div class="col-md-1"> 
+                </div>
+                <div class="col-md-7">                   
+                </div>
+            </div>
+        </div>
+        <div class="row" data-pg-collapsed>
+            <div class="col-md-3"> 
+            </div>
+            <div class="col-md-1" data-pg-collapsed>
+                <img alt="A generic square placeholder image where only the portion within the circle circumscribed about said square is visible" 140x140 class="img-circle img-responsive" src="http://pinegrow.com/placeholders/img20_thumb.jpg">
+            </div>
+            <div class="col-md-7" data-pg-collapsed>
+                <h3>Column title</h3> 
+            </div>
+        </div>
+        <div class="row" data-pg-collapsed>
+            <div class="col-md-3"> 
+            </div>
+            <div class="col-md-1"> 
+            </div>
+            <div class="col-md-7">
+                <dl data-pg-collapsed> 
+                    <dt>Description lists</dt> 
+                    <dd>A description list is perfect for defining terms.</dd>                 
+                    <dt>Euismod</dt> 
+                    <dd>Vestibulum id ligula porta felis euismod semper eget lacinia odio sem nec elit.</dd>                 
+                    <dd>Donec id elit non mi porta gravida at eget metus.</dd>                 
+                    <dt>Malesuada porta</dt> 
+                    <dd>Etiam porta sem malesuada magna mollis euismod.</dd>                 
+                </dl>             
+            </div>
+        </div>
+    </div>
+@endsection
