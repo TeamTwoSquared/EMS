@@ -30,6 +30,106 @@ class ClientsController extends Controller
         return redirect('/admin/client');
         
     }
+    //blocks clients
+    public function block($id)
+    {
+        $customer = Client::where('customer_id',$id)->get();
+        $customer = $customer[0];
+        if ($customer->isverified==2)
+        {
+            $customer->isverified=1;
+        }
+        else if ($customer->isverified==0)
+        {
+            $customer->isverified=1;
+        }
+        else
+        {
+            $customer->isverified=2;
+        }
+        $customer->save();
+        return redirect('/admin/client');
+    }
+    //create client by admin
+    public function admin_create()
+    {
+        return view('admin.client.client_create');
+    }
+    
+    //storing created client by admin
+    public function admin_new_store(Request $request)
+    {
+            $client = new Client();
+            if($request->newpassword==$request->newpasswordagain)
+            {
+                $client->name = $request->name;
+                $client->email = $request->email;
+                $client->username = $request->username;
+                $client->password = $request->newpassword;
+                $client->address = $request->address;
+                $client->address2 = $request->address2;
+                $client->city = $request->city;
+                $client->isverified =1;
+                $client->save();
+                return redirect('/admin/client')->with('success','New client added');
+            }
+            elseif($request->password!=$request->newpassword)
+            {
+                return redirect('/admin/client/add')->with('error','Passwords Are Not Matching');
+            }
+            else
+            {
+                return redirect('/admin/client')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
+            }
+    }
+    public function admin_edit($id)
+    {
+        $customer = (Client::where('customer_id',$id)->get())[0];
+        return view('admin.client.client_update')->with('customer',$customer);
+    }
+
+    public function admin_edit_store(Request $request,$id)
+    {
+        
+        $this->validate($request, [
+            'name'=>'required',
+        ]);
+        $client=Client::find($id);
+
+        if($request->newpassword==null && $request->newpasswordagain==null)
+        {
+            $client->name = $request->name;
+            $client->email = $request->email;
+            $client->username = $request->username;
+            $client->address = $request->address;
+            $client->address2 = $request->address2;
+            $client->city = $request->city;
+            $client->save();
+            return redirect('/admin/client')->with('success','client updated');
+        }
+        else
+        {
+            if($request->newpassword==$request->newpasswordagain)
+        {
+            $client->name = $request->name;
+            $client->email = $request->email;
+            $client->username = $request->username;
+            $client->password = md5($request->newpassword);
+            $client->address = $request->address;
+            $client->address2 = $request->address2;
+            $client->city = $request->city;
+            $client->save();
+            return redirect('/admin/client')->with('success','client updated');
+        }
+            elseif($request->newpassword!=$request->newpasswordagain)
+        {
+            return redirect('/admin/client')->with('error','New Password and Confirmation Password Are Not Matching');
+        }
+        
+        }
+        
+    }
+
 
 
     public function register(Request $request)
@@ -139,13 +239,6 @@ class ClientsController extends Controller
     {
         //
     }
-
-
-    public function edit($id)
-    {
-        //
-    }
-
 
     public function update(Request $request, $id)
     {
