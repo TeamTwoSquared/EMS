@@ -8,7 +8,7 @@
             <div class="row" data-pg-collapsed> 
                 <div class="col-lg-9"> 
                     <div class="card"> 
-                        <div class="card-header">Add New Client Details</div>             
+                        <div class="card-header">Add New Service Provider Details</div>             
                         <div class="card-body card-block"> 
                             <form action="save_profile" method="post" data-pg-collapsed> 
                             {{ csrf_field() }}

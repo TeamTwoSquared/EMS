@@ -28,12 +28,12 @@
                 </button>
             </div>
             <div class="table-data__tool-right">
-                <a href="customer/add"> 
+                <a href="client/add"> 
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                         <i class="zmdi zmdi-plus"></i>add client&nbsp;
                     </button>
                 </a>
-                <a href="customer/delete">
+                <a href="client/delete">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small bg-danger">
                         <i class="zmdi zmdi-minus"></i>remove client&nbsp;
                     </button>
