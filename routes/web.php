@@ -230,6 +230,7 @@ Route::post('/client/submitHelpRequest','support\helpForClient@store');
 
 Route::get('/admin/support','support\helpByAdmin@index');
 Route::get('/admin/notification/{notification_id}','support\helpByAdmin@show');
+Route::post('/notification/sendReply','support\helpByAdmin@store');
 
 
 Route::post('/svp/test','support\supportByAdmin@index');
