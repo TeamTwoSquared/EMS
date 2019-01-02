@@ -55,7 +55,9 @@ class SVPsController extends Controller
             $svp = new SVP();
             if($request->newpassword==$request->newpasswordagain)
             {
-                $svp->name = $request->name;
+                $svp->name = $request->username;
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
                 $svp->email = $request->email;
                 $svp->username = $request->username;
                 $svp->password = $request->newpassword;
@@ -83,15 +85,13 @@ class SVPsController extends Controller
     //store the updated svp details by admin
     public function admin_edit_store(Request $request,$id)
     {
-        $this->validate($request, [
-            'name'=> 'required',
-            
-        ]);
             $svp = SVP::find($id);
             
             if($request->newpassword==null && $request->newpasswordagain=null)
             {
-                $svp->name = $request->name;
+                $svp->name = $request->username;
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
                 $svp->email = $request->email;
                 $svp->username = $request->username;
                 $svp->address = $request->address;
@@ -105,7 +105,8 @@ class SVPsController extends Controller
             {
                 if($request->newpassword==$request->newpasswordagain)
                 {
-                $svp->name = $request->name;
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
                 $svp->email = $request->email;
                 $svp->username = $request->username;
                 $svp->password = md5($request->newpassword);
@@ -332,7 +333,8 @@ class SVPsController extends Controller
                 if($newpassword==$newpasswordagain)
                 {
                         $svp->password=md5($request->newpasswordagain);
-                        $svp->name = $request->name;
+                        $svp->firstname = $request->fname;
+                        $svp->lastname = $request->lname;
                         $svp->address=$request->address;
                         $svp->address2=$request->address2;
                         $svp->city=$request->city;
@@ -352,7 +354,8 @@ class SVPsController extends Controller
         }
         else if(!$request->oldpassword && !$request->newpassword && !$request->newpasswordagain)
         {
-            $svp->name = $request->name;
+            $svp->firstname = $request->fname;
+            $svp->lastname = $request->lname;
             $svp->address=$request->address;
             $svp->address2=$request->address2;
             $svp->city=$request->city;
