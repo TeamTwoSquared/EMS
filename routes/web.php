@@ -198,6 +198,10 @@ Route::post('/svp/ads/store','ad\AdsController@store');
 Route::get('/svp/ads/edit/{id}','ad\AdsController@edit');
 Route::post('/svp/ads/update/{id}','ad\AdsController@update');
 Route::get('/svp/ads/delete/{id}','ad\AdsController@destroy');
+Route::get('/svp/ads/pay/done','ad\AdsController@pay_done');
+Route::get('/svp/ads/pay/cancel','ad\AdsController@pay_cancel');
+Route::post('/svp/ads/pay/notify','ad\AdsController@pay_notify');
+Route::get('/svp/ads/get/{id}','ad\AdsController@getContent');
 
 // Routes for services of svp
 

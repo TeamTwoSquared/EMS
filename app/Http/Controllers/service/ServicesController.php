@@ -265,5 +265,11 @@ class ServicesController extends Controller
         return $services;
     }
 
+    public static function getServices($svp_id)
+    {
+        $services = Service::where('service_provider_id',$svp_id)->get();
+        return $services;
+    }
+
 
 }

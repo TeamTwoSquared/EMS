@@ -27,7 +27,7 @@
                             <li class="list-inline-item seprate"> 
                                 <span>/</span> 
                             </li>                             
-                            <li class="list-inline-item">Service Provider Search</li>
+                            <li class="list-inline-item">Search Results</li>
                             <li class="list-inline-item seprate"> 
                                 <span>/</span> 
                             </li>
@@ -149,7 +149,7 @@
                             <div class="card-body pb-0">
                                 <div class="mx-auto d-block">
                                     <img class="rounded-circle mx-auto d-block" src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->username}}">
-                                    <h5 class="text-sm-center mt-2 mb-1"><strong>{{$svp->username}}</strong></h5>
+                                    <h5 class="text-sm-center mt-2 mb-1"><a href="/client/view/svp/{{$svp->service_provider_id}}"><strong>{{$svp->username}}</strong></a></h5>
                                     <div class="location text-sm-center">
                                         <i class="fa fa-map-marker"></i> {{$svp->city}}
                                     </div>
@@ -158,11 +158,22 @@
                                             <i class="fa fa-star"></i>
                                         @endfor
                                         {{$svp->star}}.0</p>
-                                    <p class="card-text text-sm-center">Online Status : <span class="dot dot--green"></span></p>
+                                    <p class="card-text text-sm-center">Online Status :
+                                        @if($svp->isonline==1) 
+                                            <span class="dot dot--green"></span>
+                                        @else
+                                            <span class="dot dot--red"></span>
+                                        @endif
+                                    </p>
                                     <button type="button" class="btn btn-light float-none text-body btn-block active asbestos-hover">Contact Me</button>
                                 </div>
                                 <hr>
-                                <h6>Memeber Since : 2002</h6>
+                                <h6>Memeber Since :
+                                    @php
+                                        $datetime = explode(" ",$svp->reg_date);
+                                        echo $datetime[0];
+                                    @endphp 
+                                    </h6>
                             </div>
                         </div>
                     </div>

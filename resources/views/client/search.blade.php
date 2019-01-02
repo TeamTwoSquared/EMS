@@ -20,7 +20,7 @@
                             <li class="list-inline-item seprate"> 
                                 <span>/</span> 
                             </li>                             
-                            <li class="list-inline-item">Service Provider Search</li>
+                            <li class="list-inline-item">Search Results</li>
                         </ul>                         
                     </div>                     
                     <form class="au-form-icon--sm" action="/client/search" method="post">
@@ -118,7 +118,7 @@
                             <div class="card-body pt-2 ">
                                 <div class="row">
                                     <div class="image col-md-3 pl-0 pr-0"> 
-                                    <img src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->username}}" class="rounded-circle"/> 
+                                        <a href="/client/view/svp/{{$svp->service_provider_id}}"><img src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->username}}" class="rounded-circle"/></a>
                                     </div>
                                     <div class="image col-md-9 pr-0 pl-1 ">
                                     <p><a href="/client/view/svp/{{$svp->service_provider_id}}"><strong>{{$svp->username}}</strong></a> (Level {{$svp->level}})</p> 

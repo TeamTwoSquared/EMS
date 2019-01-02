@@ -9,7 +9,7 @@
     <div class="section__content section__content--p30"> 
         <div class="container-fluid">
             <div class="row" data-pg-collapsed>
-                <div class="col-xl-12">
+                <div class="col-md-12">
                     <div class="card">
                         <div class="card-header" data-pg-collapsed>
                             <strong>Create</strong> An Advertisement

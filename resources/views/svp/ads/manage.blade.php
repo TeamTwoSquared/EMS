@@ -53,12 +53,14 @@ $svp=SVPsController::getSVP();
                                 @endif
 
                                 @if($ad->isapprove == 1)
-                                <td><span class="status--process">approved</span></td>
+                                <td><span class="status--process">online</span></td>
                                 @elseif($ad->isapprove == 0)
                                 <td><span class="status--pending">pending</span></td>
                                 @elseif($ad->isapprove == 2)
                                 <td><span class="status--denied">blocked</span></td>
-                                @else
+                                @elseif($ad->isapprove == 3)
+                                <td><strong>Payment in Process</strong></td>
+                                @elseif($ad->isapprove == 4)
                                 <td><span class="status--pending"><strong>EXPIRED</strong></span></td>
                                 @endif
                                 <td>{{$ad->price}}</td>
@@ -71,12 +73,11 @@ $svp=SVPsController::getSVP();
                                                 <i class="zmdi zmdi-edit"></i>
                                             </button>
                                         </a>
-                                        <a href="ads/pay/{{$ad->ad_id}}">
-                                            <button class="item" data-toggle="tooltip" data-placement="top" title="Pay">
-                                                <i class="far fa-money-bill-alt"></i>
+                                        @if($ad->isapprove==4)
+                                            <button class="item" id="pay" data-url="ads/get/{{$ad->ad_id}}" data-toggle="modal" data-target="#adsPayModal" data-placement="top" title="Pay">
+                                                <i data-toggle="tooltip" data-placement="top" title="Pay" class="far fa-money-bill-alt"></i>
                                             </button>
-                                        </a>
-                                        
+                                        @endif  
                                             <button onclick ="deleteMe({{$ad->ad_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                                 <i class="zmdi zmdi-delete"></i>
                                                 <script>
@@ -87,7 +88,6 @@ $svp=SVPsController::getSVP();
                                                         }
                                                 </script>
                                             </button>
-                                        
                                     </div>
                                 </td>
                             </tr>
@@ -101,7 +101,39 @@ $svp=SVPsController::getSVP();
                 
             </div>
         </div>
-</section>            
+</section> 
+<script>
+    $(document).ready(function(){
+
+        $(document).on('click', '#pay', function(e){
+            e.preventDefault();
+            var url = $(this).data('url');
+
+            $('#dynamic-content').html(''); // leave it blank before ajax call
+            $('#modal-loader').show();      // load ajax loader
+
+            $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html'
+            })
+            .done(function(data){
+            console.log(data);  
+            $('#dynamic-content').html('');    
+            $('#dynamic-content').html(data); // load response 
+            $('#modal-loader').hide();        // hide ajax loader   
+            })
+            .fail(function(){
+            $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+            $('#modal-loader').hide();
+            });
+              
+        });
+
+    });
+
+         
+  </script>         
 @endsection
 
 

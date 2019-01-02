@@ -3,10 +3,13 @@ namespace App\Http\Controllers\ad;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\SettingsController;
 use Intervention\Image\ImageManagerStatic as Image;
 use Illuminate\Support\Facades\Storage;
 use App\Ad;
+use App\SVP;
 use App\AdsImage;
+use GuzzleHttp\Client;
 
 class AdsController extends Controller
 {
@@ -306,5 +309,56 @@ class AdsController extends Controller
             }
         }
         AdsImage::where('ad_id',$id)->delete();
+    }
+
+    public function getContent($id)
+    {
+        $payhere = SettingsController::getPayHereDetails();
+        $ad = Ad::find($id);
+        $svp = SVP::find($ad->service_provider_id);
+
+        return view('svp.ads.payModalContent')->with('payhere',$payhere)->with('ad',$ad)->with('svp',$svp);
+    }
+
+    public function pay_done()
+    {
+        return redirect('/svp/ads');
+    }
+    
+    public function pay_cancel()
+    {
+        return redirect('/svp/ads');
+    }
+
+    public function pay_notify(Request $request)
+    {
+        $merchant_id = $request->merchant_id;
+        $order_id = $request->order_id;
+        $payhere_amount = $request->payhere_amount;
+        $payhere_currency = $request->payhere_currency;
+        $status_code = $request->status_code;
+        $md5sig = $request->md5sig;
+
+        $payhere = SettingsController::getPayHereDetails();
+        $ad = Ad::find($order_id);
+
+        $merchant_secret = $payhere->merchant_secret;
+
+        $local_md5sig = strtoupper (md5 ( $merchant_id . $order_id . $payhere_amount . $payhere_currency . $status_code . strtoupper(md5($merchant_secret)) ) );
+
+        if (($local_md5sig === $md5sig) && ($status_code == 2))//Success
+        {
+            $ad->isapprove = 1;
+            $ad->last_payment_id = $request->payment_id;
+            $ad->last_payment_date = date("Y/m/d");
+            $ad->save;
+        }
+
+        else if (($local_md5sig === $md5sig) && ($status_code == 0))//Pending
+        {
+            $ad->isapprove = 3;
+            $ad->save;
+        }
+
     }
 }

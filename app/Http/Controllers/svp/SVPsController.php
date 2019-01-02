@@ -291,4 +291,9 @@ class SVPsController extends Controller
         return SVP::find($id);
     }
 
+    public function client_view($id)
+    {
+        return view('client.showSVP')->with('svp_id',$id);
+    }
+
 }//end of class
