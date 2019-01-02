@@ -15,7 +15,7 @@ class ServiceVideosController extends Controller
           
                 $service_video = new ServiceVideo();
                 $service_video->service_id = $id;
-                $service_video->videourl = $request;
+                $service_video->videourl = ServiceVideosController::getYoutubeEmbedUrl($request);
                 $service_video->save();
         
         }
@@ -35,7 +35,7 @@ class ServiceVideosController extends Controller
           
             $service_video = new ServiceVideo();
             $service_video->service_id = $request->serviceID;
-            $service_video->videourl = $request->url;
+            $service_video->videourl = ServiceVideosController::getYoutubeEmbedUrl($request->url);
             $service_video->save();
     
         }
@@ -45,5 +45,20 @@ class ServiceVideosController extends Controller
     {
         $serviceVideos=ServiceVideo::where('service_id',$service_id)->get();
         return $serviceVideos;
+    }
+
+    public static function getYoutubeEmbedUrl($url)
+    {
+        $shortUrlRegex = '/youtu.be\/([a-zA-Z0-9_]+)\??/i';
+        $longUrlRegex = '/youtube.com\/((?:embed)|(?:watch))((?:\?v\=)|(?:\/))(\w+)/i';
+
+        if (preg_match($longUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+
+        if (preg_match($shortUrlRegex, $url, $matches)) {
+            $youtube_id = $matches[count($matches) - 1];
+        }
+        return 'https://www.youtube.com/embed/' . $youtube_id ;
     }
 }

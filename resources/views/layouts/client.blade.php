@@ -46,6 +46,9 @@ $client=ClientsController::getClient();
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
     </head>     
     <body class="animsition"> 
+        <!-- MODALS -->
+        @include('inc.modals')
+        <!-- END MODALS -->
         <div class="page-wrapper"> 
             <!-- HEADER DESKTOP-->             
             <header class="header-desktop3 d-none d-lg-block bg-ems-admin"> 

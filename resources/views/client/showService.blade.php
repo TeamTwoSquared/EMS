@@ -5,46 +5,37 @@
     use App\Http\Controllers\service\ServiceImagesController;
     use App\Http\Controllers\svp\SVPsController;
     use App\Http\Controllers\service\ServiceVideosController;
+    use App\Http\Controllers\service\ServiceTypesController;
+    use App\Http\Controllers\service\ServiceLocationsController;
 
     $service = ServicesController::getService($service_id);
     $svp = SVPsController::getSVP2($service->service_provider_id);
     $AllImages=ServiceImagesController::getAllImages($service->service_id);
+    $service_types = ServiceTypesController::getTypes($service->service_id);
+    $service_locations = ServiceLocationsController::getLocations($service->service_id);
     $Videos = ServiceVideosController::getVideos($service->service_id);
     $other_services = ServicesController::getServicesExceptOne($service->service_provider_id,$service->service_id);
 @endphp
 
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
-    <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-12"> 
-                <div class="au-breadcrumb-content"> 
-                    <div class="au-breadcrumb-left"> 
-                        <span class="au-breadcrumb-span">You are here:</span> 
-                        <ul class="list-unstyled list-inline au-breadcrumb__list"> 
-                            <li class="list-inline-item active"> 
-                                <a href="#">Home</a> 
-                            </li>                             
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Search Results</li>
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>
-                            <li class="list-inline-item">{{$service->name}}</li>
-                        </ul>                         
-                    </div>                     
-                    <form class="au-form-icon--sm" action="/client/search" method="post">
-                        {{ csrf_field() }} 
-                        <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
-                        <button class="au-btn--submit2" type="submit"> 
-                            <i class="zmdi zmdi-search"></i> 
-                        </button>                         
-                    </form>                     
-                </div>                 
-            </div>             
-        </div>         
-    </div>     
+        <div class="container"> 
+            <div class="row"> 
+                <div class="col-md-12"> 
+                    <div class="au-breadcrumb-content"> 
+                        <div class="au-breadcrumb-left"> 
+                                                     
+                        </div>                     
+                        <form class="au-form-icon--sm" action="/client/search" method="post">
+                            {{ csrf_field() }} 
+                            <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
+                            <button class="au-btn--submit2" type="submit"> 
+                                <i class="zmdi zmdi-search"></i> 
+                            </button>                         
+                        </form>                     
+                    </div>                 
+                </div>             
+            </div>         
+        </div>     
 </section>
 <hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed>
@@ -97,11 +88,27 @@
                                 <div class="card-header">
                                     About this Service
                                 </div>
-                                <div class="card-body pt-1">
+                                <div class="card-body pt-1 pb-1">
                                     <blockquote class="blockquote mb-0">
-                                        <p>{{$service->description}}</p>
+                                        <p class="mb-2">{{$service->description}}</p>
+                                        @if($service_locations->count()!=0)
+                                        <p class="mb-1 mt-0 font-weight-bold">Available at :</p>
+                                            <ul style="list-style-type: circle;" class="ml-3"> 
+                                                @foreach($service_locations as $service_location)
+                                                    <li>{{$service_location->location}}</li> 
+                                                @endforeach    
+                                            </ul>
+                                        @endif
+                                        @if($service_types->count()!=0)
+                                        <p class="mb-1 mt-0 font-weight-bold">Related to :</p>
+                                        <ul style="list-style-type: circle;" class="ml-3" data-pg-collapsed> 
+                                            @foreach($service_types as $service_type)
+                                                <li>{{$service_type->type}}</li>   
+                                            @endforeach
+                                        </ul>
+                                        @endif
                                         @foreach($Videos as $video)
-                                            <p class="card-text">Video URL: {{$video->videourl}}</p>
+                                            <p class="card-text">Video URL: <a href="#" data-toggle="modal" data-target="#videoModal" data-theVideo="{{$video->videourl}}">{{$video->videourl}}</a></p>
                                         @endforeach
                                         <footer class="blockquote-footer">Price : 
                                             <cite title="Source Title">Rs. {{$service->price}} /=</cite>
@@ -157,7 +164,15 @@
                                         @for ($i = 0; $i < $svp->star; $i++)
                                             <i class="fa fa-star"></i>
                                         @endfor
-                                        {{$svp->star}}.0</p>
+                                        {{$svp->star}}.0
+                                    </p>
+                                    <p class="card-text text-sm-center">
+                                        @if($svp->level == 0) (New)
+                                        @elseif($svp->level == 3) (Top Rated)
+                                        @else 
+                                        (Level {{$svp->level}})
+                                        @endif
+                                    </p>
                                     <p class="card-text text-sm-center">Online Status :
                                         @if($svp->isonline==1) 
                                             <span class="dot dot--green"></span>
@@ -226,5 +241,22 @@
     </div>     
 </section>
 <hr/>
+<script>
+    $(document).ready(function(){
+        autoPlayYouTubeModal();
+    });
+    function autoPlayYouTubeModal(){
+        var trigger = $("body").find('[data-toggle="modal"]');
+        trigger.click(function() {
+            var theModal = $(this).data( "target" ),
+            videoSRC = $(this).attr( "data-theVideo" ),
+            videoSRCauto = videoSRC+"?autoplay=1" ;
+            $(theModal+' iframe').attr('src', videoSRCauto);
+            $(theModal+' button.close').click(function () {
+                $(theModal+' iframe').attr('src', videoSRC);
+            });   
+        });
+    }
 
+</script>
 @endsection

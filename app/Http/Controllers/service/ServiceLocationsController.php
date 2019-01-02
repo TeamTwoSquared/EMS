@@ -51,4 +51,10 @@ class ServiceLocationsController extends Controller
             }
         }
     }
+
+    public static function getLocations($id)
+    {
+        $locations = ServiceLocation::where('service_id',$id)->get();
+        return $locations;
+    }
 }
