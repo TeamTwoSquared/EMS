@@ -20,6 +20,10 @@ $svp=SVPsController::getSVP();
         <!-- Title Page-->         
         <title>{{ config('app.name', 'Laravel') }}</title>         
         <!-- Fontfaces CSS-->         
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+       <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous"> -->
+        <script src="https://unpkg.com/gijgo@1.9.11/js/gijgo.min.js" type="text/javascript"></script>
+        <link href="https://unpkg.com/gijgo@1.9.11/css/gijgo.min.css" rel="stylesheet" type="text/css" />
         <link href="/svp/css/font-face.css" rel="stylesheet" media="all"> 
         <link href="/svp/vendor/font-awesome-4.7/css/font-awesome.min.css" rel="stylesheet" media="all"> 
         <link href="/svp/vendor/font-awesome-5/css/fontawesome-all.min.css" rel="stylesheet" media="all"> 

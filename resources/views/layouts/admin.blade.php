@@ -46,6 +46,8 @@ $admin=AdminsController::getAdmin();
         <!-- <link rel="stylesheet" href="/admin/components/pg.blocks/css/style-library-1.css"> -->     
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
+        
+        <link rel="stylesheet" media="all" type="text/css" href="/client/semantic/dist/semantic.min.css"> 
     </head>     
     <body class="animsition bg-ems-admin border-ems-admin"> 
         <div class="page-wrapper bg-ems-admin border-ems-admin"> 
@@ -366,7 +368,13 @@ $admin=AdminsController::getAdmin();
         <script src="/admin/js/main.js"></script>         
         <script type="text/javascript" src="/admin/components/pg.blocks/js/plugins.js"></script>         
         <script type="text/javascript" src="/admin/components/pg.blocks/js/bskit-scripts.js"></script>         
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>         
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
+        <!-- sementic JS-->
+        <script
+        src="https://code.jquery.com/jquery-3.1.1.min.js"
+        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
+        crossorigin="anonymous"></script>
+        <script src="/admin/semantic/dist/semantic.min.js"></script>       
     </body>     
 </html> 
 <!-- end document-->

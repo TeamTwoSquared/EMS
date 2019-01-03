@@ -62,7 +62,44 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                 @endif
                 <div class="row">
                         <div class="btn-group" role="group" aria-label="Basic example">
-                            <button type="button" class="btn btn-secondary">Invite</button>
+                            <button id="invite" type="button" class="btn btn-secondary" data-toggle="modal" data-target="#exampleModalCenter">
+                                Invite
+                            </button>
+                        </div>
+                        <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLongTitle">Invite Friends</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <form action="store" method="post" enctype="multipart/form-data" class="form-horizontal">
+                                    {{ csrf_field() }} 
+                                    <div class="modal-body">                                   
+                                        <div class="row form-group">
+                                            <div class="col col-md-2 col-xl-2 "> 
+                                                <label for="exampleInputEmail1" class="col-sm-2 col-form-label">Email address</label>
+                                            </div>
+                                            <div class="col-sm-10">
+                                                <div class="emailtag">
+                                                    <div id="tags" name="tags">
+                                                        <input type="text" value="">
+                                                        <input type="hidden" id="emails"name="emails" >
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>                                     
+                                    </div>
+                                    <input type="hidden" id="event_id"name="event_id" value="{{$my_event->event_id}}" >
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                        <button type="submit" class="btn btn-primary">Invite</button>
+                                    </div>
+                                </form>
+                                </div>
+                            </div>
                         </div>
                 </div>
                 <div class="row">
@@ -162,6 +199,11 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
         </div>         
     </div>     
 </section>
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous">
+</script>
+<script src="/client/taginput.js"></script>
 <script>
         $(document).ready(function(){
             $.ajaxSetup({
