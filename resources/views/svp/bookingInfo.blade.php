@@ -32,13 +32,28 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
                 <div class="rs-select2--light rs-select2--md">
                     <input id="datepicker" name="date" value="Select Date"/>
                         <script>
-                            $('#datepicker').datepicker({
-                                header: true,
-                                modal: true,
-                                format: 'yyyy-dd-mm',
-                                footer: true,
-                                uiLibrary: 'bootstrap4'
-                            });
+                            $('#datepicker').datepicker(
+                                {
+                                    header: true,
+                                    modal: true,
+                                    format: 'yyyy-dd-mm',
+                                    footer: true,
+                                    uiLibrary: 'bootstrap4',
+                                    select: function (e, type) 
+                                    {
+                                        alert(JSON.stringify(e, null, 4));
+                                    },
+                                    disableDates:  function (date) 
+                                    {
+                                        var enable= [10,15,20,25]; //dates to activate
+                                        if (enable.indexOf(date.getDate()) == -1 ) {
+                                            return false;
+                                        } else {
+                                            return true;
+                                        }
+                                    }
+                                }
+                               );
                         </script>
                 </div>
             </div>

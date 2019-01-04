@@ -105,4 +105,9 @@ class BookingsController extends Controller
         $bookings = Booking::where('service_provider_id',$service_provider_id)->get();
         return $bookings;
     }
+    public static function getBookingFordate($date)
+    {
+        $bookings = Booking::where('date',$date)->get();
+        return $bookings;
+    }
 }
