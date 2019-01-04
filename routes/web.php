@@ -113,8 +113,12 @@ Route::get('/svpverification/{id}/{key}', 'svp\SVPsController@doVerify');
 
 //Route::get('/svp/client','');
 Route::get('/svp/service','service\ServicesController@index');
-Route::get('/svp/booking','service\ServiceCustomerBookingsController@index');
-Route::get('/svp/booking/add', 'BookingsController@create');
+Route::get('/svp/booking','BookingsController@index');
+Route::get('/svp/booking/add','BookingsController@create');
+Route::post('/svp/booking/store','BookingsController@store');
+Route::get('/svp/booking/delete/{id}','BookingsController@destroy');
+Route::get('/svp/booking/block/{id}','BookingsController@block');
+
 Route::get('/svp/review','review\ReviewingsController@index');
 
 

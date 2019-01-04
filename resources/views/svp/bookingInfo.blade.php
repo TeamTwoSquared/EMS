@@ -1,10 +1,8 @@
 @extends('layouts.svp')
 @section('content')
 @php
-use App\Catergory;
-use App\Http\Controllers\event\CatergoriesController;
-use App\Http\Controllers\event\CatergoryTemplatesController;
-
+use App\Http\Controllers\svp\SVPBookingServicesController;
+use App\Http\Controllers\service\ServiceCustomerBookingsController;
 @endphp
 <div class="row" data-pg-collapsed>
     <div class="col-md-11">
@@ -31,6 +29,18 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                 <button class="au-btn-filter">
                     <i class="zmdi zmdi-filter-list"></i>filters
                 </button>
+                <div class="rs-select2--light rs-select2--md">
+                    <input id="datepicker" name="date" value="Select Date"/>
+                        <script>
+                            $('#datepicker').datepicker({
+                                header: true,
+                                modal: true,
+                                format: 'yyyy-dd-mm',
+                                footer: true,
+                                uiLibrary: 'bootstrap4'
+                            });
+                        </script>
+                </div>
             </div>
             <div class="table-data__tool-right">
                 <a href="booking/add"> 
@@ -58,13 +68,14 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         <th>Date</th>
                         <th>Time</th>
                         <th>status</th>
-                        <th>service</th>
+                        <th>services</th>
                         <th>Client</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <!-- Start TABLE ROW-->
+                    @foreach($bookings as $booking)
                     <tr class="tr-shadow">
                         <td>
                             <label class="au-checkbox">
@@ -72,37 +83,57 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                                 <span class="au-checkmark"></span>
                             </label>
                         </td>
-                        <td class="agenda-date" class="active" rowspan="1"> 
-                            <div class="dayofmonth">26</div>                                             
-                            <div class="dayofweek">Saturday</div>                                             
-                            <div class="shortdate text-muted">July, 2014</div>                                             
+                        <td class="agenda-date" class="active" rowspan="1">
+                            @php
+                            $date = new DateTime($booking->date);                                
+                            @endphp 
+                            <div class="dayofmonth">{{$date->format('d')}}</div>                                             
+                            <div class="dayofweek">{{$date->format('l')}}</div>                                             
+                            <div class="shortdate text-muted">{{$date->format('F')}}, {{$date->format('Y')}}</div>                                             
                         </td>
-                        <td class="agenda-time"> 
-                            5:30 AM
+                        <td class="agenda-time">
+                            <div>{{$booking->stime}}</div>
+                            <div>to</div>
+                            <div>{{$booking->etime}}</div> 
                         </td> 
+                        @if($booking->status == 0)
+                        <td><span class="status--process">active</span></td>
+                        @elseif($booking->status == 1)
                         <td><span class="status--pending">pending</span></td>
-                        <td>Hall</td>
-                        <td>Sajun</td>  
+                        @else
+                        <td><span class="status--denied">blocked</span></td>
+                        @endif
+                        <td class="active" rowspan="1">
+                            @php
+                                $services=SVPBookingServicesController::getServices($booking->booking_id);
+                            @endphp
+                            @foreach ($services as $service)
+                                <div>{{$service->name}}</div> 
+                            @endforeach
+                        </td>
+                        <td class="active" rowspan="1">
+                            @php
+                                $clients=ServiceCustomerBookingsController::getClients($booking->booking_id);
+                            @endphp
+                                @foreach ($clients as $client)
+                                    <div>{{$client->name}}</div>
+                                @endforeach
+                        </td>  
                         <td>
                             <div class="table-data-feature">
-                                <a href="catergory/edit/{{$catergories[0]->catergory_id}}">
-                                    <button class="item" data-toggle="tooltip" data-placement="top" title="Edit">
-                                        <i class="zmdi zmdi-edit"></i>
-                                    </button>
-                                </a>
-                                <a href="template/block/{{$catergories[0]->catergory_id}}">
+                                <a href="booking/block/{{$bookings[0]->booking_id}}">
                                     <button class="item" data-toggle="tooltip" data-placement="top" title="Lock">
                                         <i class="fa fa-lock"></i>
                                     </button>
                                 </a>                                
-                                <button onclick ="deleteMe({{$catergories[0]->catergory_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                <button onclick ="deleteMe({{$bookings[0]->booking_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                     <i class="zmdi zmdi-delete"></i>
                                     <script>
                                         function deleteMe(id) 
                                         {
                                             if (confirm("Are you sure you want to delete this catergory!")) 
                                             {
-                                                window.location.replace("catergory/delete/"+id);
+                                                window.location.replace("booking/delete/"+id);
                                             } 
                                         }
                                     </script>
@@ -111,6 +142,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                         </td>
                     </tr>
                     <tr class="spacer"></tr>
+                    @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>
             </table>

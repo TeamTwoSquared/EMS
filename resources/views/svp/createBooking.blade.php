@@ -21,9 +21,10 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Event Date</label>                             
                         </div>                         
                         <div class="col-12 col-md-4"> 
-                                <input id="datepicker"/>
+                                <input id="datepicker" name="date"/>
                                 <script>
                                     $('#datepicker').datepicker({
+                                        format: 'yyyy-dd-mm',
                                         uiLibrary: 'bootstrap4'
                                     });
                                 </script>
@@ -34,7 +35,7 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Start Time</label>                             
                         </div>                         
                         <div class="col-12 col-md-4">
-                                <input id="s_time" />
+                                <input id="s_time" name="start_time"/>
                                 <script>
                                     $('#s_time').timepicker({
                                         uiLibrary: 'bootstrap4'
@@ -47,7 +48,7 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">End Time</label>                             
                         </div>                         
                         <div class="col-12 col-md-4">
-                                <input id="e_time" />
+                                <input id="e_time" name="end_time"/>
                                 <script>
                                     $('#e_time').timepicker({
                                         uiLibrary: 'bootstrap4'
@@ -77,7 +78,7 @@ $i=1; //use to have checkbox number
                             <label for="text-input" class="form-control-label">Client's Email</label>                             
                         </div>                         
                         <div class="col-12 col-md-9"> 
-                            <input type="text" id="client" name="client" placeholder="" class="form-control"> 
+                            <input type="email" id="client" name="client" placeholder="" class="form-control"> 
                         </div> 
                     </div>                                
                     <div class="card-footer"> 
@@ -93,4 +94,5 @@ $i=1; //use to have checkbox number
         </div>     
     </div>
 </div>
+
 @endsection

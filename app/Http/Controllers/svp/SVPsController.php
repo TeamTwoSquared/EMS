@@ -8,7 +8,6 @@ use Intervention\Image\ImageManagerStatic as Image;
 use App\SVP;
 use App\TasksSvp;
 use App\Http\Controllers\MailController;
-
 class SVPsController extends Controller
 {
     public function index(){

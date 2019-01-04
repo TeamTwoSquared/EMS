@@ -1,9 +1,11 @@
 @php
-use App\Http\Controllers\client\ClientsController;
-use App\Http\Controllers\event\EventsController;
+use App\Http\Controllers\service\servicesController;
+use App\Http\Controllers\svp\SVPsController;
+use App\Http\Controllers\BookingsController;
 
-$Client = ClientsController::getClient();
-$event=EventsController::getEvent(63);
+$booking = BookingsController::getBooking($data['booking_id']);
+$svp = SVPsController::getSVP();
+$services=$data['services'];
 @endphp
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
@@ -40,7 +42,7 @@ $event=EventsController::getEvent(63);
 <center>
   <p><img src="{{ config('app.url', 'ems2.dv') }}/mail/images/logo.png" alt="EMS Logo" name="img_logo" width="381" height="184" id="img_logo" /></p></center>
 <h1><strong>Welcome To EMS</strong></h1>
-<h3>You have been invited to the EMS by {{$Client->name}} to join with the event {{$event->name}}.</h3>
+<h3>A booking on {{$booking->date}} was created by {{$svp->name}} for the services {{$service->name}}.</h3>
 <h3>First, please take a minute to register/login to EMS by clicking the button below:</h3>
 <h3>*If you cannot open the link, copy and paste this link into your browser:<a href = "{{ config('app.url', 'ems2.dv') }}/client/register">{{ config('app.url', 'ems2.dv') }}/client/register</a></h3>
 <h3>If you have any questions, let our support know at <a href="mailto:contact@ems.dv" target="_pg_blank" data-pg-id="97">contact@ems.dv</a>.</h3>

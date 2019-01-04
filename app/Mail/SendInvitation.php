@@ -31,6 +31,6 @@ class SendInvitation extends Mailable
     public function build()
     {
         return $this->from('noreply@ems.com')
-                    ->view('mail.sendInvitation')->with(['data', $this->data]);;
+                    ->view('mail.sendInvitation')->with(['data', $this->data]);
     }
 }
