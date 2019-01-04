@@ -24,6 +24,9 @@ class InvitationsController extends Controller
     
     public function store(Request $request)
     {
+        $this->validate($request, [
+            'emails'=> 'required'
+        ]);
         $emails=explode(" ", $request->emails);
         foreach($emails as $email)
         {
