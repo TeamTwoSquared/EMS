@@ -3,7 +3,7 @@ use App\Http\Controllers\client\ClientsController;
 use App\Http\Controllers\event\EventsController;
 
 $Client = ClientsController::getClient();
-$event=EventsController::getEvent($data['event_id']);
+$event=EventsController::getEvent(63);
 @endphp
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">

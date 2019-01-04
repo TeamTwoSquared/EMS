@@ -34,7 +34,7 @@ class InvitationsController extends Controller
             $invitation->email = $email;
             $invitation->event_id =  $request->event_id;
             $invitation->save();
-            Mail::to($email)->send(new SendInvitation,$invitation);
+            Mail::to($email)->send(new SendInvitation($invitation));
             return redirect("/client/myevents/$request->event_id");
         }
     }

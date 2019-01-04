@@ -2,7 +2,10 @@
 @section('content')
 @php
 use App\Http\Controllers\service\ServicesController;
-use App\Http\Controllers\svp\SVPsController;   
+use App\Http\Controllers\svp\SVPsController;
+$svp=SVPsController::getSVP();
+$services = ServicesController::getService($svp->service_provider_id);
+$i=1; //use to have checkbox number   
 @endphp
 <div class="row" data-pg-collapsed> 
     <div class="col-xl-12"> 
@@ -55,27 +58,17 @@ use App\Http\Controllers\svp\SVPsController;
                     <div class="row form-group"> 
                         <div class="col col-md-3">Services</div>                         
                         <div class="col-12 col-md-9">
-                            <div class="input-group mb-3">
-                                    <section>
-
-                                            <div class="row">
-                                              <div class="col-md-6">
-                                        
-                                                <div class="select-wrapper mdb-select colorful-select dropdown-primary md-form"><span class="caret">▼</span><input type="text" class="select-dropdown" readonly="true" data-activates="select-options-76e16562-b206-408b-b7aa-8e22b0b3eb20" value=""><ul id="select-options-76e16562-b206-408b-b7aa-8e22b0b3eb20" class="dropdown-content select-dropdown w-100 multiple-select-dropdown" style="width: 451.297px; position: absolute; top: 0px; left: 0px; opacity: 1; display: none;"><span class="search-wrap ml-2"><div class="md-form mt-0"><input type="text" class="search form-control w-100 d-block" placeholder="Search here.."></div></span><li class="disabled "><span class="filtrable"><input type="checkbox" class="form-check-input" disabled=""><label></label>  Choose your country</span></li><li class="select-toggle-all"><span><input type="checkbox" class="form-check-input"><label>Select all</label></span></li><li class=" "><span class="filtrable"><input type="checkbox" class="form-check-input"><label></label>  USA</span></li><li class="active"><span class="filtrable"><input type="checkbox" class="form-check-input"><label></label>  Germany</span></li><li class="active"><span class="filtrable"><input type="checkbox" class="form-check-input"><label></label>  France</span></li><li class="active"><span class="filtrable"><input type="checkbox" class="form-check-input"><label></label>  Poland</span></li><li class=" "><span class="filtrable"><input type="checkbox" class="form-check-input"><label></label>  Japan</span></li><button class="btn-save btn btn-primary btn-sm waves-effect waves-light">Save</button></ul><select class="mdb-select colorful-select dropdown-primary md-form initialized" multiple="" searchable="Search here..">
-                                                  <option value="" disabled="" selected="">Choose your country</option>
-                                                  <option value="1">USA</option>
-                                                  <option value="2">Germany</option>
-                                                  <option value="3">France</option>
-                                                  <option value="4">Poland</option>
-                                                  <option value="5">Japan</option>
-                                                </select></div>
-                                                <label>Label example</label>
-                                                
-                                        
-                                              </div>
-                                            </div>
-                                        
-                                          </section>
+                            <div class="form-check">
+                                @foreach($services as $service)
+                                    <div class="checkbox">
+                                    <label for="checkbox_{{$i}}" class="form-check-label">
+                                            <input type="checkbox" id="services" name="services[]" value="{{$service->service_id}}" class="form-check-input">{{$service->name}}
+                                        </label>
+                                    </div>
+                                    @php
+                                        $i++;  
+                                    @endphp
+                                @endforeach
                             </div>
                         </div>                        
                     </div>
