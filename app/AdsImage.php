@@ -12,5 +12,5 @@ class AdsImage extends Model
     protected $table = 'ads_images';
    
     // Primary Key
-    public $primaryKey = ['ad_id','imgurl'];
+    public $primaryKey = ['ad_id','imgurl','position','isbottom','isright'];
 }

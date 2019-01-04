@@ -129,7 +129,14 @@
                                         </div>
                                     </div>
                                 @endif
-
+                                <div class="row form-group" data-pg-collapsed>
+                                    <div class="col col-md-3">
+                                        <label for="text-input" class="form-control-label">Advertisement URL</label>
+                                    </div>
+                                    <div class="col-12 col-md-9">
+                                    <input type="text" id="ad_url" name="ad_url" placeholder="Ad URL starts with http:// or https://" class="form-control" value="{{$ad->ad_url}}">
+                                    </div>
+                                </div>
                                 <div class="row form-group">
                                     <div class="col col-md-3">
                                         <label for="text-input" class="form-control-label">Calculated Price Rs. (Monthly)</label>

@@ -30,7 +30,6 @@ class AdsController extends Controller
         $this->validate($request, [
             'name'=> 'required'
         ]);
-
         //Checking Whether files are images
         if($request->hasFile('bottom_ad_images'))
         {
@@ -63,6 +62,7 @@ class AdsController extends Controller
         }
 
         if($request->ad_type==1 && $request->content==NULL) return redirect()->back()->with('error','Please Enter Contents for Your Text-Ad');
+        if(substr($request->ad_url, 0, 7) != "http://" && substr($request->ad_url, 0, 8) != "https://") return redirect()->back()->with('error','Please Enter http:// or https:// at the begining of URL');
         //Saving Ad
         $ad=new Ad();
         $ad->title=$request->name;
@@ -70,6 +70,7 @@ class AdsController extends Controller
         $ad->price = $request->price;
         $ad->service_provider_id=session()->get('svp_id');
         $ad->type = $request->ad_type;
+        $ad->ad_url = $request->ad_url;
         //Saving Ad position
         if(isset($request->position[1])) $ad->position = 2;
         else if($request->position[0]==0) $ad->position = 0;
@@ -102,8 +103,20 @@ class AdsController extends Controller
                 $ad_image->ad_id = $ad->ad_id;
                 $ad_image->imgurl = $fileNameToStore;
                 $ad_image->position = $ad->position;
+                $ad_image->isbottom = 1;
                 $ad_image->save();
                 
+            }
+        }
+        else
+        {
+            if($ad->position!=1){
+                $ad_image = new AdsImage();
+                $ad_image->ad_id = $ad->ad_id;
+                $ad_image->imgurl = "noimg.jpg";
+                $ad_image->position = $ad->position;
+                $ad_image->isbottom = 1;
+                $ad_image->save();  
             }
         }
 
@@ -124,7 +137,7 @@ class AdsController extends Controller
                 // Upload 
                 $image_up = $image;
                 $image_resize = Image::make($image->getRealPath());              
-                $image_resize->resize(600, 300);
+                $image_resize->resize(400, 200);
                 $image_resize->save(public_path('storage/images/ad/'.$fileNameToStore));
                 
                 //Adding URL to template_images table
@@ -132,8 +145,20 @@ class AdsController extends Controller
                 $ad_image->ad_id = $ad->ad_id;
                 $ad_image->imgurl = $fileNameToStore;
                 $ad_image->position = $ad->position;
+                $ad_image->isright = 1;
                 $ad_image->save();
                 
+            }
+        }
+        else
+        {
+            if($ad->position!=0){
+                $ad_image = new AdsImage();
+                $ad_image->ad_id = $ad->ad_id;
+                $ad_image->imgurl = "noimg.jpg";
+                $ad_image->position = $ad->position;
+                $ad_image->isright = 1;
+                $ad_image->save();  
             }
         }
 
@@ -168,7 +193,7 @@ class AdsController extends Controller
         $this->validate($request, [
             'name'=> 'required'
         ]);
-
+        
         //Checking Whether files are images
         if($request->hasFile('bottom_ad_images'))
         {
@@ -201,7 +226,7 @@ class AdsController extends Controller
         }
 
         if($request->ad_type==1 && $request->content==NULL) return redirect()->back()->with('error','Please Enter Contents for Your Text-Ad');
-        
+        if(substr($request->ad_url, 0, 7) != "http://" && substr($request->ad_url, 0, 8) != "https://") return redirect()->back()->with('error','Please Enter http:// or https:// at the begining of URL');
         $ad= Ad::find($id);
         
         AdsController::picsDestroy($ad->ad_id);
@@ -212,6 +237,7 @@ class AdsController extends Controller
         $ad->price = $request->price;
         $ad->type = $request->ad_type;
         $ad->isapprove = 0;
+        $ad->ad_url = $request->ad_url;
         //Saving Ad position
         if(isset($request->position[1])) $ad->position = 2;
         else if($request->position[0]==0) $ad->position = 0;
@@ -244,8 +270,20 @@ class AdsController extends Controller
                 $ad_image->ad_id = $ad->ad_id;
                 $ad_image->imgurl = $fileNameToStore;
                 $ad_image->position = $ad->position;
+                $ad_image->isbottom = 1;
                 $ad_image->save();
                 
+            }
+        }
+        else
+        {
+            if($ad->position!=1){
+                $ad_image = new AdsImage();
+                $ad_image->ad_id = $ad->ad_id;
+                $ad_image->imgurl = "noimg.jpg";
+                $ad_image->position = $ad->position;
+                $ad_image->isbottom = 1;
+                $ad_image->save();  
             }
         }
 
@@ -274,8 +312,20 @@ class AdsController extends Controller
                 $ad_image->ad_id = $ad->ad_id;
                 $ad_image->imgurl = $fileNameToStore;
                 $ad_image->position = $ad->position;
+                $ad_image->isright = 1;
                 $ad_image->save();
                 
+            }
+        }
+        else
+        {
+            if($ad->position!=0){
+                $ad_image = new AdsImage();
+                $ad_image->ad_id = $ad->ad_id;
+                $ad_image->imgurl = "noimg.jpg";
+                $ad_image->position = $ad->position;
+                $ad_image->isright = 1;
+                $ad_image->save();  
             }
         }
 
@@ -360,5 +410,56 @@ class AdsController extends Controller
             $ad->save;
         }
 
+    }
+
+    public static function getRightAds()
+    {
+        $position = Array(1,2);
+        $ads = Ad::whereIn('position',$position)->where('isapprove',1)->get();
+        $size = $ads->count();
+
+        if($size==0) return $ads;
+
+        $max_right_ads = SettingsController::getMaxRightAds();
+        if($size<=$max_right_ads){
+            return $ads->shuffle();
+        }
+
+        $ads_selected = Array();
+
+        $n=range(0,$size-1);
+        shuffle($n);
+        for ($x=0; $x< $max_right_ads; $x++)
+        {
+            $ads_selected = array_prepend($ads_selected,$ads[$n[$x]]);  
+        }
+        
+        return $ads_selected;
+        
+    }
+
+    public static function getBottomAds()
+    {
+        $position = Array(0,2);
+        $ads = Ad::whereIn('position',$position)->where('isapprove',1)->get();
+        $size = $ads->count();
+
+        if($size==0) return $ads;
+
+        $max_bottom_ads = SettingsController::getMaxBottomAds();
+        if($size<=$max_bottom_ads){
+            return $ads->shuffle();
+        }
+
+        $ads_selected = Array();
+        
+        $n=range(0,$size-1);
+        shuffle($n);
+        for ($x=0; $x< $max_bottom_ads; $x++)
+        {
+            $ads_selected = array_prepend($ads_selected,$ads[$n[$x]]);  
+        }
+       
+        return $ads_selected;
     }
 }

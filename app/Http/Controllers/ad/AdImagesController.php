@@ -52,4 +52,18 @@ class AdImagesController extends Controller
     {
         //
     }
+
+    public static function getBottomRandomImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isbottom',1)->get();
+        $size = $adImages->count();
+        return $adImages[rand(0,$size-1)];
+    }
+
+    public static function getRightRandomImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isright',1)->get();
+        $size = $adImages->count();
+        return $adImages[rand(0,$size-1)];
+    }
 }

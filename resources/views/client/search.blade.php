@@ -91,7 +91,9 @@
                 </div>                 
             </div>
             <div class="col-md-10">
+                @if(count($service_ids)>0)
                 <div class="row">
+                    
                     @foreach($service_ids as $service_id)
                     @php
                     $service = ServicesController::getService($service_id);
@@ -128,36 +130,21 @@
                             </div>
                         </div>
                     @endforeach
-                </div>                 
+                    
+                </div>  
+                @else
+                <div class="col-md-12 mt-5 pt-5"> 
+                    <div class="row " data-pg-collapsed>
+                        <img src="https://www.carshop.co.za/Images/noresult.png" class="ml-auto mr-auto w-25 h-25"/>
+                    </div>
+                </div>       
+                @endif               
             </div>             
         </div>         
         <hr/> 
-        <div class="row"> 
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-        </div>
+        <!-- Bottom-Pane Ads-->
+        @include('inc.bottomAds')             
+        <!-- End of Ads -->
     </div>     
 </section>
 <hr/>

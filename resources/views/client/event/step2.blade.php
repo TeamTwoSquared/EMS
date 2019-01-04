@@ -66,48 +66,14 @@
                     </div>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div> 
-            </div>
-        </div>
-        <hr> 
-        <div class="row" data-pg-collapsed>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-            </div>     
+            <!-- Right-Pane Ads with col-md-3-->
+            @include('inc.rightAds')               
+            <!-- End of Ads -->            
+        </div>         
+        <hr/> 
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads -->     
     </div>
 </section>
 <hr/>

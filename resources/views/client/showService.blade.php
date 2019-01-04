@@ -193,51 +193,15 @@
                         </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-md-12 pl-3 ml-1 pr-3 ">
-                        <div class="row">
-                            <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                            <hr/> 
-                        </div>
-                        <div class="row">
-                            <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                            <hr/> 
-                        </div>
-                        <div class="row">
-                            <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                            <hr/> 
-                        </div>
-                    </div>
-                </div>                 
+                 
+
             </div>             
         </div>         
         <hr/> 
-        <div class="row"> 
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-            <div class="col-md-4"> 
-                <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                <hr/> 
-            </div>             
-        </div>
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads -->
+        
     </div>     
 </section>
 <hr/>

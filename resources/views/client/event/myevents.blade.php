@@ -68,14 +68,14 @@
                     @endforeach
                 </div>                 
             </div>             
-            <div class="col-md-3 " data-pg-collapsed> 
+            <!-- Right-Pane Ads with col-md-3-->
                 @include('inc.rightAds')               
-            </div>             
+            <!-- End of Ads -->            
         </div>         
         <hr/> 
-        <div class="row" data-pg-collapsed> 
-                @include('inc.bottomAds')             
-        </div>         
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads --> 
     </div>     
 </section>
 <hr/>
