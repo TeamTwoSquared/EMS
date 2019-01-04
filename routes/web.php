@@ -24,13 +24,14 @@ Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');
 });
-Route::get('/aboutus', function(){
+Route::get('/aboutus',  function(){
     return view('aboutus');
 });
 
-Route::get('/contactus', function(){
-    return view('contactus');
-});
+Route::get('/contactus', 'ContactUsController@index');
+Route::post('/contact/submit','ContactUsController@store');
+
+
 //Routes of Admin
 
 Route::get('/admin/login', function (){
