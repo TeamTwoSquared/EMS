@@ -24,36 +24,24 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
 
 @endphp
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
-    <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-12"> 
-                <div class="au-breadcrumb-content"> 
-                    <div class="au-breadcrumb-left"> 
-                        <span class="au-breadcrumb-span">You are here:</span> 
-                        <ul class="list-unstyled list-inline au-breadcrumb__list"> 
-                            <li class="list-inline-item active"> 
-                                <a href="#">Home</a> 
-                            </li>                             
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Dashboard</li>
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Manage Event</li>                           
-                        </ul>                         
-                    </div>                     
-                    <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Find Services...."> 
-                        <button class="au-btn--submit2" type="submit"> 
-                            <i class="zmdi zmdi-search"></i> 
-                        </button>                         
-                    </form>                     
-                </div>                 
-            </div>             
-        </div>         
-    </div>     
+        <div class="container"> 
+            <div class="row"> 
+                <div class="col-md-12"> 
+                    <div class="au-breadcrumb-content"> 
+                        <div class="au-breadcrumb-left"> 
+                                                     
+                        </div>                     
+                        <form class="au-form-icon--sm" action="/client/search" method="post">
+                            {{ csrf_field() }} 
+                            <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
+                            <button class="au-btn--submit2" type="submit"> 
+                                <i class="zmdi zmdi-search"></i> 
+                            </button>                         
+                        </form>                     
+                    </div>                 
+                </div>             
+            </div>         
+        </div>     
 </section>
 <hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
@@ -140,48 +128,14 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                     <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                 </div>
             </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>    
-            </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
+            <!-- Right-Pane Ads with col-md-3-->
+            @include('inc.rightAds')               
+            <!-- End of Ads -->            
         </div>         
+        <hr/> 
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads -->         
     </div>     
 </section>
 <script>

@@ -48,4 +48,10 @@ class ServiceTypesController extends Controller
             }
         }
     }
+
+    public static function getTypes($id)
+    {
+        $types = ServiceType::where('service_id',$id)->get();
+        return $types;
+    }
 }

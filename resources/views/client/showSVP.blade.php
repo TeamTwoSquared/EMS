@@ -18,8 +18,9 @@
                         <div class="au-breadcrumb-left"> 
                                                      
                         </div>                     
-                        <form class="au-form-icon--sm" action="" method="post"> 
-                            <input class="au-input--w300 au-input--style2" type="text" placeholder="Find Services...."> 
+                        <form class="au-form-icon--sm" action="/client/search" method="post">
+                            {{ csrf_field() }} 
+                            <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
                             <button class="au-btn--submit2" type="submit"> 
                                 <i class="zmdi zmdi-search"></i> 
                             </button>                         
@@ -28,7 +29,7 @@
                 </div>             
             </div>         
         </div>     
-    </section>
+</section>
     <hr/>
     <section class="statistic statistic2 pad5" data-pg-collapsed>
         <div class="container"> 
@@ -83,7 +84,15 @@
                                         @for ($i = 0; $i < $svp->star; $i++)
                                             <i class="fa fa-star"></i>
                                         @endfor
-                                        {{$svp->star}}.0</p>
+                                        {{$svp->star}}.0
+                                    </p>
+                                    <p class="card-text text-sm-center">
+                                        @if($svp->level == 0) (New)
+                                        @elseif($svp->level == 3) (Top Rated)
+                                        @else 
+                                        (Level {{$svp->level}})
+                                        @endif
+                                    </p>
                                     <p class="card-text text-sm-center">Online Status :
                                         @if($svp->isonline==1) 
                                             <span class="dot dot--green"></span>
@@ -103,52 +112,13 @@
                             </div>
                         </div>
                         </div>
-                    </div>
-                    <div class="row">
-                        <div class="col-md-12 pl-3 ml-1 pr-3 ">
-                            <div class="row">
-                                <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                                <hr/> 
-                            </div>
-                            <div class="row">
-                                <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                                <hr/> 
-                            </div>
-                            <div class="row">
-                                <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                                <hr/> 
-                            </div>
-                        </div>
                     </div>                 
                 </div>             
             </div>         
             <hr/> 
-            <div class="row"> 
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-                <div class="col-md-4"> 
-                    <img src="https://media.zigcdn.com/media/model/2017/Dec/lamborghini-urus-right_600x300.jpg"> 
-                    <hr/> 
-                </div>             
-            </div>
+            <!-- Bottom-Pane Ads-->
+                @include('inc.bottomAds')             
+            <!-- End of Ads -->
         </div>     
     </section>
     <hr/>

@@ -30,5 +30,17 @@ class SettingsController extends Controller
         $payhere = Array('merchant_id' => $merchant_id,'merchant_secret' => $merchant_secret, 'payhere_action' => $payhere_action );
         return $payhere;
     }
+
+    public static function getMaxRightAds()
+    {
+        $num = Setting::select('value')->where('property','max_right_ads')->get()[0]->value;
+        return $num;
+    }
+
+    public static function getMaxBottomAds()
+    {
+        $num = Setting::select('value')->where('property','max_bottom_ads')->get()[0]->value;
+        return $num;
+    }
     
 }

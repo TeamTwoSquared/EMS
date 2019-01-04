@@ -60,8 +60,20 @@ $svp=SVPsController::getSVP();
                     <div class="account2"> 
                         <div class="image img-cir img-120"> 
                             <img src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->name}}"/> 
-                        </div>                 
-                        <h4 class="name">{{$svp->name}}</h4> 
+                        </div>
+                        <h4 class="name">{{$svp->name}}</h4>
+                        <p>@if($svp->level == 0) (New)
+                            @elseif($svp->level == 3) (Top Rated)
+                            @else 
+                            (Level {{$svp->level}})
+                            @endif
+                        </p> 
+                        <p class="card-text text-sm-center">
+                            @for ($i = 0; $i < $svp->star; $i++)
+                                <i class="fa fa-star"></i>
+                            @endfor
+                            {{$svp->star}}.0
+                        </p>                 
                         <a href="/svp/logout">Sign out</a> 
                     </div>             
                     <nav class="navbar-sidebar2"> 
