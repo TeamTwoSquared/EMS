@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Invitation;
+use App\Mail\SendInvitation;
+use Illuminate\Support\Facades\Mail;
 
 class InvitationsController extends Controller
 {
@@ -29,6 +31,7 @@ class InvitationsController extends Controller
             $invitation->email = $email;
             $invitation->event_id =  $request->event_id;
             $invitation->save();
+            Mail::to($email)->send(new SendInvitation,$invitation);
             return redirect("/client/myevents/$request->event_id");
         }
     }

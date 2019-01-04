@@ -127,4 +127,11 @@ class ServicesController extends Controller
 
         return redirect('/svp/service')->with('success','Successfully Deleted Service !');
     }
+
+    //geting services for service provider id
+    public  function getService($svp_id)
+    {
+        $services = Service::where('service_provider_id',$svp_id)->get();
+        return $service;
+    }
 }
