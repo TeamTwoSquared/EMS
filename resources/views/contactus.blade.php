@@ -62,7 +62,8 @@
                 </ul>                 
                 <div id="contact" class="form-container"> 
                     <div id="message"></div>                     
-                    <form method="post" action="js/contact-form.php" name="contactform" id="contactform"> 
+                    <form action="/contact/submit" method="post"> 
+                        @csrf    
                         <div class="row"> 
                             <div class="col-sm-4"> 
                                 <div class="form-group"> 
@@ -82,10 +83,10 @@
                         </div>                         
                         <!-- /.row -->                         
                         <div class="form-group"> 
-                            <textarea name="comments" id="comments" class="form-control" rows="3" placeholder="Message" id="textArea"></textarea>                             
+                            <textarea name="message" id="message" class="form-control" rows="3" placeholder="Message" id="textArea"></textarea>                             
                         </div>                         
                         <div class="form-group"> 
-                            <button class="btn btn-primary" type="submit" id="cf-submit" name="submit">Send</button>                             
+                            <button type="submit" class="btn btn-success btn-sm">Send</button>                             
                         </div>                         
                     </form>                     
                 </div>                 

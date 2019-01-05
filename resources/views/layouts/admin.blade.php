@@ -46,8 +46,10 @@ $admin=AdminsController::getAdmin();
         <!-- <link rel="stylesheet" href="/admin/components/pg.blocks/css/style-library-1.css"> -->     
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,400,300,600,700"> 
         <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic"> 
-        
-        <link rel="stylesheet" media="all" type="text/css" href="/client/semantic/dist/semantic.min.css"> 
+        <!-- External Styles -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <!-- External Scripts -->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     </head>     
     <body class="animsition bg-ems-admin border-ems-admin"> 
         <div class="page-wrapper bg-ems-admin border-ems-admin"> 
@@ -330,16 +332,18 @@ $admin=AdminsController::getAdmin();
                         <div class="container-fluid"> 
                             @include('inc.messages')
                             @yield('content')
-    </div>                         
-                        <div class="row"> 
-                            <div class="col-md-12"> 
-                                <div class="copyright"> 
-                                    <p>Copyright © 2018 EMS. All rights reserved.</p> 
-                                </div>                                 
-                            </div>                             
                         </div>                         
-                    </div>                     
-                </div>                 
+                                                 
+                    </div> 
+                                        
+                </div> 
+                <div class="row"> 
+                        <div class="col-md-12"> 
+                            <div class="copyright"> 
+                                <strong><p>Copyright © 2018 EMS. All rights reserved.</p> </strong>
+                            </div>                                 
+                        </div>                             
+                    </div>                
                 <!-- END MAIN CONTENT-->                 
                 <!-- END PAGE CONTAINER-->                 
             </div>             
@@ -368,13 +372,16 @@ $admin=AdminsController::getAdmin();
         <script src="/admin/js/main.js"></script>         
         <script type="text/javascript" src="/admin/components/pg.blocks/js/plugins.js"></script>         
         <script type="text/javascript" src="/admin/components/pg.blocks/js/bskit-scripts.js"></script>         
-        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>
-        <!-- sementic JS-->
-        <script
-        src="https://code.jquery.com/jquery-3.1.1.min.js"
-        integrity="sha256-hVVnYaiADRTO2PzUGmuLJr8BLUSjGIZsDYGmIJLv2b8="
-        crossorigin="anonymous"></script>
-        <script src="/admin/semantic/dist/semantic.min.js"></script>       
+        <script type="text/javascript" src="https://maps.google.com/maps/api/js?sensor=true"></script>   
+        <!-- Custom Scripts -->
+        <script>
+                $(document).ready(function() {
+                $('.table').DataTable();
+            });
+        </script>
+        <!-- External Scripts -->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>      
     </body>     
 </html> 
 <!-- end document-->

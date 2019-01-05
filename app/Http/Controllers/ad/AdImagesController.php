@@ -21,56 +21,9 @@ class AdImagesController extends Controller
     }
 
 
-    public function store(Request $request,$id)//Ad this functionality diractly to AdsController:Store
+    public function store()
     {
-        // chack file is a image
 
-        if($request->hasFile('images'))
-        {
-            $allowedfileExtension=['jpg','png','jpeg','gif'];
-            $images = $request->file('images');
-            foreach($images as $image)
-            {
-                $extension = $image->getClientOriginalExtension();
-                $check=in_array($extension,$allowedfileExtension);
-                if(!$check)
-                {
-                    return redirect()->back()->with('error','Please Upload Image File(s)');
-                }
-            }
-        }
-
-        // save image files
-
-         if($request->hasFile('images'))
-         {
-             $images = $request->file('images');
-             foreach($images as $image)
-             {
-                 // Get filename with the extension
-                 $filenameWithExt = $image->getClientOriginalName();
-                 // Get just filename
-                 $filename = pathinfo($filenameWithExt, PATHINFO_FILENAME);
-                 // Get just ext
-                 $extension = $image->getClientOriginalExtension();
-                 
-                 // Filename to store
-                 $fileNameToStore = $filename.'_'.time().'.'.$extension;
-                 // Upload 
-                 $image_up = $image;
-                 $image_resize = Image::make($image->getRealPath());              
-                 $image_resize->resize(265, 350);
-                 $image_resize->save(public_path('storage/images/template/' .$fileNameToStore));
-                 
-                 //Adding URL to template_images table
-                 $img=new AdsImage();
-                 $img->ad_id=$id;
-                 $img->imgurl=$request->adds;
-         
-                 $img->save();
-                 
-             }
-         }
     }
 
 
@@ -98,5 +51,37 @@ class AdImagesController extends Controller
     public function destroy($id)
     {
         //
+    }
+
+    public static function getBottomRandomImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isbottom',1)->get();
+        $size = $adImages->count();
+        return $adImages[rand(0,$size-1)];
+    }
+
+    public static function getRightRandomImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isright',1)->get();
+        $size = $adImages->count();
+        return $adImages[rand(0,$size-1)];
+    }
+
+    public static function getImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->get();
+        return $adImages;
+    }
+
+    public static function getBottomImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isbottom',1)->get();
+        return $adImages;
+    }
+
+    public static function getRightImages($ad_id)
+    {
+        $adImages=AdsImage::where('ad_id',$ad_id)->where('isright',1)->get();
+        return $adImages;
     }
 }

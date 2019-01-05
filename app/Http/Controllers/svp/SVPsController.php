@@ -24,6 +24,105 @@ class SVPsController extends Controller
         SVP::where('service_provider_id',$id)->delete();        
         return redirect('/admin/svp');
     }
+    public function block($id)
+    {
+        $svp = SVP::where('service_provider_id',$id)->get();
+        $svp = $svp[0];
+        if ($svp->isverified==2)
+        {
+            $svp->isverified=1;
+        }
+        else if ($svp->isverified==0)
+        {
+            $svp->isverified=1;
+        }
+        else
+        {
+            $svp->isverified=2;
+        }
+        $svp->save();
+        return redirect('/admin/svp');
+    }
+    //creating new svp by the admin
+    public function admin_create()
+    {
+        return view('admin.svp.svp_create');
+    }
+    //store the added svp details by admin
+    public function admin_new_store(Request $request)
+    {
+            $svp = new SVP();
+            if($request->newpassword==$request->newpasswordagain)
+            {
+                $svp->name = $request->username;
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
+                $svp->email = $request->email;
+                $svp->username = $request->username;
+                $svp->password = $request->newpassword;
+                $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
+                $svp->isverified =1;
+                $svp->save();
+                return redirect('/admin/svp')->with('success','New service provider added');
+            }
+            elseif($request->password!=$request->newpassword)
+            {
+                return redirect('/admin/svp/add')->with('error','Passwords Are Not Matching');
+            }
+            else
+            {
+                return redirect('/admin/svp/add')->with('error','All 2 Fields New Password and Confirmation Password Are Needed');
+            }
+    }
+    public function admin_edit($id)
+    {
+        $svp = (SVP::where('service_provider_id',$id)->get())[0];
+        return view('admin.svp.svp_update')->with('svp',$svp);
+    }
+    //store the updated svp details by admin
+    public function admin_edit_store(Request $request,$id)
+    {
+            $svp = SVP::find($id);
+            
+            if($request->newpassword==null && $request->newpasswordagain=null)
+            {
+                $svp->name = $request->username;
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
+                $svp->email = $request->email;
+                $svp->username = $request->username;
+                $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
+                $svp->isverified =1;
+                $svp->save();
+                return redirect('/admin/svp')->with('success','Service provider details updated');
+            }
+            else
+            {
+                if($request->newpassword==$request->newpasswordagain)
+                {
+                $svp->firstname = $request->fname;
+                $svp->lastname = $request->lname;
+                $svp->email = $request->email;
+                $svp->username = $request->username;
+                $svp->password = md5($request->newpassword);
+                $svp->address = $request->address;
+                $svp->address2 = $request->address2;
+                $svp->city = $request->city;
+                $svp->isverified =1;
+                $svp->save();
+                return redirect('/admin/svp')->with('success','Service provider details updated');
+                }
+                elseif($request->newpassword!=$request->newpasswordagain)
+                {
+                return redirect('/admin/svp')->with('error',"New Password and Confirmation Password Aren't matching");
+                }
+            }
+    }
+
 
     public function register(Request $request)
     {
@@ -233,7 +332,8 @@ class SVPsController extends Controller
                 if($newpassword==$newpasswordagain)
                 {
                         $svp->password=md5($request->newpasswordagain);
-                        $svp->name = $request->name;
+                        $svp->firstname = $request->fname;
+                        $svp->lastname = $request->lname;
                         $svp->address=$request->address;
                         $svp->address2=$request->address2;
                         $svp->city=$request->city;
@@ -253,7 +353,8 @@ class SVPsController extends Controller
         }
         else if(!$request->oldpassword && !$request->newpassword && !$request->newpasswordagain)
         {
-            $svp->name = $request->name;
+            $svp->firstname = $request->fname;
+            $svp->lastname = $request->lname;
             $svp->address=$request->address;
             $svp->address2=$request->address2;
             $svp->city=$request->city;
@@ -284,9 +385,15 @@ class SVPsController extends Controller
         session()->flush();
         return redirect('/svp/login')->with('success','Logged out Succesfully');
     }
-    public function loadTaskSvp($taskId){
-        $tasksSvp = TasksSvp::where('task_id',$taskId)->get();
-        return $tasksSvp;
+    
+    public static function getSVP2($id)
+    {
+        return SVP::find($id);
+    }
+
+    public function client_view($id)
+    {
+        return view('client.showSVP')->with('svp_id',$id);
     }
 
 }//end of class

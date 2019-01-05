@@ -46,8 +46,15 @@ $svp=SVPsController::getSVP();
         <!-- Main CSS-->         
         <link href="/svp/css/theme.css" rel="stylesheet" media="all"> 
         <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+        <!-- External Styles -->
+        <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
+        <!-- External Scripts -->
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
     </head>     
-    <body class="animsition"> 
+    <body class="animsition">
+        <!-- MODALS -->
+            @include('inc.modals')
+        <!-- END MODALS -->
         <div class="page-wrapper" data-pg-collapsed> 
             <!-- MENU SIDEBAR-->     
             <aside class="menu-sidebar2"> 
@@ -60,8 +67,20 @@ $svp=SVPsController::getSVP();
                     <div class="account2"> 
                         <div class="image img-cir img-120"> 
                             <img src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->name}}"/> 
-                        </div>                 
-                        <h4 class="name">{{$svp->name}}</h4> 
+                        </div>
+                        <h4 class="name">{{$svp->name}}</h4>
+                        <p>@if($svp->level == 0) (New)
+                            @elseif($svp->level == 3) (Top Rated)
+                            @else 
+                            (Level {{$svp->level}})
+                            @endif
+                        </p> 
+                        <p class="card-text text-sm-center">
+                            @for ($i = 0; $i < $svp->star; $i++)
+                                <i class="fa fa-star"></i>
+                            @endfor
+                            {{$svp->star}}.0
+                        </p>                 
                         <a href="/svp/logout">Sign out</a> 
                     </div>             
                     <nav class="navbar-sidebar2"> 
@@ -162,7 +181,7 @@ $svp=SVPsController::getSVP();
                                                 <a href="/svp/billing"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
                                             </div>
                                             <div class="account-dropdown__item"> 
-                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Place Ads</a> 
+                                                <a href="/svp/ads"> <i class="fab fa-buysellads"></i>Advertisements</a> 
                                             </div>                                     
                                             <div class="account-dropdown__item"> 
                                                 <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 
@@ -188,7 +207,19 @@ $svp=SVPsController::getSVP();
                             <div class="image img-cir img-120"> 
                                 <img src="/storage/images/profile/{{$svp->profilepic}}" alt="{{$svp->name}}"/> 
                             </div>                     
-                            <h4 class="name">{{$svp->name}}</h4> 
+                            <h4 class="name">{{$svp->name}}</h4>
+                            <p>@if($svp->level == 0) (New)
+                                @elseif($svp->level == 3) (Top Rated)
+                                @else 
+                                (Level {{$svp->level}})
+                                @endif
+                            </p> 
+                            <p class="card-text text-sm-center">
+                                @for ($i = 0; $i < $svp->star; $i++)
+                                    <i class="fa fa-star"></i>
+                                @endfor
+                                {{$svp->star}}.0
+                            </p>                 
                             <a href="/svp/logout">Sign out</a> 
                         </div>                 
                         <nav class="navbar-sidebar2"> 
@@ -240,7 +271,7 @@ $svp=SVPsController::getSVP();
             </div>     
         </div>         
         <!-- Jquery JS-->         
-        <script src="/svp/vendor/jquery-3.2.1.min.js"></script>         
+        <script src="/svp/vendor/jquery-3.2.1.min.js"></script>    
         <!-- Bootstrap JS-->         
         <script src="/svp/vendor/bootstrap-4.1/popper.min.js"></script>         
         <script src="/svp/vendor/bootstrap-4.1/bootstrap.min.js"></script>         
@@ -264,7 +295,17 @@ $svp=SVPsController::getSVP();
         <script src="/svp/vendor/vector-map/jquery.vmap.sampledata.js"></script>         
         <script src="/svp/vendor/vector-map/jquery.vmap.world.js"></script>         
         <!-- Main JS-->         
-        <script src="/svp/js/main.js"></script>         
+        <script src="/svp/js/main.js"></script>   
+        <!-- Custom Scripts -->
+        <script>
+                $(document).ready(function() {
+                $('.table').DataTable();
+            });
+        </script>
+        <!-- External Scripts -->
+        <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+        <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+         
     </body>     
 </html> 
 <!-- end document-->

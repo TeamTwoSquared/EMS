@@ -44,13 +44,7 @@
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
-                        <th>name</th>
+                        <th>username</th>
                         <th>e-mail</th>
                         <th>Status</th>
                         <th>City</th>
@@ -62,17 +56,11 @@
                     <!-- Start TABLE ROW-->
                     @foreach($svp as $svp)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
-                        <td>{{$svp->name}}</td>
+                        <td>{{$svp->username}}</td>
                         <td>{{$svp->email}}</td>
 
                         @if($svp->isverified == 1)
-                        <td><span class="status--process">verify</span></td>
+                        <td><span class="status--process">verified</span></td>
                         @elseif($svp->isverified == 0)
                         <td><span class="status--pending">pending</span></td>
                         @else
@@ -93,12 +81,12 @@
                                     </button>
                                 </a>
                                 
-                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button onclick ="deleteMe({{$svp->service_provider_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                         <script>
-                                            function deleteMe() {
+                                            function deleteMe(id) {
                                                     if (confirm("Are you sure you want to delete this service provider!")) {
-                                                        window.location.replace("svp/delete/{{$svp->service_provider_id}}");
+                                                        window.location.replace("svp/delete/"+id);
                                                     } 
                                                 }
                                         </script>
@@ -107,7 +95,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>

@@ -50,6 +50,9 @@ $client=ClientsController::getClient();
         
     </head>     
     <body class="animsition"> 
+        <!-- MODALS -->
+        @include('inc.modals')
+        <!-- END MODALS -->
         <div class="page-wrapper"> 
             <!-- HEADER DESKTOP-->             
             <header class="header-desktop3 d-none d-lg-block bg-ems-admin"> 

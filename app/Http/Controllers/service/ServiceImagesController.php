@@ -49,7 +49,7 @@ class ServiceImagesController extends Controller
                  // Upload 
                  $image_up = $image;
                  $image_resize = Image::make($image->getRealPath());              
-                 $image_resize->resize(460, 310);
+                 $image_resize->resize(800, 600);
                  $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
                  
                  //Adding URL to template_images table
@@ -100,7 +100,7 @@ class ServiceImagesController extends Controller
                // Upload 
                $image_up = $image;
                $image_resize = Image::make($image->getRealPath());              
-               $image_resize->resize(460, 310);
+               $image_resize->resize(800, 600);
                $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
                
                //Adding URL to template_images table
@@ -113,5 +113,22 @@ class ServiceImagesController extends Controller
                $serviceImg->save();
             }
         }
+    }
+
+    public static function getRandomImages($service_id)
+    {
+        $serviceImages=ServiceImage::where('service_id',$service_id)->get();
+        $size = $serviceImages->count();
+        if($size==0)
+        {
+            return $serviceImages;
+        }
+        return $serviceImages[rand(0,$size-1)];
+    }
+
+    public static function getAllImages($service_id)
+    {
+        $serviceImages=ServiceImage::where('service_id',$service_id)->get();
+        return $serviceImages;
     }
 }

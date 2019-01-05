@@ -24,13 +24,14 @@ Route::get('/test2/{id}', 'svp\SVPsController@sendActivationLink');
 Route::get('/', function(){
     return view('index');
 });
-Route::get('/aboutus', function(){
+Route::get('/aboutus',  function(){
     return view('aboutus');
 });
 
-Route::get('/contactus', function(){
-    return view('contactus');
-});
+Route::get('/contactus', 'ContactUsController@index');
+Route::post('/contact/submit','ContactUsController@store');
+
+
 //Routes of Admin
 
 Route::get('/admin/login', function (){
@@ -57,7 +58,6 @@ Route::get('/admin/task/block/{id}','event\TasksController@block');
 Route::get('/admin/task/delete/{id}','event\TasksController@destroy');
 Route::post('/admin/task/edit/update/{id}','event\TasksController@admin_update');
 
-
 Route::get('/admin/catergory', 'event\CatergoriesController@admin_index');
 Route::get('/admin/catergory/add', 'event\CatergoriesController@admin_create');
 Route::post('/admin/catergory/store', 'event\CatergoriesController@admin_store');
@@ -66,13 +66,27 @@ Route::get('/admin/catergory/delete/{id}','event\CatergoriesController@destroy')
 Route::post('/admin/catergory/edit/update/{id}','event\CatergoriesController@admin_update');
 
 Route::get('/admin/client', 'client\ClientsController@admin_index');
+Route::get('/admin/client/add', 'client\ClientsController@admin_create');
+Route::post('/admin/client/save_profile','client\ClientsController@admin_new_store');
 Route::get('/admin/client/delete/{id}','client\Clientscontroller@destroy');
 Route::get('/admin/client/edit/{id}', 'client\ClientsController@admin_edit');
-
-
+Route::post('/admin/client/edit/update/{id}','client\ClientsController@admin_edit_store');
+Route::get('/admin/client/block/{id}','client\ClientsController@block');
 
 Route::get('/admin/svp', 'svp\SVPsController@admin_index');
 Route::get('/admin/svp/delete/{id}','svp\SVPsController@destroy');
+Route::get('/admin/svp/block/{id}','svp\SVPsController@block');
+Route::get('/admin/svp/add', 'svp\SVPsController@admin_create');
+Route::post('/admin/svp/save_profile','svp\SVPsController@admin_new_store');
+Route::get('/admin/svp/edit/{id}', 'svp\SVPsController@admin_edit');
+Route::post('/admin/svp/edit/update/{id}','svp\SVPsController@admin_edit_store');
+
+Route::get('/admin/ad', 'ad\AdsController@admin_index');
+Route::get('/admin/ad/delete/{id}', 'ad\AdsController@admin_destroy');
+Route::get('/admin/ad/block/{id}', 'ad\AdsController@admin_block');
+Route::get('/admin/ad/unblock/{id}', 'ad\AdsController@admin_unblock');
+Route::get('/admin/ad/approve/{id}', 'ad\AdsController@admin_approve');
+Route::get('/admin/ad/view/{id}', 'ad\AdsController@admin_view');
 
 /*Route::get('/admin/catergory', function (){
     return view ('admin.event.catergory');
@@ -183,7 +197,18 @@ Route::get('/client/myevents','event\EventsController@client_index');
 Route::post('/client/myevents/store','InvitationsController@store');
 Route::get('/client/myevents/delete/{id}','event\EventsController@destroy');
 Route::get('/client/myevents/{id}','event\TemplatesController@client_index2');
+Route::get('/client/search1/{text}','service\ServicesController@client_search_text');
+Route::get('/client/search2/{id}','service\ServicesController@client_search_id');
 
+
+Route::post('/client/search','service\ServicesController@client_normal_search');
+Route::get('/client/view/service/{id}','service\ServicesController@client_view');
+Route::get('/client/view/service/{service}/{task}','service\ServicesController@client_view2');
+Route::get('/client/view/svp/{id}','svp\SVPsController@client_view');
+
+Route::get('/client/reserve/{service_id}/{svp_id}/{task_id?}','service\ServicesController@getReservationModal');
+Route::post('/client/saveevent/{service}','event\EventsController@reserve_event_save');
+Route::get('/client/makereserve/{event}/{task}/{svp}/{service}','BookingsController@make_reservation');
 
 
 Route::post('/client/save_profile', 'client\ClientsController@save_profile');
@@ -193,13 +218,17 @@ Route::get('/client/logout','client\ClientsController@logout');
 
 // Routes for side Adds.
 
-Route::get('/svp/ads','ad\AdsController@index');
+Route::get('/svp/ads','ad\AdsController@svp_index');
 Route::get('/svp/ads/create','ad\AdsController@create');
 Route::post('/svp/ads/store','ad\AdsController@store');
-Route::get('/svp/ads/show/{{ad_id}}','ad\AdsController@show');
-Route::get('/svp/ads/edit/{{ad_id}}','ad\AdsController@edit');
-Route::match('/svp/ads/update','ad\AdsController@update');
-Route::delete('/svp/ads/delete','ad\AdsController@destroy');
+Route::get('/svp/ads/edit/{id}','ad\AdsController@edit');
+Route::post('/svp/ads/update/{id}','ad\AdsController@update');
+Route::get('/svp/ads/delete/{id}','ad\AdsController@destroy');
+Route::get('/svp/ads/pay/done','ad\AdsController@pay_done');
+Route::get('/svp/ads/pay/cancel','ad\AdsController@pay_cancel');
+Route::post('/svp/ads/pay/notify','ad\AdsController@pay_notify');
+Route::get('/svp/ads/get/{id}','ad\AdsController@getContent');
+Route::get('/svp/ads/clickinc/{id}','ad\AdsController@clickInc');
 
 // Routes for services of svp
 

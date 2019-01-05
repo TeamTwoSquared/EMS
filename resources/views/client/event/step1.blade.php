@@ -4,50 +4,50 @@
     use App\Http\Controllers\event\TemplateTasksController;
 @endphp
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
-    <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-12"> 
-                <div class="au-breadcrumb-content"> 
-                    <div class="au-breadcrumb-left"> 
-                        <span class="au-breadcrumb-span">You are here:</span> 
-                        <ul class="list-unstyled list-inline au-breadcrumb__list"> 
-                            <li class="list-inline-item active"> 
-                                <a href="#">Home</a> 
-                            </li>                             
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Dashboard</li>
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Manage Event</li>                             
-                        </ul>                         
-                    </div>                     
-                    <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports..."> 
-                        <button class="au-btn--submit2" type="submit"> 
-                            <i class="zmdi zmdi-search"></i> 
-                        </button>                         
-                    </form>                     
-                </div>                 
-            </div>             
-        </div>         
-    </div>     
+        <div class="container"> 
+            <div class="row"> 
+                <div class="col-md-12"> 
+                    <div class="au-breadcrumb-content"> 
+                        <div class="au-breadcrumb-left"> 
+                                                     
+                        </div>                     
+                        <form class="au-form-icon--sm" action="/client/search" method="post">
+                            {{ csrf_field() }} 
+                            <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
+                            <button class="au-btn--submit2" type="submit"> 
+                                <i class="zmdi zmdi-search"></i> 
+                            </button>                         
+                        </form>                     
+                    </div>                 
+                </div>             
+            </div>         
+        </div>     
 </section>
+<hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed>
     <div class="container"> 
         <div class="row">
             <div class="col-md-9">
                 <form name="step1" id="step1">
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="validationDefault01">Event Name</label>
                             <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_name" id="event_name" value="" required>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault02">Event Date and Time</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="" required>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault02">Event Date</label>
+                            <input type="date" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="" required>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault01">Event Start Time</label>
+                            <input type="time" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_stime" id="event_stime" value="" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault02">Event End Time</label>
+                            <input type="time" class="form-control" id="validationDefault02" placeholder="" name = "event_etime" id="event_etime" value="" required>
                         </div>
                         <input type="hidden" name="event_id" id="event_id" value="0">
                     </div>
@@ -120,48 +120,14 @@
                     <button class="btn btn-primary enableMe" type="button" name="create_own" id="create_own" disabled="true">create my own template</button>
                 </form>
             </div>
-            <div class="col-md-3">
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-                <div class="row">
-                    <img src="http://flexdealer-media.imgix.net/media/bc1141/images/1515794061972421.jpg"/>
-                    <hr/> 
-                </div>
-            </div>
-        </div>
-        <hr> 
-        <div class="row" data-pg-collapsed>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-                <div class="col-md-4">
-                    <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                    <hr>
-                </div>
-            </div>     
+            <!-- Right-Pane Ads with col-md-3-->
+            @include('inc.rightAds')               
+            <!-- End of Ads -->            
+        </div>         
+        <hr/> 
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads -->     
     </div>
 </section>
 <script>
@@ -183,7 +149,7 @@
                     success:function(data){
                         if(data==0)
                         {
-                            alert("Please Name Your Event and Specify Event Date");
+                            alert("Please Name Your Event and Specify Event Date and Time");
                         }
                         else
                         {
@@ -208,7 +174,7 @@
                     success:function(data2){
                         if(data2==2)
                         {
-                            alert("Please Name Your Event and Specify Event Date");
+                            alert("Please Name Your Event and Specify Event Date and Time");
                         }
                         else
                         {
@@ -243,6 +209,8 @@
 
         });
 
+        
     });
 </script>
+<hr/>
 @endsection

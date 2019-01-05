@@ -28,12 +28,12 @@
                 </button>
             </div>
             <div class="table-data__tool-right">
-                <a href="customer/add"> 
+                <a href="client/add"> 
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small">
                         <i class="zmdi zmdi-plus"></i>add client&nbsp;
                     </button>
                 </a>
-                <a href="customer/delete">
+                <a href="client/delete">
                     <button class="au-btn au-btn-icon au-btn--green au-btn--small bg-danger">
                         <i class="zmdi zmdi-minus"></i>remove client&nbsp;
                     </button>
@@ -44,16 +44,9 @@
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
-                        <th>name</th>
+                        <th>username</th>
                         <th>e-mail</th>
                         <th>Status</th>
-                        
                         <th></th>
                     </tr>
                 </thead>
@@ -61,17 +54,11 @@
                     <!-- Start TABLE ROW-->
                     @foreach($customers as $customer)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
-                        <td>{{$customer->name}}</td>
+                        <td>{{$customer->username}}</td>
                         <td>{{$customer->email}}</td>
 
                         @if($customer->isverified == 1)
-                        <td><span class="status--process">verify</span></td>
+                        <td><span class="status--process">verified</span></td>
                         @elseif($customer->isverified == 0)
                         <td><span class="status--pending">pending</span></td>
                         @else
@@ -92,12 +79,12 @@
                                     </button>
                                 </a>
                                 
-                                    <button onclick ="deleteMe()" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+                                    <button onclick ="deleteMe({{$customer->customer_id}})" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
                                         <i class="zmdi zmdi-delete"></i>
                                         <script>
-                                            function deleteMe() {
+                                            function deleteMe(id) {
                                                     if (confirm("Are you sure you want to delete this customer!")) {
-                                                        window.location.replace("client/delete/{{$customer->customer_id}}");
+                                                        window.location.replace("client/delete/"+id);
                                                     } 
                                                 }
                                         </script>
@@ -106,7 +93,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>

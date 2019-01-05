@@ -1,5 +1,11 @@
 @extends('layouts.client')
 @section('content')
+<style type="text/css">
+    a.disableLink {
+        pointer-events: none;
+        cursor: default;
+    }
+</style>
 @php
  use App\Http\Controllers\event\TemplatesController;
  use App\Http\Controllers\event\TemplateTasksController;
@@ -18,41 +24,30 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
 
 @endphp
 <section class="au-breadcrumb2 pad-bottom5 pad15" data-pg-collapsed> 
-    <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-12"> 
-                <div class="au-breadcrumb-content"> 
-                    <div class="au-breadcrumb-left"> 
-                        <span class="au-breadcrumb-span">You are here:</span> 
-                        <ul class="list-unstyled list-inline au-breadcrumb__list"> 
-                            <li class="list-inline-item active"> 
-                                <a href="#">Home</a> 
-                            </li>                             
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Dashboard</li>
-                            <li class="list-inline-item seprate"> 
-                                <span>/</span> 
-                            </li>                             
-                            <li class="list-inline-item">Manage Event</li>                           
-                        </ul>                         
-                    </div>                     
-                    <form class="au-form-icon--sm" action="" method="post"> 
-                        <input class="au-input--w300 au-input--style2" type="text" placeholder="Search for datas &amp; reports..."> 
-                        <button class="au-btn--submit2" type="submit"> 
-                            <i class="zmdi zmdi-search"></i> 
-                        </button>                         
-                    </form>                     
-                </div>                 
-            </div>             
-        </div>         
-    </div>     
+        <div class="container"> 
+            <div class="row"> 
+                <div class="col-md-12"> 
+                    <div class="au-breadcrumb-content"> 
+                        <div class="au-breadcrumb-left"> 
+                                                     
+                        </div>                     
+                        <form class="au-form-icon--sm" action="/client/search" method="post">
+                            {{ csrf_field() }} 
+                            <input class="au-input--w300 au-input--style2" name = "data" type="text" placeholder="Find Services...."> 
+                            <button class="au-btn--submit2" type="submit"> 
+                                <i class="zmdi zmdi-search"></i> 
+                            </button>                         
+                        </form>                     
+                    </div>                 
+                </div>             
+            </div>         
+        </div>     
 </section>
+<hr/>
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row">
-            <div class="col-md-12"> 
+            <div class="col-md-9"> 
                 @if($is_old==0)         
                 <div class="row">
                     <div class="alert font-weight-bold" role="alert">
@@ -108,11 +103,19 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                             
                                 <div class="col-md-4 mb-3">
                                     <label for="validationDefault01">Event Name</label>
-                                <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_name" id="event_name" value="{{$my_event->name}}" required>
+                                <input type="text" class="form-control" placeholder="My First Event" name = "event_name" id="event_name" value="{{$my_event->name}}" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="validationDefault02">Event Date and Time</label>
-                                    <input type="text" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="{{$my_event->datetime}}" required>
+                                    <label for="validationDefault02">Event Date</label>
+                                    <input type="date" class="form-control" placeholder="" name = "event_date" id="event_date" value="{{$my_event->date}}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationDefault02">Event Start Time</label>
+                                    <input type="time" class="form-control" placeholder="" name = "event_stime" id="event_date" value="{{$my_event->stime}}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationDefault02">Event Start Time</label>
+                                    <input type="time" class="form-control" placeholder="" name = "event_etime" id="event_date" value="{{$my_event->etime}}" required>
                                 </div>
                                 <input type="hidden" name="event_id" id="event_id" value="{{$my_event->event_id}}">
                             
@@ -128,13 +131,13 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                             </thead>                             
                             <tbody> 
                                 <input type="hidden" id="task_id" name="default_task_id[]" value="1"/>
-                                <input type="hidden" name="new_task[]" id="new_task" value="0"/>
+                                <input type="hidden" name="new_task[]" value="0"/>
                                 
                                 @foreach($default_tasks as $default_task)
                                 <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
                                      
-                                    <td><input type="text" value="{{$default_task->name}}" class="form-control name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
-                                    <td>Select</td> 
+                                    <td><input type="text" readonly value="{{$default_task->name}}" class="form-control-plaintext name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
+                                    <td class="align-middle" data-pg-collapsed><a href="/client/search2/{{$default_task->task_id}}" target="_blank"><strong>Search for Service Providers</strong>&nbsp;<i class="fa fa-search"></i></a></td>
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
                                             
@@ -162,41 +165,22 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         </form>
                     </div>
                 </div>
+                <p id="msginfo" style="display:none" class="text-primary font-weight-bold mt-0 mb-0 ">Please Save Your Newly Added Task, Before Searching for Service Providers!</p>
                 <div class="row" data-pg-collapsed>
-                        <button type="button" name="add" id="add" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
+                        <button type="button" name="add" id="add" onclick="showMsg()" class="btn btn-secondary btn-outline-secondary active btn-block">Add New Task</button>
                 </div>
                 <div class="row">
                     <button type="button" name="save" id="save" class="btn btn-primary">Save Changes</button>
                 </div>
             </div>
-        </div>
-        <hr/>
-        <div class="row">
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
-            <div class="col-md-4">
-                <img src="https://c86og3avv551mqtcy2adcf845a-wpengine.netdna-ssl.com/wp-content/uploads/2015/03/AG-ever-336x280-300x250.png">
-                <hr/>
-            </div>
+            <!-- Right-Pane Ads with col-md-3-->
+            @include('inc.rightAds')               
+            <!-- End of Ads -->            
         </div>         
+        <hr/> 
+        <!-- Bottom-Pane Ads-->
+            @include('inc.bottomAds')             
+        <!-- End of Ads -->         
     </div>     
 </section>
 <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
@@ -218,8 +202,8 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
             $('#add').click(function(){
                 i++;
                 $('#dynamic_field').append('<tr id="row'+i+'" class="table table-bordered bg-clouds shadow MoveableRow">'+
-                                    '<td><input type="text" name="new_task[]" id="new_task" placeholder="Enter a Task" class="form-control name_list"/></td>'+
-                                    '<td>Select</td>'+
+                                    '<td><input type="text" name="new_task[]" id="new_task'+i+'"placeholder="Enter a Task" class="form-control name_list"/></td>'+
+                                    '<td class="align-middle" data-pg-collapsed><a class = "disableLink" id="'+i+'" onClick="a(this);" style="cursor: pointer; cursor: hand;"><strong>Search for Service Providers</strong>&nbsp;<i class="fa fa-search"></a></i></td>'+
                                     '<td>'+
                                         '<div class="table-data-feature flex-row-reverse">'+
                                                 '<button type="button" name="down" id="down" class="item down_button" title="Move Down">'+
@@ -314,8 +298,23 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                         }
                     }); 
                 }
+                $('.disableLink').removeClass("disableLink");              
             });
             
         });
+        function a(obj){
+            var text = document.getElementById("new_task"+obj.id);
+            if(text.value=="") alert("Some tasks are unnamed, they will be discarded");
+            else window.open("/client/search1/"+text.value,'_blank');
+            window.location.replace("/client/myevents/"+{{$my_event_id}});
+        }
+        
+        function showMsg(){
+            $('#msginfo').show(500); 
+            setTimeout(function() { 
+                $('#msginfo').fadeOut(500); 
+            }, 3500);
+        }
 </script>
+<hr/>
 @endsection
