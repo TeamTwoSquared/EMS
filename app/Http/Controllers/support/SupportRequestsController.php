@@ -28,6 +28,7 @@ class SupportRequestsController  extends Controller
         $supportRequest->request = $request->request;
         $supportRequest->customer_id = $request->customer_id;
         $supportRequest->service_provider_id = $request->service_provider_id;
+        $supportRequest->from_whome=2;
         $supportRequest->save();
     }
 

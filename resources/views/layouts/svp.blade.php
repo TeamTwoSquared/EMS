@@ -67,11 +67,7 @@ $svp=SVPsController::getSVP();
                         <ul class="list-unstyled navbar__list"> 
                             <li class="active has-sub"> 
                                 <a class="js-arrow" href="/svp/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard </a> 
-                            </li>                     
-                            <li> 
-                                <a href="svp/inbox"> <i class="fas fa-chart-bar"></i>Inbox</a> 
-                                <span class="inbox-num">3</span> 
-                            </li>                     
+                            </li>                                         
                             
                             <li class="has-sub">
                                 <a class="js-arrow" href="#">
@@ -96,7 +92,11 @@ $svp=SVPsController::getSVP();
                             </li>                     
                             <li> 
                                 <a href="/svp/booking"> <i class="fas fa fa-book"></i>Bookings</a> 
-                            </li>                     
+                            </li>
+                            <li> 
+                                <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 
+                                    <span class="inbox-num">3</span> 
+                                </li>                      
                         </ul>                 
                     </nav>             
                 </div>         
@@ -175,10 +175,7 @@ $svp=SVPsController::getSVP();
                                             </div>                                     
                                             <div class="account-dropdown__item"> 
                                                 <a href="/svp/billing"> <i class="zmdi zmdi-money-box"></i>Billing</a> 
-                                            </div>                                     
-                                            <div class="account-dropdown__item"> 
-                                                <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 
-                                            </div>                                     
+                                            </div>                                                                          
                                             <div class="account-dropdown__item"> 
                                                 <a href="/svp/logout"> <i class="zmdi zmdi-power"></i>Logout</a> 
                                             </div>                                     

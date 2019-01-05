@@ -4,6 +4,7 @@ namespace App\Http\Controllers\support;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+
 use App\SupportRequest;
 use App\SupportRequestAttachement;
 use App\helpModel;
@@ -11,28 +12,28 @@ use Illuminate\Support\Facades\DB;
 use Intervention\Image\ImageManagerStatic as Image;
 use App\Notification;
 
-class helpForClient extends Controller
+class helpReplyForSVP extends Controller
 {
     public function index(){
-        return view('admin.client.supportConditions');
+        return view('admin.client.supportConditionsForSVP');
     
     }
 
     public function create(){
-        return view('admin.client.supportForClient');
+        return view('admin.client.supportForSVP');
        // return view('svp.test');
     }
 
     public function store(Request $request){
         
-           
+       //   dd(session()->get('svp_id'));
               
         $help=new SupportRequest();
         $help->request=$request->description;
-        $help->customer_id=session()->get('customer_id');
+        $help->service_provider_id=session()->get('svp_id');
         $typeid = DB::table('support_request_type')->where('type', $request->issue_type)->value('type_id');
         $help->type_id=$typeid;
-        $help->from_whome=2;
+        $help->from_whome=3;
         $help->save();
         
         if($request->issue_image != null)
@@ -69,17 +70,16 @@ class helpForClient extends Controller
         // sending notification..
         
         $notification=new Notification();
-        $customerName = DB::table('customers')->where('customer_id',session()->get('customer_id'))->value('name');
-        $notification->notification=("You Have A Support Request From Your Client ".$customerName);
+        $svpName = DB::table('service_providers')->where('service_provider_id',session()->get('svp_id'))->value('name');
+       // dd(session()->get('service_provider_id'));
+        $notification->notification=("You Have A Support Request From Your Service Provider ".$svpName);
         $notification->support_request_id=$help->support_request_id;
         $notification->type=1;
         $notification->to_whome=1;
-        $notification->from_whome=2;
-        $notification->customer_id=session()->get('customer_id');
+        $notification->from_whome=3;
+        $notification->service_provider_id=session()->get('svp_id');
         $notification->save();
-        return redirect('/client/dash')->with('success','Successfully submited the help request !' );
+        return redirect('/svp/dash')->with('success','Successfully submited the help request !' );
 
     }
-
 }
-

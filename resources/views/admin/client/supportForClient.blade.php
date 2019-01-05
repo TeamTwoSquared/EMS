@@ -75,11 +75,7 @@
                                                     <div class="form-group"> 
                                                         <label for="inputAddress">Description Of Your Issue</label>                         
                                                         <textarea class="form-control"  name="description" placeholder="Type here.." ></textarea>
-                                                    </div>
-                                                    <div class="form-group">
-                                                        <label for="inputEmail4">Service Provider ID <small>(If Issue is regarding with customer)</small></label>
-                                                        <input type="number" class="form-control"  name="svp_id" placeholder="Service Provider ID " min='1' >
-                                                    </div>                  
+                                                    </div>                 
                                             </div>             
                                         </div>         
                                     </div>     

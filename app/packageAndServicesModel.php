@@ -4,14 +4,13 @@ namespace App;
 
 use Illuminate\Database\Eloquent\Model;
 
-class helpAndCommentModel extends Model
+class packageAndServicesModel extends Model
 {
     public $timestamps = false;
     public $incrementing = false;
     // Table Name
-    protected $table = 'help_and_comment';
+    protected $table = 'package_and_their_services';
    
     // Primary Key
-    public $primaryKey = ['comment_id'];
+    public $primaryKey = ['package_id','service_id'];
 }
-

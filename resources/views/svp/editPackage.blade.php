@@ -231,22 +231,22 @@
                     <div class="card">
                         <div class="card-header">Package Types</div>
                         <div class="card-body card-block">
-                                        @if(count($package_types)!=null)
-                                            <div style="display:none" > {{$serviceTypeId= 13}}</div>
-                                            @foreach($package_types as $package_type)
-                                                <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  value="{{$package_type->type}}">
-                                                <div style="display:none" > {{$serviceTypeId += 1}}</div>    
-                                            @endforeach
-                                            @if($serviceTypeId != 18)
-                                                @for($serviceTypeId;$serviceTypeId<19;$serviceTypeId++)
-                                                    <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  placeholder="package type {{$serviceTypeId-12}}">
-                                                @endfor
-                                            @endif
-                                        @else
-                                            @for($i=13;$i<19;$i++)
-                                                <input type="text" name="type{{$i}}" class="smallBox"  placeholder="package type {{$i-12}}">
-                                            @endfor
-                                        @endif
+                            @if(count($package_types)!=null)
+                                <div style="display:none" > {{$serviceTypeId= 13}}</div>
+                                @foreach($package_types as $package_type)
+                                    <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  value="{{$package_type->type}}">
+                                    <div style="display:none" > {{$serviceTypeId += 1}}</div>    
+                                @endforeach
+                                @if($serviceTypeId != 18)
+                                    @for($serviceTypeId;$serviceTypeId<19;$serviceTypeId++)
+                                        <input type="text" name="type{{$serviceTypeId }}" class="smallBox"  placeholder="package type {{$serviceTypeId-12}}">
+                                    @endfor
+                                @endif
+                            @else
+                                @for($i=13;$i<19;$i++)
+                                    <input type="text" name="type{{$i}}" class="smallBox"  placeholder="package type {{$i-12}}">
+                                @endfor
+                            @endif
                         </div>
                     </div>
                 </div>

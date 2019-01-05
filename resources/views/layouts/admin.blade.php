@@ -254,25 +254,28 @@ use Illuminate\Support\Facades\DB;
                                             $numOfNewNotifications = DB::table('notifications')->where('is_read', 0)->where('to_whome',1)->count();
                                             // number of unread support request notifications
                                             $newNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',1)->where('to_whome',1)->count();
-                                           
-                                        ?>                               
-                                        <div class="noti__item js-item-menu"> 
-                                            <i class="zmdi zmdi-notifications"></i> 
-                                            <?php
-                                                if($numOfNewNotifications !=0){
-                                                    echo   "<span class='quantity'>$numOfNewNotifications</span> 
+                                            // number of comment notifications
+                                            $newCommentNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',2)->where('to_whome',1)->count();
+                                            $numOfAllNotificationforHelp=($numOfNewNotifications+$newCommentNotificationForHelp);
+                                        ?>
+                                            <div class="noti__item js-item-menu"> 
+                                                <i class="zmdi zmdi-notifications"></i> 
+                                        
+                                               @if($numOfNewNotifications !=0)
+                                                    <span class='quantity'>{{$numOfNewNotifications}}</span> 
                                                             <div class='notifi-dropdown js-dropdown'> 
                                                                 <div class='notifi__title'> 
-                                                                    <p>You have $numOfNewNotifications Notifications</p> 
+                                                                    <p>You have {{$numOfNewNotifications}} Notifications</p> 
                         
-                                                            </div>";
-                                                }
-                                                else{
-                                                    echo "<div class='notifi-dropdown js-dropdown'> 
+                                                            </div>
+                                                
+                                                @else
+                                                    <div class='notifi-dropdown js-dropdown'> 
                                                             <div class='notifi__title'>  
-                                                            </div>";
-                                                    }
-                                            ?>                                                 
+                                                    </div>
+                                                @endif
+                                        
+                                            <div>                                                 
                                                 <div class="notifi__item"> 
                                                     <div class="bg-c1 img-cir img-40"> 
                                                         <i class="zmdi zmdi-email-open"></i> 
@@ -291,34 +294,12 @@ use Illuminate\Support\Facades\DB;
                                                         <span class="date">April 12, 2018 06:50</span> 
                                                     </div>                                                     
                                                 </div> 
-                                                    
-                                                <?php
-                                                    if($newNotificationForHelp==1){
-                                                        $newHelpRequest = DB::table('notifications')->where('is_read',0)->value('notification');
-                                                        echo "<a href='/admin/notification'><div class='notifi__item'> 
-                                                                <div class='bg-c3 img-cir img-40'> 
-                                                                    <i class='zmdi zmdi-file-text'></i> 
-                                                                </div>                                                     
-                                                                <div class='content'> 
-                                                                    <p>$newHelpRequest</p> 
-                                                                    <span class='date'>Time feild to be complete</span> 
-                                                                </div>                                                     
-                                                              </div> 
-                                                            </a> ";
-                                                    }
-                                                    else if($newNotificationForHelp>=1){
-                                                        echo "<a href='/admin/support'><div class='notifi__item'> 
-                                                                <div class='bg-c3 img-cir img-40'> 
-                                                                    <i class='zmdi zmdi-file-text'></i> 
-                                                                </div>                                                     
-                                                                <div class='content'> 
-                                                                    <p>You Have <b>$newNotificationForHelp</b> Support Request Notifications .</p> 
-                                                                    <span class='date'>Time feild to be complete</span> 
-                                                                </div>                                                     
-                                                            </div> " ;
-                                                    }
-                                                ?>
-                                                                                              
+                                               <!-- start help request notification-->     
+                                                   
+                                                        @include('layouts.admin_help_notification');
+ 
+                                                <!-- ending help request notification-->
+
                                                 <div class="notifi__footer"> 
                                                     <a href="#">All notifications</a> 
                                                 </div>                                                 

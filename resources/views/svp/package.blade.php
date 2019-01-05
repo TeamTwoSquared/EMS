@@ -49,42 +49,43 @@ use Illuminate\Support\Facades\DB;
 
                             @foreach($packageService as $package_info)
 
-                                <div class="col-md-4">
-                                    <div class="card mb-4 box-shadow">
+                                <a href='/svp/packageService/{{$package_info->package_id}}'>
+                                    <div class="col-md-4">
+                                        <div class="card mb-4 box-shadow">
 
-                                        @php
-                                         //   $packageImg=servicePackage::where('package_id',$package_info->package_id)->get();
-                                            $packageImg= DB::table('package_service')->where('package_id',$package_info->package_id)->value("imgurl");
-                                        
-                                        @endphp
+                                            @php
+                                            //   $packageImg=servicePackage::where('package_id',$package_info->package_id)->get();
+                                                $packageImg= DB::table('package_service')->where('package_id',$package_info->package_id)->value("imgurl");
+                                            
+                                            @endphp
 
-                                        @if(($packageImg)==null)
-                                            <img class="card-img-top" src="\storage\images\services\noImage.jpg"/>
-                                        @else
-                                            <img class="card-img-top" src="\storage\images\services\{{$packageImg}}"/>
-                                        @endif
-                                            <div class="card-body">
-                                                <center>
-                                                    <h3>{{$package_info->name}}</h3>
-                                                    <div class="d-flex justify-content-between align-items-center">
+                                            @if(($packageImg)==null)
+                                                <img class="card-img-top" src="\storage\images\services\noImage.jpg"/>
+                                            @else
+                                                <img class="card-img-top" src="\storage\images\services\{{$packageImg}}"/>
+                                            @endif
+                                                <div class="card-body">
+                                                    
+                                                        <h3>{{$package_info->name}}</h3>
+                                                        <div class="d-flex justify-content-between align-items-center">
 
-                                                         <div class="btn-group">
-                                                             <a href="/svp/ViewPackage/{{$package_info->package_id}}">
-                                                                 <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                                             </a>
-                                                             <a href="/svp/EditPackage/{{$package_info->package_id}}">
-                                                                 <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                                             </a>
-                                                             <a href="/svp/DeletePackage/{{$package_info->package_id}}">
-                                                                 <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
-                                                             </a>
+                                                            <div class="btn-group">
+                                                                <a href="/svp/ViewPackage/{{$package_info->package_id}}">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                                                                </a>
+                                                                <a href="/svp/EditPackage/{{$package_info->package_id}}">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                                                                </a>
+                                                                <a href="/svp/DeletePackage/{{$package_info->package_id}}">
+                                                                    <button type="button" class="btn btn-sm btn-outline-secondary">Delete</button>
+                                                                </a>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </center>
-                                            </div>
+                                                 
+                                                </div>
+                                        </div>
                                     </div>
-                                </div>
-
+                                </a>
                             @endforeach
 
                           </div>

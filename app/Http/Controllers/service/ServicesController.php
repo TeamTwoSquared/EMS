@@ -20,7 +20,7 @@ class ServicesController extends Controller
 
     public function index()
     {
-        $servicesInfo = Service::where('service_provider_id',session()->get('svp_id'))->get();
+        $servicesInfo = Service::where('service_provider_id',session()->get('svp_id'))->where('is_package',0)->get();
         return view('svp.services')->with('svpServices',$servicesInfo);
     }
 
