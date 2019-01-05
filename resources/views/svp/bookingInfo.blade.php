@@ -10,52 +10,6 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
         <h3 class="title-5 m-b-35">Manage Booking</h3>
         <div class="table-data__tool">
             <div class="table-data__tool-left">
-                <div class="rs-select2--light rs-select2--md">
-                    <select class="js-select2" name="property">
-                        <option selected="selected">All Properties</option>
-                        <option value="">Option 1</option>
-                        <option value="">Option 2</option>
-                    </select>
-                    <div class="dropDownSelect2"></div>
-                </div>
-                <div class="rs-select2--light rs-select2--sm">
-                    <select class="js-select2" name="time">
-                        <option selected="selected">Today</option>
-                        <option value="">3 Days</option>
-                        <option value="">1 Week</option>
-                    </select>
-                    <div class="dropDownSelect2"></div>
-                </div>
-                <button class="au-btn-filter">
-                    <i class="zmdi zmdi-filter-list"></i>filters
-                </button>
-                <div class="rs-select2--light rs-select2--md">
-                    <input id="datepicker" name="date" value="Select Date"/>
-                        <script>
-                            $('#datepicker').datepicker(
-                                {
-                                    header: true,
-                                    modal: true,
-                                    format: 'yyyy-dd-mm',
-                                    footer: true,
-                                    uiLibrary: 'bootstrap4',
-                                    select: function (e, type) 
-                                    {
-                                        alert(JSON.stringify(e, null, 4));
-                                    },
-                                    disableDates:  function (date) 
-                                    {
-                                        var enable= [10,15,20,25]; //dates to activate
-                                        if (enable.indexOf(date.getDate()) == -1 ) {
-                                            return false;
-                                        } else {
-                                            return true;
-                                        }
-                                    }
-                                }
-                               );
-                        </script>
-                </div>
             </div>
             <div class="table-data__tool-right">
                 <a href="booking/add"> 
@@ -74,12 +28,6 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
                         <th>Date</th>
                         <th>Time</th>
                         <th>status</th>
@@ -92,12 +40,6 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
                     <!-- Start TABLE ROW-->
                     @foreach($bookings as $booking)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
                         <td class="agenda-date" class="active" rowspan="1">
                             @php
                             $date = new DateTime($booking->date);                                
@@ -156,7 +98,6 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>
