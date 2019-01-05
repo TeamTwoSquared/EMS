@@ -462,4 +462,56 @@ class AdsController extends Controller
        
         return $ads_selected;
     }
+
+    public function admin_index()
+    {
+        $ads = Ad::all();
+        return view('admin.ad.manage')->with('ads',$ads);
+    }
+
+    public function admin_destroy($id)
+    {
+        $adImages = AdsImage::where('ad_id',$id)->get();
+        if(($adImages->count())>0)
+        {
+            foreach($adImages as $adImage)
+            {
+                Storage::delete('public/images/ad/'.$adImage->imgurl);
+            }
+        }
+        Ad::where('ad_id',$id)->delete();
+        return redirect('/admin/ad');
+    }
+
+    public function admin_block($id)
+    {
+        $ad = Ad::find($id);
+        $ad->isapprove = 2;
+        $ad->save();
+        return redirect('/admin/ad');
+    }
+
+    public function admin_unblock($id)
+    {
+        $ad = Ad::find($id);
+        $ad->isapprove = 0;
+        $ad->save();
+        return redirect('/admin/ad');
+    }
+
+    public function admin_approve($id)
+    {
+        
+        $ad = Ad::find($id);
+        $ad->isapprove = 4;
+        $ad->save();
+        return redirect('/admin/ad');
+    }
+
+    public function admin_view($id)
+    {
+        $ad = Ad::find($id);
+        return view('admin.ad.view')->with('ad',$ad);
+    }
+    
 }

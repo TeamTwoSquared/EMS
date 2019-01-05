@@ -49,7 +49,7 @@ class ServiceImagesController extends Controller
                  // Upload 
                  $image_up = $image;
                  $image_resize = Image::make($image->getRealPath());              
-                 $image_resize->resize(460, 310);
+                 $image_resize->resize(800, 600);
                  $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
                  
                  //Adding URL to template_images table
@@ -100,7 +100,7 @@ class ServiceImagesController extends Controller
                // Upload 
                $image_up = $image;
                $image_resize = Image::make($image->getRealPath());              
-               $image_resize->resize(460, 310);
+               $image_resize->resize(800, 600);
                $image_resize->save(public_path('storage/images/services/' .$fileNameToStore));
                
                //Adding URL to template_images table

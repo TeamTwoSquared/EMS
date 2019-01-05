@@ -66,11 +66,19 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                             
                                 <div class="col-md-4 mb-3">
                                     <label for="validationDefault01">Event Name</label>
-                                <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_name" id="event_name" value="{{$my_event->name}}" required>
+                                <input type="text" class="form-control" placeholder="My First Event" name = "event_name" id="event_name" value="{{$my_event->name}}" required>
                                 </div>
                                 <div class="col-md-4 mb-3">
-                                    <label for="validationDefault02">Event Date and Time</label>
-                                    <input type="text" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="{{$my_event->datetime}}" required>
+                                    <label for="validationDefault02">Event Date</label>
+                                    <input type="date" class="form-control" placeholder="" name = "event_date" id="event_date" value="{{$my_event->date}}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationDefault02">Event Start Time</label>
+                                    <input type="time" class="form-control" placeholder="" name = "event_stime" id="event_date" value="{{$my_event->stime}}" required>
+                                </div>
+                                <div class="col-md-4 mb-3">
+                                    <label for="validationDefault02">Event Start Time</label>
+                                    <input type="time" class="form-control" placeholder="" name = "event_etime" id="event_date" value="{{$my_event->etime}}" required>
                                 </div>
                                 <input type="hidden" name="event_id" id="event_id" value="{{$my_event->event_id}}">
                             
@@ -91,7 +99,7 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
                                 @foreach($default_tasks as $default_task)
                                 <tr id="row{{$i}}" class="MoveableRow table table-bordered bg-clouds shadow"> 
                                      
-                                    <td><input type="text" value="{{$default_task->name}}" class="form-control name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
+                                    <td><input type="text" readonly value="{{$default_task->name}}" class="form-control-plaintext name_list"/> <input type="hidden" id="task_id" name="default_task_id[]" value="{{$default_task->task_id}}"/></td>
                                     <td class="align-middle" data-pg-collapsed><a href="/client/search2/{{$default_task->task_id}}" target="_blank"><strong>Search for Service Providers</strong>&nbsp;<i class="fa fa-search"></i></a></td>
                                     <td>
                                         <div class="table-data-feature flex-row-reverse">
@@ -254,7 +262,7 @@ $default_tasks = EventTemplateTasksController::getTasks($my_event_id);
         });
         function a(obj){
             var text = document.getElementById("new_task"+obj.id);
-            if(text.value=="") alert("abc");
+            if(text.value=="") alert("Some tasks are unnamed, they will be discarded");
             else window.open("/client/search1/"+text.value,'_blank');
             window.location.replace("/client/myevents/"+{{$my_event_id}});
         }

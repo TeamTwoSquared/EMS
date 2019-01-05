@@ -245,13 +245,18 @@ class ServicesController extends Controller
         
         [$keys, $values] = array_divide($new_array);
         
-        return view('client.search')->with('service_ids',$keys);
+        return view('client.searchTask')->with('service_ids',$keys)->with('task_id',$id);
 
     }
 
     public function client_view($id)
     {
         return view('client.showService')->with('service_id',$id);
+    }
+
+    public function client_view2($service_id,$task_id)
+    {
+        return view('client.showService')->with('service_id',$service_id)->with('task_id',$task_id);
     }
 
     public static function getService($id)
@@ -269,6 +274,11 @@ class ServicesController extends Controller
     {
         $services = Service::where('service_provider_id',$svp_id)->get();
         return $services;
+    }
+
+    public function getReservationModal($service_id, $svp_id,$task_id=0)
+    {
+        return view('client.reservation')->with('service_id',$service_id)->with('service_provider_id',$svp_id)->with('task_id',$task_id);
     }
 
 

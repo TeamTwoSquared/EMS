@@ -47,12 +47,6 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
                         <th>name</th>
                         <th>description</th>
                         <th>status</th>
@@ -64,12 +58,6 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                     <!-- Start TABLE ROW-->
                     @foreach($templates as $template)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
                         <td>{{$template->name}}</td>
                         <td>{{$template->description}}</td>
                         @if($template->istemp == 0)
@@ -122,7 +110,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>

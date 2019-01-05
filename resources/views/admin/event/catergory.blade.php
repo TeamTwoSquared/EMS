@@ -49,12 +49,6 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
                         <th>name</th>
                         <th>description</th>
                         <th>number of templates</th>
@@ -65,12 +59,6 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                     <!-- Start TABLE ROW-->
                     @foreach($catergories as $catergory)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
                         <td>{{$catergory->name}}</td>
                         <td>{{$catergory->description}}</td>
                         <td>{{CatergoryTemplatesController::getTemplateCount($catergory->catergory_id)}}</td> 
@@ -96,7 +84,7 @@ use App\Http\Controllers\event\CatergoryTemplatesController;
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>

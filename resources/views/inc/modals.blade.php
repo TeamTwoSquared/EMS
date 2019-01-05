@@ -40,3 +40,17 @@
       </div>
     </div>
   </div>
+
+  <!-- Client Reservation Models -->
+<div class="modal fade bd-reservation-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div id="modal-loader-reserve" style="display: none; text-align: center;">
+          <img src="/images/ajax-loader.gif">
+      </div>
+
+         <!-- content will be load here -->                          
+         <div id="dynamic-content-reserve"></div>
+    </div>
+  </div>
+</div>

@@ -30,13 +30,24 @@
             <div class="col-md-9">
                 <form name="step1" id="step1">
                     <div class="row">
-                        <div class="col-md-6 mb-3">
+                        <div class="col-md-4 mb-3">
                             <label for="validationDefault01">Event Name</label>
                             <input type="text" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_name" id="event_name" value="" required>
                         </div>
-                        <div class="col-md-6 mb-3">
-                            <label for="validationDefault02">Event Date and Time</label>
-                            <input type="text" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="" required>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault02">Event Date</label>
+                            <input type="date" class="form-control" id="validationDefault02" placeholder="" name = "event_date" id="event_date" value="" required>
+                        </div>
+                        
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault01">Event Start Time</label>
+                            <input type="time" class="form-control" id="validationDefault01" placeholder="My First Event" name = "event_stime" id="event_stime" value="" required>
+                        </div>
+                        <div class="col-md-4 mb-3">
+                            <label for="validationDefault02">Event End Time</label>
+                            <input type="time" class="form-control" id="validationDefault02" placeholder="" name = "event_etime" id="event_etime" value="" required>
                         </div>
                         <input type="hidden" name="event_id" id="event_id" value="0">
                     </div>
@@ -138,7 +149,7 @@
                     success:function(data){
                         if(data==0)
                         {
-                            alert("Please Name Your Event and Specify Event Date");
+                            alert("Please Name Your Event and Specify Event Date and Time");
                         }
                         else
                         {
@@ -163,7 +174,7 @@
                     success:function(data2){
                         if(data2==2)
                         {
-                            alert("Please Name Your Event and Specify Event Date");
+                            alert("Please Name Your Event and Specify Event Date and Time");
                         }
                         else
                         {
@@ -198,6 +209,7 @@
 
         });
 
+        
     });
 </script>
 <hr/>

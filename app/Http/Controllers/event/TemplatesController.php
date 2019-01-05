@@ -295,6 +295,7 @@ class TemplatesController extends Controller
 
     public function client_index2($event_id)
     {
+        session()->put('default_event',$event_id);
         return view('client.event.manage')->with('event_id',$event_id);
     }
 

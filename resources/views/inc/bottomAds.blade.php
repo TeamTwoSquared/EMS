@@ -9,15 +9,23 @@
     @foreach($bottomAds as $bottomAd)
     @php
         $randomImage=AdImagesController::getBottomRandomImages($bottomAd->ad_id);
-
+        AdsController::impressionInc($bottomAd->ad_id);
     @endphp
         <div class="col-md-4">
             @if($bottomAd->ad_url==NULL)
-                <a href="/client/view/svp/{{$bottomAd->service_provider_id}}" target="_blank"> <img src="/storage/images/ad/{{$randomImage->imgurl}}"/> </a>
+                <a href="/client/view/svp/{{$bottomAd->service_provider_id}}" onclick ="incBottom({{$bottomAd->ad_id}})" target="_blank"> <img src="/storage/images/ad/{{$randomImage->imgurl}}"/> </a>
             @else
-                <a href="{{$bottomAd->ad_url}}" target="_blank"> <img src="/storage/images/ad/{{$randomImage->imgurl}}"/> </a>
+                <a href="{{$bottomAd->ad_url}}" onclick ="incBottom({{$bottomAd->ad_id}})" target="_blank"> <img src="/storage/images/ad/{{$randomImage->imgurl}}"/> </a>
             @endif
             <hr/>
         </div>
     @endforeach
+<script>
+    function incBottom(id){
+        $.ajax({
+            type:'GET',
+            url:'/svp/ads/clickinc/'+id,
+        });
+    }
+</script>
 </div>
