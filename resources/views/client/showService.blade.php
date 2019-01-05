@@ -116,7 +116,11 @@
                                     </blockquote>
                                 </div>
                                 <div class="row">
-                                    <button type="button" class="btn btn-light bg-secondary col-md-3 ml-3">Reserve</button>
+                                @if(isset($task_id))
+                                <button type="button" id="reserve" class="btn btn-light bg-secondary col-md-3 ml-3" data-url="/client/reserve/{{$service->service_id}}/{{$svp->service_provider_id}}/{{$task_id}}" data-toggle="modal" data-target=".bd-reservation-modal-lg">Reserve</button>
+                                @else
+                                    <button type="button" id="reserve" class="btn btn-light bg-secondary col-md-3 ml-3" data-url="/client/reserve/{{$service->service_id}}/{{$svp->service_provider_id}}" data-toggle="modal" data-target=".bd-reservation-modal-lg">Reserve</button>
+                                @endif
                                 </div>
                             </div>
                         </div>
@@ -208,6 +212,32 @@
 <script>
     $(document).ready(function(){
         autoPlayYouTubeModal();
+
+        $(document).on('click', '#reserve', function(e){
+            e.preventDefault();
+            var url = $(this).data('url');
+
+            $('#dynamic-content-reserve').html(''); // leave it blank before ajax call
+            $('#modal-loader-reserve').show();      // load ajax loader
+
+            $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'html'
+            })
+            .done(function(data){
+            console.log(data);  
+            $('#dynamic-content-reserve').html('');    
+            $('#dynamic-content-reserve').html(data); // load response 
+            $('#modal-loader-reserve').hide();        // hide ajax loader   
+            })
+            .fail(function(){
+            $('#dynamic-content-reserve').html('&nbsp;&nbsp;&nbsp;<i class="fas fa-info-circle"></i> Something went wrong, Please try again...');
+            $('#modal-loader-reserve').hide();
+            });
+              
+        });
+
     });
     function autoPlayYouTubeModal(){
         var trigger = $("body").find('[data-toggle="modal"]');

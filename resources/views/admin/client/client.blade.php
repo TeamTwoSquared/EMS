@@ -44,16 +44,9 @@
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
-                        <th>name</th>
+                        <th>username</th>
                         <th>e-mail</th>
                         <th>Status</th>
-                        
                         <th></th>
                     </tr>
                 </thead>
@@ -61,13 +54,7 @@
                     <!-- Start TABLE ROW-->
                     @foreach($customers as $customer)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
-                        <td>{{$customer->name}}</td>
+                        <td>{{$customer->username}}</td>
                         <td>{{$customer->email}}</td>
 
                         @if($customer->isverified == 1)
@@ -106,7 +93,7 @@
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>

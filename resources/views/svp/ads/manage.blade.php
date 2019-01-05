@@ -91,7 +91,7 @@ $svp=SVPsController::getSVP();
                                     </div>
                                 </td>
                             </tr>
-                            <tr class="spacer"></tr>
+                            
                             @endforeach
                             <!-- END TABLE ROW-->
                         </tbody>
@@ -124,7 +124,7 @@ $svp=SVPsController::getSVP();
             $('#modal-loader').hide();        // hide ajax loader   
             })
             .fail(function(){
-            $('#dynamic-content').html('<i class="glyphicon glyphicon-info-sign"></i> Something went wrong, Please try again...');
+            $('#dynamic-content').html('&nbsp;&nbsp;&nbsp;<i class="fas fa-info-circle"></i> Something went wrong, Please try again...');
             $('#modal-loader').hide();
             });
               
@@ -133,7 +133,8 @@ $svp=SVPsController::getSVP();
     });
 
          
-  </script>         
+  </script>    
+       
 @endsection
 
 

@@ -32,16 +32,7 @@ session()->forget('default_event');
             </div>         
         </div>     
 </section>
-<section class="welcome p-t-10" data-pg-collapsed> 
-    <div class="container"> 
-        <div class="row"> 
-            <div class="col-md-12"> 
-                <h1 class="title-4">Welcome back <span>{{$client->username}}!</span> </h1> 
-                <hr class="line-seprate"> 
-            </div>             
-        </div>         
-    </div>     
-</section>
+
 <section class="statistic statistic2 pad5" data-pg-collapsed> 
     <div class="container"> 
         <div class="row">

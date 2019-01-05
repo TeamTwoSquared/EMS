@@ -47,12 +47,6 @@ use App\Http\Controllers\event\TemplateTasksController;
             <table class="table table-data2">
                 <thead>
                     <tr>
-                        <th>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </th>
                         <th>name</th>
                         <th>description</th>
                         <th>status</th>
@@ -65,12 +59,6 @@ use App\Http\Controllers\event\TemplateTasksController;
                     <!-- Start TABLE ROW-->
                     @foreach($tasks as $task)
                     <tr class="tr-shadow">
-                        <td>
-                            <label class="au-checkbox">
-                                <input type="checkbox">
-                                <span class="au-checkmark"></span>
-                            </label>
-                        </td>
                         <td>{{$task->name}}</td>
                         <td>{{$task->description}}</td>
                         @if($task->istemp == 0)
@@ -118,7 +106,7 @@ use App\Http\Controllers\event\TemplateTasksController;
                             </div>
                         </td>
                     </tr>
-                    <tr class="spacer"></tr>
+                    
                     @endforeach
                     <!-- END TABLE ROW-->
                 </tbody>
