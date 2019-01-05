@@ -42,14 +42,21 @@ $services=$data['services'];
 <center>
   <p><img src="{{ config('app.url', 'ems2.dv') }}/mail/images/logo.png" alt="EMS Logo" name="img_logo" width="381" height="184" id="img_logo" /></p></center>
 <h1><strong>Welcome To EMS</strong></h1>
-<h3>A booking on {{$booking->date}} was created by {{$svp->name}} for the services {{$service->name}}.</h3>
-<h3>First, please take a minute to register/login to EMS by clicking the button below:</h3>
-<h3>*If you cannot open the link, copy and paste this link into your browser:<a href = "{{ config('app.url', 'ems2.dv') }}/client/register">{{ config('app.url', 'ems2.dv') }}/client/register</a></h3>
+<h3>Dear valuable customer,</h3>
+<h3>A booking on <strong>{{$booking->date}}</strong> was made by <strong>{{$svp->name}}</strong> for the following services,</h3>
+@foreach ($services as $service)
+  @php
+    $service = ServicesController::getServiceForService($service);
+  @endphp  
+    	<h3>•{{$service->name}}</h3>
+  @endforeach
+<h3>please take a minute to register/login to EMS by clicking the button below:</h3>
+<h3>*If you cannot open the link, copy and paste this link into your browser:<a href = "{{ config('app.url', 'ems2.dv') }}">{{ config('app.url', 'ems2.dv') }}</a></h3>
 <h3>If you have any questions, let our support know at <a href="mailto:contact@ems.dv" target="_pg_blank" data-pg-id="97">contact@ems.dv</a>.</h3>
 <h3>Sincerely</h3>
 <h3>EMS Team.</h3>
 <p>
-  <a href="{{ config('app.url', 'ems2.dv') }}/client/register">
+  <a href="{{ config('app.url', 'ems2.dv') }}">
   <button class="button" style="vertical-align:middle">Join Now</button>
 </a> 
 </p>

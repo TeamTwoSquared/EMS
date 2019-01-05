@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Booking;
 use App\SVPBookingService;
+use App\Mail\SVPBookingSendClientInvitation;
 use App\Http\Controllers\svp\SVPsController;
+use Illuminate\Support\Facades\Mail;
 
 class BookingsController extends Controller
 {
@@ -28,6 +30,7 @@ class BookingsController extends Controller
     public function store(Request $request)
     {
         $svp=SVPsController::getSVP();
+
 
         //Validating submited details
         $this->validate($request, [
@@ -53,12 +56,12 @@ class BookingsController extends Controller
             $SVPBookingServices->service_id = $service;
             $SVPBookingServices->save();
         }
-
-        if($request->hasFile('client'))
+        
+        if($request->client != null)
         {
             $data['booking_id']=$booking->booking_id;
             $data['services']=$request->services;
-            Mail::to()->send(new SVPBookingSendClientInvitation($data));
+            Mail::to($request->client)->send(new SVPBookingSendClientInvitation($data));
         }
 
         //On success go and add tasks
@@ -97,7 +100,7 @@ class BookingsController extends Controller
     public static function getBooking($booking_id)
     {
         $bookings = Booking::where('booking_id',$booking_id)->get();
-        return $bookings;
+        return $bookings[0];
     }
     //geting bookings for service provider id
     public static function getBookingForSVP($service_provider_id)
