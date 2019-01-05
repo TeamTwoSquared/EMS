@@ -90,6 +90,7 @@
             box-sizing: border-box;
         }
 
+        /*style sheet for image delete*/
     </style>
 </head>
 
@@ -194,10 +195,11 @@
                     @if(count($service_images)!=null)
                             <div style="display:none" > {{$imageId= 0}}</div>
                                 @foreach($service_images as $serviceImage)
-                                    <div class="col-md-4" id="{{$imageId+=1}}" onclick="hideme({{$imageId}})">
+                                    <div class="col-md-4" id="{{$imageId+=1}}"  onclick="hideme({{$imageId}})">
                                         <div class="card mb-4 box-shadow" >
                                             <label class="contain">
-                                                <input type="checkbox" id=" selected_images" name="picture[]" value="{{$serviceImage->imgurl}}"><img src="\storage\images\services\{{$serviceImage->imgurl}}"/>
+                                                <input type="checkbox" id=" selected_images" name="picture[]" value="{{$serviceImage->imgurl}}"><img src="\storage\images\services\{{$serviceImage->imgurl}}" onmouseover= "deleteMe({{$imageId}})"/>
+                        
                                                 <span class="checkmark" style="display: none;"></span>
                                             </label>
                                         </div>
@@ -259,6 +261,11 @@
         console.log(element);
         element.style.display="none";
     }
+
+    function deleteMe(id){
+       
+    }
+
 </script>
 
 <script src="assets/js/jquery.min.js"></script>

@@ -74,13 +74,19 @@ $client=ClientsController::getClient();
                                     <a href="/client/help"> <i class="fas fa-life-ring fa"></i> <span class="bot-line"></span>Support Center</a> 
                                 </li>                                 
                             </ul>                             
-                        </div>                         
+                        </div>       
+                        <?php
+                             //   $newNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',1)->where('customer_id',session()->get('customer_id'))->get();
+                                $newCommentNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',2)->where('customer_id',session()->get('customer_id'))->get();
+                                $allNotificationsForClient=(count($newCommentNotificationForHelp));
+                                
+                        ?>                  
                         <div class="header__tool"> 
                             <div class="header-button-item has-noti js-item-menu"> 
                                 <i class="zmdi zmdi-notifications"></i> 
                                 <div class="notifi-dropdown notifi-dropdown--no-bor js-dropdown"> 
                                     <div class="notifi__title"> 
-                                        <p>You have 3 Notifications</p> 
+                                        <p>You have {{$allNotificationsForClient}} Notifications</p> 
                                     </div>                                     
                                     <div class="notifi__item"> 
                                         <div class="bg-c1 img-cir img-40"> 
@@ -100,15 +106,11 @@ $client=ClientsController::getClient();
                                             <span class="date">April 12, 2018 06:50</span> 
                                         </div>                                         
                                     </div>                                     
-                                    <div class="notifi__item"> 
-                                        <div class="bg-c3 img-cir img-40"> 
-                                            <i class="zmdi zmdi-file-text"></i> 
-                                        </div>                                         
-                                        <div class="content"> 
-                                            <p>You got a new file</p> 
-                                            <span class="date">April 12, 2018 06:50</span> 
-                                        </div>                                         
-                                    </div>                                     
+                                    
+                                        <!--support center notification box-->
+                                            @include('layouts.client_help_notification');
+                                        <!--end-->
+                                 
                                     <div class="notifi__footer"> 
                                         <a href="#">All notifications</a> 
                                     </div>                                     

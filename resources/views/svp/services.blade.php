@@ -73,6 +73,7 @@ use App\ServiceImage;
                                                              </a>
                                                         </div>
                                                     </div>
+                                                </center>
                                             </div>
                                     </div>
                                 </div>
