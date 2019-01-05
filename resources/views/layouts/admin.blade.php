@@ -6,6 +6,13 @@ die();
 }
 $admin=AdminsController::getAdmin();                      
 @endphp
+
+@php
+use Illuminate\Http\Request;
+use App\Notification;
+use Illuminate\Support\Facades\DB;   
+@endphp
+
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
@@ -151,7 +158,8 @@ $admin=AdminsController::getAdmin();
                             </li>                             
                             <li> 
                                 <a href="/admin/support"> <i class="fas fa-copy"></i>Support Requests</a> 
-                            </li>                             
+                            </li> 
+                                                     
                             <li> 
                                 <a href="/admin/security"> <i class="fas fa-desktop"></i>Manage Security</a> 
                             </li>                             
@@ -245,14 +253,33 @@ $admin=AdminsController::getAdmin();
                                                     <a href="#">See all emails</a> 
                                                 </div>                                                 
                                             </div>                                             
-                                        </div>                                         
-                                        <div class="noti__item js-item-menu"> 
-                                            <i class="zmdi zmdi-notifications"></i> 
-                                            <span class="quantity">3</span> 
-                                            <div class="notifi-dropdown js-dropdown"> 
-                                                <div class="notifi__title"> 
-                                                    <p>You have 3 Notifications</p> 
-                                                </div>                                                 
+                                        </div>         
+                                        <?php        
+                                            $numOfNewNotifications = DB::table('notifications')->where('is_read', 0)->where('to_whome',1)->count();
+                                            // number of unread support request notifications
+                                            $newNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',1)->where('to_whome',1)->count();
+                                            // number of comment notifications
+                                            $newCommentNotificationForHelp = DB::table('notifications')->where('is_read',0)->where('type',2)->where('to_whome',1)->count();
+                                            $numOfAllNotificationforHelp=($numOfNewNotifications+$newCommentNotificationForHelp);
+                                        ?>
+                                            <div class="noti__item js-item-menu"> 
+                                                <i class="zmdi zmdi-notifications"></i> 
+                                        
+                                               @if($numOfNewNotifications !=0)
+                                                    <span class='quantity'>{{$numOfNewNotifications}}</span> 
+                                                            <div class='notifi-dropdown js-dropdown'> 
+                                                                <div class='notifi__title'> 
+                                                                    <p>You have {{$numOfNewNotifications}} Notifications</p> 
+                        
+                                                            </div>
+                                                
+                                                @else
+                                                    <div class='notifi-dropdown js-dropdown'> 
+                                                            <div class='notifi__title'>  
+                                                    </div>
+                                                @endif
+                                        
+                                            <div>                                                 
                                                 <div class="notifi__item"> 
                                                     <div class="bg-c1 img-cir img-40"> 
                                                         <i class="zmdi zmdi-email-open"></i> 
@@ -270,16 +297,13 @@ $admin=AdminsController::getAdmin();
                                                         <p>Your account has been blocked</p> 
                                                         <span class="date">April 12, 2018 06:50</span> 
                                                     </div>                                                     
-                                                </div>                                                 
-                                                <div class="notifi__item"> 
-                                                    <div class="bg-c3 img-cir img-40"> 
-                                                        <i class="zmdi zmdi-file-text"></i> 
-                                                    </div>                                                     
-                                                    <div class="content"> 
-                                                        <p>You got a new file</p> 
-                                                        <span class="date">April 12, 2018 06:50</span> 
-                                                    </div>                                                     
-                                                </div>                                                 
+                                                </div> 
+                                               <!-- start help request notification-->     
+                                                   
+                                                        @include('layouts.admin_help_notification');
+ 
+                                                <!-- ending help request notification-->
+
                                                 <div class="notifi__footer"> 
                                                     <a href="#">All notifications</a> 
                                                 </div>                                                 

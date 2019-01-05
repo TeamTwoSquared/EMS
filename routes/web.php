@@ -241,6 +241,52 @@ Route::get('/svp/EditService/{service_id}','service\ServicesController@edit');
 Route::post('/svp/updateService','service\ServicesController@update');
 //Route::post
 
+// routes for service package
+
+Route::get('/svp/packageService','service\packageService\packageController@index');
+Route::get('/svp/addpackageService','service\packageService\packageController@create');
+Route::post('/svp/submitServicePackage','service\packageService\packageController@store');
+Route::get('/svp/ViewPackage/{package_id}','service\packageService\packageController@show');
+Route::get('/svp/EditPackage/{package_id}','service\packageService\packageController@edit');
+Route::post('/svp/updatePackage/{package_id}','service\packageService\packageController@update');
+Route::get('/svp/DeletePackage/{package_id}','service\packageService\packageController@destroy');
+
+// routes for services that are into package..
+
+Route::get('/svp/packageService/{package_id}','service\packageService\packageServiceController@index1');
+Route::get('/svp/package/addServices/{package_id}','service\packageService\packageServiceController@create');
+Route::post('/svp/package/submitService/{package_id}','service\packageService\packageServiceController@store');
+Route::get('/svp/package/ViewService/{package_id}/{service_id}','service\packageService\packageServiceController@show1');
+Route::get('/svp/package/EditService/{package_id}/{service_id}','service\packageService\packageServiceController@edit1');
+Route::post('/svp/package/updateService/{package_id}/{serviceID}','service\packageService\packageServiceController@update');
+Route::get('/svp/package/DeleteService/{package_id}/{service_id}','service\packageService\packageServiceController@destroy');
+Route::get('/svp/package/addExsistingServices/{package_id}','service\packageService\packageServiceController@addExsistingServices');
+Route::post('/svp/package/addToPackage/{package_id}','service\packageService\packageServiceController@addExsistingServicesToPackage');
+
 
 //pansilu
 Route::get('/pansilu/{id}','chat\ChatsController@show');
+
+//routes for help center to client..
+
+Route::get('/admin/support','support\helpByAdmin@index');
+Route::get('/client/help','support\helpForClient@index');
+Route::get('/client/getSupport','support\helpForClient@create');
+Route::post('/client/submitHelpRequest','support\helpForClient@store');
+
+// routes for help center to admin..
+
+Route::get('/admin/notification','support\helpByAdmin@index');
+Route::get('/admin/notification/{notification_id}','support\helpByAdmin@show');
+Route::post('/admin/notification/sendReply/{support_request_id}','support\helpByAdmin@store2');
+
+// routes for help center to client ..
+
+Route::get('/client/support','support\helpReplyForClient@index');
+Route::get('/client/notification/{notification_id}','support\helpReplyForClient@show');
+Route::post('/client/notification/sendReply/{support_request_id}','support\helpReplyForClient@store2');
+
+Route::post('/svp/test','support\supportByAdmin@index');
+
+
+Route::get('/admin/note','NotificationsController@index');
