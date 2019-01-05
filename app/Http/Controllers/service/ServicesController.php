@@ -264,10 +264,17 @@ class ServicesController extends Controller
         return $services;
     }
 
+    //geting services for service provider id
     public static function getServices($svp_id)
     {
         $services = Service::where('service_provider_id',$svp_id)->get();
         return $services;
+    }
+    //geting services for service id
+    public static function getServiceForService($service_id)
+    {
+        $services = Service::where('service_id',$service_id)->get();
+        return $services[0];
     }
 
     public function getReservationModal($service_id, $svp_id,$task_id=0)

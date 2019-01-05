@@ -4,14 +4,36 @@ namespace App\Http\Controllers\service;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use serviceCustomerBooking;
+use App\serviceCustomerBooking;
+
+
+use Intervention\Image\ImageManagerStatic as Image;
+use Illuminate\Support\Facades\Storage;
+use App\Http\Controllers\svp\SVPsController;
+
 
 class ServiceCustomerBookingsController extends Controller
 {
 
+    public static function getClients($booking_id)
+    {
+        //Use to return a client set when a booking Id is provided
+        $serviceCustomerBookings = serviceCustomerBooking::where('booking_id',$booking_id)->get();
+        $client_all = Array();
+        foreach($serviceCustomerBookings as $serviceCustomerBooking)
+        {
+            $client = Service::where('customer_id',$serviceCustomerBooking->customer_id)->get();
+            $client = $client[0];
+            $client_all = array_prepend($client_all,$client);
+        }
+        return $client_all;
+        
+
+    }
+
     public function index()
     {
-        return view('svp.bookingInfo');
+        //
     }
 
 
