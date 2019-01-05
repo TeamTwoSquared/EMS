@@ -127,7 +127,12 @@ Route::get('/svpverification/{id}/{key}', 'svp\SVPsController@doVerify');
 
 //Route::get('/svp/client','');
 Route::get('/svp/service','service\ServicesController@index');
-Route::get('/svp/booking','service\ServiceCustomerBookingsController@index');
+Route::get('/svp/booking','BookingsController@index');
+Route::get('/svp/booking/add','BookingsController@create');
+Route::post('/svp/booking/store','BookingsController@store');
+Route::get('/svp/booking/delete/{id}','BookingsController@destroy');
+Route::get('/svp/booking/block/{id}','BookingsController@block');
+
 Route::get('/svp/review','review\ReviewingsController@index');
 
 
@@ -189,6 +194,7 @@ Route::post('/client/savetemplate1','event\EventsController@store1');
 Route::post('/client/savetemplate2','event\EventsController@store2');
 
 Route::get('/client/myevents','event\EventsController@client_index');
+Route::post('/client/myevents/store','InvitationsController@store');
 Route::get('/client/myevents/delete/{id}','event\EventsController@destroy');
 Route::get('/client/myevents/{id}','event\TemplatesController@client_index2');
 Route::get('/client/search1/{text}','service\ServicesController@client_search_text');
