@@ -8,6 +8,10 @@ use App\SVPBookingService;
 use App\Mail\SVPBookingSendClientInvitation;
 use App\Http\Controllers\svp\SVPsController;
 use Illuminate\Support\Facades\Mail;
+use App\EventTemplateTask;
+use App\ServiceCustomerBooking;
+use App\Task;
+use App\Event;
 
 class BookingsController extends Controller
 {
@@ -73,17 +77,13 @@ class BookingsController extends Controller
     {
         $booking = Booking::where('booking_id',$id)->get();
         $booking = $booking[0];
-        if ($booking->status==2)
+        if ($booking->status==1)
         {
             $booking->status=0;
-        }
-        else if ($booking->status==0)
-        {
-            $booking->status=2;
         }
         else
         {
-            $booking->status=0;
+            $booking->status=1;
         }
         $booking->save();
         return redirect('/svp/booking');
@@ -112,13 +112,8 @@ class BookingsController extends Controller
     {
         $bookings = Booking::where('date',$date)->get();
         return $bookings;
-use App\EventTemplateTask;
-use App\ServiceCustomerBooking;
-use App\Task;
-use App\Event;
+    }
 
-class BookingsController extends Controller
-{
     public function make_reservation($event_id,$task_id,$svp_id,$service_id)
     {
         $event = Event::find($event_id);

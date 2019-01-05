@@ -53,12 +53,10 @@ use App\Http\Controllers\service\ServiceCustomerBookingsController;
                             <div>to</div>
                             <div>{{$booking->etime}}</div> 
                         </td> 
-                        @if($booking->status == 0)
+                        @if($booking->status == 1)
                         <td><span class="status--process">active</span></td>
-                        @elseif($booking->status == 1)
-                        <td><span class="status--pending">pending</span></td>
                         @else
-                        <td><span class="status--denied">blocked</span></td>
+                        <td><span class="status--pending">pending</span></td>
                         @endif
                         <td class="active" rowspan="1">
                             @php
