@@ -46,6 +46,9 @@ $svp=SVPsController::getSVP();
         <link rel="stylesheet" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css">
         <!-- External Scripts -->
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
+        <!-- flora editer -->
+        @stack('styles')
     </head>     
     <body class="animsition">
         <!-- MODALS -->
@@ -83,20 +86,36 @@ $svp=SVPsController::getSVP();
                         <ul class="list-unstyled navbar__list"> 
                             <li class="active has-sub"> 
                                 <a class="js-arrow" href="/svp/dash"> <i class="fas fa-tachometer-alt"></i>Dashboard </a> 
-                            </li>                     
-                            <li> 
-                                <a href="svp/inbox"> <i class="fas fa-chart-bar"></i>Inbox</a> 
-                                <span class="inbox-num">3</span> 
-                            </li>                     
-                            <li> 
-                                <a href="/svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
-                            </li>                     
+                            </li>                                         
+                            
+                            <li class="has-sub">
+                                <a class="js-arrow" href="#">
+                                    <i class="fas fa-shopping-basket"></i>Service
+                                    <span class="arrow">
+                                        <i class="fas fa-angle-down"></i>
+                                    </span>
+                                </a>
+                                <ul class="list-unstyled navbar__sub-list js-sub-list">
+                                    <li>
+                                        <a href="/svp/service">
+                                            <i class="far fa-check-square"></i>Single Service</a>
+                                    </li>
+                                    <li>
+                                        <a href="/svp/packageService">
+                                            <i class="far fa-check-square"></i>Service Packages</a>
+                                    </li>
+                                </ul>
+                            </li>
                             <li> 
                                 <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients</a> 
                             </li>                     
                             <li> 
                                 <a href="/svp/booking"> <i class="fas fa fa-book"></i>Bookings</a> 
-                            </li>                     
+                            </li>
+                            <li> 
+                                <a href="/svp/support"> <i class="fa-support fa"></i>Support Center</a> 
+                                    <span class="inbox-num">3</span> 
+                                </li>                      
                         </ul>                 
                     </nav>             
                 </div>         
@@ -226,10 +245,13 @@ $svp=SVPsController::getSVP();
                                 <li> 
                                     <a href="svp/inbox"> <i class="fas fa-chart-bar"></i>Inbox</a> 
                                     <span class="inbox-num">3</span> 
-                                </li>                         
+                                </li> 
+                                
                                 <li> 
-                                    <a href="svp/service"> <i class="fas fa-shopping-basket"></i>Services</a> 
-                                </li>                         
+                                    <a href="/svp/service">Service</a> 
+                                </li>
+                                
+                    
                                 <li> 
                                     <a href="/svp/client"> <i class="fas fa fa-user"></i>Clients </a> 
                                 </li>                         
@@ -302,6 +324,9 @@ $svp=SVPsController::getSVP();
         <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
         <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
          
+        <script src="/svp/js/main.js"></script> 
+        
+        @stack('scripts')
     </body>     
 </html> 
 <!-- end document-->

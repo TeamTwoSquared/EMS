@@ -10,7 +10,7 @@ class SVPTelsController  extends Controller
 
     public function index()
     {
-        //
+        return view('svp.test');
     }
 
 
@@ -22,7 +22,7 @@ class SVPTelsController  extends Controller
 
     public function store(Request $request)
     {
-        //
+        return $request->data;
     }
 
 

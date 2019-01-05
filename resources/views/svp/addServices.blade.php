@@ -109,7 +109,7 @@
                                 <input type="text" class="form-control" name="name" placeholder="Name"> 
                                 </div>
                                 <div class="form-group"> 
-                                    <label for="inputAddress">Prices</label>                         
+                                    <label for="inputAddress">Prices(Rs.)</label>                         
                                     <input type="number" class="form-control"  name="price" placeholder="Price Your Service ">
                                 </div>
                                 <div class="form-group">
