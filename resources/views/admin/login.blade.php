@@ -18,14 +18,7 @@
                 <div class="form-group"> 
                     <label class="text-light font-weight-bold">Password</label>                     
                     <input class="au-input au-input--full" type="password" name="password" placeholder="Password"> 
-                </div>                 
-                <div class="login-checkbox"> 
-                    <label class="text-light font-weight-normal"> 
-                        <input type="checkbox" name="remember">Remember Me
-                    </label>                     
-                    <label> 
-</label>                     
-                </div>                 
+                </div>                                  
                 <button class="au-btn au-btn--block au-btn--green m-b-20 font-weight-bold text-body" type="submit">sign in</button>                 
             </form>             
         </div>         
